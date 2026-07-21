@@ -3,14 +3,14 @@ australian_inputs.csv,24,The 24-input register: 18 carried in the model + 6 watc
 complementarities.csv,23,The 23 complementarity records with the four-question gate answers
 decision_asks.csv,14,The 14 decision asks (APPROVE/NOTE/DIRECT) with owners
 dependencies.csv,10,The 10 concentration-risk records across the 8 framework dimensions
-evidence.csv,517,"All 517 open-source evidence records: claim, FACT/ASSESSMENT/TO_VERIFY label, confidence, adversarial-verification verdict, source"
+evidence.csv,534,"All 534 open-source evidence records (517 baseline + 17 New Zealand): claim, FACT/ASSESSMENT/TO_VERIFY label, confidence, adversarial-verification verdict, source"
 gaps_levers.csv,35,"All 35 gaps with lever, owner class, action and due date"
 leverage_points.csv,60,"60 points of leverage: which vehicle carries which Australian priority, with next actions"
 opportunities.csv,27,"All 27 scored partner options across 21 opportunities: score, band, pathway, treatment, exit condition, interdependencies"
 opportunity_scores.csv,270,Criterion-level scoring detail: 10 criteria x 27 options with weights and rationales
-partners.csv,10,The 10 assessed partners/groupings with relationship maturity
+partners.csv,11,"The 11 partner entities incl. New Zealand (added 21 Jul 2026): type, region, relationship maturity with rationale, evidence links"
 pathway_components.csv,270,Pathway detail: 10 components x 27 options with status and notes
 plan_tranches.csv,28,"The plan: 28 tranche items with next actions, dates, owners, off-ramps"
 red_team_log.csv,33,The 33 adjudicated red-team changes that produced model v2.1
 scenarios_impacts.csv,63,9 scenarios x affected opportunities with impact and fallback (incl. SCN-09 do-nothing)
-vehicles.csv,358,"All 358 existing AUS-partner defence partnership vehicles (round 2 gap-hunt included): type, dates, status, space relevance, verification, sources"
+vehicles.csv,384,"All 384 existing AUS-partner defence partnership vehicles across 9 partner groups: type, dates, status, space relevance, verification, sources"

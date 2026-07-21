@@ -41,6 +41,7 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#0d0d0d; --surface:#1a1a19; --soft:#202020; --inset:#232322;
+  --g:#167c3a; --amber:#e0a52a; --r:#b3382f; --bk:#4a4a46;
     --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
     --hair:#2c2c2a; --ring:rgba(255,255,255,.10);
     --accent:#3987e5; --link:#7ab3f0; --accent-soft:#1c2d42;
@@ -58,6 +59,7 @@
 /* ---------- dark theme: manual override ---------- */
 :root[data-theme="dark"]{
   --bg:#0d0d0d; --surface:#1a1a19; --soft:#202020; --inset:#232322;
+  --g:#167c3a; --amber:#e0a52a; --r:#b3382f; --bk:#4a4a46;
   --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
   --hair:#2c2c2a; --ring:rgba(255,255,255,.10);
   --accent:#3987e5; --link:#7ab3f0; --accent-soft:#1c2d42;
@@ -114,7 +116,7 @@ section.view.active{display:block}
 @media(max-width:920px){.cols-2,.cols-3{grid-template-columns:1fr}}
 
 .card{background:var(--surface);border:1px solid var(--ring);border-radius:9px;padding:14px 16px;box-shadow:var(--shadow)}
-.card h2{margin:0 0 4px;font-size:15px}
+.card h2{margin:0 0 6px;font-size:17px;font-weight:750;letter-spacing:-.01em;line-height:1.25}
 .card h3{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700}
 .sub{color:var(--ink2);font-size:12.5px}
 .mono{font-family:var(--mono);font-size:.93em}
