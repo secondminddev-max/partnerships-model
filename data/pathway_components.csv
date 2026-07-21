@@ -1,0 +1,271 @@
+﻿opportunity_id,partner_id,component,status,note
+OPP-01,P-US,instrument,GREEN,"WGS MoU 2007 and ESC FPI in place (EV-USSFCSPO-16, EV-USSFCSPO-18)"
+OPP-01,P-US,forum,GREEN,AUSMIN/ESC governance channel (EV-USSFCSPO-16)
+OPP-01,P-US,owners,GREEN,Defence Space Command and USSF/USSPACECOM named (EV-USSFCSPO-15)
+OPP-01,P-US,authority,AMBER,"narrowband at RFT under First Pass only; wideband and alternative-communications lines of effort remain unscoped (EV-MILSATCO-09, EV-MILSATCO-10)"
+OPP-01,P-US,security,GREEN,exchange proven under existing WGS arrangements (EV-USSFCSPO-18)
+OPP-01,P-US,technical,GREEN,WGS/MUOS interoperability demonstrated in service (EV-USSFCSPO-19)
+OPP-01,P-US,operational,GREEN,ADF is the operating user today (EV-AUINPUTS-11)
+OPP-01,P-US,resource,AMBER,"IIP envelope committed (A$5.2-7.2bn) but wideband acquisition unapproved; interim posture rests on WGS to the 2029 access horizon, Optus C1 contracted to September 2034 and Intelsat IS-22 UHF to at least 2033 (EV-MILSATCO-12, EV-MILSATCO-13, EV-MILSATCO-15, EV-MILSATCO-16, EV-MILSATCO-22)"
+OPP-01,P-US,sovereignty,AMBER,structural dependency on US and commercial providers (EV-AUINPUTS-20)
+OPP-01,P-US,mechanism,GREEN,"MoU plus hosted-payload/commercial contract forms proven (EV-USSFCSPO-18, EV-USSFCSPO-19)"
+OPP-02,P-US,instrument,GREEN,"2010 Statement of Principles (VEH-US-17, In force) and ESC MOU (VEH-US-24, In force) carry the GREEN; the 2012 SSA Data-Sharing MoU is cited for heritage only - status TO_VERIFY, possible post-2019 supersession (VEH-US-20; EV-RONINS20-14, EV-USSFCSPO-15 Medium/not directly accessed)"
+OPP-02,P-US,forum,GREEN,ESC FPI and CSpO channels active (EV-USSFCSPO-16)
+OPP-02,P-US,owners,GREEN,RAAF/DSpC and USSF SpOC evidenced (EV-USSFCSPO-12)
+OPP-02,P-US,authority,GREEN,operating arrangements approved and in force (EV-USSFCSPO-11)
+OPP-02,P-US,security,GREEN,sensor data flows within the SSN today (EV-USSFCSPO-11)
+OPP-02,P-US,technical,GREEN,sensors integrated as SSN nodes (EV-USSFCSPO-11)
+OPP-02,P-US,operational,GREEN,"sensor triple now operating: SST FOC 19 August 2025, C-band FOC, DARC Early Use from September 2025 (EV-SDAPROGR-08, EV-SDAPROGR-10, EV-SDAPROGR-12)"
+OPP-02,P-US,resource,AMBER,"DARC support costs reported to pressure JP9360 funding (EV-AUINPUTS-14, Low confidence); no JP9360 tranche award evidenced in 2025-26 (EV-SDAPROGR-03)"
+OPP-02,P-US,sovereignty,GREEN,Australian operation of hosted sensors (EV-USSFCSPO-12)
+OPP-02,P-US,mechanism,GREEN,MoU/hosting arrangements proven (EV-RONINS20-14)
+OPP-02,P-JP,instrument,AMBER,no explicit space lines of effort in FSDC-era statements (EV-JAPANAU-15)
+OPP-02,P-JP,forum,GREEN,"2+2 consultations and CSpO co-membership (EV-JAPANAU-14, EV-JAPANAU-10)"
+OPP-02,P-JP,owners,GREEN,DSpC and JASDF Space Operations Group identifiable (EV-JAPANAU-06)
+OPP-02,P-JP,authority,AMBER,approval route for defence SDA data exchange unevidenced (EV-JAPANAU-22)
+OPP-02,P-JP,security,AMBER,ISA exists but SDA releasability arrangements unevidenced (EV-JAPANAU-17)
+OPP-02,P-JP,technical,AMBER,interfaces and standards alignment not yet trialled (EV-JAPANAU-22)
+OPP-02,P-JP,operational,GREEN,both operate national SDA units and CSpO missions (EV-JAPANAU-06)
+OPP-02,P-JP,resource,AMBER,no resourced bilateral SDA program evidenced (EV-JAPANAU-22)
+OPP-02,P-JP,sovereignty,GREEN,"reciprocal data exchange, no dependency created (EV-JAPANAU-21)"
+OPP-02,P-JP,mechanism,AMBER,delivery mechanism not selected; dialogues only (EV-JAPANAU-14)
+OPP-02,P-DE,instrument,GREEN,Declaration of Intent on a global space-surveillance sensor network signed March 2026 and in force (VEH-GERMANY-09) atop CSpO co-membership
+OPP-02,P-DE,forum,GREEN,CSpO Principals' Board active with both members (EV-USSFCSPO-09)
+OPP-02,P-DE,owners,GREEN,"GSSAC/German Space Command and DSpC identifiable (EV-GERMANY-06, EV-GERMANY-07)"
+OPP-02,P-DE,authority,AMBER,civil-military GSSAC governance for foreign exchange unevidenced (EV-GERMANY-06)
+OPP-02,P-DE,security,UNKNOWN,AU-DE information-release arrangements unevidenced (EV-GERMANY-14)
+OPP-02,P-DE,technical,AMBER,catalogue interface compatibility unstudied (EV-GERMANY-08)
+OPP-02,P-DE,operational,GREEN,both run operational SDA centres (EV-GERMANY-06)
+OPP-02,P-DE,resource,AMBER,no resourced bilateral activity evidenced (EV-GERMANY-21)
+OPP-02,P-DE,sovereignty,GREEN,"reciprocal exchange, no dependency (EV-GERMANY-08)"
+OPP-02,P-DE,mechanism,AMBER,no mechanism selected; workshop/data-protocol candidates (EV-GERMANY-21)
+OPP-03,P-AUKUS,instrument,GREEN,trilateral MoU announced Dec 2023 (EV-AUINPUTS-13)
+OPP-03,P-AUKUS,forum,GREEN,trilateral program governance under the MoU (EV-AUINPUTS-13)
+OPP-03,P-AUKUS,owners,GREEN,US/UK/AU program parties plus Northrop Grumman (EV-USSFCSPO-14)
+OPP-03,P-AUKUS,authority,GREEN,MoU signed; site delivered under contract (EV-USSFCSPO-14)
+OPP-03,P-AUKUS,security,GREEN,program information flows within the trilateral (EV-USSFCSPO-14)
+OPP-03,P-AUKUS,technical,GREEN,"Site 1 complete September 2024, ahead of schedule (EV-USSFCSPO-14)"
+OPP-03,P-AUKUS,operational,AMBER,DARC Early Use conducted remotely by the US 20th Space Surveillance Squadron from the Integrated Radar Operations Center at Eglin; Australian data-access terms unconfirmed - the operational-user evidence for Australian access required by pathway-rules s1 is not yet met (EV-SDAPROGR-08; lever GL-31)
+OPP-03,P-AUKUS,resource,AMBER,"reported cost pressure on JP9360 from DARC support (EV-AUINPUTS-14, Low-confidence assessment)"
+OPP-03,P-AUKUS,sovereignty,AMBER,allied hosting vs sovereign SDA tension flagged (EV-AUINPUTS-14)
+OPP-03,P-AUKUS,mechanism,GREEN,MoU plus development contract in execution (EV-USSFCSPO-14)
+OPP-04,P-JP,instrument,GREEN,ministerial mandate for dialogues and unit exchanges (EV-JAPANAU-14)
+OPP-04,P-JP,forum,GREEN,"2+2 and CSpO provide standing channels (EV-JAPANAU-10, EV-JAPANAU-14)"
+OPP-04,P-JP,owners,GREEN,"Australian Space Command and JASDF Space Operations Wing (670 personnel, March 2026; upgrading to a Space Operations Command in FY2026, service renamed Aerospace Self-Defense Force from later FY2026) (EV-JAPANSDA-10, EV-JAPANSDA-11)"
+OPP-04,P-JP,authority,GREEN,unit exchanges already endorsed at ministerial level (EV-JAPANAU-14)
+OPP-04,P-JP,security,GREEN,scope confined to shareable information under the ISA (EV-JAPANAU-17)
+OPP-04,P-JP,technical,GREEN,no integration required at exchange tier (EV-JAPANAU-14)
+OPP-04,P-JP,operational,GREEN,"both sides operate national SDA missions; JASDF joined its first multinational space serial at Talisman Sabre 2025 in Townsville and both nations work the JCO commercial construct (EV-JAPANSDA-03, EV-JAPANSDA-17)"
+OPP-04,P-JP,resource,GREEN,modest cost; visits and exchange serials (EV-JAPANAU-14)
+OPP-04,P-JP,sovereignty,GREEN,"reciprocal, revocable, no control transfer (EV-JAPANAU-22)"
+OPP-04,P-JP,mechanism,GREEN,personnel exchange/workshop record forms fit (EV-JAPANAU-14)
+OPP-05,P-JP,instrument,AMBER,civil trial/hosting arrangements only; defence PNT instrument absent (EV-JAPANAU-05)
+OPP-05,P-JP,forum,AMBER,no standing AU-JP PNT forum evidenced (EV-JAPANAU-05)
+OPP-05,P-JP,owners,AMBER,JPD new (Apr 2024); Japanese counterpart owner unvalidated (EV-AUINPUTS-15)
+OPP-05,P-JP,authority,AMBER,approval route for defence use of QZSS unevidenced (EV-JAPANAU-05)
+OPP-05,P-JP,security,AMBER,signal-assurance information release untested (EV-JAPANAU-17)
+OPP-05,P-JP,technical,GREEN,"QZSS monitoring already operates from Canberra (EV-JAPANAU-04); QZSS at five satellites, QZS-7 launch postponed pending the H3 F8 failure investigation and rescheduled per JAXA release of 8 July 2026 (EV-RESILIEN-15, EV-JAPANSDA-15)"
+OPP-05,P-JP,operational,GREEN,JPD is a named sponsor for resilient PNT (EV-AUINPUTS-15)
+OPP-05,P-JP,resource,AMBER,no funded joint activity evidenced (EV-JAPANAU-05)
+OPP-05,P-JP,sovereignty,AMBER,adds another foreign-owned system; fallback framing needed (EV-CONVERSA-08)
+OPP-05,P-JP,mechanism,AMBER,study TOR/technical exchange not yet selected (EV-JAPANAU-05)
+OPP-06,P-IN,instrument,AMBER,"civil instruments strengthening: 2021-amended ISRO-ASA MoU, November 2024 crew-recovery IA, and a reported second (December 2024) IA covering the tracking terminal (TO_VERIFY); defence-space annex still absent - June 2026 Defence Ministers' Dialogue statement contains no space content (EV-INDIACOC-05, EV-INDIACOC-06, EV-INDIACOC-07, EV-INDIACOC-18)"
+OPP-06,P-IN,forum,GREEN,Annual Summit plus new Annual Defence Ministers' Dialogue (EV-QUADINDI-09)
+OPP-06,P-IN,owners,AMBER,Australian and Indian defence-space owners unassigned (EV-QUADINDI-22)
+OPP-06,P-IN,authority,AMBER,approval route for defence tracking support undefined (EV-QUADINDI-09)
+OPP-06,P-IN,security,AMBER,space-data release arrangements unevidenced (EV-QUADINDI-09)
+OPP-06,P-IN,technical,GREEN,Cocos TT&C terminal commissioned and operating (EV-QUADINDI-07)
+OPP-06,P-IN,operational,GREEN,Gaganyaan support has named users and demonstrated utility (EV-QUADINDI-07)
+OPP-06,P-IN,resource,GREEN,modest-cost model proven (EV-QUADINDI-22)
+OPP-06,P-IN,sovereignty,GREEN,"Australian-territory hosting, revocable (EV-QUADINDI-07)"
+OPP-06,P-IN,mechanism,AMBER,follow-on mechanism (arrangement/annex) not selected (EV-QUADINDI-22)
+OPP-07,P-US,instrument,GREEN,"Statement of Intent on military space operations signed by Chief of Space and Cyber and US CSO, 3 June 2026 (VEH-US-25, EV-USSFFORC-12); ESC MoU 2023 beneath it (VEH-US-24) - instruments remain non-treaty but are now current, named and service-chief-signed"
+OPP-07,P-US,forum,GREEN,"ACSO/FCP channel active (in post as of 1 April 2026) and the SF/S9 staff group formally established 21 April 2026 as the Force Design Architect support element (EV-USSFFORC-04, EV-USSFFORC-06)"
+OPP-07,P-US,owners,GREEN,Chief of Space and Cyber and CSO signed the SoI (EV-USSFCSPO-17)
+OPP-07,P-US,authority,GREEN,service-chief-level intent documented (EV-USSFCSPO-17)
+OPP-07,P-US,security,UNKNOWN,release tier for Force Design artefacts unconfirmed (EV-USSFCSPO-03)
+OPP-07,P-US,technical,GREEN,taxonomy work requires no system integration; the released Objective Force 2040 baseline (15 April 2026) gives the concrete artefact to work against (EV-USSFFORC-07)
+OPP-07,P-US,operational,GREEN,Op Dyurra provides the operational anchor (EV-USSFCSPO-10)
+OPP-07,P-US,resource,AMBER,space workforce nascent - first SIET graduates June 2026 (EV-USSFCSPO-17)
+OPP-07,P-US,sovereignty,AMBER,"influence-through-contribution model, no legal entitlement (EV-USSFCSPO-20)"
+OPP-07,P-US,mechanism,GREEN,"SoI/MOU and staff-talks mechanisms exist (EV-USSFCSPO-15, EV-USSFCSPO-17)"
+OPP-08,P-US,instrument,GREEN,TSA in force with JSCOT approval (EV-AUKUSLFE-17)
+OPP-08,P-US,forum,AMBER,no standing launch-cooperation forum evidenced (EV-AUKUSLFE-16)
+OPP-08,P-US,owners,AMBER,Defence owner absent - launch omitted from NDS/IIP (EV-AUINPUTS-19)
+OPP-08,P-US,authority,GREEN,TSA allocates control and approval architecture (EV-AUKUSLFE-18)
+OPP-08,P-US,security,RED,"MTCR SLV technology on the Excluded Technology List requires individual US licences; segregated areas bar Australian access (EV-AUKUSLFE-05, EV-AUKUSLFE-19)"
+OPP-08,P-US,technical,GREEN,spaceport sites exist; HyImpulse launch shows range function (EV-GERMANY-17)
+OPP-08,P-US,operational,AMBER,no Defence operational sponsor for launch outcomes (EV-AUINPUTS-19)
+OPP-08,P-US,resource,AMBER,no funded national launch line; commercial revenue projections TO_VERIFY (EV-AUKUSLFE-20)
+OPP-08,P-US,sovereignty,AMBER,TSA control/inspection conditions on Australian territory (EV-AUKUSLFE-18)
+OPP-08,P-US,mechanism,GREEN,TSA plus commercial launch contracts are viable forms (EV-AUKUSLFE-19)
+OPP-08,P-DE,instrument,GREEN,launch services agreements signed (EV-GERMANY-15)
+OPP-08,P-DE,forum,AMBER,no government forum; company-to-company only (EV-GERMANY-21)
+OPP-08,P-DE,owners,GREEN,"Southern Launch, RFA, HyImpulse, DLR identified (EV-GERMANY-15, EV-GERMANY-17, EV-GERMANY-18)"
+OPP-08,P-DE,authority,GREEN,Australian launch approvals demonstrated at Koonibba (EV-GERMANY-17)
+OPP-08,P-DE,security,AMBER,DSGL permits for transfers involving German entities (EV-DECDSGL-21)
+OPP-08,P-DE,technical,AMBER,orbital vehicle (RFA ONE) unflown (EV-GERMANY-16)
+OPP-08,P-DE,operational,AMBER,no Defence user; civil/commercial missions only (EV-GERMANY-18)
+OPP-08,P-DE,resource,AMBER,partner priorities shifted to SaxaVord (EV-GERMANY-16)
+OPP-08,P-DE,sovereignty,GREEN,activity on Australian ranges under Australian law (EV-GERMANY-17)
+OPP-08,P-DE,mechanism,GREEN,commercial contract form proven (EV-GERMANY-15)
+OPP-09,P-CSPO,instrument,GREEN,CSpO initiative and OOD membership since 2020 (EV-USSFCSPO-10)
+OPP-09,P-CSPO,forum,GREEN,Principals' Board met April 2026; Oslo follow-up December 2026 (EV-USSFCSPO-09)
+OPP-09,P-CSPO,owners,GREEN,HQJOC/DSpC on the Australian side evidenced (EV-USSFCSPO-10)
+OPP-09,P-CSPO,authority,AMBER,national approval levels for expanded contribution undefined (EV-USSFCSPO-10)
+OPP-09,P-CSPO,security,AMBER,releasability varies across ten partners; Japan in CSpO but not OOD (EV-JAPANAU-12)
+OPP-09,P-CSPO,technical,AMBER,combined mission system interfaces unevidenced (EV-USSFCSPO-09)
+OPP-09,P-CSPO,operational,GREEN,"standing operation with demonstrated output: IOC April 2025, Operation Selene all-seven-nations tracking serial, Apollo Insights quarterly TTXs with 60+ companies (EV-MULTILAT-02, EV-MULTILAT-19, EV-MULTILAT-20)"
+OPP-09,P-CSPO,resource,AMBER,workforce small; first dedicated graduates June 2026 (EV-USSFCSPO-17)
+OPP-09,P-CSPO,sovereignty,GREEN,"contribution-based, nationally controlled (EV-USSFCSPO-10)"
+OPP-09,P-CSPO,mechanism,GREEN,operation orders/MNF arrangements exist (EV-USSFCSPO-09)
+OPP-10,P-JP,instrument,GREEN,strategic relationship arrangement in force (EV-CONVERSA-03)
+OPP-10,P-JP,forum,GREEN,BoM-JMA institutional channel (EV-CONVERSA-03)
+OPP-10,P-JP,owners,GREEN,BoM and JMA named (EV-CONVERSA-02)
+OPP-10,P-JP,authority,GREEN,arrangement signed at agency-head level (EV-CONVERSA-03)
+OPP-10,P-JP,security,GREEN,civil unclassified data (EV-CONVERSA-03)
+OPP-10,P-JP,technical,GREEN,streams operational (EV-CONVERSA-04)
+OPP-10,P-JP,operational,GREEN,daily national forecast dependence - utility proven (EV-CONVERSA-02)
+OPP-10,P-JP,resource,AMBER,Himawari-10 contribution committed (EV-CONVERSA-03) but the spacecraft build is delayed and the ALOS-4 access channel is unresolved (EV-EOCONTIN-14 Medium; EV-EOCONTIN-15 TO_VERIFY/Low) - the same schedule condition the time_resources 3/5 already concedes (GL-34)
+OPP-10,P-JP,sovereignty,AMBER,no sovereign fallback; continuity rests on Japanese policy decisions (EV-CONVERSA-20)
+OPP-10,P-JP,mechanism,GREEN,arrangement plus data-node roles operating (EV-JAPANAU-20)
+OPP-10,P-US,instrument,GREEN,"core-partner commitment and budget measure (EV-USSCSPAC-18, EV-CONVERSA-18)"
+OPP-10,P-US,forum,GREEN,GA-USGS program channel evidenced by delivery roles (EV-USSCSPAC-18)
+OPP-10,P-US,owners,GREEN,Geoscience Australia named deliverer (EV-CONVERSA-18)
+OPP-10,P-US,authority,GREEN,funding legislated in 2024-25 Budget (EV-CONVERSA-18)
+OPP-10,P-US,security,GREEN,open civil imagery (EV-CONVERSA-18)
+OPP-10,P-US,technical,GREEN,ground station upgrade in delivery (EV-CONVERSA-18)
+OPP-10,P-US,operational,GREEN,170+ government programs consume EO (EV-CONVERSA-05)
+OPP-10,P-US,resource,RED,"US FY2026 President's Budget request (2 May 2025) proposes no funding for Landsat Next as designed - restructure unresolved and no Australian public response evidenced (EV-EOCONTIN-08, EV-EOCONTIN-10)"
+OPP-10,P-US,sovereignty,AMBER,"no sovereign EO mission behind the partnership; Australia's A$207.4m/4yr + A$38.2m/yr commitment now attaches to a restructured program (EV-EOCONTIN-02, EV-EOCONTIN-04)"
+OPP-10,P-US,mechanism,GREEN,program partnership and ground-segment delivery contracts (EV-USSCSPAC-18)
+OPP-10,P-QUAD,instrument,AMBER,no binding instrument; leaders' fact-sheet commitments (EV-QUADINDI-05)
+OPP-10,P-QUAD,forum,GREEN,Quad Space Working Group active since 2021 (EV-QUADINDI-01)
+OPP-10,P-QUAD,owners,AMBER,"national leads per initiative, not standing owners (EV-QUADINDI-03)"
+OPP-10,P-QUAD,authority,AMBER,summit-cycle dependent (EV-QUADINDI-05)
+OPP-10,P-QUAD,security,GREEN,civil open data (EV-QUADINDI-23)
+OPP-10,P-QUAD,technical,GREEN,portal is a link gateway - low integration (EV-QUADINDI-02)
+OPP-10,P-QUAD,operational,GREEN,capacity-building deliveries evidenced (EV-QUADINDI-03)
+OPP-10,P-QUAD,resource,AMBER,no dedicated funding line evidenced (EV-QUADINDI-05)
+OPP-10,P-QUAD,sovereignty,GREEN,national data holdings retained (EV-QUADINDI-02)
+OPP-10,P-QUAD,mechanism,AMBER,data-sharing protocol not selected beyond the gateway (EV-QUADINDI-02)
+OPP-11,P-PIF,instrument,AMBER,"Boe/2050 are policy frameworks, not delivery instruments (EV-PACIFIC-01, EV-PACIFIC-04)"
+OPP-11,P-PIF,forum,GREEN,"PIF, ICT Ministers' Dialogue, P4C exist (EV-PACIFIC-05)"
+OPP-11,P-PIF,owners,AMBER,no assigned regional owner for LEO governance (EV-PACIFIC-06)
+OPP-11,P-PIF,authority,AMBER,consensus-based regional decision-making (EV-PACIFIC-01)
+OPP-11,P-PIF,security,GREEN,civil connectivity domain (EV-PACIFIC-04)
+OPP-11,P-PIF,technical,UNKNOWN,LEO integration and gateway architecture unassessed (EV-PACIFIC-06)
+OPP-11,P-PIF,operational,AMBER,Pacific-defined needs must lead; demand mapping incomplete (EV-PACIFIC-21)
+OPP-11,P-PIF,resource,AMBER,Australian channels exist; regional cost-share undefined (EV-PACIFIC-07)
+OPP-11,P-PIF,sovereignty,AMBER,data-sovereignty concerns precedent (PNG-Starlink) (EV-PACIFIC-06)
+OPP-11,P-PIF,mechanism,AMBER,"commercial service contract with sovereignty conditions not yet framed, but the community-gateway model (Nauru December 2024, Kosrae February 2025) and the CCRC LEO governance research launched at the 30th PITA conference provide the template (EV-PACIFICC-05, EV-PACIFICC-12)"
+OPP-12,P-IN,instrument,GREEN,launch agreement contracted (EV-QUADINDI-12)
+OPP-12,P-IN,forum,AMBER,no standing industry-mission forum; summit-cycle attention (EV-QUADINDI-08)
+OPP-12,P-IN,owners,GREEN,"Space Machines Company, NSIL, ASA identified (EV-QUADINDI-12)"
+OPP-12,P-IN,authority,GREEN,funding committed; contract signed (EV-QUADINDI-12)
+OPP-12,P-IN,security,AMBER,"DEC permits needed for spacecraft technology to India (EV-DECDSGL-21, EV-DECDSGL-19)"
+OPP-12,P-IN,technical,AMBER,mission not yet flown (EV-QUADINDI-12)
+OPP-12,P-IN,operational,AMBER,civil sustainability mission; Defence utility indirect (EV-AUINPUTS-17)
+OPP-12,P-IN,resource,GREEN,A$8.5m committed to the first mission (EV-QUADINDI-12); MAITRI launch reported NET 2027 and unscheduled as of March 2026 (EV-INDIACOC-10 TO_VERIFY); A$8.5m ISI India Projects grant received May 2024 (EV-INDIACOC-09)
+OPP-12,P-IN,sovereignty,GREEN,"Australian-built payload, Australian data (EV-QUADINDI-12)"
+OPP-12,P-IN,mechanism,GREEN,commercial launch contract proven form (EV-QUADINDI-12)
+OPP-13,P-AE,instrument,RED,"defence-space cooperation would require new instruments; 2019 MoU civil and expressly non-binding (EV-UAE-21, EV-UAE-02)"
+OPP-13,P-AE,forum,AMBER,"MoU Joint Steering Committee civil-only; IEEE WG is external (EV-UAE-02, EV-UAE-17)"
+OPP-13,P-AE,owners,AMBER,no Australian owner assigned for UAE space engagement (EV-UAE-21)
+OPP-13,P-AE,authority,AMBER,no mandate beyond civil agency MoU (EV-UAE-02)
+OPP-13,P-AE,security,AMBER,no bilateral protection/release arrangements (EV-UAE-21)
+OPP-13,P-AE,technical,UNKNOWN,no interface or standards-alignment evidence (EV-UAE-17)
+OPP-13,P-AE,operational,AMBER,no defined Australian user for UAE cooperation outputs (EV-UAE-21)
+OPP-13,P-AE,resource,GREEN,standards-track participation is near-zero cost (EV-UAE-23)
+OPP-13,P-AE,sovereignty,GREEN,no dependency created (EV-UAE-23)
+OPP-13,P-AE,mechanism,AMBER,"candidate mechanisms unselected; task-force concept is third-party (EV-UAE-15, EV-UAE-16)"
+OPP-14,P-US,instrument,GREEN,"sovereign procurement under Defence authority; WGS MoU carries the allied-interoperability edge (EV-MILSATCO-07, EV-MILSATCO-17)"
+OPP-14,P-US,forum,GREEN,"CASG/Air Defence and Space Systems running a live AusTender process (EV-MILSATCO-07, EV-MILSATCO-09) - live process anchored by the 10 July 2026 RFT announcement (EV-MILSATCO-07, FACT/High); close-date detail 19 August 2026 rests on EV-MILSATCO-09 (TO_VERIFY)"
+OPP-14,P-US,owners,GREEN,"Head Air Defence and Space Systems (AVM Nussio) announced the RFT; contact point published (EV-MILSATCO-07, EV-MILSATCO-09)"
+OPP-14,P-US,authority,AMBER,SPA9102 reported to hold First Pass approval only; Second Pass required to contract (EV-MILSATCO-09)
+OPP-14,P-US,security,GREEN,UHF coalition exchange operating today under existing arrangements (EV-MILSATCO-13)
+OPP-14,P-US,technical,GREEN,COTS/MOTS design-maturity bias reduces integration risk by design (EV-MILSATCO-08)
+OPP-14,P-US,operational,GREEN,ADF is the operating narrowband user; EMI/jamming resilience is an explicit requirement (EV-MILSATCO-06)
+OPP-14,P-US,resource,GREEN,2026 IIP commits A$5.2-7.2bn to SATCOM over the decade (EV-MILSATCO-12)
+OPP-14,P-US,sovereignty,GREEN,"sovereign-controlled spacecraft with availability-based support enhances control; IS-22 is the fallback (EV-MILSATCO-08, EV-MILSATCO-13)"
+OPP-14,P-US,mechanism,GREEN,"contract mechanism live: RFT plus availability-based support services model (EV-MILSATCO-08); contract to carry the V7 s53/s54 sovereignty-and-continuity clause set (continuity, data rights, surge, crisis-priority) before the commercial leg is counted as crisis mitigation (SCN-02)"
+OPP-15,P-US,instrument,AMBER,multinational MGUE PA effective December 2020; Australian accession unconfirmed (EV-RESILIEN-09)
+OPP-15,P-US,forum,GREEN,AUSMIN/ESC channel plus the Joint PNT Directorate as the standing national counterpart (EV-RESILIEN-06)
+OPP-15,P-US,owners,GREEN,"Joint PNT Directorate (est. April 2024) and Joint Capabilities Group named (EV-RESILIEN-06, EV-RESILIEN-07)"
+OPP-15,P-US,authority,AMBER,JP9380 approval stage and M-code fielding decision path not evidenced (EV-RESILIEN-08)
+OPP-15,P-US,security,UNKNOWN,M-code release arrangements for Australia unevidenced in open sources (EV-RESILIEN-09)
+OPP-15,P-US,technical,GREEN,"mature allied receiver supply base - 100,000+ units delivered (EV-RESILIEN-11)"
+OPP-15,P-US,operational,GREEN,"live GPS-denial trials at Talisman Sabre 2025 under an inform-train construct (EV-RESILIEN-06, EV-RESILIEN-07)"
+OPP-15,P-US,resource,AMBER,"Joint PNT Directorate is a ~17-person team; JP9380 resourcing not evidenced beyond Phase 1 scoping (EV-RESILIEN-07, EV-RESILIEN-08)"
+OPP-15,P-US,sovereignty,AMBER,GNSS-class dependency remains; SouthPAN itself relies on GPS input and excludes northern-Australia Safety-of-Life coverage (EV-RESILIEN-04)
+OPP-15,P-US,mechanism,GREEN,project-arrangement form proven for exactly this exchange (EV-RESILIEN-09)
+OPP-15,P-AUKUS,instrument,GREEN,"AUKUS licence-free defence trade environment in force (VEH-UK-13, EV-AUKUSLFE-14)"
+OPP-15,P-AUKUS,forum,AMBER,no named AUKUS Pillar 2 PNT workstream evidenced in open sources (EV-RESILIEN-13)
+OPP-15,P-AUKUS,owners,GREEN,"DSTG quantum-PNT program and QuantX Labs named; Joint PNT Directorate as user (EV-RESILIEN-12, EV-RESILIEN-13)"
+OPP-15,P-AUKUS,authority,AMBER,transition-to-program decision path beyond seed contracts not evidenced (EV-RESILIEN-13)
+OPP-15,P-AUKUS,security,GREEN,technology class moves licence-free among AUKUS partners (EV-DECDSGL-21)
+OPP-15,P-AUKUS,technical,AMBER,"space qualification incomplete - comb flying, complete clock pending (EV-RESILIEN-14)"
+OPP-15,P-AUKUS,operational,AMBER,no exercise or fielding pathway defined yet for quantum timing layers (EV-RESILIEN-12)
+OPP-15,P-AUKUS,resource,AMBER,A$2.7m seed contracts; no program of record (EV-RESILIEN-13)
+OPP-15,P-AUKUS,sovereignty,GREEN,sovereign technology line - enhances control (EV-RESILIEN-14)
+OPP-15,P-AUKUS,mechanism,GREEN,project arrangement with IP/security terms is the fitting mechanism (EV-RESILIEN-13)
+OPP-16,P-US,instrument,AMBER,no contract or arrangement in place; commercial contract mechanism available (EV-RESILIEN-18)
+OPP-16,P-US,forum,AMBER,no standing evaluation forum; Joint PNT Directorate is the plausible but unconfirmed owner (EV-RESILIEN-07)
+OPP-16,P-US,owners,AMBER,Australian evaluation owner not named in any source (EV-RESILIEN-07)
+OPP-16,P-US,authority,AMBER,trial funding line not evidenced (EV-RESILIEN-08)
+OPP-16,P-US,security,GREEN,unclassified commercial technology (EV-RESILIEN-18)
+OPP-16,P-US,technical,AMBER,"signal/receiver maturity varies by vendor; demonstration-stage systems (EV-RESILIEN-18, EV-RESILIEN-19)"
+OPP-16,P-US,operational,GREEN,GPS-denial exercise venues exist and were used at Talisman Sabre 2025 (EV-RESILIEN-06)
+OPP-16,P-US,resource,AMBER,no identified funds; low-cost pilot plausible (EV-RESILIEN-07)
+OPP-16,P-US,sovereignty,GREEN,evaluation creates no dependency; informs the sovereignty calculus (EV-RESILIEN-23)
+OPP-16,P-US,mechanism,GREEN,commercial service contract with continuity/data-rights conditions fits (EV-RESILIEN-19)
+OPP-17,P-JP,instrument,AMBER,"no dedicated bilateral defence-space annex, arrangement or standing space dialogue publicly evidenced as of July 2026 (EV-JAPANSDA-20, ASSESSMENT)"
+OPP-17,P-JP,forum,GREEN,2+2 mandate for space dialogues and unit-level exchanges reiterated 5 September 2025 (EV-JAPANSDA-01)
+OPP-17,P-JP,owners,GREEN,"Australian Space Command and JASDF Space Operations Wing/Command named counterparts (EV-JAPANSDA-02, EV-JAPANSDA-10)"
+OPP-17,P-JP,authority,AMBER,approval route for a dedicated arrangement undefined; Japan's guidelines currently name only the US bilaterally (EV-JAPANSDA-09)
+OPP-17,P-JP,security,AMBER,release tiers for Japan's FY2026 SDA-satellite data undefined (EV-JAPANSDA-13)
+OPP-17,P-JP,technical,GREEN,shared JCO commercial construct provides a working common layer (EV-JAPANSDA-17)
+OPP-17,P-JP,operational,GREEN,JASDF joined the Talisman Sabre 2025 multinational space serial - exercise pathway proven (EV-JAPANSDA-03)
+OPP-17,P-JP,resource,AMBER,Japanese space organisation tripling while reorganising; Australian space workforce nascent (EV-JAPANSDA-10)
+OPP-17,P-JP,sovereignty,GREEN,reciprocal and revocable (EV-JAPANSDA-02)
+OPP-17,P-JP,mechanism,GREEN,space annex to existing cooperation frameworks identified as the credible mechanism (EV-JAPANSDA-20)
+OPP-18,P-US,instrument,AMBER,JCO participation instrument recorded TO_VERIFY (VEH-MULTILATERAL-30); commercial contracts exist per-provider (EV-JAPANSDA-17)
+OPP-18,P-US,forum,GREEN,JCO cells plus CSpO provide standing coordination (EV-JAPANSDA-17)
+OPP-18,P-US,owners,GREEN,1SSU Commercial Data Mission Centre named and delivering (EV-JAPANSDA-16)
+OPP-18,P-US,authority,GREEN,course delivery and JCO operations already authorised in practice (EV-JAPANSDA-16)
+OPP-18,P-US,security,GREEN,commercial-unclassified tier is the construct's design point (EV-JAPANSDA-16)
+OPP-18,P-US,technical,GREEN,"sensors commissioned and integrated: WA radar since January 2023, EOS observatories, HEO on-orbit ops (EV-SDAPROGR-15, EV-SDAPROGR-16, EV-SDAPROGR-19)"
+OPP-18,P-US,operational,GREEN,"first sovereign propelled RPO executed February 2026; ASCA Decision Advantage contract running (EV-SDAPROGR-19, EV-SDAPROGR-20)"
+OPP-18,P-US,resource,AMBER,"no JP9360 tranche award evidenced in 2025-26 to fund the sovereign layer at scale; EOS has shifted focus away from SDA (EV-SDAPROGR-03, EV-SDAPROGR-16)"
+OPP-18,P-US,sovereignty,GREEN,nationally-tasked commercial capability enhances control (EV-SDAPROGR-15)
+OPP-18,P-US,mechanism,GREEN,"commercial service contracts with data rights, plus the JCO construct (EV-JAPANSDA-17)"
+OPP-19,P-QUAD,instrument,GREEN,"IPMDA in operation since May 2022 (VEH-MULTILATERAL-09, EV-PACIFICC-13)"
+OPP-19,P-QUAD,forum,GREEN,Quad FMM cycle active - 11th meeting 26 May 2026 (EV-PACIFICC-17)
+OPP-19,P-QUAD,owners,AMBER,"Australian owner for inserting sovereign space-derived data into the channel unnamed (EV-PACIFICC-21, ASSESSMENT)"
+OPP-19,P-QUAD,authority,AMBER,funding authority beyond the DFAT pilot undefined (EV-PACIFICC-15)
+OPP-19,P-QUAD,security,GREEN,commercial unclassified RF data (EV-PACIFICC-13)
+OPP-19,P-QUAD,technical,GREEN,"feeds, analytics and training operating via FFA (EV-PACIFICC-15)"
+OPP-19,P-QUAD,operational,GREEN,"FFA and Pacific Fusion Centre are the established, partner-accepted delivery institutions (EV-PACIFICC-14)"
+OPP-19,P-QUAD,resource,AMBER,pilot-scale funding only; expansion unfunded (EV-PACIFICC-15)
+OPP-19,P-QUAD,sovereignty,GREEN,Pacific-endorsed channels; contribution-based (EV-PACIFIC-21)
+OPP-19,P-QUAD,mechanism,GREEN,commercial data contract model proven (HawkEye 360) (EV-PACIFICC-15)
+OPP-20,P-US,instrument,GREEN,DAP membership since 2018; contract form established (EV-EOCONTIN-17)
+OPP-20,P-US,forum,AMBER,"DEF799 program status unverified - no authoritative source newer than establishment (EV-EOCONTIN-20, TO_VERIFY)"
+OPP-20,P-US,owners,AMBER,AGO lead recorded but current ownership TO_VERIFY (EV-EOCONTIN-20)
+OPP-20,P-US,authority,GREEN,commercial contracting authority exercised repeatedly since 2018 (EV-EOCONTIN-17)
+OPP-20,P-US,security,GREEN,direct downlink model operating (EV-EOCONTIN-17)
+OPP-20,P-US,technical,GREEN,ground-segment integration mature (EV-EOCONTIN-17)
+OPP-20,P-US,operational,GREEN,whole-of-government EO demand documented - 170+ programs (EV-CONVERSA-05)
+OPP-20,P-US,resource,AMBER,renewal funding line not evidenced; state-level Planet contract shows demand fragmenting to states (EV-EOCONTIN-18)
+OPP-20,P-US,sovereignty,AMBER,fallback partial: sovereign sub-metre capability is a single R&D satellite (EV-EOCONTIN-19)
+OPP-20,P-US,mechanism,GREEN,"commercial service contract with continuity/data-rights/crisis-priority conditions per V7 s54 (EV-EOCONTIN-17); DAP renewal to carry the V7 s53/s54 clause set (continuity, data rights, surge, crisis-priority) before this leg is counted as resilience (SCN-02/SCN-05)"
+OPP-21,P-US,instrument,GREEN,"standing exercise instruments and invitations operating (EV-MULTILAT-16, EV-MULTILAT-17)"
+OPP-21,P-US,forum,GREEN,USSPACECOM/USSF exercise programs plus MNF-OOD TTX series (EV-MULTILAT-20)
+OPP-21,P-US,owners,GREEN,"Defence Space Command / AUSSpOC personnel and named RAAF officers in command roles (EV-MULTILAT-08, EV-MULTILAT-09, EV-MULTILAT-22)"
+OPP-21,P-US,authority,GREEN,participation approvals exercised repeatedly (EV-MULTILAT-23)
+OPP-21,P-US,security,GREEN,tiered multinational releasability managed within exercise design (EV-MULTILAT-15)
+OPP-21,P-US,technical,GREEN,exercise interfaces proven (EV-MULTILAT-16)
+OPP-21,P-US,operational,GREEN,direct line to Operation Dyurra and MNF-OOD contributions (EV-MULTILAT-06)
+OPP-21,P-US,resource,GREEN,"marginal cost; all 2025 serials executed within current resources (EV-MULTILAT-16, EV-MULTILAT-17, EV-MULTILAT-22)"
+OPP-21,P-US,sovereignty,GREEN,no control transfer (EV-MULTILAT-23)
+OPP-21,P-US,mechanism,GREEN,exercise instructions and invitations - established mechanism (EV-MULTILAT-16)

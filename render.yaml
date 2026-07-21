@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: partnerships-model
+    runtime: static
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /*
+        name: X-Robots-Tag
+        value: noindex, nofollow
+    routes:
+      - type: rewrite
+        source: /data
+        destination: /data/INDEX.csv

@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Defence Space Partnership Plan — Briefing Pack — UNOFFICIAL — 18 Jul 2026</title>
+<style>
+:root{
+  --paper:#f9f9f7; --paper2:#fcfcfb; --wash:#f0efe9;
+  --ink:#0b0b0b; --ink2:#52514e; --ink3:#898781; --line:#e1e0d9;
+  --green:#0ca30c; --amber:#fab219; --red:#d03b3b; --blk:#1a1a19; --unk:#898781;
+  --us:#2a78d6; --jp:#1baf7a; --mult:#eda100; --ind:#4a3aa7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#282723}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+
+/* ---------- slide geometry ---------- */
+.deck{--s:1}
+.slide{width:1280px;height:720px;background:var(--paper);position:relative;overflow:hidden;
+  padding:52px 52px 40px;box-shadow:0 8px 40px rgba(0,0,0,.35)}
+body:not(.scrollmode) .deck{position:fixed;left:50%;top:50%;width:1280px;height:720px;
+  transform:translate(-50%,-50%) scale(var(--s));transform-origin:center center}
+body:not(.scrollmode) .slide{display:none;position:absolute;inset:0}
+body:not(.scrollmode) .slide.active{display:block}
+body.scrollmode{padding:26px 0 80px}
+body.scrollmode .deck{position:static;transform:none;width:auto;height:auto}
+body.scrollmode .slide{display:block;margin:0 auto 26px;zoom:var(--z,1)}
+
+/* classification banner + footer (injected) */
+.cls{position:absolute;top:0;left:0;right:0;height:24px;background:var(--wash);
+  border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  font-size:10px;letter-spacing:.35em;color:var(--ink2);font-weight:600;text-indent:.35em}
+.foot{position:absolute;left:52px;right:52px;bottom:12px;display:flex;justify-content:space-between;
+  border-top:1px solid var(--line);padding-top:6px;font-size:9.5px;color:var(--ink3)}
+.foot b{font-weight:500;font-variant-numeric:tabular-nums}
+
+/* ---------- typography ---------- */
+.k{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink3);font-weight:600;margin-bottom:6px}
+h1.t{font-size:34px;font-weight:650;letter-spacing:-.01em;line-height:1.12;margin-bottom:4px}
+h1.t .pdot{width:12px;height:12px;border-radius:3px}
+.sub{font-size:15px;color:var(--ink2);margin-bottom:14px;line-height:1.4}
+h2{font-size:14.5px;font-weight:650;margin-bottom:6px}
+h3{font-size:12.5px;font-weight:650;margin-bottom:4px}
+p,li{font-size:15px;line-height:1.45}
+.small,.small p,.small li{font-size:12.5px;line-height:1.4}
+.xs{font-size:11.5px;line-height:1.35;color:var(--ink2)}
+.muted{color:var(--ink3)}
+.dim{color:var(--ink2)}
+ul{list-style:none}
+ul.tick li{padding-left:14px;position:relative;margin-bottom:5px}
+ul.tick li::before{content:"";position:absolute;left:0;top:.52em;width:5px;height:5px;border-radius:1px;background:var(--ink3)}
+strong{font-weight:650}
+
+/* ---------- components ---------- */
+.card{background:var(--paper2);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.id{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;
+  background:var(--wash);border:1px solid var(--line);border-radius:3px;padding:0 4px;color:var(--ink2);white-space:nowrap}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:3px;padding:1px 6px 1px 4px;
+  font-size:10px;font-weight:650;letter-spacing:.04em;white-space:nowrap;vertical-align:middle}
+.chip .gl{display:inline-flex;align-items:center;justify-content:center;width:11px;height:11px;
+  border-radius:2px;font-size:8px;font-weight:800;background:rgba(255,255,255,.85);color:inherit}
+.chip.g{background:var(--green);color:#fff}.chip.g .gl{color:var(--green)}
+.chip.a{background:var(--amber);color:#1a1a19}.chip.a .gl{background:rgba(26,26,25,.9);color:var(--amber)}
+.chip.r{background:var(--red);color:#fff}.chip.r .gl{color:var(--red)}
+.chip.b{background:var(--blk);color:#fff}.chip.b .gl{color:var(--blk)}
+.chip.u{background:var(--unk);color:#fff}.chip.u .gl{color:var(--unk)}
+.band{display:inline-block;border:1px solid #c9c8c0;border-radius:3px;padding:0 5px;font-size:11px;
+  font-weight:700;color:var(--ink2);background:var(--paper2);vertical-align:middle}
+.vb{display:inline-block;border-radius:3px;padding:1px 7px;font-size:10px;font-weight:700;letter-spacing:.06em}
+.vb.ap{background:var(--blk);color:#fff}
+.vb.dr{background:none;border:1.2px solid var(--ink);color:var(--ink)}
+.vb.nt{background:none;border:1px solid #c9c8c0;color:var(--ink2)}
+.pdot{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:4px;vertical-align:1px;background:var(--ink3)}
+.pdot.us{background:var(--us)}.pdot.jp{background:var(--jp)}.pdot.ml{background:var(--mult)}.pdot.in{background:var(--ind)}
+
+/* tables */
+table.tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.tbl th{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink2);font-weight:650;
+  text-align:left;padding:3px 7px 4px;border-bottom:1px solid #cfcec6}
+.tbl td{font-size:12.5px;line-height:1.32;padding:4.5px 7px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl.dense td{font-size:11.5px;padding:3.5px 6px}
+.tbl.xdense td{font-size:11px;padding:3px 5px;line-height:1.28}
+.tbl.tight td{font-size:10.5px;padding:2.5px 5px;line-height:1.24}
+.tbl tr:last-child td{border-bottom:none}
+.tbl.zebra tr:nth-child(even) td{background:var(--wash)}
+.tbl tr.grp td{font-size:10.5px;text-transform:uppercase;letter-spacing:.15em;color:var(--ink2);
+  font-weight:700;background:var(--wash);padding:6px 7px 4px;border-bottom:1px solid #cfcec6}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* pathway strip */
+.pw{display:flex;gap:2px}
+.pw span{flex:1;min-width:0}
+.pw b{display:block;height:14px;border-radius:2px;background:var(--unk)}
+.pw .G b{background:var(--green)}.pw .A b{background:var(--amber)}.pw .R b{background:var(--red)}
+.pw .U b{background:repeating-linear-gradient(45deg,#898781 0 3px,#b6b4ad 3px 6px)}
+.pw i{font-style:normal;display:block;font-size:9.5px;color:var(--ink3);text-align:center;margin-top:2px;letter-spacing:.02em}
+.pw .bind b{outline:2px solid var(--ink);outline-offset:1px}
+
+/* stat tiles */
+.stat{background:var(--paper2);border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.stat .n{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.05;font-variant-numeric:tabular-nums}
+.stat .l{font-size:11px;color:var(--ink2);margin-top:2px;line-height:1.3}
+
+/* nav */
+#nav{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:50;display:flex;gap:6px;
+  align-items:center;background:rgba(20,20,18,.88);border:1px solid rgba(255,255,255,.14);border-radius:8px;
+  padding:6px 10px;color:#e8e7e2;font-size:12px;backdrop-filter:blur(4px)}
+#nav button{background:none;border:1px solid rgba(255,255,255,.25);color:#e8e7e2;border-radius:5px;
+  padding:3px 10px;font-size:12px;cursor:pointer;font-family:inherit}
+#nav button:hover{background:rgba(255,255,255,.12)}
+#cnt{font-variant-numeric:tabular-nums;min-width:64px;text-align:center;color:#c9c8c0}
+
+/* ---------- print ---------- */
+@media print{
+  @page{size:A4 landscape;margin:0}
+  html,body{background:#fff !important;padding:0 !important}
+  #nav{display:none !important}
+  body .deck{position:static !important;transform:none !important;width:auto;height:auto}
+  body .slide{display:block !important;position:relative !important;margin:92px auto 0 !important;
+    zoom:.8769;box-shadow:none;page-break-after:always;break-inside:avoid}
+  body .slide:last-of-type{page-break-after:auto}
+  *{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- ================= 1. TITLE ================= -->
+<section class="slide" data-title="Title">
+  <div style="position:absolute;right:52px;top:120px;text-align:right;color:var(--ink3)">
+    <div style="font-size:13px;font-weight:650;color:var(--ink2)">517 <span style="font-weight:400">evidence records</span></div>
+    <div style="font-size:13px;font-weight:650;color:var(--ink2);margin-top:4px">253 <span style="font-weight:400">partnership vehicles</span></div>
+    <div style="font-size:13px;font-weight:650;color:var(--ink2);margin-top:4px">37 <span style="font-weight:400">slides</span></div>
+  </div>
+  <div style="height:100%;display:flex;flex-direction:column;justify-content:center">
+    <div class="k">Briefing pack &middot; Staff paper for decision</div>
+    <h1 style="font-size:52px;font-weight:700;letter-spacing:-.02em;line-height:1.05;max-width:900px">Defence Space Partnership Plan</h1>
+    <p style="font-size:17px;color:var(--ink2);margin-top:14px;max-width:820px">Nine decisions over the next five months — what to approve, what to direct, what to verify first, and what doing nothing selects by default.</p>
+    <div style="display:flex;gap:26px;margin-top:30px;align-items:center">
+      <div><div style="font-size:13px;font-weight:650">18 July 2026</div><div class="xs muted">Prepared as at date</div></div>
+      <div style="width:1px;height:30px;background:var(--line)"></div>
+      <div><div style="font-size:13px;font-weight:650">UNOFFICIAL</div><div class="xs muted">Open-source baseline</div></div>
+      <div style="width:1px;height:30px;background:var(--line)"></div>
+      <div><div style="font-size:13px;font-weight:650">Model v2.1</div><div class="xs muted">Post red-team adjudication</div></div>
+    </div>
+    <div class="card" style="margin-top:34px;max-width:940px">
+      <p class="xs">Built from a <strong>517-record verified evidence base</strong> (adversarially checked: 184 confirmed, 22 corrected, 0 unverified) and a <strong>253-vehicle partnership register</strong>, through the red-teamed <strong>v2.1 model</strong> (42 findings adjudicated). Every record is ASSESSMENT-level staff work pending Defence custodian validation. Scores are ordinal decision aids; decisions remain with authorised humans.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2. BLUF ================= -->
+<section class="slide" data-title="BLUF">
+  <div class="k">Bottom line up front</div>
+  <h1 class="t">Nine decisions over the next five months</h1>
+  <div style="display:flex;justify-content:space-between;align-items:baseline;gap:20px">
+    <p class="sub">Led by the SPA9102 narrowband RFT response — the portfolio's only live acquisition window.</p>
+    <p class="sub" style="white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink)"><strong>1 Aug</strong> verify &middot; <strong>19 Aug</strong> RFT close &middot; <strong>~Nov</strong> responses</p>
+  </div>
+  <div class="grid2" style="gap:20px;margin-top:10px">
+    <div class="card" style="border-top:3px solid var(--ink)">
+      <h2>1 &middot; One live window</h2>
+      <p style="font-size:15px;font-weight:650;line-height:1.4;margin-bottom:6px">The window is anchored by the 10 July 2026 RFT announcement (<span class="id">EV-MILSATCO-07</span>, FACT/High) and closes 19 August 2026 (TO_VERIFY).</p>
+      <p class="small">Confirm the close date on AusTender by <strong>1 August 2026</strong> (<span class="id">GL-27</span>); tender responses follow ~November 2026. The effort reduces to nine decisions over five months, led by this response.</p>
+    </div>
+    <div class="card">
+      <h2>2 &middot; Strong scores, no free rides</h2>
+      <p class="small">On raw scoring the strongest options are <span class="id">OPP-02</span> southern-hemisphere SDA (space domain awareness) deepening (<span class="pdot us"></span>US, <strong>91/A</strong>) and <span class="id">OPP-10</span> Earth-observation continuity (<span class="pdot jp"></span>Japan, <strong>91/A</strong>). All seven Act-now items sit on <span class="chip a"><b class="gl">A</b>AMBER</span> pathways — none is gap-free, and every binding gap now has a dated, owned action (<span class="id">GL-26</span>..<span class="id">GL-35</span>).</p>
+    </div>
+    <div class="card">
+      <h2>3 &middot; Three portfolio rulings sought</h2>
+      <p class="small"><strong>One</strong> funding position on DARC support versus JP9360 tranches (one decision covering <span class="id">OPP-02</span>/<span class="id">OPP-03</span>/<span class="id">OPP-18</span>; priority order <strong>OPP-03 &gt; OPP-02 &gt; OPP-18</strong> if no new money); a <strong>sovereign-balance ruling</strong> on tranche-1 US concentration (execute <span class="id">OPP-04</span> now and accelerate <span class="id">OPP-17</span> scoping, or record explicit acceptance with a review trigger); and a <strong>consolidated, ranked next-AUSMIN agenda</strong> with one owner.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--red)">
+      <h2>4 &middot; Doing nothing is a decision</h2>
+      <p class="small">Doing nothing (<span class="id">SCN-09</span>) lets the SPA9102 window lapse (~November 2026 responses), completes DARC to 2027 FOC (full operational capability) <strong>without Australian data-access terms</strong>, and locks the current dependency set (<span class="id">DEP-01</span>/<span class="id">DEP-02</span>/<span class="id">DEP-03</span>/<span class="id">DEP-05</span>/<span class="id">DEP-06</span>) at 2026 prices.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3. HOW TO READ ================= -->
+<section class="slide" data-title="How to read this pack">
+  <div class="k">Orientation</div>
+  <h1 class="t">How to read this pack</h1>
+  <p class="sub">Treatment labels carry their pathway colour so the tension is visible, not discovered.</p>
+  <div class="grid3" style="gap:14px">
+    <div class="card">
+      <h2>Treatments &times; pathway colour</h2>
+      <table class="tbl dense">
+        <tr><td><strong>Act now</strong> &times;7</td><td><span class="chip a"><b class="gl">A</b>AMBER</span></td><td class="xs">all seven — gaps under management</td></tr>
+        <tr><td><strong>Build pathway</strong> &times;12</td><td><span class="chip a"><b class="gl">A</b>AMBER</span> <span class="chip r"><b class="gl">R</b>RED</span></td><td class="xs">10 Amber, 2 Red (by design)</td></tr>
+        <tr><td><strong>Explore</strong> &times;5</td><td><span class="chip a"><b class="gl">A</b>AMBER</span></td><td class="xs">bounded studies only</td></tr>
+        <tr><td><strong>Quick win</strong> &times;2</td><td><span class="chip g"><b class="gl">G</b>GREEN</span></td><td class="xs">the only GREEN pathways</td></tr>
+        <tr><td><strong>Hold</strong> &times;1</td><td><span class="chip r"><b class="gl">R</b>RED</span></td><td class="xs">OPP-13 — no instrument</td></tr>
+      </table>
+      <p class="xs" style="margin-top:6px">Pathway rule (V7 &sect;50): any BLACK &rarr; BLACK; else any RED &rarr; RED; else any AMBER or UNKNOWN &rarr; AMBER; else GREEN. <span class="chip b"><b class="gl">B</b>BLACK</span> appears nowhere in this portfolio.</p>
+      <p class="xs" style="margin-top:6px"><strong>Read the labels correctly:</strong> under the operationalised treatment matrix, <em>Act now</em> includes A/B-value options already in execution or on a live window closing within ~12 months even where the pathway is Amber with gaps under management. Every treatment label in this pack is printed with its pathway colour.</p>
+    </div>
+    <div class="card">
+      <h2>Score bands (proposed drafts)</h2>
+      <table class="tbl dense">
+        <tr><td><span class="band">A</span></td><td>80–100</td><td>very strong</td></tr>
+        <tr><td><span class="band">B</span></td><td>65–79</td><td>strong</td></tr>
+        <tr><td><span class="band">C</span></td><td>50–64</td><td>moderate</td></tr>
+        <tr><td><span class="band">D</span></td><td>30–49</td><td>weak</td></tr>
+        <tr><td><span class="band">E</span></td><td>0–29</td><td>very weak / unsuitable</td></tr>
+      </table>
+      <p class="xs" style="margin-top:6px">Bands and criterion anchors are <strong>proposed drafts</strong> requiring governance approval and panel calibration. Scores are ordinal aids (V7 &sect;49), never merged with pathway status or evidence confidence (V7 &sect;25/&sect;70).</p>
+      <h2 style="margin-top:10px">Evidence labels</h2>
+      <p class="xs"><strong>FACT</strong> — directly supported by an authoritative source accessed &middot; <strong>ASSESSMENT</strong> — analytical judgement from stated evidence &middot; <strong>TO_VERIFY</strong> — source-lead only; authoritative confirmation required. Confidence High / Medium / Low is recorded separately.</p>
+    </div>
+    <div class="card">
+      <h2>Ranking note</h2>
+      <p class="xs"><strong>Raw weighted scores are the headline everywhere.</strong> Renormalisation is not an authorised method; where Unknowns exist the renormalised value appears only as a declared sensitivity view: <span class="id">OPP-07</span> <strong>87</strong>/92 &middot; <span class="id">OPP-15</span> P-US <strong>73</strong>/77 &middot; <span class="id">OPP-11</span> <strong>63</strong>/66 &middot; <span class="id">OPP-13</span> <strong>53</strong>/56 &middot; <span class="id">OPP-02</span> P-DE <strong>69</strong>/77. OPP-07's former #1 position was an artefact of the renormalisation method, now removed.</p>
+      <h2 style="margin-top:10px">ID scheme</h2>
+      <p class="xs"><span class="id">OPP</span> opportunity &middot; <span class="id">VEH</span> partnership vehicle &middot; <span class="id">GL</span> gap/lever action &middot; <span class="id">DEP</span> dependency &middot; <span class="id">SCN</span> scenario &middot; <span class="id">AUS-IN</span> Australian input &middot; <span class="id">EV</span> evidence record &middot; <span class="id">C</span> complementarity &middot; <span class="id">RD</span> resource decision.</p>
+      <h2 style="margin-top:10px">Partner accents</h2>
+      <p class="xs"><span class="pdot us"></span>United States &middot; <span class="pdot jp"></span>Japan &middot; <span class="pdot ml"></span>AUKUS / multilateral &middot; <span class="pdot in"></span>India &middot; <span class="pdot"></span>other partners neutral.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:12px;border-left:3px solid var(--amber)">
+    <p class="xs"><strong>Standing caveat.</strong> UNOFFICIAL — open-source baseline. Every record is ASSESSMENT-level staff work pending Defence custodian validation. Nothing in this pack asserts partner intent, treaty status or dates beyond the cited evidence register records. Costs are not estimated in this baseline: every ask carries a reasoned signal (Program-level / Minor / None) or the recorded &ldquo;TBD — order of magnitude at validation&rdquo; flag; no recommendation is presented silently on cost.</p>
+  </div>
+</section>
+
+<!-- ================= 4. METHOD ================= -->
+<section class="slide" data-title="Method on one page">
+  <div class="k">Method</div>
+  <h1 class="t">517 verified records reduce to 3 tranches and 14 asks</h1>
+  <p class="sub">Needs &rarr; complementarity &rarr; opportunity &rarr; pathway &rarr; plan — with adversarial verification at each evidence step.</p>
+  <div style="display:flex;gap:8px;align-items:stretch;margin-bottom:14px">
+    <div class="stat" style="flex:1"><div class="n">18</div><div class="l">Australian inputs (needs, gaps, assets, constraints) — <span class="id">AUS-IN</span></div></div>
+    <div style="align-self:center;color:var(--ink3);font-size:16px">&rarr;</div>
+    <div class="stat" style="flex:1"><div class="n">23</div><div class="l">complementarities with 10 partners — <span class="id">C</span></div></div>
+    <div style="align-self:center;color:var(--ink3);font-size:16px">&rarr;</div>
+    <div class="stat" style="flex:1"><div class="n">21</div><div class="l">opportunities; 27 scored partner legs — <span class="id">OPP</span></div></div>
+    <div style="align-self:center;color:var(--ink3);font-size:16px">&rarr;</div>
+    <div class="stat" style="flex:1"><div class="n">10&times;27</div><div class="l">pathway components per leg; 35 dated gap-lever actions — <span class="id">GL</span></div></div>
+    <div style="align-self:center;color:var(--ink3);font-size:16px">&rarr;</div>
+    <div class="stat" style="flex:1"><div class="n">3</div><div class="l">tranches + 5 resource decisions + 14 asks — this plan</div></div>
+  </div>
+  <div class="grid3" style="gap:12px">
+    <div class="card">
+      <h2>Evidence base</h2>
+      <table class="tbl dense">
+        <tr><td><strong>517</strong> evidence records</td><td class="xs">2 research rounds (15 + 9 streams)</td></tr>
+        <tr><td>418 FACT / 52 ASSESSMENT / 47 TO_VERIFY</td><td class="xs">confidence 311 High / 188 Med / 18 Low</td></tr>
+        <tr><td><strong>184 confirmed / 22 corrected</strong></td><td class="xs">adversarial checks across evidence + vehicles; 0 unverified</td></tr>
+        <tr><td><strong>253</strong> partnership vehicles</td><td class="xs">53 Direct / 76 Enabling / 124 General; 196 in force</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Scoring (Framework V7)</h2>
+      <p class="xs">Ten criteria, 0–5 against anchored scales; weighted points = weight &times; score/5; headline = raw weighted sum on the full 100-point set. Weights: priority alignment <strong>20</strong>; capability maturity, mutual benefit, value proposition <strong>15</strong> each; instrument/forum <strong>10</strong>; security, technical, policy, time/resources, sovereignty <strong>5</strong> each. Unknown criteria contribute no points. Partner scores exist <em>only per opportunity</em> — no universal best-partner ranking (V7 &sect;13 hard rule).</p>
+    </div>
+    <div class="card">
+      <h2>Red team &rarr; v2.1</h2>
+      <p class="xs"><strong>42 findings adjudicated</strong> on 18 July 2026 (33-entry change log in the model meta). Headline corrections: unauthorised renormalisation removed from all headline scores; silent v2 re-scores reverted and declared (<span class="id">OPP-04</span> 79&rarr;76, <span class="id">OPP-09</span> to 74); <span class="id">OPP-02</span> P-DE recomputed to 69 after the <span class="id">VEH-GERMANY-09</span> instrument re-score; single-owner rule imposed on the SPA9102 window (OPP-14 owns the RFT response; OPP-01 owns the architecture decision space).</p>
+    </div>
+  </div>
+  <p class="xs" style="margin-top:12px">Treatment matrix (V7 &sect;13.1, operationalised): <strong>Act now</strong> = A/B value with a Green pathway, <em>or</em> already in execution / a live window closing within ~12 months (noted in the rationale); <strong>Build pathway</strong> = A/B value with an Amber/Red binding gap and a recorded exit condition; <strong>Quick win</strong> = B/C value, Green pathway, low resource demand; <strong>Explore</strong> = C-band or validation-dependent; <strong>Hold</strong> = no viable instrument pathway. Acceptance-test cases retained by design: <span class="id">OPP-08</span> P-US (72/B, security RED) and <span class="id">OPP-13</span> (RED instrument).</p>
+</section>
+
+<!-- ================= 5. WHAT AUSTRALIA NEEDS ================= -->
+<section class="slide" data-title="What Australia needs">
+  <div class="k">Inputs</div>
+  <h1 class="t">What Australia needs — the 18 carried inputs</h1>
+  <p class="sub">Three High-urgency capability gaps — multi-orbit SATCOM, layered SDA, resilient PNT — plus two High dependencies drive the plan. Register-unified 18 July 2026; 18 of 24 inputs carried, the rest mapped as watch items — none dropped silently.</p>
+  <div class="grid3" style="gap:12px">
+    <div class="card">
+      <h2>Capability gaps (5)</h2>
+      <ul class="tick small">
+        <li><span class="id">AUS-IN-03</span> <strong>Multi-orbit SATCOM</strong> after the JP9102 cancellation — High urgency</li>
+        <li><span class="id">AUS-IN-14</span> <strong>Layered SDA (JP9360)</strong> — High</li>
+        <li><span class="id">AUS-IN-15</span> <strong>Resilient PNT</strong> in GNSS-degraded environments — High</li>
+        <li><span class="id">AUS-IN-04</span> Sovereign launch and reconstitution pathway — Medium</li>
+        <li><span class="id">AUS-IN-05</span> Defence space workforce build — Medium</li>
+      </ul>
+      <h2 style="margin-top:10px">Dependencies (2)</h2>
+      <ul class="tick small">
+        <li><span class="id">AUS-IN-09</span> <strong>Assured weather-satellite services</strong> (Himawari dependency) — High</li>
+        <li><span class="id">AUS-IN-10</span> <strong>EO continuity</strong> without a sovereign EO mission — High</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Policy priorities (5)</h2>
+      <ul class="tick small">
+        <li><span class="id">AUS-IN-17</span> Sustain allied SDA hosting <em>while protecting sovereign SDA funding</em> — Medium</li>
+        <li><span class="id">AUS-IN-02</span> Space control to deny interference or attack — Medium</li>
+        <li><span class="id">AUS-IN-06</span> National space policy unifying civil and security settings (absent) — Medium</li>
+        <li><span class="id">AUS-IN-21</span> Civil SSA and space traffic cooperation — Medium</li>
+        <li><span class="id">AUS-IN-20</span> Pacific space-enabled connectivity and resilience — Medium</li>
+      </ul>
+      <h2 style="margin-top:10px">Windows &amp; assets (3)</h2>
+      <ul class="tick small">
+        <li><span class="id">AUS-IN-22</span> <strong>USSF Force Design integration window</strong> (IPS LOE 1, 2025–26) — High</li>
+        <li><span class="id">AUS-IN-24</span> Southern-hemisphere geography and hosting as the national value proposition — Medium</li>
+        <li><span class="id">AUS-IN-19</span> Sovereign R&amp;D, industrial base and cal/val niche as partnership currency — Medium</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Constraints &amp; risks (3)</h2>
+      <ul class="tick small">
+        <li><span class="id">AUS-IN-23</span> Export-control geometry: AUKUS licence-free vs permits for all others — Medium</li>
+        <li><span class="id">AUS-IN-13</span> <strong>Resourcing execution risk</strong>: domestic approval gap + US appropriations exposure — High</li>
+        <li><span class="id">AUS-IN-16</span> Continuity of space-enabled critical national functions — Medium</li>
+      </ul>
+      <h2 style="margin-top:10px">Watch items (uncarried, mapped)</h2>
+      <ul class="tick" style="font-size:11.5px">
+        <li class="xs"><span class="id">AUS-IN-01</span> resilient/reconstitutable architecture &rarr; <span class="id">DEP-05</span>/<span class="id">DEP-08</span>, <span class="id">SCN-07</span></li>
+        <li class="xs"><span class="id">AUS-IN-07</span> wideband dependency &rarr; <span class="id">OPP-01</span>, <span class="id">DEP-01</span>/<span class="id">DEP-03</span>/<span class="id">DEP-05</span></li>
+        <li class="xs"><span class="id">AUS-IN-08</span> GNSS &rarr; <span class="id">DEP-07</span> (national PNT policy still absent, Feb 2026)</li>
+        <li class="xs"><span class="id">AUS-IN-11</span> counterspace &rarr; <span class="id">SCN-01</span>/<span class="id">SCN-03</span></li>
+        <li class="xs"><span class="id">AUS-IN-12</span> concurrent-demand denial &rarr; <span class="id">SCN-02</span>/<span class="id">SCN-05</span> (via <span class="id">AUS-IN-16</span>)</li>
+        <li class="xs"><span class="id">AUS-IN-18</span> instruments &rarr; the register itself; currency watched</li>
+      </ul>
+    </div>
+  </div>
+  <p class="xs" style="margin-top:12px"><span class="id">AUS-IN-13</span>, <span class="id">AUS-IN-16</span> and <span class="id">AUS-IN-19</span> were carried into the model at red-team adjudication and appear in the plan body — the approval-gap risk, the goodwill-to-priority-access conversion program, and the offer-side currency respectively.</p>
+</section>
+
+<!-- ================= 6. DECISION TIMELINE ================= -->
+<section class="slide" data-title="Decision timeline">
+  <div class="k">Timeline</div>
+  <h1 class="t">Decision timeline — the cost of delay concentrates in three dates</h1>
+  <p class="sub"><strong>19 Aug 2026</strong> RFT close (TO_VERIFY) &middot; <strong>~Nov 2026</strong> tender responses &middot; <strong>2027</strong> DARC FOC. Spacing indicates sequence, not duration; every date below is evidenced or flagged TO_VERIFY. <span class="muted">Red dots = the three cost-of-delay dates.</span></p>
+  <div style="position:relative;margin:26px 0 8px">
+    <div style="position:absolute;left:6px;right:6px;top:7px;height:2px;background:#cfcec6"></div>
+    <div style="display:flex;gap:8px">
+      <div style="flex:1;min-width:0"><div style="width:12px;height:12px;border-radius:50%;background:var(--ink3);margin-bottom:8px;border:2px solid var(--paper)"></div><div class="xs"><strong>18 Jul 2026</strong><br>This pack. No 2026 AUSMIN scheduled as at today.</div></div>
+      <div style="flex:1;min-width:0"><div style="width:12px;height:12px;border-radius:50%;background:var(--ink3);margin-bottom:8px;border:2px solid var(--paper)"></div><div class="xs"><strong>1 Aug 2026</strong><br><span class="id">GL-27</span> verify AusTender close date.</div></div>
+      <div style="flex:1;min-width:0"><div style="width:12px;height:12px;border-radius:50%;background:var(--red);margin-bottom:8px;border:2px solid var(--paper)"></div><div class="xs"><strong>19 Aug 2026</strong><br>SPA9102 RFT close <em>(TO_VERIFY)</em>; <span class="id">GL-02</span> OPP-01 authority named.</div></div>
+      <div style="flex:1;min-width:0"><div style="width:12px;height:12px;border-radius:50%;background:var(--ink3);margin-bottom:8px;border:2px solid var(--paper)"></div><div class="xs"><strong>Sep 2026</strong><br><span class="id">GL-33</span> Landsat enacted-outcome validation. ANZUS 75th — agenda hook only.</div></div>
+      <div style="flex:1;min-width:0"><div style="width:12px;height:12px;border-radius:50%;background:var(--red);margin-bottom:8px;border:2px solid var(--paper)"></div><div class="xs"><strong>~Nov 2026</strong><br>Tender responses; Second Pass window (<span class="id">GL-26</span>).</div></div>
+      <div style="flex:1;min-width:0"><div style="width:12px;height:12px;border-radius:50%;background:var(--ink3);margin-bottom:8px;border:2px solid var(--paper)"></div><div class="xs"><strong>Q4 2026</strong><br><span class="id">GL-28</span> JCO (US-led Joint Commercial Operations cell) terms verified — gates the late-2026 PWSA (Proliferated Warfighter Space Architecture) timeline.</div></div>
+      <div style="flex:1;min-width:0"><div style="width:12px;height:12px;border-radius:50%;background:var(--ink3);margin-bottom:8px;border:2px solid var(--paper)"></div><div class="xs"><strong>Dec 2026</strong><br>Oslo CSpO Principals' (<span class="id">GL-17</span> matrix due); first Japan exchange serial (<span class="id">OPP-04</span>).</div></div>
+      <div style="flex:1;min-width:0"><div style="width:12px;height:12px;border-radius:50%;background:var(--red);margin-bottom:8px;border:2px solid var(--paper)"></div><div class="xs"><strong>2027</strong><br>DARC FOC — data-access terms (<span class="id">GL-31</span>) and sovereignty set (<span class="id">GL-35</span>) must precede it.</div></div>
+      <div style="flex:1;min-width:0"><div style="width:12px;height:12px;border-radius:50%;background:var(--ink3);margin-bottom:8px;border:2px solid var(--paper)"></div><div class="xs"><strong>Early 2028</strong><br>Optus/Inovor sovereign LEO demonstrator decision gate (<span class="id">GL-30</span>).</div></div>
+      <div style="flex:1;min-width:0"><div style="width:12px;height:12px;border-radius:50%;background:var(--ink3);margin-bottom:8px;border:2px solid var(--paper)"></div><div class="xs"><strong>2029</strong><br>WGS access horizon (<span class="id">VEH-US-26</span>) — extension negotiation opens well before.</div></div>
+    </div>
+  </div>
+  <div class="grid2" style="margin-top:16px;gap:12px">
+    <div class="card" style="border-left:3px solid var(--red)">
+      <h2>Cost of delay concentrates in three dates (SCN-09)</h2>
+      <p class="small"><strong>19 Aug 2026</strong> — RFT close (TO_VERIFY) &middot; <strong>~Nov 2026</strong> — tender responses pass without a sovereign narrowband decision &middot; <strong>2027</strong> — DARC FOC with data-access terms unnegotiated; the leverage window closes at FOC.</p>
+    </div>
+    <div class="card">
+      <h2>Standing forums keyed to &ldquo;next occurrence&rdquo;</h2>
+      <p class="small">Next AUSMIN (unscheduled — <span class="id">RD-1</span> validation and <span class="id">RD-3</span> agenda land before it) &middot; next Japan 2+2 cycle (annex + release matrix, <span class="id">GL-04</span>/<span class="id">GL-05</span>) &middot; next AUKUS review point (<span class="id">RD-4</span> quantum-PNT) &middot; next Quad summit cycle (<span class="id">GL-21</span>, <span class="id">OPP-19</span> resource bid).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7. PORTFOLIO AT A GLANCE ================= -->
+<section class="slide" data-title="Portfolio at a glance">
+  <div class="k">Portfolio</div>
+  <h1 class="t">Portfolio at a glance — every A-band leg rides an AMBER pathway</h1>
+  <p class="sub">27 scored legs across 21 opportunities; the only GREEN pathways are the two B-band quick wins — which is exactly why the plan executes them immediately.</p>
+  <div style="display:flex;gap:10px;margin:4px 0 14px">
+    <div class="stat" style="flex:1;border-top:3px solid var(--amber)"><div class="n">7</div><div class="l"><strong>Act now</strong> — all on AMBER pathways</div></div>
+    <div class="stat" style="flex:1;border-top:3px solid var(--amber)"><div class="n">12</div><div class="l"><strong>Build pathway</strong> — 10 Amber, 2 Red (by design)</div></div>
+    <div class="stat" style="flex:1;border-top:3px solid var(--amber)"><div class="n">5</div><div class="l"><strong>Explore</strong> — bounded studies only</div></div>
+    <div class="stat" style="flex:1;border-top:3px solid var(--green)"><div class="n">2</div><div class="l"><strong>Quick wins</strong> — the only GREEN pathways</div></div>
+    <div class="stat" style="flex:1;border-top:3px solid var(--red)"><div class="n">1</div><div class="l"><strong>Hold</strong> — OPP-13 (RED instrument)</div></div>
+  </div>
+  <div class="grid2" style="grid-template-columns:400px 1fr;gap:16px">
+    <div class="card">
+      <h2>Band &times; pathway (count of scored legs)</h2>
+      <table class="tbl" style="text-align:center">
+        <tr><th></th><th style="text-align:center">GREEN</th><th style="text-align:center">AMBER</th><th style="text-align:center">RED</th><th style="text-align:center">Total</th></tr>
+        <tr><td><span class="band">A</span> 80–100</td><td style="background:#f3f2ee;text-align:center">0</td><td style="background:rgba(250,178,25,.32);text-align:center;font-weight:700">7</td><td style="background:#f3f2ee;text-align:center">0</td><td class="num" style="text-align:center"><strong>7</strong></td></tr>
+        <tr><td><span class="band">B</span> 65–79</td><td style="background:rgba(12,163,12,.22);text-align:center;font-weight:700">2</td><td style="background:rgba(250,178,25,.32);text-align:center;font-weight:700">12</td><td style="background:rgba(208,59,59,.22);text-align:center;font-weight:700">2</td><td class="num" style="text-align:center"><strong>16</strong></td></tr>
+        <tr><td><span class="band">C</span> 50–64</td><td style="background:#f3f2ee;text-align:center">0</td><td style="background:rgba(250,178,25,.32);text-align:center;font-weight:700">3</td><td style="background:rgba(208,59,59,.22);text-align:center;font-weight:700">1</td><td class="num" style="text-align:center"><strong>4</strong></td></tr>
+        <tr><td class="xs muted">Total</td><td style="text-align:center">2</td><td style="text-align:center">22</td><td style="text-align:center">3</td><td style="text-align:center"><strong>27</strong></td></tr>
+      </table>
+      <p class="xs" style="margin-top:8px">High value is riding on managed gaps, not on clear roads.</p>
+    </div>
+    <div class="card">
+      <h2>Top seven (raw weighted scores, model v2.1)</h2>
+      <table class="tbl dense">
+        <tr><th>#</th><th>Item — all seven Act now</th><th>Score</th><th>Conf.</th><th>Pathway</th></tr>
+        <tr><td>1=</td><td><span class="id">OPP-02</span> <span class="pdot us"></span>Southern-hemisphere SDA deepening</td><td><strong>91</strong> <span class="band">A</span></td><td>High</td><td><span class="chip a"><b class="gl">A</b>AMBER</span></td></tr>
+        <tr><td>1=</td><td><span class="id">OPP-10</span> <span class="pdot jp"></span>EO continuity — Japan leg</td><td><strong>91</strong> <span class="band">A</span></td><td>High</td><td><span class="chip a"><b class="gl">A</b>AMBER</span></td></tr>
+        <tr><td>3</td><td><span class="id">OPP-03</span> <span class="pdot ml"></span>DARC trilateral completion</td><td><strong>89</strong> <span class="band">A</span></td><td>High</td><td><span class="chip a"><b class="gl">A</b>AMBER</span></td></tr>
+        <tr><td>4=</td><td><span class="id">OPP-14</span> <span class="pdot us"></span>SPA9102 narrowband RFT</td><td><strong>87</strong> <span class="band">A</span></td><td>High</td><td><span class="chip a"><b class="gl">A</b>AMBER</span></td></tr>
+        <tr><td>4=</td><td><span class="id">OPP-07</span> <span class="pdot us"></span>USSF Force Design integration <span class="xs muted">(conditional)</span></td><td><strong>87</strong> <span class="band">A</span></td><td>Medium</td><td><span class="chip a"><b class="gl">A</b>AMBER</span></td></tr>
+        <tr><td>6</td><td><span class="id">OPP-01</span> <span class="pdot us"></span>Multi-orbit SATCOM architecture</td><td><strong>86</strong> <span class="band">A</span></td><td>Medium</td><td><span class="chip a"><b class="gl">A</b>AMBER</span></td></tr>
+        <tr><td>7</td><td><span class="id">OPP-18</span> <span class="pdot us"></span>Commercial SDA layering (JCO/CDMC) <span class="xs muted">(NOTE + DIRECT)</span></td><td><strong>84</strong> <span class="band">A</span></td><td>Medium</td><td><span class="chip a"><b class="gl">A</b>AMBER</span></td></tr>
+      </table>
+      <p class="xs" style="margin-top:6px">Renormalised values are sensitivity views only (method note, slide 3).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8. TRANCHE 1 (part 1) ================= -->
+<section class="slide" data-title="Tranche 1 — items 1–5">
+  <div class="k">Tranche 1 &middot; Decide and deliver now &middot; to December 2026 &middot; items 1–5 of 10</div>
+  <h1 class="t">Tranche 1 — decide and deliver now</h1>
+  <p class="sub">Seven Act-now options (all AMBER, gaps under management) + two GREEN Quick wins + one accelerated diversification lever (ten items carrying the nine item-level asks — OPP-17 scoping rides the RD-2 ruling). Every item rides an in-force vehicle or a live process — nothing waits on a new treaty.</p>
+  <table class="tbl xdense">
+    <tr><th style="width:15%">Item</th><th style="width:7%">Score</th><th style="width:10%">Treatment</th><th style="width:16%">Carriage (vehicles)</th><th style="width:24%">Next action and date</th><th style="width:9%">Owner class</th><th style="width:9%">Cost signal</th><th style="width:14%">Off-ramp</th></tr>
+    <tr>
+      <td><strong>1 &middot; <span class="id">OPP-14</span></strong> SPA9102 narrowband RFT <span class="pdot us"></span>US</td>
+      <td><strong>87</strong> <span class="band">A</span></td>
+      <td>Act now <span class="chip a"><b class="gl">A</b>AMBER</span></td>
+      <td>AusTender ATM ADSS/NOT/84124/1 (<span class="id">EV-MILSATCO-09</span> TO_VERIFY); <span class="id">VEH-US-26</span> WGS MoU</td>
+      <td><strong>Verify</strong> AusTender notice by <strong>1 Aug 2026</strong> (<span class="id">GL-27</span>); shape RFT response before <strong>19 Aug 2026</strong> close; confirm Second Pass timing vs ~Nov 2026 responses and name the approving authority (<span class="id">GL-26</span>)</td>
+      <td>CASG ADSS (single owner: Head Air Defence and Space Systems — HADSS)</td>
+      <td>Program-level (IIP A$5.2–7.2bn is context; TBD)</td>
+      <td>IS-22 options to 2041 + allied narrowband lease — bridge, not destination (<span class="id">DEP-03</span>)</td>
+    </tr>
+    <tr>
+      <td><strong>2 &middot; <span class="id">OPP-01</span></strong> Multi-orbit SATCOM architecture <span class="pdot us"></span>US</td>
+      <td><strong>86</strong> <span class="band">A</span></td>
+      <td>Act now <span class="chip a"><b class="gl">A</b>AMBER</span></td>
+      <td><span class="id">VEH-US-26</span>, <span class="id">VEH-US-06</span>, <span class="id">VEH-US-02</span>, <span class="id">VEH-US-25</span></td>
+      <td><strong>Name</strong> accountable authority by <strong>19 Aug 2026</strong> (<span class="id">GL-02</span>); architecture read-across at Second Pass; wideband/alt-comms LOEs to next AUSMIN; WGS extension talks before 2029; demonstrator gate early 2028 (<span class="id">GL-30</span>)</td>
+      <td>DSpC + capability manager</td>
+      <td>Program-level (wideband unapproved; planned&nbsp;&ne;&nbsp;approved, <span class="id">AUS-IN-13</span>)</td>
+      <td>WGS + Optus C1 (to Sep 2034) + IS-22 interim; &sect;53 set in wideband decision</td>
+    </tr>
+    <tr>
+      <td><strong>3 &middot; <span class="id">OPP-02</span></strong> Southern-hemisphere SDA <span class="pdot us"></span>US</td>
+      <td><strong>91</strong> <span class="band">A</span></td>
+      <td>Act now <span class="chip a"><b class="gl">A</b>AMBER</span></td>
+      <td><span class="id">VEH-US-17</span>, <span class="id">VEH-US-24</span> (<span class="id">VEH-US-20</span> heritage, TO_VERIFY)</td>
+      <td><strong>Continue</strong> operations (in execution); validate <span class="id">EV-AUINPUTS-14</span> before next AUSMIN (<span class="id">GL-03</span>); expansion only via the single portfolio decision (<span class="id">RD-1</span>)</td>
+      <td>DSpC/RAAF; funding: Strategy &amp; Plans (S,P&amp;I)</td>
+      <td>TBD (no new-money ask implied)</td>
+      <td>CSpO data-sharing track; expansion halts if RD-1 prioritises the sovereign layer</td>
+    </tr>
+    <tr>
+      <td><strong>4 &middot; <span class="id">OPP-03</span></strong> DARC completion <span class="pdot ml"></span>AUKUS</td>
+      <td><strong>89</strong> <span class="band">A</span></td>
+      <td>Act now <span class="chip a"><b class="gl">A</b>AMBER</span></td>
+      <td><span class="id">VEH-MULTILATERAL-18</span> / <span class="id">VEH-US-21</span> (In force; 22-year duration, TO_VERIFY)</td>
+      <td><strong>Sustain</strong> Site 1 (Early Use since Sep 2025, ~3 months early); negotiate data-access terms — products, latency, tasking share — before <strong>2027 FOC</strong> (<span class="id">GL-31</span>); sovereignty condition set in trilateral governance (<span class="id">GL-35</span>)</td>
+      <td>DSpC + IPD</td>
+      <td>TBD (<span class="id">EV-AUINPUTS-14</span> validation pending)</td>
+      <td>Sovereign JP9360 acceleration; without access terms at FOC, re-price hosting offsets</td>
+    </tr>
+    <tr>
+      <td><strong>5 &middot; <span class="id">OPP-07</span></strong> USSF Force Design <span class="pdot us"></span>US</td>
+      <td><strong>87</strong> <span class="band">A</span></td>
+      <td>Act now — <strong>CONDITIONAL</strong> <span class="chip a"><b class="gl">A</b>AMBER</span></td>
+      <td><span class="id">VEH-US-25</span> (SoI, 3 Jun 2026), <span class="id">VEH-US-24</span></td>
+      <td><strong>Approve</strong> subject to release-tier confirmation (<span class="id">GL-12</span>, via the ACSO/FCP channel — USSF Assistant Chief of Space Operations for Future Concepts and Partnerships) before first Australian input; document influence-risk fallback (<span class="id">GL-32</span>); 2026 is the design-in year (SF/S9 stood up 21 Apr 2026)</td>
+      <td>DSpC (ACSO/FCP)</td>
+      <td>TBD (workforce is the constraint; first SIET — Space Initial Employment Training — graduates Jun 2026)</td>
+      <td>CSpO-mediated participation; no clearance, no inputs — the condition is the decision</td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 9. TRANCHE 1 (part 2) ================= -->
+<section class="slide" data-title="Tranche 1 — items 6–10">
+  <div class="k">Tranche 1 &middot; Decide and deliver now &middot; to December 2026 &middot; items 6–10 of 10</div>
+  <h1 class="t">Tranche 1 — the quick wins and the diversification lever (items 6–10)</h1>
+  <table class="tbl xdense" style="margin-top:8px">
+    <tr><th style="width:15%">Item</th><th style="width:7%">Score</th><th style="width:10%">Treatment</th><th style="width:16%">Carriage (vehicles)</th><th style="width:24%">Next action and date</th><th style="width:9%">Owner class</th><th style="width:9%">Cost signal</th><th style="width:14%">Off-ramp</th></tr>
+    <tr>
+      <td><strong>6 &middot; <span class="id">OPP-10</span></strong> EO continuity — Japan leg <span class="pdot jp"></span>JP</td>
+      <td><strong>91</strong> <span class="band">A</span></td>
+      <td>Act now <span class="chip a"><b class="gl">A</b>AMBER</span></td>
+      <td>BoM–JMA Strategic Relationship Arrangement (in force 11 Nov 2024, <span class="id">EV-CONVERSA-03</span> — no VEH ID: register gap); <span class="id">VEH-JAPAN-09</span></td>
+      <td><strong>Sustain</strong> Himawari-10 contribution delivery; confirm revised Himawari-10 schedule (build delayed) and define comparable-cadence contingency at next BoM–JMA review (<span class="id">GL-34</span>); verify ALOS-4 channel (<span class="id">EV-EOCONTIN-15</span> TO_VERIFY/Low)</td>
+      <td>TBD — BoM + GA (civil); Defence interest: S&amp;P</td>
+      <td>TBD (co-investment committed; contingency costs unquantified)</td>
+      <td>Copernicus/commercial legs at lower cadence; OPP-20 hedge counts only once clauses contracted</td>
+    </tr>
+    <tr>
+      <td><strong>7 &middot; <span class="id">OPP-18</span></strong> Commercial SDA layering <span class="pdot us"></span>US</td>
+      <td><strong>84</strong> <span class="band">A</span></td>
+      <td>Act now — NOTE + DIRECT <span class="chip a"><b class="gl">A</b>AMBER</span></td>
+      <td><span class="id">VEH-MULTILATERAL-30</span> (TO_VERIFY), <span class="id">VEH-US-38</span> (TO_VERIFY), per-provider contracts (<span class="id">EV-JAPANSDA-17</span>)</td>
+      <td><strong>Note</strong> delivery (CDMC operating; JCO-200 delivered Sep 2025; first sovereign RPO — rendezvous and proximity operations — demonstrated Feb 2026); <strong>direct</strong> verification of JCO terms and PWSA intent by <strong>Q4 2026</strong> (<span class="id">GL-28</span>); restate hedge value against verified terms + EOS-independent mix</td>
+      <td>DSpC / 1SSU CDMC</td>
+      <td>TBD (sovereign scale-up unfunded — no JP9360 tranche award evidenced 2025–26)</td>
+      <td>Per-provider bilateral contracts; hedge claim lapses if terms fail or mix stays EOS-dependent</td>
+    </tr>
+    <tr>
+      <td><strong>8 &middot; <span class="id">OPP-04</span></strong> Japan SDA exchanges <span class="pdot jp"></span>JP</td>
+      <td><strong>76</strong> <span class="band">B</span></td>
+      <td>Quick win <span class="chip g"><b class="gl">G</b>GREEN</span></td>
+      <td><span class="id">VEH-JAPAN-09</span>, <span class="id">VEH-JAPAN-07</span>, <span class="id">VEH-JAPAN-12</span></td>
+      <td><strong>Stand up</strong> recurring unit-level + shareable-tier SDA exchange now under the existing 2+2 mandate; liaison exchanges already commencing (<span class="id">EV-JAPANSDA-02</span>); first serial before <strong>Dec 2026</strong></td>
+      <td>Australian Space Command (with JASDF)</td>
+      <td>Minor</td>
+      <td>None needed (all components Green); CSpO track if tempo lags</td>
+    </tr>
+    <tr>
+      <td><strong>9 &middot; <span class="id">OPP-21</span></strong> Coalition exercise line <span class="pdot us"></span>US</td>
+      <td><strong>77</strong> <span class="band">B</span></td>
+      <td>Quick win <span class="chip g"><b class="gl">G</b>GREEN</span></td>
+      <td><span class="id">VEH-US-31</span>, <span class="id">VEH-US-32</span>, <span class="id">VEH-MULTILATERAL-11</span></td>
+      <td><strong>Expand</strong> billets and bid command/planning roles in each <strong>2026–27 serial</strong>; verify Space Flag currency (<span class="id">EV-MULTILAT-18</span> — Australian participation last confirmed 2019)</td>
+      <td>DSpC / AUSSpOC</td>
+      <td>Minor</td>
+      <td>Talisman Sabre space serials if multilateral billets tighten</td>
+    </tr>
+    <tr>
+      <td><strong>10 &middot; <span class="id">OPP-17</span></strong> Japan arrangement — <em>scoping accelerated</em> <span class="pdot jp"></span>JP</td>
+      <td><strong>76</strong> <span class="band">B</span></td>
+      <td>Build lever in T1 <span class="chip a"><b class="gl">A</b>AMBER</span></td>
+      <td><span class="id">VEH-JAPAN-09</span> (mandate), <span class="id">VEH-JAPAN-12</span> (annex host)</td>
+      <td><strong>Scope</strong> the dedicated bilateral space arrangement (FSDC space annex ToR) inside Japan's <strong>FY2026</strong> Space Operations Command stand-up window, before a US-only pattern normalises — the binding gap is the absent instrument</td>
+      <td>IPD (Japan desk) + DSpC</td>
+      <td>None (staff effort only; delivery costs TBD at T2 entry)</td>
+      <td>Hold at CSpO-tier sharing + JCO Pacific Cell</td>
+    </tr>
+  </table>
+  <p class="xs" style="margin-top:8px">Per-item verification gates: see Validation triage (slide 34).</p>
+</section>
+
+<!-- ================= 10. TRANCHE 2 (part 1) ================= -->
+<section class="slide" data-title="Tranche 2 — top six by score">
+  <div class="k">Tranche 2 &middot; 2027–28 &middot; gate-opening levers run from late 2026 &middot; 1 of 2</div>
+  <h1 class="t">Tranche 2 — top six by score</h1>
+  <p class="sub">Twelve Build options: A/B value with an Amber/Red binding gap and a recorded exit condition each. The two REDs (next slide) are Build by design.</p>
+  <table class="tbl" style="margin-top:20px">
+    <tr><th style="width:26%">Item</th><th style="width:9%">Score</th><th style="width:12%">Treatment</th><th style="width:29%">Gate-opening lever and date</th><th style="width:24%">Exit condition (recorded)</th></tr>
+    <tr><td><span class="id">OPP-19</span> <span class="pdot ml"></span>Quad IPMDA satellite RF expansion</td><td><strong>78</strong> <span class="band">B</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Lodge</strong> the Australian resource bid — the binding lever — testing Quad funding authority beyond the pilot at the next summit cycle</td><td>Expand the direct DFAT–FFA commercial contract</td></tr>
+    <tr><td><span class="id">OPP-15</span> <span class="pdot ml"></span>Quantum-PNT line (AUKUS)</td><td><strong>77</strong> <span class="band">B</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Secure</strong> a named AUKUS Pillar 2 PNT workstream + program funding by the next AUKUS review; sovereign-delivery recommendation to governance (<span class="id">RD-4</span>)</td><td>Continue the clock line nationally without the AUKUS badge (<span class="id">VEH-UK-13</span> carries the clock line; Mar 2026 demonstrator launch keeps the window warm)</td></tr>
+    <tr><td><span class="id">OPP-02</span> <span class="pdot jp"></span>SDA — Japan second leg</td><td><strong>76</strong> <span class="band">B</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Agree</strong> the FSDC space annex + SDA release matrix (<span class="id">GL-04</span>/<span class="id">GL-05</span>) within the next 2+2 cycle</td><td>CSpO data-sharing track (annex vehicle shared with the accelerated OPP-17 scoping)</td></tr>
+    <tr><td><span class="id">OPP-17</span> <span class="pdot jp"></span>Japan dedicated arrangement (delivery)</td><td><strong>76</strong> <span class="band">B</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Negotiate</strong> from the T1 scoping product inside Japan's FY2026 SpOC window; delivery 2027</td><td>Hold at CSpO-tier sharing + JCO Pacific Cell</td></tr>
+    <tr><td><span class="id">OPP-09</span> <span class="pdot ml"></span>MNF Operation Olympic Defender</td><td><strong>74</strong> <span class="band">B</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Table</strong> the tiered release matrix for contribution offers before the <strong>Dec 2026</strong> Oslo CSpO Principals' (<span class="id">GL-17</span>)</td><td>Scale to the bilateral US channel (ESC MoU); expansion sequenced against workforce reality (<span class="id">GL-18</span>, <span class="id">DEP-09</span>)</td></tr>
+    <tr><td><span class="id">OPP-06</span> <span class="pdot in"></span>Indian Ocean ground segment (Gaganyaan line)</td><td><strong>74</strong> <span class="band">B</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Agree</strong> a defence-space annex under the 2026 Joint Declaration by the next annual summit cycle (<span class="id">GL-10</span>); establish the information-security basis (<span class="id">GL-11</span>)</td><td>Civil-only ISRO–ASA track (<span class="id">VEH-INDIA-29</span> is the proven civil base)</td></tr>
+  </table>
+</section>
+
+<!-- ================= 10b. TRANCHE 2 (part 2) ================= -->
+<section class="slide" data-title="Tranche 2 — remaining six">
+  <div class="k">Tranche 2 &middot; 2027–28 &middot; gate-opening levers run from late 2026 &middot; 2 of 2</div>
+  <h1 class="t">Tranche 2 — remaining six</h1>
+  <p class="sub">Including the two RED pathways held in Build by design: one resource (Landsat), one security (MTCR/ETL).</p>
+  <table class="tbl">
+    <tr><th style="width:26%">Item</th><th style="width:9%">Score</th><th style="width:12%">Treatment</th><th style="width:29%">Gate-opening lever and date</th><th style="width:24%">Exit condition (recorded)</th></tr>
+    <tr><td><span class="id">OPP-15</span> <span class="pdot us"></span>M-code / MGUE (Military GPS User Equipment) accession</td><td><strong>73</strong> <span class="band">B</span> <span class="xs muted">(77 renorm, sensitivity)</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Confirm</strong> MGUE PA accession + releasability before mature fielding proposals</td><td>Shift weight to OPP-16 + the sovereign quantum line; route via the <span class="id">VEH-US-25</span> service-chief channel if the AUSMIN slate is full (<span class="id">RD-3</span> Rank 3)</td></tr>
+    <tr><td><span class="id">OPP-20</span> <span class="pdot us"></span>Maxar DAP (Direct Access Program) assured-access layer</td><td><strong>73</strong> <span class="band">B</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Verify</strong> DEF799 status (<span class="id">EV-EOCONTIN-20</span>) by DAP renewal; contract the &sect;54 crisis-priority/availability clause set into the renewal (<span class="id">AUS-IN-16</span> conversion) so the OPP-10 hedge becomes contractual</td><td>Multi-vendor (Planet-class, NSW precedent)</td></tr>
+    <tr><td><span class="id">OPP-10</span> <span class="pdot us"></span>Landsat Next leg</td><td><strong>72</strong> <span class="band">B</span></td><td>Build <span class="chip r"><b class="gl">R</b>RED</span><br><span class="xs" style="font-style:italic">resource gap</span></td><td><strong>Validate</strong> enacted FY2026 outcome + 15 Aug 2025 restructured requirements by <strong>Sep 2026</strong> (<span class="id">GL-33</span>); if funding restored, re-run the pathway (RED overtaken)</td><td>Shift weight to Japan/Copernicus/commercial; pause new Landsat commitments; re-baseline at first AUSMIN after (<span class="id">GL-20</span>)</td></tr>
+    <tr><td><span class="id">OPP-08</span> <span class="pdot us"></span>TSA commercial launch</td><td><strong>72</strong> <span class="band">B</span></td><td>Build <span class="chip r"><b class="gl">R</b>RED</span><br><span class="xs" style="font-style:italic">security gap</span></td><td><strong>Test</strong> MTCR relief at the next export-control review (<span class="id">GL-14</span>); launch-vehicle exclusions (Excluded Technology List — ETL) block technology transfer, so hosting-revenue activity only</td><td>Gilmour Eris sovereign line (<span class="id">VEH-US-27</span> In force per <span class="id">EV-USSFFORC-15</span>, EIF 23 Jul 2024; ATS check pending, RECONCILED)</td></tr>
+    <tr><td><span class="id">OPP-12</span> <span class="pdot in"></span>Space MAITRI follow-on</td><td><strong>70</strong> <span class="band">B</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Scope</strong> the follow-on mission (first mission funded and contracted); pre-clear the DEC permit strategy for DSGL 9A004 (<span class="id">GL-24</span>) before mission commitment</td><td>Government-mission framing under ISRO–ASA instruments</td></tr>
+    <tr><td><span class="id">OPP-10</span> <span class="pdot ml"></span>EO — Quad diversity channel</td><td><strong>65</strong> <span class="band">B</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Test</strong> for a funded data-hosting commitment in the next Quad summit cycle (<span class="id">GL-21</span>); <span class="id">VEH-JAPAN-40</span> TO_VERIFY</td><td>Diversity channel only; drop from continuity planning</td></tr>
+  </table>
+</section>
+
+<!-- ================= 11. TRANCHE 3 + WHAT WE DO NOT DO ================= -->
+<section class="slide" data-title="Tranche 3 + what we do not do">
+  <div class="k">Tranche 3 &middot; Explore and watch &middot; bounded studies only</div>
+  <h1 class="t">Tranche 3 — and what we do not do</h1>
+  <div class="grid2" style="grid-template-columns:1.15fr 1fr;gap:14px;margin-top:6px">
+    <div>
+      <table class="tbl xdense">
+        <tr><th>Item</th><th>Score</th><th>Treatment</th><th>Bounded action</th><th>Trigger to revisit</th></tr>
+        <tr><td><span class="id">OPP-02</span> Germany SDA leg</td><td><strong>69</strong> <span class="band">B</span> <span class="xs muted">(77 renorm)</span></td><td>Explore <span class="chip a"><b class="gl">A</b>AMBER</span></td><td>Validate releasability (<span class="id">GL-07</span>); negotiate the implementing arrangement under <span class="id">VEH-GERMANY-09</span> (DoI in force Mar 2026); scope the <span class="id">C-17</span> optical ground-station demonstrator (DLR–TeraNet) as the cheap quick win</td><td>Releasability validated</td></tr>
+        <tr><td><span class="id">OPP-05</span> <span class="pdot jp"></span>QZSS resilience</td><td><strong>71</strong> <span class="band">B</span></td><td>Explore <span class="chip a"><b class="gl">A</b>AMBER</span></td><td>Bounded joint study; only civil arrangements extant (<span class="id">GL-09</span>); <span class="id">VEH-JAPAN-38</span> TO_VERIFY</td><td>Defence applicability proven</td></tr>
+        <tr><td><span class="id">OPP-11</span> Pacific connectivity</td><td><strong>63</strong> <span class="band">C</span> <span class="xs muted">(66 renorm; B&rarr;C on adjudication)</span></td><td>Explore <span class="chip a"><b class="gl">A</b>AMBER</span></td><td>Scoping study via PIF mechanisms (<span class="id">GL-22</span>/<span class="id">GL-23</span>); <span class="id">DEP-04</span> resilience guidance proceeds regardless</td><td>Delivery mechanism selected</td></tr>
+        <tr><td><span class="id">OPP-16</span> <span class="pdot us"></span>Commercial LEO-PNT demo</td><td><strong>58</strong> <span class="band">C</span></td><td>Explore <span class="chip a"><b class="gl">A</b>AMBER</span></td><td>Bounded evaluation — insurance for the OPP-15 M-code line; no acquisition case yet</td><td>Acquisition case emerges</td></tr>
+        <tr><td><span class="id">OPP-08</span> Germany leg (RFA, Whalers Way)</td><td><strong>59</strong> <span class="band">C</span></td><td>Explore <span class="chip a"><b class="gl">A</b>AMBER</span></td><td>Keep ranges available; no Australian resource commitment (<span class="id">GL-16</span>)</td><td>RFA ONE maiden flight (<span class="id">GL-15</span>)</td></tr>
+        <tr><td><span class="id">OPP-13</span> UAE entry points</td><td><strong>53</strong> <span class="band">C</span> <span class="xs muted">(56 renorm)</span></td><td><strong>Hold</strong> <span class="chip r"><b class="gl">R</b>RED</span> <span class="xs">instrument</span></td><td>IEEE standards entry only (<span class="id">EV-UAE-23</span>) — no resources while the instrument component is RED</td><td>An instrument pathway exists (<span class="id">GL-25</span>)</td></tr>
+      </table>
+      <p class="xs" style="margin-top:8px"><strong>WGS-2029 timeline (<span class="id">GL-30</span> — approached by plan, not a single AUSMIN opportunity):</strong> wideband Second Pass target (next IIP cycle) &rarr; WGS access-extension negotiation start (<span class="id">VEH-US-26</span>) &rarr; early-2028 Optus/Inovor demonstrator gate (<span class="id">EV-MILSATCO-19</span>) &rarr; 2029 WGS access horizon.</p>
+    </div>
+    <div class="card">
+      <h2>What we do not do — and why, on the record</h2>
+      <table class="tbl dense">
+        <tr><td><strong><span class="id">OPP-13</span> UAE (53/C, Hold)</strong></td><td class="xs">No defence instrument exists — the 2019 MoU is civil and expressly non-binding (<span class="id">GL-25</span>). Nothing beyond the low-cost IEEE standards entry until an instrument pathway exists.</td></tr>
+        <tr><td><strong>OPP-08 P-US technology transfer</strong></td><td class="xs">MTCR launch-vehicle exclusions (ETL) keep the security component RED; hosting-revenue activity only, pending <span class="id">GL-14</span> relief.</td></tr>
+        <tr><td><strong>New Landsat commitments</strong></td><td class="xs">Resource RED rests on the FY2026 budget <em>request</em>, pending the enacted outcome (<span class="id">GL-33</span>); nothing new until terms are re-baselined.</td></tr>
+        <tr><td><strong>UK bilateral option — this version</strong></td><td class="xs">Known white space, not an assessed rejection: six direct-space UK vehicles exist, but <span class="id">VEH-UK-24</span>/<span class="id">VEH-UK-26</span> are TO_VERIFY; a scored P-UK bilateral SDA option (mirroring OPP-04) is committed for v3. The <span class="id">AUS-IN-14</span> AUKMIN-workplan action proceeds meanwhile.</td></tr>
+        <tr><td><strong>NZ bilateral option — this version</strong></td><td class="xs">Recorded scoping decision: engaged via CSpO co-membership and SouthPAN program governance; a P-NZ bilateral assessment is v3 work.</td></tr>
+        <tr><td><strong>A universal best-partner ranking</strong></td><td class="xs">Prohibited by design (V7 &sect;13 hard rule): partner scores exist only per opportunity.</td></tr>
+        <tr><td><strong>Renormalised headline scores</strong></td><td class="xs">Not an authorised method; retained only as declared sensitivity views.</td></tr>
+        <tr><td><strong>Unfunded diversification theatre</strong></td><td class="xs"><span class="id">C-22</span> (AUKUS industrial), <span class="id">C-10</span>/<span class="id">C-11</span> (civil SSA; TraCSS funding uncertain) are scoped or explicitly parked at v3 — not silently carried.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12. THREE PORTFOLIO RULINGS ================= -->
+<section class="slide" data-title="The three portfolio rulings">
+  <div class="k">Rulings sought</div>
+  <h1 class="t">Three rulings — recommendation: rebalance now (RD-2 Option A)</h1>
+  <p class="sub">Decided once, at portfolio level — not re-litigated opportunity by opportunity.</p>
+  <div class="grid3" style="grid-template-columns:1.2fr 1.4fr 1.2fr;gap:16px;margin-top:22px">
+    <div class="card" style="border-top:3px solid var(--ink)">
+      <h2><span class="id">RD-1</span> &middot; Money is decided once</h2>
+      <p class="xs" style="margin-bottom:6px"><strong>Take one funding decision — DARC support vs JP9360 tranche funding</strong> (<span class="id">GL-03</span>/<span class="id">GL-08</span>/<span class="id">GL-29</span> are the same decision) — by a single named authority within the IIP cycle, before the next AUSMIN. <span class="id">OPP-02</span>, <span class="id">OPP-03</span> and <span class="id">OPP-18</span> all reference it; none takes a separate funding decision.</p>
+      <p class="xs" style="margin-bottom:6px"><strong>Priority order if no new JP9360 money:</strong><br><span style="font-size:12px;font-weight:700">OPP-03 delivery &gt; OPP-02 sustainment &gt; OPP-18 expansion</span></p>
+      <p class="xs">Validate <span class="id">EV-AUINPUTS-14</span> (the Low-confidence funding-pressure claim) first — it is the load-bearing claim under this ruling.</p>
+      <p class="xs muted" style="margin-top:6px">Owner: Strategy &amp; Plans (S,P&amp;I space portfolio) &middot; by: before next AUSMIN, within the IIP cycle</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--amber)">
+      <h2><span class="id">RD-2</span> &middot; Sovereign balance</h2>
+      <p style="font-size:15px;font-weight:700;line-height:1.3;border-left:3px solid var(--amber);padding-left:8px;margin-bottom:6px">Option A — rebalance now <span style="font-weight:650">(recommended)</span></p>
+      <p class="xs" style="margin-bottom:6px">Execute <span class="id">OPP-04</span> immediately; accelerate <span class="id">OPP-17</span> scoping into T1 inside Japan's FY2026 SpOC window; write &sect;53/&sect;54 condition sets into the OPP-14 contract and OPP-20 renewal; count Exmouth hosting as explicit offsets (<span class="id">C-23</span>). Costs staff effort only.</p>
+      <p class="xs" style="margin-bottom:6px"><strong>Issue:</strong> tranche 1 deepens the concentration the framework warns against — 7 of 9 decision items sit on <span class="id">DEP-01</span>'s (US-nation, High) affected list, and the recorded circularity note shows OPP-18/OPP-20 are US-embedded &ldquo;diversification&rdquo; layers. The only non-US legs (OPP-17 Japan — Build; OPP-02 P-DE — Explore) sit outside tranche 1.</p>
+      <p class="xs dim"><strong>Option B — accept and review:</strong> record explicit acceptance that T1 deepens DEP-01, review trigger at first AUSMIN after execution. <strong>Not deciding is Option B without the recorded acceptance — the worst of both.</strong></p>
+      <p class="xs muted" style="margin-top:6px">Owner: Strategy &amp; Plans with DSpC &middot; by: with tranche-1 approval (this pack)</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--ink)">
+      <h2><span class="id">RD-3</span> &middot; One AUSMIN agenda, one owner</h2>
+      <p class="xs" style="margin-bottom:6px"><strong>Approve</strong> a consolidated, <strong>ranked</strong> next-AUSMIN agenda under a single owner:</p>
+      <table class="tbl dense">
+        <tr><td><strong>Rank 1</strong></td><td class="xs">Wideband + alternative-communications LOEs (gates OPP-01 money) and the Landsat re-baseline (gates OPP-10 P-US, after <span class="id">GL-33</span>)</td></tr>
+        <tr><td><strong>Rank 2</strong></td><td class="xs">Hosting-offset ledger (SST FOC 19 Aug 2025 with Australian-industry mirror recoat, C-band FOC, DARC Early Use) — a supporting burden-sharing argument, <em>not</em> a standalone ask</td></tr>
+        <tr><td><strong>Rank 3</strong></td><td class="xs">MGUE accession — routed via the <span class="id">VEH-US-25</span> service-chief channel if the slate is full</td></tr>
+      </table>
+      <p class="xs" style="margin-top:6px"><strong>Stated plainly: no 2026 AUSMIN is scheduled as at 18 July 2026</strong> (last held 8 December 2025). The ANZUS 75th anniversary (September 2026) is an agenda hook, not a scheduled meeting. All AUSMIN-dependent actions are keyed to &ldquo;next AUSMIN&rdquo;.</p>
+      <p class="xs muted" style="margin-top:6px">Owner: Strategy &amp; Plans (single agenda owner) &middot; by: settled before any AUSMIN date is announced</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 13. DECISION ASKS (1 of 2) ================= -->
+<section class="slide" data-title="Decision asks — item-level">
+  <div class="k">Decision asks &middot; the full register &middot; 1 of 2</div>
+  <h1 class="t">Fourteen asks — the nine item-level asks (1–9)</h1>
+  <table class="tbl dense" style="margin-top:10px">
+    <tr><th style="width:4%">#</th><th style="width:10%">Verb</th><th style="width:42%">Decision</th><th style="width:22%">Condition</th><th style="width:10%">Owner</th><th style="width:12%">Need by</th></tr>
+    <tr><td>1</td><td><span class="vb ap">APPROVE</span></td><td><span class="id">OPP-14</span> SPA9102 RFT response under a single named owner (proposed: HADSS, CASG ADSS)</td><td>AusTender verification by 1 Aug 2026 (<span class="id">GL-27</span>); Second Pass timing by Nov 2026 (<span class="id">GL-26</span>)</td><td>CASG</td><td><strong>19 Aug 2026</strong> (close, TO_VERIFY)</td></tr>
+    <tr><td>2</td><td><span class="vb dr">DIRECT</span></td><td>Assign <span class="id">OPP-01</span> the wideband/multi-orbit architecture decision space (OPP-14 keeps only the RFT response)</td><td>Accountable authority named (<span class="id">GL-02</span>); architecture read-across recorded at Second Pass; WGS extension talks opened (<span class="id">VEH-US-26</span>)</td><td>DSpC</td><td><strong>19 Aug 2026</strong> (owner); next IIP cycle</td></tr>
+    <tr><td>3</td><td><span class="vb ap">APPROVE</span></td><td>Continue <span class="id">OPP-02</span> P-US sensor operations</td><td><span class="id">EV-AUINPUTS-14</span> validated before next AUSMIN (<span class="id">GL-03</span>); no separate expansion funding outside <span class="id">RD-1</span></td><td>DSpC</td><td>Before next AUSMIN</td></tr>
+    <tr><td>4</td><td><span class="vb dr">DIRECT</span></td><td>Negotiate Australian DARC data-access terms and record the sovereignty condition set in trilateral governance (<span class="id">OPP-03</span>)</td><td><span class="id">GL-31</span> + <span class="id">GL-35</span> agreed pre-FOC</td><td>DSpC</td><td>Before <strong>2027</strong> FOC</td></tr>
+    <tr><td>5</td><td><span class="vb ap">APPROVE</span></td><td><span class="id">OPP-07</span> Force Design participation — subject to release-tier confirmation before the first Australian input</td><td><span class="id">GL-12</span> release tier; <span class="id">GL-32</span> fallback documented — the condition is the decision</td><td>DSpC</td><td><strong>2026</strong> design-in year</td></tr>
+    <tr><td>6</td><td><span class="vb dr">NOTE + DIRECT</span></td><td><span class="id">OPP-10</span> P-JP — Note continued Himawari-10/BoM–JMA delivery; direct BoM–JMA to confirm the revised schedule and define the comparable-cadence contingency</td><td><span class="id">GL-34</span></td><td>TBD (BoM/GA)</td><td>Next BoM–JMA review</td></tr>
+    <tr><td>7</td><td><span class="vb dr">NOTE + DIRECT</span></td><td><span class="id">OPP-18</span> — Note continued CDMC/JCO delivery; verify the JCO participation vehicle and PWSA-connection intent</td><td><span class="id">VEH-MULTILATERAL-30</span> + <span class="id">EV-SDAPROGR-13</span> (<span class="id">GL-28</span>)</td><td>DSpC</td><td><strong>Q4 2026</strong></td></tr>
+    <tr><td>8</td><td><span class="vb ap">APPROVE</span></td><td><span class="id">OPP-04</span> immediate execution of the Japan SDA exchange line — the tranche-1 diversification leg (RD-2 Option A)</td><td>—</td><td>DSpC</td><td>Immediate; first serial by <strong>Dec 2026</strong></td></tr>
+    <tr><td>9</td><td><span class="vb ap">APPROVE</span></td><td>Expand <span class="id">OPP-21</span> billets and bid command/planning roles in each 2026–27 serial; verify Space Flag currency (<span class="id">EV-MULTILAT-18</span>)</td><td>—</td><td>DSpC</td><td>Each <strong>2026–27</strong> serial</td></tr>
+  </table>
+</section>
+
+<!-- ================= 13b. DECISION ASKS (2 of 2) ================= -->
+<section class="slide" data-title="Decision asks — portfolio-level">
+  <div class="k">Decision asks &middot; the full register &middot; 2 of 2</div>
+  <h1 class="t">Fourteen asks — the five portfolio-level asks (10–14)</h1>
+  <table class="tbl dense" style="margin-top:100px">
+    <tr><th style="width:4%">#</th><th style="width:10%">Verb</th><th style="width:42%">Decision</th><th style="width:22%">Condition</th><th style="width:10%">Owner</th><th style="width:12%">Need by</th></tr>
+    <tr><td>10</td><td><span class="vb dr">DIRECT</span></td><td>A single named authority to take the <span class="id">RD-1</span> decision — DARC support vs JP9360 tranche funding; priority OPP-03 &gt; OPP-02 &gt; OPP-18 if no new money</td><td><span class="id">GL-03</span>/<span class="id">GL-08</span>/<span class="id">GL-29</span> as one decision; <span class="id">EV-AUINPUTS-14</span> validated</td><td>Strategy &amp; Plans</td><td>Before next AUSMIN; IIP cycle</td></tr>
+    <tr><td>11</td><td><span class="vb ap">APPROVE</span></td><td><span class="id">RD-2</span> sovereign-balance ruling Option A (OPP-04 now; OPP-17 scoping accelerated)</td><td>If declined: record explicit DEP-01 acceptance with review trigger</td><td>Strategy &amp; Plans</td><td>With tranche-1 approval</td></tr>
+    <tr><td>12</td><td><span class="vb ap">APPROVE</span></td><td><span class="id">RD-3</span> the consolidated, ranked next-AUSMIN agenda under one owner</td><td>No 2026 AUSMIN scheduled as at 18 Jul 2026</td><td>Strategy &amp; Plans</td><td>Before any AUSMIN date announced</td></tr>
+    <tr><td>13</td><td><span class="vb dr">DIRECT</span></td><td>Take the <span class="id">OPP-15</span> quantum-PNT sovereign-delivery recommendation to governance (<span class="id">RD-4</span>); structure <span class="id">AUS-IN-19</span> offers into every US/AUKUS ask</td><td>—</td><td>DSTG</td><td>Next AUKUS review point</td></tr>
+    <tr><td>14</td><td><span class="vb dr">DIRECT</span></td><td>Complete the validation backlog (<span class="id">RD-5</span>): gap backlog to ~70 records, comparative factors to all 27 options, named owners for all 35 GLs and 10 DEP treatments, cost bands on every ask; track SCN-04 retrofit and SCN-05/<span class="id">AUS-IN-16</span> clause conversion as actions</td><td>—</td><td>Strategy &amp; Plans</td><td>Before governance submission</td></tr>
+  </table>
+</section>
+
+<!-- ================= 14. DEEP DIVE OPP-02 ================= -->
+<section class="slide" data-title="Deep dive — OPP-02">
+  <div class="k">Deep dive &middot; Tranche 1 &middot; equal top of table</div>
+  <h1 class="t" style="font-size:22px"><span class="id" style="font-size:14px">OPP-02</span> Southern-hemisphere SDA sensing network deepening <span class="xs muted">&middot; <span class="pdot us"></span>P-US</span></h1>
+  <div style="display:flex;gap:16px;margin-top:56px">
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>What and why</h3>
+        <p class="xs">Agree next JP9360 tranche sensor-data exchanges: US Space Surveillance Network (SSN) integration deepening; scoped SDA data-sharing pilots with Japan and Germany under CSpO. Effect: allied custody of southern-hemisphere and GEO-belt objects becomes continuous, and Australian threat warning and attribution draw on <strong>three independent national catalogues instead of one</strong>.</p>
+      </div>
+      <div class="card">
+        <h3>Criterion highlights (weight &times; score/5)</h3>
+        <table class="tbl dense">
+          <tr><td>Priority alignment</td><td class="num">5/5</td><td class="num"><strong>20.0</strong> / 20</td></tr>
+          <tr><td>Capability maturity</td><td class="num">5/5</td><td class="num"><strong>15.0</strong> / 15</td></tr>
+          <tr><td>Value proposition</td><td class="num">5/5</td><td class="num"><strong>15.0</strong> / 15</td></tr>
+          <tr><td class="muted">Weakest: sovereignty</td><td class="num muted">3/5</td><td class="num muted">3.0 / 5</td></tr>
+        </table>
+        <p class="xs" style="margin-top:5px">Raw weighted sum <strong>91/100</strong> &middot; band <span class="band">A</span> &middot; evidence confidence <strong>High</strong>.</p>
+      </div>
+    </div>
+    <div style="flex:1.2">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Pathway — AMBER; one managed gap</h3>
+        <div class="pw" style="margin:6px 0 4px">
+          <span class="G"><b></b><i>Inst</i></span><span class="G"><b></b><i>Forum</i></span><span class="G"><b></b><i>Own</i></span><span class="G"><b></b><i>Auth</i></span><span class="G"><b></b><i>Sec</i></span><span class="G"><b></b><i>Tech</i></span><span class="G"><b></b><i>Ops</i></span><span class="A bind"><b></b><i>Res</i></span><span class="G"><b></b><i>Sov</i></span><span class="G"><b></b><i>Mech</i></span>
+        </div>
+        <p class="xs muted" style="margin:0 0 4px">&#9635; = binding gap &middot; colours = component status</p>
+        <p class="xs"><strong>Binding gap — resource (AMBER):</strong> DARC support costs pressure JP9360 funding (<span class="id">EV-AUINPUTS-14</span>, Low — validate before next AUSMIN, <span class="id">GL-03</span>); no JP9360 tranche award evidenced in 2025–26 (<span class="id">EV-SDAPROGR-03</span>).</p>
+      </div>
+      <div class="card">
+        <h3>Interdependencies</h3>
+        <p class="xs"><strong><span class="id">OPP-03</span></strong> — competes-for-resource: same unawarded JP9360 funding; one portfolio decision, not two levers. <strong><span class="id">OPP-18</span></strong> — competes-for-resource <em>and</em> claimed hedge (conditional): the commercial-unclassified hedge draws on the same JP9360 money. Shared Exmouth geography single-point risk with OPP-03 (<span class="id">DEP-08</span>).</p>
+      </div>
+    </div>
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Leverage</h3>
+        <p class="xs"><span class="id">VEH-US-17</span> SSA Partnership Statement of Principles (2010, in force) &middot; <span class="id">VEH-US-24</span> Enhanced Space Cooperation MoU (2023) &middot; <span class="id">VEH-US-20</span> 2012 SSA Data-Sharing MoU — heritage citation only (TO_VERIFY — supersession check). Ops channel: DSpC/RAAF with USSF SpOC (<span class="id">EV-USSFCSPO-12</span>).</p>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <h3>Confirm before deciding</h3>
+        <p class="xs"><span class="id">EV-AUINPUTS-14</span> (DARC/JP9360 pressure, Low) — before next AUSMIN (<span class="id">GL-03</span>) &middot; <span class="id">VEH-US-20</span> supersession status.</p>
+      </div>
+      <div class="card">
+        <h3>Off-ramp</h3>
+        <p class="xs">CSpO multilateral data-sharing track (recorded second-best) if bilateral channels stall; expansion halts if the portfolio decision prioritises the sovereign JP9360 layer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 15. DEEP DIVE OPP-10 (both legs) ================= -->
+<section class="slide" data-title="Deep dive — OPP-10">
+  <div class="k">Deep dive &middot; one opportunity, two exposed legs — one band per leg</div>
+  <h1 class="t" style="font-size:22px"><span class="id" style="font-size:14px">OPP-10</span> Earth-observation continuity portfolio <span class="xs muted">&middot; Japan / US / Quad</span></h1>
+  <div class="card" style="margin:28px 0 16px;border-left:3px solid var(--jp)">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="flex:1.4">
+        <h3><span class="pdot jp"></span>P-JP Himawari / BoM–JMA leg — <strong>91</strong> <span class="band">A</span> &middot; High &middot; Act now <span class="chip a"><b class="gl">A</b>AMBER</span></h3>
+        <p class="xs" style="margin-top:4px">Deliver the Himawari-10 contribution — Australia's largest meteorological-satellite contribution to date — under the BoM–JMA Strategic Relationship Arrangement (in force 11 Nov 2024, <span class="id">EV-CONVERSA-03</span>; <strong>no VEH ID — register gap, watch item</strong>). Top criteria: priority alignment 20/20, capability maturity 15/15, mutual benefit 15/15. Weakest: time/resources 3/5 (3.0/5), sovereignty 3/5 (3.0/5).</p>
+        <p class="xs" style="margin-top:4px"><strong>Binding gap:</strong> sovereignty (AMBER) — no sovereign fallback; continuity rests on Japanese policy decisions (<span class="id">EV-CONVERSA-20</span>); resource (AMBER) — Himawari-10 development delayed, ALOS-4 access channel unresolved (<span class="id">EV-EOCONTIN-14</span>, <span class="id">EV-EOCONTIN-15</span>; <span class="id">GL-34</span>).</p>
+      </div>
+      <div style="flex:1">
+        <div class="pw" style="margin:2px 0 6px">
+          <span class="G"><b></b><i>Inst</i></span><span class="G"><b></b><i>Forum</i></span><span class="G"><b></b><i>Own</i></span><span class="G"><b></b><i>Auth</i></span><span class="G"><b></b><i>Sec</i></span><span class="G"><b></b><i>Tech</i></span><span class="G"><b></b><i>Ops</i></span><span class="A bind"><b></b><i>Res</i></span><span class="A bind"><b></b><i>Sov</i></span><span class="G"><b></b><i>Mech</i></span>
+        </div>
+        <p class="xs muted" style="margin:0 0 4px">&#9635; = binding gap &middot; colours = component status</p>
+        <p class="xs"><strong>Triage:</strong> revised Himawari-10 schedule + comparable-cadence contingency at next BoM–JMA review (<span class="id">GL-34</span>); ALOS-4 channel (<span class="id">EV-EOCONTIN-15</span>, TO_VERIFY/Low). <strong>Off-ramp:</strong> Copernicus hub + commercial legs at lower cadence (<span class="id">SCN-02</span> fallback); the <span class="id">OPP-20</span> hedge counts as mitigation only once crisis-priority clauses are contracted.</p>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="border-left:3px solid var(--red)">
+    <div style="display:flex;gap:14px;align-items:flex-start">
+      <div style="flex:1.4">
+        <h3><span class="pdot us"></span>P-US Landsat Next leg — <strong>72</strong> <span class="band">B</span> &middot; Medium &middot; Build <span class="chip r"><b class="gl">R</b>RED</span> resource</h3>
+        <p class="xs" style="margin-top:4px">A$448.7m/11-year Australian commitment exposed (<span class="id">EV-USSCSPAC-18</span>): the US FY2026 President's Budget request (2 May 2025) proposes <strong>no funding for Landsat Next as designed</strong> (<span class="id">EV-EOCONTIN-08</span>); descope specifics TO_VERIFY (<span class="id">EV-EOCONTIN-09</span>); no Australian public response evidenced (<span class="id">EV-EOCONTIN-10</span>). Weakest criteria: capability maturity 2/5 (6.0/15), time/resources 2/5 (2.0/5).</p>
+        <p class="xs" style="margin-top:4px"><strong>RED is correct but rests on the budget REQUEST</strong> pending the enacted outcome — validate by <strong>Sep 2026</strong> (<span class="id">GL-33</span>); if funding restored, re-run the pathway (RED overtaken); re-baseline terms at the first AUSMIN after (<span class="id">GL-20</span>). Alice Springs ground-segment delivery continues as pathway work.</p>
+      </div>
+      <div style="flex:1">
+        <div class="pw" style="margin:2px 0 6px">
+          <span class="G"><b></b><i>Inst</i></span><span class="G"><b></b><i>Forum</i></span><span class="G"><b></b><i>Own</i></span><span class="G"><b></b><i>Auth</i></span><span class="G"><b></b><i>Sec</i></span><span class="G"><b></b><i>Tech</i></span><span class="G"><b></b><i>Ops</i></span><span class="R bind"><b></b><i>Res</i></span><span class="A"><b></b><i>Sov</i></span><span class="G"><b></b><i>Mech</i></span>
+        </div>
+        <p class="xs muted" style="margin:0 0 4px">&#9635; = binding gap &middot; colours = component status</p>
+        <p class="xs"><strong>Off-ramp:</strong> shift contingency weight to Japan/Copernicus/commercial legs and pause new Landsat-specific commitments if terms are not re-baselined. <strong>Third leg:</strong> <span class="pdot ml"></span>P-QUAD diversity channel (65/B, Build AMBER) — funded data-hosting test at the next Quad summit cycle (<span class="id">GL-21</span>); drop from continuity planning if no funded commitment emerges.</p>
+      </div>
+    </div>
+  </div>
+  <p class="xs" style="margin-top:10px"><strong>Portfolio effect:</strong> critical national EO and weather services ride on two arrangement-backed channels plus a regional gateway, so no single foreign budget decision can silently break service continuity. Hedged by <span class="id">OPP-20</span> (Maxar DAP) — mitigation only once &sect;54 clauses are contracted (recorded interdependency).</p>
+</section>
+
+<!-- ================= 16. DEEP DIVE OPP-03 ================= -->
+<section class="slide" data-title="Deep dive — OPP-03">
+  <div class="k">Deep dive &middot; Tranche 1</div>
+  <h1 class="t" style="font-size:22px"><span class="id" style="font-size:14px">OPP-03</span> DARC trilateral completion and sovereign SDA balance <span class="xs muted">&middot; <span class="pdot ml"></span>P-AUKUS</span></h1>
+  <div style="display:flex;gap:16px;margin-top:56px">
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>What and why</h3>
+        <p class="xs">Sustain DARC Site 1 from Early Use (approved for USSPACECOM September 2025; construction completed ~3 months early) through to full operations expected 2027, with an explicit Defence position on DARC support costs versus JP9360 tranche funding and on Australian data-access terms. Effect: <strong>all-weather 24/7 deep-space custody of the GEO belt from Australian territory</strong>, without erosion of the sovereign SDA program that gives Australia standing in the network.</p>
+      </div>
+      <div class="card">
+        <h3>Criterion highlights (weight &times; score/5)</h3>
+        <table class="tbl dense">
+          <tr><td>Priority alignment</td><td class="num">5/5</td><td class="num"><strong>20.0</strong> / 20</td></tr>
+          <tr><td>Value proposition</td><td class="num">5/5</td><td class="num"><strong>15.0</strong> / 15</td></tr>
+          <tr><td>Instrument/forum</td><td class="num">5/5</td><td class="num"><strong>10.0</strong> / 10</td></tr>
+          <tr><td class="muted">Weakest: sovereignty</td><td class="num muted">3/5</td><td class="num muted">3.0 / 5</td></tr>
+        </table>
+        <p class="xs" style="margin-top:5px">Raw weighted sum <strong>89/100</strong> &middot; band <span class="band">A</span> &middot; confidence <strong>High</strong>.</p>
+      </div>
+    </div>
+    <div style="flex:1.2">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Pathway — AMBER; three managed gaps</h3>
+        <div class="pw" style="margin:6px 0 4px">
+          <span class="G"><b></b><i>Inst</i></span><span class="G"><b></b><i>Forum</i></span><span class="G"><b></b><i>Own</i></span><span class="G"><b></b><i>Auth</i></span><span class="G"><b></b><i>Sec</i></span><span class="G"><b></b><i>Tech</i></span><span class="A bind"><b></b><i>Ops</i></span><span class="A bind"><b></b><i>Res</i></span><span class="A bind"><b></b><i>Sov</i></span><span class="G"><b></b><i>Mech</i></span>
+        </div>
+        <p class="xs muted" style="margin:0 0 4px">&#9635; = binding gap &middot; colours = component status</p>
+        <p class="xs"><strong>Binding gap:</strong> resource (AMBER) — DARC support costs pressure JP9360 funding (<span class="id">EV-AUINPUTS-14</span>, Low — validate before next AUSMIN, <span class="id">GL-03</span>); sovereignty (AMBER) — allied hosting vs sovereign SDA tension; operational (AMBER) — <strong>Australian access to Australian-hosted DARC data not yet evidenced</strong>; terms to be agreed before 2027 full operations (<span class="id">EV-SDAPROGR-08</span>; <span class="id">GL-31</span>).</p>
+      </div>
+      <div class="card">
+        <h3>Interdependencies</h3>
+        <p class="xs"><strong><span class="id">OPP-02</span></strong> — competes-for-resource: shared JP9360 exposure and shared Exmouth single-point geography (<span class="id">DEP-08</span>). <strong><span class="id">OPP-18</span></strong> — competes-for-resource: JP9360 tranche funding (<span class="id">EV-SDAPROGR-03</span>). Resolved once, through <span class="id">RD-1</span>.</p>
+      </div>
+    </div>
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Leverage</h3>
+        <p class="xs"><span class="id">VEH-MULTILATERAL-18</span> / <span class="id">VEH-US-21</span> DARC trilateral MoU (Sep 2023, in force; 22-year duration, TO_VERIFY) &middot; hosting offsets as negotiating currency (<span class="id">C-23</span>, <span class="id">AUS-IN-17</span>): SST FOC 19 Aug 2025, C-band upgrade, DARC Early Use — presented as burden-sharing support, never standalone asks.</p>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <h3>Confirm before deciding</h3>
+        <p class="xs"><span class="id">EV-AUINPUTS-14</span> validation (shared with OPP-02) &middot; DARC data-access terms — products, latency, tasking share — before 2027 FOC (<span class="id">GL-31</span>) &middot; sovereignty condition set recorded in trilateral governance (<span class="id">GL-35</span>).</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--amber)">
+        <h3>Off-ramp</h3>
+        <p class="xs">Sovereign JP9360 tranche acceleration (recorded second-best) if trilateral funding tensions bind. <strong>Without data-access terms by FOC, delivery counts as a hosted capability, not an Australian one</strong> — re-price the hosting offset accordingly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 17. DEEP DIVE OPP-14 ================= -->
+<section class="slide" data-title="Deep dive — OPP-14">
+  <div class="k">Deep dive &middot; Tranche 1 &middot; the live window</div>
+  <h1 class="t" style="font-size:22px"><span class="id" style="font-size:14px">OPP-14</span> SPA9102 narrowband UHF delivery <span class="xs muted">&middot; <span class="pdot us"></span>P-US &middot; allied interoperability and industrial participation</span></h1>
+  <div style="display:flex;gap:16px;margin-top:56px">
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>What and why</h3>
+        <p class="xs">Shape the live SPA9102 narrowband RFT (Narrowband Payload Space Segment: UHF GEO satellite, launch, introduction into service, availability-based support; RFT announced 10 July 2026, AusTender close 19 August 2026) so the sovereign bird is coalition-interoperable and its ground segment anchors Australian industry. Effect: <strong>Australia's first sovereign-controlled military communications satellite</strong> (~10-year service life), ending pure dependency in the narrowband tier while IS-22 (to at least 2033) provides the transition bridge.</p>
+      </div>
+      <div class="card">
+        <h3>Criterion highlights (weight &times; score/5)</h3>
+        <table class="tbl dense">
+          <tr><td>Priority alignment</td><td class="num">5/5</td><td class="num"><strong>20.0</strong> / 20</td></tr>
+          <tr><td>Capability maturity</td><td class="num">5/5</td><td class="num"><strong>15.0</strong> / 15</td></tr>
+          <tr><td>Time/resources — window live</td><td class="num">5/5</td><td class="num"><strong>5.0</strong> / 5</td></tr>
+          <tr><td class="muted">Weakest: mutual benefit</td><td class="num muted">3/5</td><td class="num muted">9.0 / 15</td></tr>
+        </table>
+        <p class="xs" style="margin-top:5px">Raw weighted sum <strong>87/100</strong> &middot; band <span class="band">A</span> &middot; confidence <strong>High</strong>.</p>
+      </div>
+    </div>
+    <div style="flex:1.2">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Pathway — AMBER; one managed gap</h3>
+        <div class="pw" style="margin:6px 0 4px">
+          <span class="G"><b></b><i>Inst</i></span><span class="G"><b></b><i>Forum</i></span><span class="G"><b></b><i>Own</i></span><span class="A bind"><b></b><i>Auth</i></span><span class="G"><b></b><i>Sec</i></span><span class="G"><b></b><i>Tech</i></span><span class="G"><b></b><i>Ops</i></span><span class="G"><b></b><i>Res</i></span><span class="G"><b></b><i>Sov</i></span><span class="G"><b></b><i>Mech</i></span>
+        </div>
+        <p class="xs muted" style="margin:0 0 4px">&#9635; = binding gap &middot; colours = component status</p>
+        <p class="xs"><strong>Binding gap — authority (AMBER):</strong> SPA9102 holds First Pass approval only (<span class="id">EV-MILSATCO-09</span>, TO_VERIFY); Second Pass required to contract. The cleanest pathway in tranche 1 — nine components Green.</p>
+      </div>
+      <div class="card">
+        <h3>Interdependency — the single-owner rule</h3>
+        <p class="xs"><strong>Constrains <span class="id">OPP-01</span>:</strong> single-UHF-GEO design decisions (ground segment, industry anchor, availability model) pre-commit parts of OPP-01's deliberate wideband/multi-orbit architecture choice — <strong>record the architecture read-across at Second Pass</strong>. OPP-14 owns the RFT response; OPP-01 owns the architecture decision space.</p>
+      </div>
+    </div>
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Evidence anchor</h3>
+        <p class="xs">Window independently anchored by the 10 July 2026 RFT announcement, AVM Nussio, ~3-month nominal response time (<span class="id">EV-MILSATCO-07</span>, FACT/High). Close-date detail rests on AusTender notice ATM ADSS/NOT/84124/1 (<span class="id">EV-MILSATCO-09</span>, TO_VERIFY) — corroborating detail, not the sole basis.</p>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <h3>Confirm before deciding</h3>
+        <p class="xs"><span class="id">EV-MILSATCO-09</span> — close date + First-Pass status on AusTender by <strong>1 Aug 2026</strong> (<span class="id">GL-27</span>) &middot; Second Pass approval-pathway timing vs ~Nov 2026 responses (<span class="id">GL-26</span>).</p>
+      </div>
+      <div class="card">
+        <h3>Off-ramp</h3>
+        <p class="xs">Acquisition slips: extend IS-22 UHF options (to 2041) and lease allied narrowband capacity (recorded second-best) — bridge, not destination (<span class="id">DEP-03</span>).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 18. DEEP DIVE OPP-07 ================= -->
+<section class="slide" data-title="Deep dive — OPP-07">
+  <div class="k">Deep dive &middot; Tranche 1 &middot; conditional approval</div>
+  <h1 class="t" style="font-size:22px"><span class="id" style="font-size:14px">OPP-07</span> Early integration into USSF Force Design (IPS LOE 1) <span class="xs muted">&middot; <span class="pdot us"></span>P-US &middot; conditional approval</span></h1>
+  <div style="display:flex;gap:16px;margin-top:56px">
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>What and why</h3>
+        <p class="xs">Commit named Australian planners into the objective-force baseline now: engage the SF/S9 force-design staff group (established 21 April 2026) against <em>The Objective Force 2040</em> (released 15 April 2026), using the ACSO/FCP channel and the 3 June 2026 Statement of Intent. Effect: Australian needs are <strong>designed into the allied objective force for 2025–2040</strong> rather than accommodated afterwards. 2026 is the design-in year.</p>
+      </div>
+      <div class="card">
+        <h3>Criterion highlights (weight &times; score/5)</h3>
+        <table class="tbl dense">
+          <tr><td>Priority alignment</td><td class="num">5/5</td><td class="num"><strong>20.0</strong> / 20</td></tr>
+          <tr><td>Capability maturity</td><td class="num">5/5</td><td class="num"><strong>15.0</strong> / 15</td></tr>
+          <tr><td>Mutual benefit</td><td class="num">5/5</td><td class="num"><strong>15.0</strong> / 15</td></tr>
+          <tr><td class="muted">Weakest: security releasability</td><td class="num muted">Unknown</td><td class="num muted">0 counted / 5</td></tr>
+        </table>
+        <p class="xs" style="margin-top:5px">Raw weighted sum <strong>87/100</strong> (92 renormalised — <em>sensitivity view only</em>; the former #1 rank was a renormalisation artefact) &middot; band <span class="band">A</span> &middot; confidence <strong>Medium</strong> (capped by one Unknown).</p>
+      </div>
+    </div>
+    <div style="flex:1.2">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Pathway — AMBER; three managed gaps — security UNKNOWN</h3>
+        <div class="pw" style="margin:6px 0 4px">
+          <span class="G"><b></b><i>Inst</i></span><span class="G"><b></b><i>Forum</i></span><span class="G"><b></b><i>Own</i></span><span class="G"><b></b><i>Auth</i></span><span class="U bind"><b></b><i>Sec</i></span><span class="G"><b></b><i>Tech</i></span><span class="G"><b></b><i>Ops</i></span><span class="A"><b></b><i>Res</i></span><span class="A"><b></b><i>Sov</i></span><span class="G"><b></b><i>Mech</i></span>
+        </div>
+        <p class="xs muted" style="margin:0 0 4px">&#9635; = binding gap &middot; colours = component status</p>
+        <p class="xs"><strong>Binding gap:</strong> security (UNKNOWN) — release tier for Force Design artefacts unconfirmed (<span class="id">EV-USSFCSPO-03</span>); resource (AMBER) — workforce nascent, first SIET graduates June 2026 (<span class="id">DEP-09</span>); sovereignty (AMBER) — influence-through-contribution model, no legal entitlement (<span class="id">EV-USSFCSPO-20</span>).</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--amber)">
+        <h3>The conditional decision</h3>
+        <p class="xs">Approve participation <strong>SUBJECT TO</strong> release-tier confirmation (<span class="id">GL-12</span>, ACSO/FCP channel — in post 1 April 2026) before the first Australian Force Design input; document the accepted-influence risk and institution-agnostic fallback in the participation decision (<span class="id">GL-32</span>). <strong>If the release tier is not confirmed, hold all inputs — the condition is the decision.</strong></p>
+      </div>
+    </div>
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Leverage</h3>
+        <p class="xs"><span class="id">VEH-US-25</span> USSF–Australian Space Command Statement of Intent (3 June 2026, in force) &middot; <span class="id">VEH-US-24</span> ESC MoU (2023) &middot; force-design coordination annex option; map Australian hosting equities (DARC, SST, C-band) into objective-force submissions (<span class="id">AUS-IN-22</span> levers).</p>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <h3>Confirm before deciding</h3>
+        <p class="xs"><span class="id">EV-USSFCSPO-03</span> release tier (<span class="id">GL-12</span>) — decision condition &middot; <span class="id">EV-USSFFORC-10</span> SF/S9 task-reassignment after the Space Futures Command cancellation (ASSESSMENT) confirmation.</p>
+      </div>
+      <div class="card">
+        <h3>Off-ramp</h3>
+        <p class="xs">CSpO-mediated participation (recorded second-best) if bilateral bandwidth constrains; institution-agnostic planner relationships hedge US reorganisation churn (<span class="id">SCN-04</span>).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 19. DEEP DIVE OPP-01 ================= -->
+<section class="slide" data-title="Deep dive — OPP-01">
+  <div class="k">Deep dive &middot; Tranche 1 &middot; the architecture decision space</div>
+  <h1 class="t" style="font-size:22px"><span class="id" style="font-size:14px">OPP-01</span> Assured multi-orbit SATCOM through allied and commercial augmentation <span class="xs muted">&middot; <span class="pdot us"></span>P-US</span></h1>
+  <div style="display:flex;gap:16px;margin-top:56px">
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>What and why</h3>
+        <p class="xs">Respond to the live SPA9102 window while negotiating the unscoped wideband and alternative-communications lines of effort — the partnership decision space — including extended WGS assured access before the 2029 horizon. Effect: ADF communications remain assured through the JP9102 gap on a funded multi-orbit trajectory (A$5.2–7.2bn over the decade), with the wideband architecture <strong>decided deliberately rather than by dependency drift</strong>.</p>
+      </div>
+      <div class="card">
+        <h3>Criterion highlights (weight &times; score/5)</h3>
+        <table class="tbl dense">
+          <tr><td>Priority alignment</td><td class="num">5/5</td><td class="num"><strong>20.0</strong> / 20</td></tr>
+          <tr><td>Capability maturity</td><td class="num">5/5</td><td class="num"><strong>15.0</strong> / 15</td></tr>
+          <tr><td>Mutual benefit / value prop.</td><td class="num">4/5 each</td><td class="num"><strong>12.0</strong> / 15 each</td></tr>
+          <tr><td class="muted">Weakest: sovereignty</td><td class="num muted">2/5</td><td class="num muted">2.0 / 5</td></tr>
+        </table>
+        <p class="xs" style="margin-top:5px">Raw weighted sum <strong>86/100</strong> &middot; band <span class="band">A</span> &middot; confidence <strong>Medium</strong> — ~54 of 86 weighted points rest on <span class="id">EV-USSFCSPO-18</span>/<span class="id">EV-USSFCSPO-19</span> (SpaceNews-derived, second-hand press): replace with an official MoU record.</p>
+      </div>
+    </div>
+    <div style="flex:1.2">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Pathway — AMBER; three managed gaps</h3>
+        <div class="pw" style="margin:6px 0 4px">
+          <span class="G"><b></b><i>Inst</i></span><span class="G"><b></b><i>Forum</i></span><span class="G"><b></b><i>Own</i></span><span class="A bind"><b></b><i>Auth</i></span><span class="G"><b></b><i>Sec</i></span><span class="G"><b></b><i>Tech</i></span><span class="G"><b></b><i>Ops</i></span><span class="A bind"><b></b><i>Res</i></span><span class="A bind"><b></b><i>Sov</i></span><span class="G"><b></b><i>Mech</i></span>
+        </div>
+        <p class="xs muted" style="margin:0 0 4px">&#9635; = binding gap &middot; colours = component status</p>
+        <p class="xs"><strong>Binding gap:</strong> authority (AMBER) — narrowband at RFT under First Pass only; wideband and alt-comms LOEs unscoped (<span class="id">EV-MILSATCO-10</span>); resource (AMBER) — IIP envelope committed but wideband acquisition unapproved; interim posture rests on WGS to 2029, Optus C1 to Sep 2034, IS-22 to at least 2033; sovereignty (AMBER) — structural dependency on US and commercial providers (<span class="id">EV-AUINPUTS-20</span>).</p>
+      </div>
+      <div class="card">
+        <h3>The dated plan to 2029 (<span class="id">GL-30</span> milestones)</h3>
+        <p class="xs">Authority named by <strong>19 Aug 2026</strong> (<span class="id">GL-02</span>) &rarr; wideband/alt-comms LOEs tabled at next AUSMIN &rarr; wideband Second Pass target (next IIP cycle) &rarr; WGS extension negotiation opens &rarr; <strong>early-2028</strong> Optus/Inovor sovereign LEO demonstrator gate (<span class="id">EV-MILSATCO-19</span>) &rarr; <strong>2029</strong> WGS access horizon.</p>
+      </div>
+    </div>
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Leverage</h3>
+        <p class="xs"><span class="id">VEH-US-26</span> WGS MoU (2007; post-2029 renewal path TO_VERIFY) &middot; <span class="id">VEH-US-06</span> Enhanced Space Cooperation FPI &middot; <span class="id">VEH-US-02</span> AUSMIN &middot; <span class="id">VEH-US-25</span> SoI service-chief channel. Interdependency: <span class="id">OPP-14</span> is the delivery leg (single-owner rule).</p>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <h3>Confirm before deciding</h3>
+        <p class="xs"><span class="id">EV-MILSATCO-09</span> RFT close date (<span class="id">GL-27</span>, 1 Aug 2026) &middot; <span class="id">VEH-US-26</span> WGS post-2029 renewal path &middot; upgrade <span class="id">EV-USSFCSPO-18</span>/<span class="id">EV-USSFCSPO-19</span> to official records.</p>
+      </div>
+      <div class="card">
+        <h3>Off-ramp</h3>
+        <p class="xs">WGS + Optus C1 (to Sep 2034) + IS-22 interim posture with the 2028 sovereign demonstrator as proof point; V7 &sect;53 condition set — dependency tolerance, fallback, exit, data control — written into the wideband decision (<span class="id">GL-30</span>).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 20. DEEP DIVE OPP-18 ================= -->
+<section class="slide" data-title="Deep dive — OPP-18">
+  <div class="k">Deep dive &middot; Tranche 1 &middot; NOTE delivery + DIRECT verification</div>
+  <h1 class="t" style="font-size:22px"><span class="id" style="font-size:14px">OPP-18</span> Sovereign and commercial SDA layering into allied constructs <span class="xs muted">&middot; <span class="pdot us"></span>P-US &middot; JCO/CDMC line</span></h1>
+  <div style="display:flex;gap:16px;margin-top:56px">
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>What and why</h3>
+        <p class="xs">Contract and task the Australian commercial SDA layer — LeoLabs West Australian Space Radar, EOS observatories, Silentium passive radar, HEO non-Earth imaging (Continuum-1, first sovereign RPO February 2026) — through the 1SSU Commercial Data Mission Centre and the JCO construct. Effect: a nationally-tasked, releasable SDA layer that hedges allied-feed dependency, exports training (JCO-200) and gives JP9360 a delivery-proven commercial on-ramp.</p>
+      </div>
+      <div class="card">
+        <h3>Criterion highlights (weight &times; score/5)</h3>
+        <table class="tbl dense">
+          <tr><td>Priority alignment</td><td class="num">5/5</td><td class="num"><strong>20.0</strong> / 20</td></tr>
+          <tr><td>Capability maturity</td><td class="num">4/5</td><td class="num"><strong>12.0</strong> / 15</td></tr>
+          <tr><td>Mutual benefit / value prop.</td><td class="num">4/5 each</td><td class="num"><strong>12.0</strong> / 15 each</td></tr>
+          <tr><td class="muted">Weakest: security releasability</td><td class="num muted">3/5</td><td class="num muted">3.0 / 5</td></tr>
+        </table>
+        <p class="xs" style="margin-top:5px">Raw weighted sum <strong>84/100</strong> &middot; band <span class="band">A</span> &middot; confidence <strong>Medium</strong>.</p>
+      </div>
+    </div>
+    <div style="flex:1.2">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Pathway — AMBER; two managed gaps (instrument + resource)</h3>
+        <div class="pw" style="margin:6px 0 4px">
+          <span class="A bind"><b></b><i>Inst</i></span><span class="G"><b></b><i>Forum</i></span><span class="G"><b></b><i>Own</i></span><span class="G"><b></b><i>Auth</i></span><span class="G"><b></b><i>Sec</i></span><span class="G"><b></b><i>Tech</i></span><span class="G"><b></b><i>Ops</i></span><span class="A bind"><b></b><i>Res</i></span><span class="G"><b></b><i>Sov</i></span><span class="G"><b></b><i>Mech</i></span>
+        </div>
+        <p class="xs muted" style="margin:0 0 4px">&#9635; = binding gap &middot; colours = component status</p>
+        <p class="xs"><strong>Binding gap:</strong> instrument (AMBER) — JCO participation instrument recorded TO_VERIFY (<span class="id">VEH-MULTILATERAL-30</span>); commercial contracts exist per-provider (<span class="id">EV-JAPANSDA-17</span>); resource (AMBER) — no JP9360 tranche award evidenced 2025–26 to fund the sovereign layer at scale; EOS has shifted focus away from SDA (<span class="id">EV-SDAPROGR-03</span>, <span class="id">EV-SDAPROGR-16</span>).</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--amber)">
+        <h3>The circularity, stated honestly</h3>
+        <p class="xs">OPP-18 is the claimed releasable hedge for allied-classified SDA feeds (<span class="id">DEP-06</span>) — yet it draws on the same JP9360 money as OPP-02/OPP-03, and <strong>the delivery route is itself US-embedded (<span class="id">DEP-01</span>)</strong>: it diversifies provider and information-domain concentration inside US-anchored constructs, not US-nation concentration. Hedge value is conditional on JCO terms verifying and an EOS-independent sensor mix.</p>
+      </div>
+    </div>
+    <div style="flex:1.05">
+      <div class="card" style="margin-bottom:10px">
+        <h3>Delivery to note</h3>
+        <p class="xs">CDMC operating &middot; JCO-200 course delivered Sep 2025 &middot; first sovereign RPO demonstrated Feb 2026. NOTE delivery; DIRECT verification of JCO participation terms and PWSA-connection intent by <strong>Q4 2026</strong> (<span class="id">GL-28</span>) — it gates the reported late-2026 PWSA timeline.</p>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <h3>Confirm before deciding</h3>
+        <p class="xs"><span class="id">VEH-MULTILATERAL-30</span> JCO participation instrument (<span class="id">GL-28</span>) — decision condition &middot; <span class="id">EV-SDAPROGR-13</span> PWSA-connection intent &middot; <span class="id">VEH-US-38</span> May 2026 expanded-partnership report (TO_VERIFY).</p>
+      </div>
+      <div class="card">
+        <h3>Off-ramp</h3>
+        <p class="xs">Bilateral per-provider sensor-data contracts (recorded second-best) if JCO terms cannot be verified; the &ldquo;releasable hedge&rdquo; claim lapses if terms fail or the sensor mix stays EOS-dependent. Funding only via <span class="id">RD-1</span> (<span class="id">GL-29</span>).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 21. DEEP DIVE OPP-04 + OPP-21 ================= -->
+<section class="slide" data-title="Deep dive — quick wins">
+  <div class="k">Deep dive &middot; the two GREEN pathways</div>
+  <h1 class="t" style="font-size:22px">Quick wins — <span class="id" style="font-size:14px">OPP-04</span> Japan SDA exchanges &middot; <span class="id" style="font-size:14px">OPP-21</span> coalition exercise line</h1>
+  <div class="grid2" style="gap:18px;margin-top:52px">
+    <div class="card" style="border-top:3px solid var(--jp)">
+      <h3><span class="pdot jp"></span>OPP-04 Japan–Australia SDA exchanges — <strong>76</strong> <span class="band">B</span> &middot; High &middot; <span class="chip g"><b class="gl">G</b>GREEN</span></h3>
+      <div class="pw" style="margin:8px 0 6px">
+        <span class="G"><b></b><i>Inst</i></span><span class="G"><b></b><i>Forum</i></span><span class="G"><b></b><i>Own</i></span><span class="G"><b></b><i>Auth</i></span><span class="G"><b></b><i>Sec</i></span><span class="G"><b></b><i>Tech</i></span><span class="G"><b></b><i>Ops</i></span><span class="G"><b></b><i>Res</i></span><span class="G"><b></b><i>Sov</i></span><span class="G"><b></b><i>Mech</i></span>
+      </div>
+      <p class="small" style="margin-bottom:6px;font-size:13px"><strong>All ten components Green — no binding gap.</strong> Score reverted from a silent v2 re-score (79&rarr;76), declared at adjudication; band B unchanged. Top criterion: priority alignment 4/5 (16.0/20); weakest: value proposition 3/5 (9.0/15).</p>
+      <p class="small" style="margin-bottom:6px;font-size:13px">Stand up the recurring unit-level exchange and shareable-tier SDA information exchange under the existing 2+2 mandate <strong>now</strong> — liaison exchanges already commencing (<span class="id">EV-JAPANSDA-02</span>). JASDF Space Operations Wing at 670 personnel (Mar 2026), upgrading to a <strong>Space Operations Command in FY2026</strong>. The fastest space partnership win available and the plan's nearest non-US leg (<span class="id">DEP-01</span> counterweight).</p>
+      <p class="small" style="margin-bottom:6px;font-size:13px"><strong>Carriage:</strong> <span class="id">VEH-JAPAN-09</span> 2+2 (reiterated mandate) &middot; <span class="id">VEH-JAPAN-07</span> ISA &middot; <span class="id">VEH-JAPAN-12</span> FSDC. Shareable-tier design makes it resilient to release denial (<span class="id">SCN-06</span>).</p>
+      <p class="small" style="font-size:13px"><strong>Date:</strong> immediate; first recurring serial before <strong>Dec 2026</strong>. <strong>Cost:</strong> Minor. <strong>Off-ramp:</strong> none needed; CSpO-track sharing if bilateral tempo lags.</p>
+    </div>
+    <div class="card" style="border-top:3px solid var(--us)">
+      <h3><span class="pdot us"></span>OPP-21 Coalition space exercise and wargame line — <strong>77</strong> <span class="band">B</span> &middot; High &middot; <span class="chip g"><b class="gl">G</b>GREEN</span></h3>
+      <div class="pw" style="margin:8px 0 6px">
+        <span class="G"><b></b><i>Inst</i></span><span class="G"><b></b><i>Forum</i></span><span class="G"><b></b><i>Own</i></span><span class="G"><b></b><i>Auth</i></span><span class="G"><b></b><i>Sec</i></span><span class="G"><b></b><i>Tech</i></span><span class="G"><b></b><i>Ops</i></span><span class="G"><b></b><i>Res</i></span><span class="G"><b></b><i>Sov</i></span><span class="G"><b></b><i>Mech</i></span>
+      </div>
+      <p class="small" style="margin-bottom:6px;font-size:13px"><strong>All ten components Green — no binding gap.</strong> Top criterion: capability maturity 5/5 (15.0/15); weakest: mutual benefit and value proposition 3/5 (9.0/15 each).</p>
+      <p class="small" style="margin-bottom:6px;font-size:13px">Sustain and deepen the standing line: Global Sentinel (GS25: ~30 nations, April–May 2025), Schriever Wargame (August 2025 — last planned unilateral iteration), Resolute Space 2025 command roles, Apollo Insights industry TTXs and the Talisman Sabre space serial. Named RAAF officers already hold command roles (<span class="id">EV-MULTILAT-08</span>/<span class="id">EV-MULTILAT-09</span>/<span class="id">EV-MULTILAT-22</span>). Effect: the small space workforce accumulates coalition repetitions and command experience <strong>years faster than sovereign programs alone</strong>, at marginal cost (<span class="id">DEP-09</span> lever).</p>
+      <p class="small" style="margin-bottom:6px;font-size:13px"><strong>Carriage:</strong> <span class="id">VEH-US-31</span> Global Sentinel &middot; <span class="id">VEH-US-32</span> Schriever &middot; <span class="id">VEH-MULTILATERAL-11</span> Olympic Defender.</p>
+      <p class="small" style="font-size:13px"><strong>Next:</strong> expand billets and bid command/planning roles in each 2026–27 serial; verify Space Flag currency (<span class="id">EV-MULTILAT-18</span> — last confirmed 2019). <strong>Cost:</strong> Minor. <strong>Off-ramp:</strong> Talisman Sabre space serials.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 22. ARCHITECTURE — US ================= -->
+<section class="slide" data-title="Architecture — United States">
+  <div class="k">Partnership architecture &middot; 1 of 4</div>
+  <h1 class="t"><span class="pdot us"></span>United States — no new treaty needed; every ask is terms inside the stack</h1>
+  <p class="sub">Every tranche-1 US item rides an instrument already in force — the asks are terms, access and conditions: WGS extension, DARC data access, release tier, JCO terms, &sect;53/&sect;54 clause sets. 40 registered vehicles (18 Direct); maturity 5/5 (assessed).</p>
+  <div class="grid3" style="gap:12px">
+    <div class="card">
+      <h2>Governance spine</h2>
+      <table class="tbl dense">
+        <tr><td><span class="id">VEH-US-02</span></td><td>AUSMIN ministerial consultations (1985)</td><td class="xs">In force; last held 8 Dec 2025 — none scheduled for 2026</td></tr>
+        <tr><td><span class="id">VEH-US-06</span></td><td>Enhanced Space Cooperation (US Force Posture Initiative)</td><td class="xs">In force</td></tr>
+        <tr><td><span class="id">VEH-US-24</span></td><td>Enhanced Space Cooperation MoU — USSPACECOM &harr; DSpC (Apr 2023)</td><td class="xs">In force</td></tr>
+        <tr><td><span class="id">VEH-US-25</span></td><td><strong>USSF &harr; Australian Space Command Statement of Intent (Jun 2026)</strong></td><td class="xs">In force — the newest service-chief channel; RD-3's MGUE fallback route</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Mission instruments</h2>
+      <table class="tbl dense">
+        <tr><td><span class="id">VEH-US-26</span></td><td>WGS Cooperation MoU (Nov 2007)</td><td class="xs">In force; 2029 access horizon — OPP-01</td></tr>
+        <tr><td><span class="id">VEH-US-17</span></td><td>SSA Partnership Statement of Principles (Nov 2010)</td><td class="xs">In force — OPP-02 carriage</td></tr>
+        <tr><td><span class="id">VEH-US-18</span> / <span class="id">VEH-US-19</span></td><td>C-band radar + SST relocation MoUs (2012/2013)</td><td class="xs">In force — the Exmouth hosting triple with DARC (<span class="id">DEP-08</span>)</td></tr>
+        <tr><td><span class="id">VEH-US-21</span></td><td>DARC Trilateral MoU (Sep 2023)</td><td class="xs">In force — OPP-03</td></tr>
+        <tr><td><span class="id">VEH-US-27</span></td><td>Technology Safeguards Agreement (Oct 2023)</td><td class="xs">In force per <span class="id">EV-USSFFORC-15</span> (EIF 23 Jul 2024); ATS check pending — OPP-08</td></tr>
+        <tr><td><span class="id">VEH-US-31</span> / <span class="id">VEH-US-32</span></td><td>Global Sentinel + Schriever Wargame</td><td class="xs">In force — OPP-21 carriage</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Verification tail + reading</h2>
+      <table class="tbl dense">
+        <tr><td><span class="id">VEH-US-38</span></td><td>Expanded space-surveillance partnership (May 2026)</td><td class="xs"><strong>TO_VERIFY</strong> — feeds OPP-18/AUS-IN-14 levers</td></tr>
+        <tr><td><span class="id">VEH-US-20</span></td><td>SSA Data-Sharing MoU (USSTRATCOM)</td><td class="xs"><strong>TO_VERIFY</strong> — possible supersession; heritage citation only</td></tr>
+        <tr><td><span class="id">VEH-US-39</span></td><td>ASA–US civil SSA Statement of Intent</td><td class="xs">In force — AUS-IN-21 channel</td></tr>
+      </table>
+      <p class="xs" style="margin-top:8px"><strong>Reading:</strong> seven of nine T1 decision items sit on <span class="id">DEP-01</span>'s affected list — the RD-2 ruling exists because of this page.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 23. ARCHITECTURE — JAPAN ================= -->
+<section class="slide" data-title="Architecture — Japan">
+  <div class="k">Partnership architecture &middot; 2 of 4</div>
+  <h1 class="t"><span class="pdot jp"></span>Japan — deep foundations, one missing instrument</h1>
+  <p class="sub">40 registered vehicles (5 Direct) — treaty-level RAA and deep civil interdependence, but defence-space lines of effort are not yet explicit. Maturity 4/5 (assessed).</p>
+  <div class="grid3" style="gap:12px">
+    <div class="card">
+      <h2>Defence spine (in force)</h2>
+      <table class="tbl dense">
+        <tr><td><span class="id">VEH-JAPAN-09</span></td><td>2+2 Ministerial Consultations (2007)</td><td class="xs">12th held 5 Sep 2025 — the mandate OPP-04 executes under</td></tr>
+        <tr><td><span class="id">VEH-JAPAN-05</span></td><td>Reciprocal Access Agreement (RAA)</td><td class="xs">Treaty-level presence basis</td></tr>
+        <tr><td><span class="id">VEH-JAPAN-07</span></td><td>Information Security Agreement (May 2012)</td><td class="xs">The release basis for the SDA matrix (<span class="id">GL-05</span>)</td></tr>
+        <tr><td><span class="id">VEH-JAPAN-08</span></td><td>Defence equipment &amp; technology transfer agreement (Jul 2014)</td><td class="xs">In force</td></tr>
+        <tr><td><span class="id">VEH-JAPAN-12</span></td><td><strong>Framework for Strategic Defence Coordination (Dec 2025)</strong></td><td class="xs">The annex host for the dedicated space arrangement</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Civil space interdependence</h2>
+      <table class="tbl dense">
+        <tr><td>BoM–JMA</td><td>Strategic Relationship Arrangement (11 Nov 2024)</td><td class="xs">In force (<span class="id">EV-CONVERSA-03</span>) — carries OPP-10 P-JP; <strong>no VEH ID: register gap</strong></td></tr>
+        <tr><td><span class="id">VEH-JAPAN-36</span></td><td>JAXA–ASA Memorandum of Cooperation (Jul 2020)</td><td class="xs">In force — ALOS-4 and contingency-annex lever</td></tr>
+        <tr><td><span class="id">VEH-JAPAN-38</span></td><td>QZSS cooperation / ground-segment hosting</td><td class="xs"><strong>TO_VERIFY</strong> — OPP-05 gate</td></tr>
+        <tr><td><span class="id">VEH-JAPAN-39</span></td><td>Japan–US–Australia Space Security Dialogue</td><td class="xs"><strong>TO_VERIFY</strong></td></tr>
+        <tr><td><span class="id">VEH-JAPAN-40</span></td><td>Quad space working group</td><td class="xs"><strong>TO_VERIFY</strong> — OPP-10/OPP-19 Quad legs</td></tr>
+      </table>
+    </div>
+    <div class="card" style="border-left:3px solid var(--jp)">
+      <h2>The white space is the OPP-17 case</h2>
+      <p class="xs" style="margin-bottom:6px"><strong>No dedicated bilateral defence-space arrangement exists</strong> — no explicit space lines of effort in FSDC-era statements (<span class="id">GL-04</span>), and Japan's policy documents currently name only the United States as a space partner.</p>
+      <p class="xs" style="margin-bottom:6px">The window: Japan's JASDF Space Operations Wing (670 personnel, Mar 2026) upgrades to a <strong>Space Operations Command in FY2026</strong>. Scope the FSDC space annex inside that window, before a US-only pattern normalises in Japanese practice.</p>
+      <p class="xs">The plan: <span class="id">OPP-04</span> executes now (GREEN, the 2+2 mandate suffices) &rarr; <span class="id">OPP-17</span> scoping accelerated into T1 (RD-2 Option A) &rarr; delivery negotiated in T2 from the scoping product &rarr; <span class="id">OPP-02</span> P-JP second leg rides the same annex + release matrix (<span class="id">GL-04</span>/<span class="id">GL-05</span>).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 24. ARCHITECTURE — AUKUS + MULTILATERAL ================= -->
+<section class="slide" data-title="Architecture — AUKUS + multilateral">
+  <div class="k">Partnership architecture &middot; 3 of 4</div>
+  <h1 class="t"><span class="pdot ml"></span>AUKUS and multilateral — the portfolio's systemic fallback</h1>
+  <p class="sub">The multilateral layer is the recorded second-best for nearly every bilateral leg — why the Oslo release matrix (<span class="id">GL-17</span>) matters beyond OPP-09. 37 multilateral vehicles (12 Direct) + the AUKUS trade environment; UK bilateral space is committed v3 white space.</p>
+  <div class="grid3" style="gap:12px">
+    <div class="card">
+      <h2>AUKUS</h2>
+      <table class="tbl dense">
+        <tr><td><span class="id">VEH-MULTILATERAL-18</span></td><td>DARC trilateral MoU US–UK–AU (Sep 2023)</td><td class="xs">In force; 22-year duration (TO_VERIFY) — OPP-03</td></tr>
+        <tr><td><span class="id">VEH-UK-13</span></td><td>AUKUS licence-free defence trade environment (DTCA 2024)</td><td class="xs">In force (finalised Dec 2025); carries the QuantX clock line — OPP-15; <strong>MTCR launch-vehicle tech stays excluded (ETL)</strong> — OPP-08 RED</td></tr>
+        <tr><td><span class="id">VEH-UK-23</span></td><td>UK–Australia Space Bridge (Feb 2021)</td><td class="xs">In force (civil)</td></tr>
+        <tr><td><span class="id">VEH-UK-24</span> / <span class="id">VEH-UK-25</span> / <span class="id">VEH-UK-26</span></td><td>UKSC–DSpC ToR / Space Engagement Talks / AUKMIN Jun 2026 SDA commitment</td><td class="xs"><strong>All TO_VERIFY</strong> — their verification gates the committed v3 P-UK bilateral option</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Operations &amp; exercises</h2>
+      <table class="tbl dense">
+        <tr><td><span class="id">VEH-MULTILATERAL-10</span></td><td>CSpO Initiative (2014, 10 partners)</td><td class="xs">Principals' Board Apr 2026; <strong>Oslo Principals' Dec 2026</strong> — GL-17 matrix due</td></tr>
+        <tr><td><span class="id">VEH-MULTILATERAL-11</span></td><td>Operation Olympic Defender (2020)</td><td class="xs">In force — OPP-09; Japan sits in CSpO but outside MNF-OOD</td></tr>
+        <tr><td><span class="id">VEH-MULTILATERAL-12</span></td><td>CSpOC participation, Vandenberg</td><td class="xs">In force</td></tr>
+        <tr><td><span class="id">VEH-MULTILATERAL-30</span></td><td>JCO cell participation</td><td class="xs"><strong>TO_VERIFY — the GL-28 decision condition for OPP-18</strong></td></tr>
+        <tr><td><span class="id">VEH-MULTILATERAL-16</span> / <span class="id">VEH-MULTILATERAL-17</span></td><td>Global Sentinel / Schriever serials</td><td class="xs">In force — OPP-21</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Groupings &amp; norms</h2>
+      <table class="tbl dense">
+        <tr><td><span class="id">VEH-MULTILATERAL-08</span></td><td>Quad Space Working Group (2021)</td><td class="xs">TO_VERIFY; all documented Quad commitments are civil-domain — OPP-10/OPP-19 legs</td></tr>
+        <tr><td><span class="id">VEH-MULTILATERAL-09</span></td><td>IPMDA (May 2022)</td><td class="xs">In force — OPP-19 construct</td></tr>
+        <tr><td><span class="id">VEH-MULTILATERAL-01</span></td><td>UKUSA / Five Eyes</td><td class="xs">In force — enabling layer</td></tr>
+        <tr><td><span class="id">VEH-MULTILATERAL-13</span></td><td>Artemis Accords</td><td class="xs">In force — norms layer</td></tr>
+        <tr><td><span class="id">VEH-MULTILATERAL-29</span></td><td>WGS international partnership</td><td class="xs">In force — OPP-01 context</td></tr>
+      </table>
+      <p class="xs" style="margin-top:6px"><strong>Reading:</strong> CSpO tracks are the recorded second-best for OPP-02/-04/-07/-09.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 25. ARCHITECTURE — INDIA / GERMANY / UAE / PACIFIC ================= -->
+<section class="slide" data-title="Architecture — India, Germany, UAE, Pacific">
+  <div class="k">Partnership architecture &middot; 4 of 4</div>
+  <h1 class="t">India, Germany, UAE, Pacific — counts, keys and white space</h1>
+  <div class="grid4" style="gap:12px;margin-top:10px">
+    <div class="card" style="border-top:3px solid var(--ind)">
+      <h2><span class="pdot in"></span>India — 32 vehicles (4 Direct)</h2>
+      <table class="tbl dense">
+        <tr><td><span class="id">VEH-INDIA-15</span></td><td class="xs">2+2 Ministerial Dialogue (Jun 2020), in force</td></tr>
+        <tr><td><span class="id">VEH-INDIA-28</span></td><td class="xs">Civil space MoU (2012, amended), in force</td></tr>
+        <tr><td><span class="id">VEH-INDIA-29</span></td><td class="xs"><strong>Gaganyaan Implementing Arrangement (Nov 2024)</strong> — the proven civil base</td></tr>
+        <tr><td><span class="id">VEH-INDIA-30</span></td><td class="xs">Cocos (Keeling) TT&amp;C terminal (2026), in force</td></tr>
+        <tr><td><span class="id">VEH-INDIA-31</span></td><td class="xs">Space MAITRI launch agreement (2024)</td></tr>
+        <tr><td><span class="id">VEH-INDIA-14</span></td><td class="xs">PACTS (Jul 2026) — tech-cooperation channel</td></tr>
+      </table>
+      <p class="xs" style="margin-top:6px"><strong>White space:</strong> no defence-space instrument; leader-level 2026 Joint Declaration is the umbrella — the <span class="id">GL-10</span> annex + <span class="id">GL-11</span> information-security basis are the T2 levers (OPP-06, OPP-12).</p>
+    </div>
+    <div class="card">
+      <h2><span class="pdot"></span>Germany — 20 vehicles (4 Direct)</h2>
+      <table class="tbl dense">
+        <tr><td><span class="id">VEH-GERMANY-09</span></td><td class="xs"><strong>Declaration of Intent — global space-surveillance sensor network (Mar 2026), in force.</strong> Residual gap: the implementing arrangement (<span class="id">GL-06</span>)</td></tr>
+        <tr><td><span class="id">VEH-GERMANY-10</span></td><td class="xs">CSpO co-membership (2014) — interim exchange forum</td></tr>
+        <tr><td><span class="id">VEH-GERMANY-11</span></td><td class="xs">ASA–DLR Statement of Intent, TO_VERIFY</td></tr>
+      </table>
+      <p class="xs" style="margin-top:6px">Maturity 2/5: strong national SDA assets, no dedicated G2G space instrument before the DoI. Path: validate releasability (<span class="id">GL-07</span>) &rarr; implementing arrangement &rarr; <span class="id">C-17</span> DLR–TeraNet optical demonstrator as the cheap quick win (OPP-02 P-DE, Explore). Launch leg dormant until RFA ONE flies (<span class="id">GL-15</span>/<span class="id">GL-16</span>).</p>
+    </div>
+    <div class="card">
+      <h2><span class="pdot"></span>UAE — 16 vehicles (4 Direct)</h2>
+      <table class="tbl dense">
+        <tr><td><span class="id">VEH-UAE-07</span></td><td class="xs">2019 ASA–UAESA MoU — civil, <strong>expressly non-binding</strong>; TO_VERIFY</td></tr>
+        <tr><td><span class="id">VEH-UAE-09</span></td><td class="xs">Artemis Accords co-signatories, in force</td></tr>
+        <tr><td><span class="id">VEH-UAE-16</span></td><td class="xs"><strong>&ldquo;NO VEHICLE IDENTIFIED&rdquo;</strong> — the recorded defence-instrument gap</td></tr>
+      </table>
+      <p class="xs" style="margin-top:6px">The register-level RED: no defence instrument exists, so <span class="id">OPP-13</span> holds at the IEEE standards entry (<span class="id">EV-UAE-23</span>) until an instrument pathway exists (<span class="id">GL-25</span>). Third-party US–UAE technology politics compound the hold (<span class="id">SCN-04</span>).</p>
+    </div>
+    <div class="card">
+      <h2><span class="pdot"></span>Pacific / PIF — 39 vehicles (0 Direct, 17 Enabling)</h2>
+      <table class="tbl dense">
+        <tr><td><span class="id">VEH-PACIFIC-25</span></td><td class="xs">PIF membership (1971, founding member)</td></tr>
+        <tr><td><span class="id">VEH-PACIFIC-27</span></td><td class="xs">Boe Declaration (2018) — security framing</td></tr>
+        <tr><td><span class="id">VEH-PACIFIC-24</span></td><td class="xs">Pacific Fusion Centre, Port Vila (2019)</td></tr>
+      </table>
+      <p class="xs" style="margin-top:6px"><strong>No space-specific regional mechanism exists</strong> — the delivery mechanism itself is unselected (<span class="id">GL-22</span>). OPP-11 stays Explore; <span class="id">DEP-04</span> treatment (community gateways, multi-vendor LEO guidance, cable redundancy) proceeds regardless of any Defence program. Starlink is the de facto resilience layer — a single-provider concentration, not a plan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 26. LEVERAGE MAP (1 of 2) ================= -->
+<section class="slide" data-title="Leverage map — top four">
+  <div class="k">Leverage &middot; inputs &times; vehicles &middot; 1 of 2</div>
+  <h1 class="t">Leverage map — where each top priority gets pulled</h1>
+  <p class="sub">Each carried input records dated leverage points on named vehicles (v2 model). The top four priorities and their working levers:</p>
+  <table class="tbl" style="margin-top:24px">
+    <tr><th style="width:19%">Priority (input)</th><th style="width:81%">Leverage vehicles &rarr; next actions</th></tr>
+    <tr>
+      <td><span class="id">OPP-14</span> + <span class="id">OPP-01</span><br><span class="xs muted">&larr; <span class="id">AUS-IN-03</span> multi-orbit SATCOM</span></td>
+      <td><ul style="list-style:none">
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-26</span> — <strong>open</strong> extended assured-access annex negotiation before the 2029 WGS horizon</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-02</span> — <strong>table</strong> wideband/alt-comms LOEs at next AUSMIN</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-25</span> — <strong>use</strong> the SoI channel to align allied augmentation with the SPA9102 RFT before the 19 Aug close</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-06</span> — <strong>scope</strong> a multi-orbit interim-services project arrangement inside the IIP envelope</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td><span class="id">OPP-02</span> / <span class="id">OPP-03</span> / <span class="id">OPP-18</span><br><span class="xs muted">&larr; <span class="id">AUS-IN-14</span> layered SDA (JP9360)</span></td>
+      <td><ul style="list-style:none">
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-21</span> — <strong>confirm</strong> Australian data-access terms before 2027 full operations</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-38</span> — <strong>verify</strong> the May 2026 announcement, then formalise sensor integration on the reported late-2026 PWSA timeline</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-UK-26</span> — <strong>convert</strong> the AUKMIN commitment into a defined SDA workplan aligned with DARC Site 2</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-GERMANY-09</span> — <strong>negotiate</strong> the implementing arrangement under the DoI</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-MULTILATERAL-30</span> — <strong>extend</strong> commercial SDA contracts through the JCO construct</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td><span class="id">OPP-03</span> offsets<br><span class="xs muted">&larr; <span class="id">AUS-IN-17</span> hosting vs sovereign funding</span></td>
+      <td><ul style="list-style:none">
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-21</span> — <strong>set</strong> the explicit DARC-vs-JP9360 funding position before 2027 (the RD-1 decision)</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-19</span> — <strong>lock</strong> post-FOC SST sustainment and Australian tasking shares</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-18</span> — <strong>verify</strong> the reported 2026 C-band upgrade and record it as an Australian offset</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-02</span> — <strong>present</strong> the hosting-offset ledger as a supporting burden-sharing argument (RD-3 Rank 2)</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td><span class="id">OPP-10</span> P-JP<br><span class="xs muted">&larr; <span class="id">AUS-IN-09</span> Himawari dependency</span></td>
+      <td><ul style="list-style:none">
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-JAPAN-09</span> — <strong>elevate</strong> Himawari-10 continuity (development delayed) to the next 2+2 agenda</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-JAPAN-36</span> — <strong>scope</strong> a contingency-access annex covering JMA service interruption at comparable cadence — the input’s success condition</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-JAPAN-11</span> — <strong>reference</strong> the co-investment (Australia’s largest meteorological-satellite contribution) in the next leaders’ statement</li>
+      </ul></td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 26b. LEVERAGE MAP (2 of 2) ================= -->
+<section class="slide" data-title="Leverage map — next four">
+  <div class="k">Leverage &middot; inputs &times; vehicles &middot; 2 of 2</div>
+  <h1 class="t">Leverage map — the next four priorities</h1>
+  <p class="sub">Continued: the next four priorities and their working levers, one vehicle &rarr; action per line.</p>
+  <table class="tbl" style="margin-top:24px">
+    <tr><th style="width:19%">Priority (input)</th><th style="width:81%">Leverage vehicles &rarr; next actions</th></tr>
+    <tr>
+      <td><span class="id">OPP-10</span> P-US / P-QUAD, <span class="id">OPP-20</span><br><span class="xs muted">&larr; <span class="id">AUS-IN-10</span> EO continuity</span></td>
+      <td><ul style="list-style:none">
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-02</span> — <strong>seek</strong> clarified Landsat Next terms after GL-33 validation</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-JAPAN-36</span> — <strong>negotiate</strong> an ALOS-4 access arrangement (distribution via Japanese commercial providers, TO_VERIFY)</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-MULTILATERAL-08</span> — <strong>keep</strong> EO data-sharing on the Quad agenda through the next summit cycle</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-INDIA-28</span> — <strong>scope</strong> an EO data-access line under the amended MoU</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td><span class="id">OPP-07</span><br><span class="xs muted">&larr; <span class="id">AUS-IN-22</span> Force Design window</span></td>
+      <td><ul style="list-style:none">
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-25</span> — <strong>commit</strong> named planners against the Objective Force 2040 baseline through SF/S9</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-24</span> — <strong>add</strong> a force-design coordination annex reflecting the IPS LOE 1 task reassignment</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-06</span> — <strong>map</strong> Australian hosting equities (DARC, SST, C-band) into objective-force submissions</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-22</span> — <strong>brief</strong> Australian participation at the next CSpO Principals’ Board</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td><span class="id">OPP-04</span> + <span class="id">OPP-21</span><br><span class="xs muted">&larr; <span class="id">AUS-IN-05</span> workforce build</span></td>
+      <td><ul style="list-style:none">
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-24</span> — <strong>expand</strong> embed and exchange billets after the June 2026 SIET graduation</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-MULTILATERAL-30</span> — <strong>schedule</strong> the next JCO-200 serial at the Adelaide CDMC, seats open to partners</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-JAPAN-09</span> — <strong>convert</strong> the commencing liaison exchange into a standing reciprocal space-unit line at the next 2+2</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-MULTILATERAL-16</span> — <strong>bid</strong> additional analyst seats for the next Global Sentinel</li>
+      </ul></td>
+    </tr>
+    <tr>
+      <td><span class="id">OPP-15</span> / <span class="id">OPP-16</span><br><span class="xs muted">&larr; <span class="id">AUS-IN-15</span> resilient PNT</span></td>
+      <td><ul style="list-style:none">
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-UK-13</span> — <strong>carry</strong> the sovereign quantum-clock line inside the licence-free environment (RD-4 recommendation)</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-US-02</span> — <strong>lodge</strong> the MGUE accession ask — RD-3 Rank 3, falling back to the <span class="id">VEH-US-25</span> service-chief channel if the slate is full</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-JAPAN-38</span> — <strong>pursue</strong> the QZSS annex option once verified</li>
+        <li class="xs" style="margin-bottom:3px"><span class="id">VEH-MULTILATERAL-31</span> — <strong>use</strong> the TTCP research channel</li>
+      </ul></td>
+    </tr>
+  </table>
+</section>
+
+<!-- ================= 27. DEPENDENCIES ================= -->
+<section class="slide" data-title="Dependencies">
+  <div class="k">Concentration risk &middot; the 10 DEP records</div>
+  <h1 class="t">Eight of ten dependencies are HIGH — all ten owned and treated</h1>
+  <p class="sub">Every DEP carries a treatment with a proposed owner class. Concentration chips: <span class="chip r"><b class="gl">H</b>HIGH</span> <span class="chip a"><b class="gl">M</b>MED</span></p>
+  <table class="tbl xdense zebra">
+    <tr><th style="width:5%">ID</th><th style="width:11%">Dimension</th><th style="width:5%">Conc.</th><th style="width:37%">What it is</th><th style="width:30%">How the plan treats it</th><th style="width:12%">Owner class</th></tr>
+    <tr><td><span class="id">DEP-01</span></td><td>Nation</td><td><span class="chip r"><b class="gl">H</b>HIGH</span></td><td class="xs">US concentration across every core mission area: WGS, M-code, DARC/SST/C-band hosting, Landsat, TraCSS, force design, JCO. <strong>Circularity, stated honestly: OPP-18/OPP-20 are both treatment and affected</strong> — they diversify provider/information-domain concentration <em>inside</em> US-anchored constructs, not US-nation concentration.</td><td class="xs">RD-2 Option A pulls the non-US legs forward (OPP-04 now, OPP-17 scoping); &sect;53 conditions in every new US arrangement; review trigger if Option B</td><td class="xs">DSpC + Strategy &amp; Plans</td></tr>
+    <tr><td><span class="id">DEP-02</span></td><td>Nation</td><td><span class="chip a"><b class="gl">M</b>MED</span></td><td class="xs">Japan single-source geostationary weather imagery (Himawari); Himawari-10 delayed, ALOS-4 unresolved</td><td class="xs">Sustain BoM–JMA arrangement + co-investment; <span class="id">GL-34</span> defines comparable-cadence contingency — the success condition</td><td class="xs">BoM</td></tr>
+    <tr><td><span class="id">DEP-03</span></td><td>Provider</td><td><span class="chip r"><b class="gl">H</b>HIGH</span></td><td class="xs">Interim SATCOM on two hosted payloads + one provider family (Optus C1 aging/inclined to Sep 2034; IS-22 UHF)</td><td class="xs">OPP-14 sovereign UHF bird with availability support; wideband RFT designed multi-provider; IS-22 as bridge, not destination</td><td class="xs">CASG ADSS</td></tr>
+    <tr><td><span class="id">DEP-04</span></td><td>Provider</td><td><span class="chip a"><b class="gl">M</b>MED</span></td><td class="xs">Starlink as de facto Pacific resilience layer — one commercial provider under mixed governance</td><td class="xs">Community-gateway model (Nauru, Kosrae), multi-vendor LEO guidance, cable redundancy (Tu'i Vava'u model) — proceeds under OPP-11's Explore</td><td class="xs">DFAT Pacific</td></tr>
+    <tr><td><span class="id">DEP-05</span></td><td>Orbit-architecture</td><td><span class="chip r"><b class="gl">H</b>HIGH</span></td><td class="xs">Legacy single-orbit GEO concentration until the multi-orbit architecture is delivered — the JP9102 cancellation rationale itself</td><td class="xs">NDS/IIP multi-orbit commitment held through Second Pass; alt-comms LOE scoped (RD-3 Rank 1); early-2028 demonstrator proof point (<span class="id">GL-30</span>)</td><td class="xs">CASG ADSS</td></tr>
+    <tr><td><span class="id">DEP-06</span></td><td>Information domain</td><td><span class="chip r"><b class="gl">H</b>HIGH</span></td><td class="xs">Operational SDA and warning depend on allied-classified feeds; DARC Early Use run remotely by US 20th SPSS; sovereign fusion layer unfunded</td><td class="xs">DARC access terms pre-FOC (<span class="id">GL-31</span>); JP9360 layer protected in RD-1; JCO tier is the releasable hedge <em>only once</em> <span class="id">GL-28</span> verifies + mix is EOS-independent</td><td class="xs">DSpC</td></tr>
+    <tr><td><span class="id">DEP-07</span></td><td>Technology-source</td><td><span class="chip r"><b class="gl">H</b>HIGH</span></td><td class="xs">All Australian PNT rests on foreign-owned GNSS; SouthPAN itself relies on GPS input and a foreign-procured space segment</td><td class="xs">Layered: M-code (OPP-15 P-US), sovereign quantum timing (RD-4), LEO-PNT evaluation (OPP-16), national PNT policy watch (none as of Feb 2026)</td><td class="xs">Joint PNT Dir. / JCG</td></tr>
+    <tr><td><span class="id">DEP-08</span></td><td>Geography-site</td><td><span class="chip r"><b class="gl">H</b>HIGH</span></td><td class="xs">SST, C-band and DARC Site 1 all at or beside Harold E. Holt, Exmouth — one peninsula, one point of failure</td><td class="xs">Commercial-layer dispersal (LeoLabs SW WA, Silentium Swan Reach); DARC Sites 2–3 for global redundancy (UK Cawdor Barracks expected complete Feb 2030)</td><td class="xs">DSpC</td></tr>
+    <tr><td><span class="id">DEP-09</span></td><td>Workforce</td><td><span class="chip r"><b class="gl">H</b>HIGH</span></td><td class="xs">Nascent workforce: first SIET graduates June 2026; Joint PNT Directorate ~17 people</td><td class="xs">Partner pipelines as fastest levers: JCO-200 line, Japan reciprocal exchanges (OPP-04), US embeds and command billets (OPP-21); OPP-09 expansion waits on <span class="id">GL-18</span></td><td class="xs">DSpC workforce line</td></tr>
+    <tr><td><span class="id">DEP-10</span></td><td>Political durability</td><td><span class="chip r"><b class="gl">H</b>HIGH</span></td><td class="xs">US appropriations exposure across bought-into programs: Landsat Next restructured after A$207.4m+ committed; TraCSS facing cuts</td><td class="xs">Fallback + documented risk acceptance per US-exposed program (SCN-04 retrofit, RD-5); <span class="id">GL-33</span> gates Landsat; re-baseline at AUSMIN; domestic approval gap (<span class="id">AUS-IN-13</span>) carried as twin exposure</td><td class="xs">Strategy &amp; Plans + DFAT</td></tr>
+  </table>
+</section>
+
+<!-- ================= 28. SCENARIOS ================= -->
+<section class="slide" data-title="Scenarios">
+  <div class="k">Stress tests &middot; the 9 SCN records (all ASSESSMENT)</div>
+  <h1 class="t">Nine stress tests — the costliest scenario is deciding nothing (SCN-09)</h1>
+  <div class="grid3" style="gap:16px;margin-top:38px">
+    <div class="card"><h3><span class="id">SCN-01</span> Competition</h3><p class="xs">Normalised grey-zone counterspace (jamming, dazzling, cyber, co-orbital). Jamming validates the multi-orbit case (OPP-01); EMI resilience is already an explicit SPA9102 requirement (OPP-14); the commercial-unclassified layer becomes the publicly showable attribution layer (OPP-18).</p></div>
+    <div class="card"><h3><span class="id">SCN-02</span> Crisis</h3><p class="xs">Concurrent demand: partners' assets serve their own needs first. Precedent: <strong>a partner declined a data request during Black Summer</strong>. Civil EO/weather fails first; the OPP-20 DAP line is the designed hedge — <strong>only if crisis-priority clauses are contracted</strong> (AUS-IN-16 conversion).</p></div>
+    <div class="card"><h3><span class="id">SCN-03</span> Conflict</h3><p class="xs">GNSS denial + SATCOM attack. M-code accession becomes a war-readiness question (OPP-15); the sovereign UHF bird is the survivable C2 backbone (OPP-14); DARC feeds targeting-grade GEO awareness (OPP-03). <strong>Australian-controlled capability is the only conflict hedge — the rest buys influence.</strong></p></div>
+    <div class="card"><h3><span class="id">SCN-04</span> Partner withdrawal</h3><p class="xs"><strong>LIVE CASE:</strong> the FY2026 US request funds no Landsat Next as designed after Australia committed A$207.4m+ (OPP-10). US reorganisation churn demonstrated (Space Futures Command cancelled before activation; tasks to SF/S9 — OPP-07). Fallback-before-commitment retrofit is an RD-5 action.</p></div>
+    <div class="card"><h3><span class="id">SCN-05</span> Commercial failure</h3><p class="xs">Demonstrated: April 2023 Inmarsat I-4 F1 outage hit four states' agriculture; EOS has already pivoted away from SDA, thinning OPP-18's mix. &sect;54 conditions (continuity, data rights, surge, sovereignty) contracted before any commercial leg counts as resilience.</p></div>
+    <div class="card"><h3><span class="id">SCN-06</span> Release denial</h3><p class="xs">The portfolio's most common binding gap. <strong>LIVE:</strong> OPP-07's release tier is the recorded Unknown; OPP-08's MTCR exclusion is the standing RED. Structural answers: commercial-unclassified layer (OPP-18), shareable-tier design (OPP-04), case-by-case matrices (Oslo, Dec 2026).</p></div>
+    <div class="card"><h3><span class="id">SCN-07</span> System degradation</h3><p class="xs"><strong>LIVE:</strong> QZS-7 postponed by the H3 F8 failure investigation (OPP-05). A fragmentation event makes southern-hemisphere sensors premium capacity (OPP-02); the Apollo Insights TTX series rehearses exactly this (OPP-21).</p></div>
+    <div class="card"><h3><span class="id">SCN-08</span> Policy change</h3><p class="xs">Australian resets are a documented pattern (JP9102, NSMEO cancellations; strategy on hold). Anchor commitments in signed instruments, not program labels — all T1 carriage is in force. The absent national space policy (<span class="id">AUS-IN-06</span>) is the root fragility.</p></div>
+    <div class="card" style="border:1.5px solid var(--red)"><h3><span class="id">SCN-09</span> No new decisions — the counterfactual</h3><p class="xs">The one live window closes (responses ~Nov 2026 pass); wideband is set by dependency drift toward 2029; DARC-vs-JP9360 resolves itself by default (sovereign layer stays unfunded); DARC reaches FOC with access terms unnegotiated; the design-in year passes. <strong>Cost of delay: 19 Aug 2026 &middot; ~Nov 2026 &middot; 2027 (DARC FOC).</strong></p></div>
+  </div>
+</section>
+
+<!-- ================= 29. MEASURES ================= -->
+<section class="slide" data-title="Measures">
+  <div class="k">Tranche 1 &middot; outputs &rarr; outcomes &rarr; effects</div>
+  <h1 class="t">Measures — how we will know it worked</h1>
+  <table class="tbl xdense zebra" style="margin-top:6px">
+    <tr><th style="width:10%">Item</th><th style="width:32%">Output (deliverable)</th><th style="width:28%">Outcome (capability)</th><th style="width:30%">Effect measure</th></tr>
+    <tr><td><span class="id">OPP-14</span></td><td class="xs">AusTender verified 1 Aug (<span class="id">GL-27</span>); response shaped before close; Second Pass timing + approving authority named by Nov 2026 (<span class="id">GL-26</span>)</td><td class="xs">Sovereign UHF on contract, availability-based support, coalition-interoperable; &sect;53/&sect;54 clause set embedded</td><td class="xs">Share of ADF narrowband on non-sovereign systems falls (<span class="id">DEP-03</span>); assured-availability terms in force vs goodwill (<span class="id">AUS-IN-16</span>)</td></tr>
+    <tr><td><span class="id">OPP-01</span></td><td class="xs">Authority named 19 Aug (<span class="id">GL-02</span>); LOEs tabled at next AUSMIN; read-across stated at Second Pass</td><td class="xs">Deliberate multi-orbit choice before the 2029 WGS horizon, not dependency drift</td><td class="xs"><span class="id">GL-30</span> milestones met on a dated plan (Second Pass target, WGS negotiation start, 2028 demonstrator gate)</td></tr>
+    <tr><td><span class="id">OPP-02</span></td><td class="xs"><span class="id">EV-AUINPUTS-14</span> validated pre-AUSMIN (<span class="id">GL-03</span>); sensor operations sustained</td><td class="xs">SDA deepening without silently defunding the sovereign layer</td><td class="xs">One funding decision, taken once, on validated evidence; custody products sustained</td></tr>
+    <tr><td><span class="id">OPP-03</span></td><td class="xs">Data-access terms + sovereignty set agreed before 2027 FOC (<span class="id">GL-31</span>/<span class="id">GL-35</span>)</td><td class="xs">DARC counts as Australian capability with assured access, not hosted capability</td><td class="xs">Tasking share and latency terms in force at FOC; hosting contributions ledgered as offsets (<span class="id">C-23</span>)</td></tr>
+    <tr><td><span class="id">OPP-07</span></td><td class="xs">Release tier (<span class="id">GL-12</span>) + influence-risk fallback (<span class="id">GL-32</span>) documented before first input</td><td class="xs">Australian requirements enter Objective Force 2040 by design in the design-in year</td><td class="xs">Australian requirements traceable in Force Design artefacts; the UNKNOWN resolved</td></tr>
+    <tr><td><span class="id">OPP-10</span> P-JP</td><td class="xs">Himawari-10 schedule confirmed; comparable-cadence contingency defined (<span class="id">GL-34</span>); ALOS-4 verified</td><td class="xs">Weather/EO continuity assured against the single-source dependency (<span class="id">DEP-02</span> success condition)</td><td class="xs">Contingency access at comparable cadence <strong>contracted and exercised</strong>, not assumed</td></tr>
+    <tr><td><span class="id">OPP-18</span></td><td class="xs">JCO terms + PWSA intent verified by Q4 2026 (<span class="id">GL-28</span>); hedge value restated</td><td class="xs">Commercial-unclassified layer confirmed as a genuine releasable hedge (<span class="id">DEP-06</span>) — or re-treated</td><td class="xs">Hedge status evidence-based: verified terms + EOS-independent mix, or reversion to per-provider contracts</td></tr>
+    <tr><td><span class="id">OPP-04</span></td><td class="xs">Recurring exchange stood up; first serial before Dec 2026</td><td class="xs">Fastest non-US leg operating; DEP-01 counterweight visible</td><td class="xs">Serials held per year; shareable-tier products exchanged; Japan leg active in the catalogue</td></tr>
+    <tr><td><span class="id">OPP-21</span></td><td class="xs">Billets expanded; command/planning roles bid each 2026–27 serial; Space Flag currency verified</td><td class="xs">Workforce and coalition-integration depth grown at exercise tempo (<span class="id">DEP-09</span>)</td><td class="xs">Australian command/planning roles held per serial; qualified planners graduated into roles</td></tr>
+    <tr><td><span class="id">OPP-17</span> <span class="xs muted">(scoping)</span></td><td class="xs">FSDC space annex scoped inside Japan's FY2026 SpOC window</td><td class="xs">Second-ally leg framed before a US-only pattern normalises</td><td class="xs">Scoping product delivered in-window; T2 negotiation mandate ready</td></tr>
+  </table>
+</section>
+
+<!-- ================= 30. RISKS ================= -->
+<section class="slide" data-title="Risks and fallbacks">
+  <div class="k">Risk &middot; likelihoods are ASSESSMENT-level</div>
+  <h1 class="t">Seven risks — each with a recorded fallback and driver</h1>
+  <table class="tbl xdense zebra" style="margin-top:6px">
+    <tr><th style="width:30%">Risk</th><th style="width:7%">Driver</th><th style="width:14%">Likelihood (ASSESSMENT)</th><th style="width:49%">Fallback</th></tr>
+    <tr><td class="xs"><strong>Concurrent-demand denial</strong> of partner/commercial services (Black Summer data refusal; April 2023 Inmarsat I-4 F1 outage hitting four states' agriculture)</td><td><span class="id">SCN-02</span></td><td class="xs">High — documented, repeated failure mode</td><td class="xs">Contract the mitigation: crisis-priority and availability clauses in the OPP-14 support model and OPP-20 DAP renewal (&sect;53/&sect;54 as named conditions); Copernicus/commercial EO legs; <span class="id">AUS-IN-16</span> goodwill-to-priority-access conversion program</td></tr>
+    <tr><td class="xs"><strong>US program withdrawal/restructure</strong> vs Australian commitments — not hypothetical: Landsat Next is a live restructure against A$448.7m/11 years</td><td><span class="id">SCN-04</span></td><td class="xs">Medium-High — one live instance; concentrated in Washington (<span class="id">DEP-10</span>)</td><td class="xs"><span class="id">GL-33</span> validation by Sep 2026, then re-baseline at the first AUSMIN after; fallback defined before commitment and risk acceptance retrofitted to every US-exposed line; diversified channels held at readiness</td></tr>
+    <tr><td class="xs"><strong>Conflict prioritisation:</strong> every allied service is prioritised by its owner's war needs first — access is not assurance (<span class="id">DEP-01</span>)</td><td><span class="id">SCN-03</span></td><td class="xs">Low likelihood / high consequence</td><td class="xs">Australian-controlled capability is the only conflict hedge: OPP-14 sovereign bird, OPP-15 quantum line, OPP-18 sovereign tasking — everything else buys influence over allied prioritisation, said plainly in every submission</td></tr>
+    <tr><td class="xs"><strong>Release denial</strong> — the portfolio's most common binding gap: caps OPP-07 (security UNKNOWN), blocks OPP-08 (MTCR/ETL RED), shapes OPP-02/09/12</td><td><span class="id">SCN-06</span></td><td class="xs">High — already binding on 5+ options</td><td class="xs">Structural answers: commercial-unclassified layer (OPP-18, conditional on <span class="id">GL-28</span>); shareable-tier design (OPP-04); case-by-case release matrices (<span class="id">GL-05</span>/<span class="id">GL-07</span>/<span class="id">GL-12</span>/<span class="id">GL-17</span> — Oslo matrix due Dec 2026)</td></tr>
+    <tr><td class="xs"><strong>Commercial provider failure or exit</strong> (Inmarsat I-4 F1 2023; the EOS pivot already thins OPP-18's sensor mix)</td><td><span class="id">SCN-05</span></td><td class="xs">Medium — demonstrated Australian experience</td><td class="xs">&sect;54 conditions (continuity, data rights, surge, sovereignty) contracted on every commercial leg before it is counted as resilience; multi-vendor exits recorded (OPP-20 Planet-class; OPP-18 per-provider)</td></tr>
+    <tr><td class="xs"><strong>Australian policy volatility</strong> (JP9102 and NSMEO cancellations; space strategy on hold; ASA advisory board dissolved)</td><td><span class="id">SCN-08</span></td><td class="xs">Medium — documented pattern</td><td class="xs">Anchor every commitment in signed instruments, leader-level statements or delivered infrastructure — all T1 carriage is in force; the absent national space policy (<span class="id">AUS-IN-06</span>) is flagged as root fragility, not fixable by this plan</td></tr>
+    <tr><td class="xs"><strong>Execution/approval risk:</strong> the IIP is planned, not approved — treating planned funds as committed overstates readiness (<span class="id">AUS-IN-13</span>; <span class="id">EV-AUINPUTS-09</span>; plus US appropriations exposure)</td><td><span class="id">SCN-09</span></td><td class="xs">Medium — recorded caveats on OPP-01/OPP-14</td><td class="xs">Second Pass timing confirmed against the ~Nov 2026 response date (<span class="id">GL-26</span>); the narrowband window itself is funded and live; do-nothing costs tabled so delay is priced</td></tr>
+  </table>
+</section>
+
+<!-- ================= 31. VALIDATION TRIAGE ================= -->
+<section class="slide" data-title="Validation triage">
+  <div class="k">Before deciding &middot; everything TO_VERIFY that gates a decision</div>
+  <h1 class="t">Validation triage — dated checks that gate decisions</h1>
+  <table class="tbl xdense" style="margin-top:6px">
+    <tr><th style="width:27%">Record to verify</th><th style="width:13%">Due</th><th style="width:9%">Action</th><th style="width:51%">What it gates</th></tr>
+    <tr class="grp"><td colspan="4">Gates (dated)</td></tr>
+    <tr><td><span class="id">EV-MILSATCO-09</span> AusTender ATM ADSS/NOT/84124/1 — close date + First-Pass status</td><td><strong>1 Aug 2026</strong></td><td><span class="id">GL-27</span></td><td class="xs">The tranche-1 lead item (OPP-14/OPP-01). The cheapest verification in the register; window independently anchored by <span class="id">EV-MILSATCO-07</span> (FACT/High)</td></tr>
+    <tr><td>Second Pass approval-pathway timing</td><td><strong>Nov 2026</strong></td><td><span class="id">GL-26</span></td><td class="xs">OPP-14 contract-award readiness against ~Nov 2026 tender responses</td></tr>
+    <tr><td><span class="id">EV-AUINPUTS-14</span> DARC-support-vs-JP9360 funding-pressure claim (Low)</td><td><strong>Before next AUSMIN</strong></td><td><span class="id">GL-03</span></td><td class="xs">The load-bearing claim under <span class="id">RD-1</span> — shared by OPP-02, OPP-03, OPP-18 (<span class="id">GL-08</span>/<span class="id">GL-29</span> same decision)</td></tr>
+    <tr><td><span class="id">VEH-MULTILATERAL-30</span> JCO participation terms + <span class="id">EV-SDAPROGR-13</span> PWSA-connection intent</td><td><strong>Q4 2026</strong></td><td><span class="id">GL-28</span></td><td class="xs">OPP-18's hedge status and the reported late-2026 PWSA timeline — the NOTE + DIRECT decision condition; <span class="id">VEH-US-38</span> verified alongside</td></tr>
+    <tr><td><span class="id">EV-EOCONTIN-08</span>/<span class="id">EV-EOCONTIN-09</span> enacted FY2026 outcome + 15 Aug 2025 restructured requirements</td><td><strong>Sep 2026</strong></td><td><span class="id">GL-33</span></td><td class="xs">The OPP-10 P-US resource RED (rests on the budget <em>request</em>); Landsat re-baseline at the first AUSMIN after (<span class="id">GL-20</span>)</td></tr>
+    <tr><td>Revised Himawari-10 schedule + <span class="id">EV-EOCONTIN-15</span> ALOS-4 access channel (TO_VERIFY/Low)</td><td>Next BoM–JMA review</td><td><span class="id">GL-34</span></td><td class="xs">OPP-10 P-JP contingency definition — <span class="id">DEP-02</span>'s success condition</td></tr>
+    <tr><td><span class="id">EV-USSFCSPO-03</span> release tier for Force Design artefacts</td><td>Before first input</td><td><span class="id">GL-12</span></td><td class="xs">OPP-07 — the participation condition itself (with <span class="id">GL-32</span> fallback documentation)</td></tr>
+    <tr><td>DARC data-access terms + sovereignty condition set</td><td><strong>Before 2027 FOC</strong></td><td><span class="id">GL-31</span>/<span class="id">GL-35</span></td><td class="xs">Whether OPP-03 counts as Australian capability or hosted capability — the leverage window closes at FOC</td></tr>
+    <tr class="grp"><td colspan="4">Watch (register hygiene)</td></tr>
+    <tr><td><span class="id">VEH-US-27</span> TSA — Australian Treaty Series confirmation</td><td>Register update</td><td><span class="vb nt">watch</span></td><td class="xs">In force per <span class="id">EV-USSFFORC-15</span> (EIF 23 Jul 2024); label stays TO_VERIFY pending the ATS check — OPP-08 base</td></tr>
+    <tr><td><span class="id">VEH-US-20</span> 2012 SSA Data-Sharing MoU — supersession status</td><td>Register update</td><td><span class="vb nt">watch</span></td><td class="xs">OPP-02 heritage citation hygiene</td></tr>
+    <tr><td><span class="id">VEH-MULTILATERAL-18</span> / <span class="id">VEH-US-21</span> DARC trilateral MoU — 22-year duration confirmation (TO_VERIFY)</td><td>Register update</td><td><span class="vb nt">watch</span></td><td class="xs">OPP-03 leverage context — the duration is cited from reporting, not the instrument text</td></tr>
+    <tr><td><span class="id">VEH-UK-24</span> + <span class="id">VEH-UK-26</span> UK space instruments</td><td>Before v3</td><td><span class="vb nt">watch</span></td><td class="xs">Gates the committed v3 P-UK bilateral SDA option; <span class="id">AUS-IN-14</span> AUKMIN-workplan action proceeds meanwhile</td></tr>
+    <tr><td><span class="id">EV-MULTILAT-18</span> Space Flag currency (last confirmed 2019) &middot; <span class="id">VEH-JAPAN-38</span> QZSS arrangements (TO_VERIFY/Low)</td><td>2026–27 serials / study</td><td><span class="vb nt">watch</span></td><td class="xs">OPP-21 billet planning; OPP-05 study basis</td></tr>
+    <tr><td>BoM–JMA Strategic Relationship Arrangement — VEH ID assignment</td><td>Next register update</td><td><span class="vb nt">watch</span></td><td class="xs">A tranche-1 item currently rides an instrument with no register ID — record hygiene, flagged not hidden</td></tr>
+  </table>
+</section>
+
+<!-- ================= 32. CAVEATS AND PROVENANCE ================= -->
+<section class="slide" data-title="Caveats and provenance">
+  <div class="k">Caveats</div>
+  <h1 class="t">Caveats and provenance</h1>
+  <div class="grid2" style="gap:18px;margin-top:52px">
+    <div>
+      <div class="card" style="margin-bottom:14px;border-left:3px solid var(--amber)">
+        <h2>Read before acting on anything in this pack</h2>
+        <ul class="tick small">
+          <li><strong>UNOFFICIAL — open-source only.</strong> Every record is ASSESSMENT-level staff work from public evidence (517-record register), pending Defence custodian validation. Nothing asserts partner intent, treaty status or dates beyond cited records.</li>
+          <li><strong>Scores are ordinal aids</strong> (V7 &sect;49), never merged with pathway status or evidence confidence (V7 &sect;25/&sect;70). The A–E bands and criterion anchors are proposed drafts requiring governance approval and panel calibration.</li>
+          <li><strong>Raw scores are the headline;</strong> renormalised values appear only as declared sensitivity views. No universal best-partner ranking exists, by design (V7 &sect;13).</li>
+          <li><strong>Costs are not estimated</strong> in this baseline; cost bands are a validation task (PD-9). Every ask carries a reasoned signal or a recorded TBD flag.</li>
+          <li><strong>No 2026 AUSMIN is scheduled as at 18 July 2026</strong> (last held 8 December 2025); the ANZUS 75th anniversary (September 2026) is an agenda hook, not a meeting.</li>
+          <li><strong>Humans decide.</strong> This pack recommends; authorised officers approve, direct and note.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>OPP-01 evidence caveat (worth repeating)</h2>
+        <p class="xs">OPP-01's evidence confidence is <strong>Medium</strong>: ~54 of its 86 weighted points rest on second-hand press (<span class="id">EV-USSFCSPO-18</span>/<span class="id">EV-USSFCSPO-19</span>, SpaceNews-derived). Replacing these with official MoU records is a standing validation task.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <h2>Full traceability</h2>
+        <table class="tbl dense">
+          <tr><td class="xs"><strong>Model app</strong></td><td class="xs">03_model_app/ — partnerships-model.html over model-data.json v2.1: every score, rationale, pathway note and red-team log entry, clickable</td></tr>
+          <tr><td class="xs"><strong>Evidence register</strong></td><td class="xs">02_evidence_base/evidence-register.json — 517 records, each with source, label, confidence and verification verdict</td></tr>
+          <tr><td class="xs"><strong>Vehicle register</strong></td><td class="xs">02_evidence_base/partnership-vehicles.json — 253 vehicles with status and space-relevance tags</td></tr>
+          <tr><td class="xs"><strong>Staff paper</strong></td><td class="xs">PARTNERSHIP_PLAN.md + partnership-plan.json — the full plan this pack summarises</td></tr>
+          <tr><td class="xs"><strong>Method</strong></td><td class="xs">01_architecture_pack/ — Framework V7 rules: scoring, pathway, status models, assumptions and unresolved questions</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Before this pack goes to governance (RD-5)</h2>
+        <p class="xs">Extend the gap backlog from Act-now/Quick-win coverage (35 records) to all remaining non-Green pathway components (~70 records); extend comparative-factor blocks from the seven Act-now options to all 27; upgrade proposed owner classes to named positions; attach cost bands (PD-13, PD-14, PD-9). Until then this is a decision-ready <em>draft</em>, not a decided plan.</p>
+      </div>
+    </div>
+  </div>
+<p style="margin-top:8px;font-size:11.5px;border-top:1px solid #e1e0d9;padding-top:6px"><strong>Addendum — Register updated 21 Jul 2026:</strong> gap-hunt round 2 (8 search angles, adversarially verified) added 105 vehicles; the register now holds 358 (93 space-Direct, 109 Enabling). Headline recoveries: US–Australia Space Framework Agreement (Sep 2025), NASA/CDSCC treaty lineage to 1960, four UN space treaties incl. the Moon Agreement, Nauru Treaty. Vehicle counts on the architecture slides reflect the 18 Jul register; the model app and vehicles.csv carry the full 358.</p></section>
+
+<!-- ================= 33. BACKUP — EVIDENCE METHOD ================= -->
+<section class="slide" data-title="Backup — evidence method">
+  <div class="k">Backup &middot; A</div>
+  <h1 class="t">Backup — evidence method detail</h1>
+  <div class="grid3" style="gap:12px;margin-top:8px">
+    <div class="card">
+      <h2>Round 1 — 15 parallel streams</h2>
+      <p class="xs">The five reference links from the note set; AUKUS licence-free environment + US–AU TSA; DEC/DSGL; US/EU/UK/Japan export regimes; Quad/India; PIF/PACTS/Cocos (Keeling); UAE; USSF partnership strategy + CSpO; Germany; Japan–Australia; Australia's own priorities and gaps.</p>
+      <h2 style="margin-top:10px">Round 2 — 9 gap-closure streams</h2>
+      <p class="xs">MILSATCOM after JP9102 (SPA9102 RFT live; 2026 NDS/IIP A$5.2–7.2bn); SDA programs/DARC; EO continuity; resilient PNT; Japan depth; USSF Force Design mechanics; India/Cocos/MAITRI; Pacific connectivity + Quad IPMDA; multilateral space operations.</p>
+    </div>
+    <div class="card">
+      <h2>Verification discipline</h2>
+      <table class="tbl dense">
+        <tr><td class="xs">Evidence records</td><td class="num xs"><strong>517</strong></td><td class="xs">418 FACT / 52 ASSESSMENT / 47 TO_VERIFY</td></tr>
+        <tr><td class="xs">Confidence mix</td><td class="num xs">—</td><td class="xs">311 High / 188 Medium / 18 Low</td></tr>
+        <tr><td class="xs">Evidence checks</td><td class="num xs">126 / 16</td><td class="xs">confirmed / corrected</td></tr>
+        <tr><td class="xs">Vehicle checks</td><td class="num xs">58 / 6</td><td class="xs">confirmed / corrected</td></tr>
+        <tr><td class="xs"><strong>Combined</strong></td><td class="num xs"><strong>184 / 22</strong></td><td class="xs"><strong>0 left unverified</strong></td></tr>
+      </table>
+      <p class="xs" style="margin-top:6px">Every FACT-labelled top claim was independently adversarially verified by a second agent using different sources; CORRECTED claims carry the correction inline; UNVERIFIED FACT claims had confidence downgraded one step (none remained).</p>
+    </div>
+    <div class="card">
+      <h2>Corrections — worked examples</h2>
+      <ul class="tick small">
+        <li>CSpO Vision 2031 released <strong>22 February 2022 US time</strong> — date corrected on adversarial check (<span class="id">EV-RONINS20-03</span>).</li>
+        <li>The Quad Satellite Data Portal is a <strong>link gateway, not a centralised data platform</strong> — description corrected (<span class="id">EV-QUADINDI-02</span>).</li>
+      </ul>
+      <h2 style="margin-top:10px">Red team &rarr; v2.1 (42 findings, 33-entry log)</h2>
+      <ul class="tick small">
+        <li>Renormalisation removed from headlines: OPP-07 92&rarr;87, OPP-15 P-US 77&rarr;73, OPP-11 66&rarr;63 (band B&rarr;C), OPP-13 56&rarr;53.</li>
+        <li>Silent v2 re-scores reverted and declared: OPP-04 79&rarr;76; OPP-09 to 74.</li>
+        <li>OPP-02 P-DE recomputed to 69 after the <span class="id">VEH-GERMANY-09</span> DoI instrument re-score (+2 on the corrected base).</li>
+        <li>Single-owner rule on SPA9102; treatment matrix operationalised; every Act-now binding gap given a dated, owned action (<span class="id">GL-26</span>..<span class="id">GL-35</span>).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 34. BACKUP — NEXT GOVERNANCE STEPS ================= -->
+<section class="slide" data-title="Backup — next governance steps">
+  <div class="k">Backup &middot; B</div>
+  <h1 class="t">Backup — next governance steps</h1>
+  <div class="grid3" style="gap:12px;margin-top:8px">
+    <div class="card">
+      <h2>Unresolved questions that bite first</h2>
+      <ul class="tick small">
+        <li><strong>UQ-01/UQ-14</strong> — who authoritatively owns Australian priorities and gaps (the 18 carried inputs) and maintains them.</li>
+        <li><strong>UQ-05/UQ-15</strong> — approved scoring weights and override authorities; the &sect;12 weights (sum recounted at 100) remain provisional until then.</li>
+        <li><strong>UQ-06/UQ-16</strong> — who owns partner validation: partner-authoritative evidence cannot reach FACT status until desks are assigned.</li>
+        <li><strong>UQ-08/UQ-18</strong> — authoritative effect baselines per mission area, or effect review degrades to output counting.</li>
+        <li><strong>UQ-03/UQ-13</strong> — classification boundary for any platform instantiation of this model.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Custodian assignment</h2>
+      <ul class="tick small">
+        <li>All 35 <span class="id">GL</span> owners are recorded as TO_ASSIGN with proposed classes — convert to named positions (RD-5).</li>
+        <li>All 10 <span class="id">DEP</span> treatment owners likewise — DSpC, CASG ADSS, BoM, DFAT Pacific, Joint PNT Directorate, S,P&amp;I among the proposed classes.</li>
+        <li>OPP-10 P-JP needs its civil custodians (BoM + Geoscience Australia) formally in the Defence governance loop — the owner class is recorded TBD.</li>
+        <li>Assign the BoM–JMA arrangement a VEH ID at the next register update.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Sponsor confirmations sought</h2>
+      <ul class="tick small">
+        <li><strong>CASG ADSS</strong> — accepts single-owner carriage of the OPP-14 RFT response (HADSS proposed).</li>
+        <li><strong>DSpC</strong> — accepts the OPP-01 architecture authority (named by 19 Aug 2026) and the OPP-07 conditional participation model.</li>
+        <li><strong>Strategy &amp; Plans</strong> — accepts RD-1/RD-2/RD-3 ownership and the consolidated AUSMIN agenda record.</li>
+        <li><strong>DSTG</strong> — sponsors the RD-4 quantum-PNT sovereign-delivery recommendation (PD-16) at the next AUKUS review point.</li>
+        <li><strong>Validation resourcing</strong> — RD-5 backlog (gap records to ~70; comparative factors to 27; cost bands per PD-9/PD-13/PD-14) funded before governance submission.</li>
+      </ul>
+      <p class="xs" style="margin-top:8px"><strong>End of pack.</strong> Full plan: PARTNERSHIP_PLAN.md. Model: 03_model_app. UNOFFICIAL.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+<div id="nav">
+  <button id="prev" aria-label="Previous slide">&#8592;</button>
+  <span id="cnt">1 / 37</span>
+  <button id="next" aria-label="Next slide">&#8594;</button>
+  <button id="mode">Scroll</button>
+</div>
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  slides.forEach(function(s,i){
+    s.insertAdjacentHTML('afterbegin','<div class="cls">UNOFFICIAL</div>');
+    s.insertAdjacentHTML('beforeend','<div class="foot"><span>Defence Space Partnership Plan — UNOFFICIAL — 18 Jul 2026</span><b>'+(i+1)+' / '+slides.length+'</b></div>');
+  });
+  var cur=0, body=document.body, cnt=document.getElementById('cnt');
+  function show(i){
+    cur=Math.max(0,Math.min(slides.length-1,i));
+    slides.forEach(function(s,j){s.classList.toggle('active',j===cur)});
+    cnt.textContent=(cur+1)+' / '+slides.length;
+    if(body.classList.contains('scrollmode')) slides[cur].scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function fit(){
+    var s=Math.min((innerWidth-20)/1280,(innerHeight-70)/720);
+    document.getElementById('deck').style.setProperty('--s',s);
+    body.style.setProperty('--z',Math.min(1,(innerWidth-24)/1280));
+  }
+  document.getElementById('prev').onclick=function(){show(cur-1)};
+  document.getElementById('next').onclick=function(){show(cur+1)};
+  document.getElementById('mode').onclick=function(){
+    body.classList.toggle('scrollmode');
+    this.textContent=body.classList.contains('scrollmode')?'Slides':'Scroll';
+    if(!body.classList.contains('scrollmode')) show(cur); else slides[cur].scrollIntoView({block:'start'});
+  };
+  addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(cur+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(cur-1)}
+    else if(e.key==='Home'){show(0)} else if(e.key==='End'){show(slides.length-1)}
+  });
+  addEventListener('resize',fit);
+  var h=parseInt((location.hash||'').replace('#s',''),10);
+  fit(); show(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>
