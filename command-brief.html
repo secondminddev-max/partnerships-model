@@ -176,6 +176,11 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .align-node .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy2);font-weight:700;margin-bottom:6px}
 .align-node p{font-size:12.5px;color:var(--ink2)}
 
+/* avatars */
+.avatar{width:44px;height:44px;min-width:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;font-weight:600;letter-spacing:.02em;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.person-hd{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.person-id{flex:1;min-width:0}
+.kl-av{width:34px;height:34px;min-width:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;font-weight:600;color:#fff;margin-bottom:7px}
 /* key leaders strip */
 .kl-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 @media(max-width:800px){.kl-strip{grid-template-columns:1fr 1fr}}
@@ -212,7 +217,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .loe h3{font-size:16px;margin-bottom:8px}
 .loe .row{margin-bottom:8px}
 .loe .rk{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--muted)}
-.loe .rk.opp{color:var(--fact)} .loe .rk.con{color:var(--assess)}
+.loe .rk-opp{color:var(--fact)} .loe .rk-con{color:var(--assess)}
 .loe .rv{font-size:13px;color:var(--ink);margin-top:2px}
 
 /* opportunities */
@@ -354,7 +359,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
   <!-- PARTNER VIEW -->
   <section id="view">
     <div class="pv-top">
-      <div class="pv-crumb"><button class="pv-back" id="pv-back">&#8592; All partners</button><span id="pv-crumb-txt"></span></div>
+      <div class="pv-crumb"><button class="pv-back" id="pv-home">&#8962; Home</button><button class="pv-back" id="pv-back">&#8592; Carousel</button><span id="pv-crumb-txt"></span></div>
       <h1 class="pv-title" id="pv-title"></h1>
       <div class="pv-oneline" id="pv-oneline"></div>
       <div class="tabs" id="tabs"></div>
@@ -3225,7 +3230,9 @@ function openPartner(key){
   CURTAB="factsheet"; renderTabs();
   window.scrollTo(0,0);
 }
-els("pv-back").addEventListener("click",function(){ els("view").style.display="none"; els("hero").style.display="flex"; CURKEY=null; });
+function goHome(){ els("view").style.display="none"; els("hero").style.display="flex"; CURKEY=null; window.scrollTo(0,0); }
+els("pv-back").addEventListener("click",goHome);
+els("pv-home").addEventListener("click",goHome);
 
 function renderTabs(){
   var tabs=els("tabs").children;
@@ -3277,14 +3284,30 @@ function renderPlacemat(p){
 }
 
 /* ---------- FACTSHEET ---------- */
+/* strip internal evidence IDs (EV-XXX-nn / VEH-XXX-nn) and tidy — never show register plumbing to the Commander */
+function scrubEv(s){
+  s=String(s==null?"":s);
+  s=s.replace(/[,;]?\s*(?:EV|VEH)-[A-Z0-9]+-[A-Z0-9]+/g,'');   /* drop tokens incl. a leading comma */
+  s=s.replace(/\(\s*[,;]?\s*\)/g,'');                           /* ( ) or (, ) */
+  s=s.replace(/\(\s*[,;]\s*/g,'(').replace(/[,;]\s*\)/g,')');   /* dangling (, and ,) */
+  s=s.replace(/\(\s*\)/g,'');
+  s=s.replace(/\s+([.,;:)])/g,'$1').replace(/\(\s+/g,'(').replace(/\s{2,}/g,' ').trim();
+  return s;
+}
+/* standing Australian space counterparts — shown under every foreign partner so a country page never lacks the ADF side */
+var AU_SPACE_LEADS=[
+ {side:"AU",appointment:"Commander Space Command (SPACECOMD) — the Commander",name:"MAJGEN Greg Novak, AM",rank:"MAJGEN",since:"December 2023",background:"Commander of Australia's Space Command (Joint Capabilities Group); the audience for this brief. Former Commander 6th Brigade with space and US Strategic Command experience.",priorities:"Space as an independent domain; resilient multi-orbit architecture; specialist workforce; allied and industry cooperation.",label:"FACT",audience:true},
+ {side:"AU",appointment:"Chief of Joint Capabilities (Novak's superior)",name:"AIRMSHL Glen Braz, AM, CSC, DSM",rank:"AIRMSHL",since:"7 July 2026",background:"Leads Joint Capabilities Group (space, cyber, logistics). Former Air Commander Australia.",priorities:"Joint enabling capabilities incl. space.",label:"FACT"}
+];
 function matCard(kind,m){
-  if(!m) return "";
+  if(!m||m.score==null) return "";
+  var basis=scrubEv(m.basis);
   return '<div class="mat"><div class="lbl">'+kind+' maturity</div>'+
     '<div class="score">'+m.score+'<span style="font-size:16px;color:var(--muted)"> / '+m.of+'</span></div>'+
-    '<div class="scap">'+esc(m.label)+'</div><div class="pips">'+pips(m.score,m.of)+'</div>'+
-    '<div class="basis">'+esc(m.basis)+'</div>'+
-    (m.trajectory?'<div class="basis"><b>Trajectory:</b> '+esc(m.trajectory)+'</div>':'')+
-    (m.note?'<div class="basis" style="color:var(--muted)">'+esc(m.note)+'</div>':'')+'</div>';
+    '<div class="scap">'+esc(m.label||"")+'</div><div class="pips">'+pips(m.score,m.of)+'</div>'+
+    (basis?'<div class="basis">'+esc(basis)+'</div>':'')+
+    (m.trajectory?'<div class="basis"><b>Trajectory:</b> '+esc(scrubEv(m.trajectory))+'</div>':'')+
+    (m.note?'<div class="basis" style="color:var(--muted)">'+esc(scrubEv(m.note))+'</div>':'')+'</div>';
 }
 function renderFactsheet(p){
   var f=p.factsheet||{}, m=p.maturity||{};
@@ -3325,7 +3348,7 @@ function renderFactsheet(p){
   /* fast facts */
   if(f.fast_facts&&f.fast_facts.length){
     h+='<div class="sec-label">Fast facts</div><div class="ff" style="margin-bottom:16px">';
-    f.fast_facts.forEach(function(x){ h+='<div class="cell"><div class="k">'+esc(x.k)+'</div><div class="v">'+esc(x.v)+' <span class="lab '+cls(x.label)+'">'+esc(x.label)+'</span></div></div>'; });
+    f.fast_facts.forEach(function(x){ h+='<div class="cell"><div class="k">'+esc(x.k)+'</div><div class="v">'+esc(scrubEv(x.v))+' <span class="lab '+cls(x.label)+'">'+esc(x.label)+'</span></div></div>'; });
     h+='</div>';
   }
 
@@ -3361,13 +3384,16 @@ function renderKeyLeaders(p){
   /* partner's own leaders first, then AU counterparts — so a country page never reads AUS names as that country's */
   var partnerP=pf.filter(function(x){return x.side===own;});
   var ausP=pf.filter(function(x){return x.side==="AU";});
+  if(!ausP.length && own!=="AU") ausP=AU_SPACE_LEADS;
   var top=partnerP.slice(0,2).concat(ausP.slice(0,2));
   if(!top.length) top=pf.slice(0,4);
   var h='<div class="card" style="margin-bottom:16px"><div class="sec-label">Key leaders <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— '+esc(own==="AU"?"Australia":ownName)+' leaders and their Australian counterparts · full profiles under Leadership</span></div><div class="kl-strip">';
   top.forEach(function(x){
     var pend=String(x.label).indexOf("TO_VERIFY")>=0;
     var flag = x.side===own ? esc(ownName) : (x.side==="AU"?"Australia":esc(x.side));
-    h+='<div class="kl'+(x.audience?" aud":"")+'"><div class="kl-side">'+flag+(x.audience?' · Audience':'')+'</div>'+
+    var ac=(x.side==="AU"?FLAGACCENT.domestic:(FLAGACCENT[({NZ:"nz",US:"us",UK:"uk",JP:"japan",CA:"canada",ID:"indonesia"})[x.side]]||"var(--navy2)"));
+    h+='<div class="kl'+(x.audience?" aud":"")+'"><div class="kl-av" style="background:'+(pend?"var(--surface2)":ac)+';color:'+(pend?"var(--verify)":"#fff")+'">'+esc(initials(x.name))+'</div>'+
+       '<div class="kl-side">'+flag+(x.audience?' · Audience':'')+'</div>'+
        '<div class="kl-name'+(pend?' pending':'')+'">'+esc(x.name)+'</div>'+
        '<div class="kl-appt">'+esc(x.appointment)+'</div></div>';
   });
@@ -3440,12 +3466,26 @@ function renderAlignment(p){
 
 /* ---------- LEADERSHIP & CALENDAR ---------- */
 var PARTNER_SIDE={nz:"NZ",us:"US",uk:"UK",japan:"JP",canada:"CA",indonesia:"ID",domestic:"AU"};
+var RANKWORDS={GEN:1,LTGEN:1,MAJGEN:1,BGEN:1,BRIG:1,AIRMSHL:1,AVM:1,ACDRE:1,AIRCDRE:1,GPCAPT:1,WGCDR:1,SQNLDR:1,MAJ:1,COL:1,LTCOL:1,ADM:1,VADM:1,RADM:1,CMDR:1,CAPT:1,BGen:1,MajGen:1,Gen:1,Hon:1,Minister:1,Official:1,Mr:1,Ms:1,Dr:1,Sir:1,KC:1,AM:1,CSC:1,DSM:1,DSC:1,OAM:1,MNZM:1,RAN:1};
+function initials(name){
+  var parts=String(name||"").replace(/[,()]/g,' ').split(/\s+/).filter(function(w){
+    return w && !RANKWORDS[w] && !RANKWORDS[w.toUpperCase()] && !/^[A-Z]{2,}$/.test(w) && !(w.length<=1);
+  });
+  if(!parts.length){ var f=String(name||"?").replace(/[^A-Za-z]/g,''); return (f[0]||"?").toUpperCase(); }
+  var a=parts[0][0]||"", b=parts.length>1?parts[parts.length-1][0]:"";
+  return (a+b).toUpperCase();
+}
+function avatar(name,accent,pend){
+  return '<div class="avatar" style="background:'+(pend?"var(--surface2)":accent)+';color:'+(pend?"var(--verify)":"#fff")+'">'+esc(initials(name))+'</div>';
+}
 function personCard(x){
   var pend=String(x.label).indexOf("TO_VERIFY")>=0;
-  return '<div class="person'+(x.audience?" aud":"")+'">'+(x.audience?'<span class="side" style="border-color:var(--accent);color:var(--accent)">Briefing audience</span>':'')+
+  var ac=(x.side==="AU"?FLAGACCENT.domestic:(FLAGACCENT[({NZ:"nz",US:"us",UK:"uk",JP:"japan",CA:"canada",ID:"indonesia"})[x.side]]||"var(--navy2)"));
+  return '<div class="person'+(x.audience?" aud":"")+'"><div class="person-hd">'+avatar(x.name,ac,pend)+
+    '<div class="person-id">'+(x.audience?'<span class="side" style="border-color:var(--accent);color:var(--accent)">Briefing audience</span>':'')+
     '<div class="appt">'+esc(x.appointment)+'</div>'+
     '<div class="nm'+(pend?' pending':'')+'">'+esc(x.name)+'</div>'+
-    '<div class="meta">'+(x.rank&&x.rank!=="TO_VERIFY"?'<b>'+esc(x.rank)+'</b>':'')+(x.since&&x.since!=="TO_VERIFY"?(x.rank&&x.rank!=="TO_VERIFY"?' · ':'')+'since '+esc(x.since):'')+'</div>'+
+    '<div class="meta">'+(x.rank&&x.rank!=="TO_VERIFY"?'<b>'+esc(x.rank)+'</b>':'')+(x.since&&x.since!=="TO_VERIFY"?(x.rank&&x.rank!=="TO_VERIFY"?' · ':'')+'since '+esc(x.since):'')+'</div></div></div>'+
     (x.background&&x.background!=="TO_VERIFY"?'<div class="meta">'+esc(x.background)+'</div>':'<div class="meta pending">Career background pending confirmation.</div>')+
     (x.priorities&&x.priorities!=="TO_VERIFY"?'<div class="meta"><b>Priorities:</b> '+esc(x.priorities)+'</div>':'')+
     ' <span class="lab '+cls(x.label)+'">'+esc(x.label)+'</span></div>';
@@ -3459,6 +3499,7 @@ function renderLeadership(p){
   else{
     var partnerP=L.profiles.filter(function(x){return x.side===own;});
     var ausP=L.profiles.filter(function(x){return x.side==="AU";});
+    if(!ausP.length && own!=="AU") ausP=AU_SPACE_LEADS;
     var embedP=L.profiles.filter(function(x){return x.side!==own && x.side!=="AU";});
     /* PARTNER's own leaders FIRST (this is the partner page) */
     if(partnerP.length){
@@ -3503,8 +3544,8 @@ function renderLOE(p){
   lo.lines.forEach(function(l){
     h+='<div class="loe"><h3>'+esc(l.name)+'</h3>'+
       '<div class="row"><div class="rk">Current state</div><div class="rv">'+esc(l.current)+'</div></div>'+
-      '<div class="row"><div class="rk opp">Opportunity</div><div class="rv">'+esc(l.opportunity)+'</div></div>'+
-      '<div class="row"><div class="rk con">Binding constraint</div><div class="rv">'+esc(l.constraint)+'</div></div></div>';
+      '<div class="row"><div class="rk rk-opp">Opportunity</div><div class="rv">'+esc(l.opportunity)+'</div></div>'+
+      '<div class="row"><div class="rk rk-con">Binding constraint</div><div class="rv">'+esc(l.constraint)+'</div></div></div>';
   });
   return h;
 }
