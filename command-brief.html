@@ -310,6 +310,29 @@ button{font-family:inherit;cursor:pointer;color:inherit}
   @page{size:A4 landscape;margin:8mm}
   body{background:#fff}
 }
+/* newsroom */
+.news{border:1px solid var(--hair);border-radius:10px;overflow:hidden;background:var(--surface)}
+.news-item{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:12px 16px;border-top:1px solid var(--hair2)}
+.news-item:first-child{border-top:none}
+.news-date{font-size:11.5px;font-weight:700;color:var(--ink2)}
+.news-date.next6{color:var(--accent)}
+.news-t{font-size:13.5px;font-weight:600}
+.news-m{font-size:12px;color:var(--ink2);margin-top:3px}
+/* map */
+.mapwrap{position:relative;border:1px solid var(--hair);border-radius:10px;background:var(--surface);overflow:hidden}
+#smap{width:100%;height:auto;display:block;background:linear-gradient(180deg,var(--surface2),var(--surface));cursor:grab;touch-action:none}
+#smap:active{cursor:grabbing}
+.mapbtns{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:2}
+.mapb{width:30px;height:30px;border-radius:7px;border:1px solid var(--hair);background:var(--surface);font-size:14px;font-weight:600;color:var(--ink2);box-shadow:var(--shadow)}
+.mapb[data-z="fit"]{width:auto;padding:0 10px;font-size:12px}
+.mapb:hover{border-color:var(--navy2);color:var(--navy2)}
+.map-detail{padding:12px 16px;border-top:1px solid var(--hair);font-size:13px;min-height:44px}
+.map-legend{display:flex;gap:18px;margin-top:8px;font-size:11.5px;color:var(--ink2)}
+.map-legend .ml{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:middle}
+/* architecture */
+#archsvg{display:block;margin:0 auto}
+.archnode:hover circle{fill-opacity:.3}
+.arch-detail{margin-top:10px;padding:12px 16px;background:var(--surface2);border:1px solid var(--hair);border-radius:9px;font-size:12.5px;color:var(--ink)}
 .foot-note{font-size:11.5px;color:var(--muted);margin-top:26px;padding-top:14px;border-top:1px solid var(--hair);line-height:1.6}
 .pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:20px;background:var(--surface2);border:1px solid var(--hair);color:var(--ink2)}
 .stub{color:var(--muted);font-size:13px;font-style:italic;padding:18px;text-align:center;border:1px dashed var(--hair);border-radius:10px}
@@ -413,7 +436,51 @@ button{font-family:inherit;cursor:pointer;color:inherit}
   "purpose": "Country-first briefing layer: factsheet, leadership, engagement calendar, dual maturity, lines of effort, current-state and future-state, grounded in NDS and IIP. Feeds the minute and in-brief generators.",
   "method": "Open-source only. Every factual claim carries a source. Records labelled FACT, ASSESSMENT or TO_VERIFY. Personnel, dates and budget figures are held at TO_VERIFY until confirmed against a public source; they render as 'pending confirmation' rather than being asserted.",
   "integrity_note": "Built after a prior collector on this project fabricated sourced-looking claims (an invented contract number and a figure to the cent). Nothing in this layer is reconstructed to look sourced. Where a source was not obtained the field says so.",
-  "emphasis_partner": "nz"
+  "emphasis_partner": "nz",
+  "conferences": [
+   {
+    "when": "2026-10-05",
+    "title": "International Astronautical Congress (IAC) 2026",
+    "where": "Antalya, Turkiye",
+    "note": "Global space congress.",
+    "label": "FACT"
+   },
+   {
+    "when": "2026-12",
+    "title": "CSpO Senior Officials' Meeting",
+    "where": "Oslo, Norway",
+    "note": "Combined Space Operations follow-on to the Apr 2026 Principals' Board.",
+    "label": "FACT"
+   },
+   {
+    "when": "2027-02-23",
+    "title": "Australian International Airshow (Avalon) 2027",
+    "where": "Geelong, Victoria",
+    "note": "Major AU air & space showcase.",
+    "label": "FACT"
+   },
+   {
+    "when": "2027-04",
+    "title": "Space Symposium 42",
+    "where": "Colorado Springs, US",
+    "note": "Premier allied space gathering; CSpO nations attend.",
+    "label": "TO_VERIFY"
+   },
+   {
+    "when": "2027",
+    "title": "Air and Space Power Conference 2027",
+    "where": "Canberra",
+    "note": "RAAF Air & Space Power Centre; CJC bilaterals on margins.",
+    "label": "TO_VERIFY"
+   },
+   {
+    "when": "2027",
+    "title": "Indo Pacific 2027 International Maritime Exposition",
+    "where": "Sydney",
+    "note": "Biennial; space/ISR exhibitors.",
+    "label": "TO_VERIFY"
+   }
+  ]
  },
  "strategic_anchors": {
   "note": "Grounded in the operative strategic documents as at 24 July 2026: the 2026 National Defence Strategy and 2026 Integrated Investment Program, both released 16 April 2026.",
@@ -1089,6 +1156,89 @@ button{font-family:inherit;cursor:pointer;color:inherit}
      "Arrangement between the NZ MBIE and the Australian Space Agency Regarding Space Cooperation for Peaceful Purposes, 22 Oct 2019",
      "Letter, Hon Judith Collins KC (NZ Minister for Space) to Deputy Prime Minister on the ground-based space infrastructure regime (in hand)"
     ]
+   },
+   "sites": [
+    {
+     "n": "Rocket Lab Launch Complex 1",
+     "t": "Launch",
+     "lat": -39.26,
+     "lng": 177.86,
+     "who": "Rocket Lab (US-domiciled)",
+     "sov": "Commercial, US-domiciled parent; TSA segregated areas",
+     "m": 2
+    },
+    {
+     "n": "LeoLabs 'Kiwi Space Radar'",
+     "t": "SDA radar",
+     "lat": -45.03,
+     "lng": 170.14,
+     "who": "LeoLabs (US-HQ)",
+     "sov": "Commercial SDA; feeds allied networks",
+     "m": 2
+    },
+    {
+     "n": "Awarua Satellite Ground Station",
+     "t": "Ground segment",
+     "lat": -46.53,
+     "lng": 168.38,
+     "who": "Space Operations NZ",
+     "sov": "NZ-operated TT&C; new HQ 2027",
+     "m": 3
+    },
+    {
+     "n": "Warkworth Space Centre",
+     "t": "Ground segment",
+     "lat": -36.43,
+     "lng": 174.66,
+     "who": "Space Operations NZ",
+     "sov": "NZ-operated (ex-AUT 12m/30m dishes)",
+     "m": 3
+    },
+    {
+     "n": "No. 62 Sqn / DST telescopes, Whangaparaoa",
+     "t": "SDA optical",
+     "lat": -36.62,
+     "lng": 174.75,
+     "who": "NZDF",
+     "sov": "Sovereign NZDF SDA sensors",
+     "m": 3
+    },
+    {
+     "n": "RNZAF Base Auckland (Whenuapai)",
+     "t": "HQ / unit",
+     "lat": -36.79,
+     "lng": 174.63,
+     "who": "NZDF — No. 62 Squadron",
+     "sov": "NZ military space unit HQ; JCO Pacific cell",
+     "m": 3
+    },
+    {
+     "n": "RNZAF Base Ohakea — Air & Space Warfare Centre",
+     "t": "HQ / unit",
+     "lat": -40.21,
+     "lng": 175.39,
+     "who": "NZDF (RAAF-embedded Director)",
+     "sov": "NZDF ASWC; AU-NZ integration",
+     "m": 3
+    },
+    {
+     "n": "NZ Space Agency (MBIE), Wellington",
+     "t": "Regulator",
+     "lat": -41.29,
+     "lng": 174.78,
+     "who": "MBIE",
+     "sov": "Civil regulator; GBSI regime",
+     "m": 4
+    }
+   ],
+   "sites_note": "Open-source stakeholder map: NZ defence and civil space sites. Marker colour = sovereign maturity (1 low - 5 high). Rocket Lab and LeoLabs are commercial and US-linked; the sovereign NZDF footprint is small (62 Sqn, ASWC).",
+   "arch": {
+    "launch": 2,
+    "satellite": 1,
+    "ground": 3,
+    "sda": 2,
+    "user": 2,
+    "note": "NZ hosts world-class launch (Rocket Lab, US-domiciled) and commercial SDA (LeoLabs), but owns few sovereign systems: no sovereign satellites beyond two research payloads; ground segment growing (Awarua, Warkworth); SDA via 62 Sqn optics + commercial radar."
    }
   },
   "domestic": {
@@ -1398,7 +1548,99 @@ button{font-family:inherit;cursor:pointer;color:inherit}
      "binding_gap": "Defence struggles to articulate its SDA requirement top-down (JSCFADT).",
      "loe": []
     }
-   ]
+   ],
+   "sites": [
+    {
+     "n": "Harold E. Holt / Exmouth — DARC, SST, C-band",
+     "t": "SDA",
+     "lat": -21.82,
+     "lng": 114.17,
+     "who": "Defence + US/UK (DARC trilateral)",
+     "sov": "Hosted allied SDA + sovereign operation of SST",
+     "m": 4
+    },
+    {
+     "n": "Joint Defence Facility Pine Gap",
+     "t": "Joint facility",
+     "lat": -23.8,
+     "lng": 133.74,
+     "who": "AU-US joint",
+     "sov": "Joint AU-US; foundational",
+     "m": 3
+    },
+    {
+     "n": "Kapooka Defence SATCOM ground station",
+     "t": "Ground segment",
+     "lat": -35.17,
+     "lng": 147.28,
+     "who": "Defence (NG Australia built)",
+     "sov": "Sovereign-operated wideband ground station",
+     "m": 4
+    },
+    {
+     "n": "Lot Fourteen — ASA HQ, SmartSat CRC",
+     "t": "Industry hub",
+     "lat": -34.92,
+     "lng": 138.6,
+     "who": "Australian Space Agency / SmartSat",
+     "sov": "National civil space hub",
+     "m": 4
+    },
+    {
+     "n": "Whalers Way Orbital Launch Complex",
+     "t": "Launch",
+     "lat": -34.94,
+     "lng": 135.63,
+     "who": "Southern Launch",
+     "sov": "Sovereign launch site (licensing)",
+     "m": 3
+    },
+    {
+     "n": "Koonibba Test Range",
+     "t": "Launch / returns",
+     "lat": -31.88,
+     "lng": 133.42,
+     "who": "Southern Launch",
+     "sov": "Sovereign returns/test range (Varda)",
+     "m": 4
+    },
+    {
+     "n": "Bowen Orbital Spaceport",
+     "t": "Launch",
+     "lat": -20.01,
+     "lng": 148.25,
+     "who": "Gilmour Space",
+     "sov": "Sovereign launch (Eris); not yet to orbit",
+     "m": 2
+    },
+    {
+     "n": "Arnhem Space Centre",
+     "t": "Launch",
+     "lat": -12.38,
+     "lng": 136.83,
+     "who": "ELA / ASC",
+     "sov": "Equatorial launch ambition",
+     "m": 2
+    },
+    {
+     "n": "Space Command HQ, Canberra",
+     "t": "HQ",
+     "lat": -35.28,
+     "lng": 149.13,
+     "who": "Defence Space Command",
+     "sov": "Sovereign C2 (Joint Capabilities Group)",
+     "m": 4
+    }
+   ],
+   "sites_note": "Open-source stakeholder map: Australia's defence and civil space architecture. Strongest sovereign nodes are ground segment (Kapooka), SDA hosting (Exmouth) and C2 (Canberra); launch sites are sovereign but not yet proven to orbit.",
+   "arch": {
+    "launch": 2,
+    "satellite": 2,
+    "ground": 4,
+    "sda": 4,
+    "user": 3,
+    "note": "Australia's sovereign strengths are ground segment and SDA hosting/tasking; small-sat manufacture is partial; strategic SATCOM and PNT are dependent; sovereign launch is licensed but unproven to orbit."
+   }
   },
   "us": {
    "partner_key": "us",
@@ -1573,7 +1815,36 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "sites": [
+    {
+     "n": "US Space Command HQ, Colorado Springs",
+     "t": "HQ",
+     "lat": 38.83,
+     "lng": -104.82,
+     "who": "USSPACECOM",
+     "sov": "Sovereign US C2",
+     "m": 5
+    },
+    {
+     "n": "Vandenberg SFB — CSpOC",
+     "t": "C2 / SDA",
+     "lat": 34.74,
+     "lng": -120.57,
+     "who": "USSF",
+     "sov": "Combined Space Operations Center",
+     "m": 5
+    }
+   ],
+   "sites_note": "Indicative key US nodes only.",
+   "arch": {
+    "launch": 5,
+    "satellite": 5,
+    "ground": 5,
+    "sda": 5,
+    "user": 5,
+    "note": "Full-stack sovereign space power across every layer."
+   }
   },
   "uk": {
    "partner_key": "uk",
@@ -2490,7 +2761,36 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "sites": [
+    {
+     "n": "3 Canadian Space Division, Ottawa",
+     "t": "HQ",
+     "lat": 45.42,
+     "lng": -75.7,
+     "who": "3 CSD",
+     "sov": "Sovereign C2",
+     "m": 4
+    },
+    {
+     "n": "Sapphire (SSN sensor)",
+     "t": "SDA (space-based)",
+     "lat": 45.0,
+     "lng": -75.0,
+     "who": "DND",
+     "sov": "Sovereign SDA satellite in the US SSN",
+     "m": 4
+    }
+   ],
+   "sites_note": "Indicative key Canadian nodes only.",
+   "arch": {
+    "launch": 1,
+    "satellite": 4,
+    "ground": 4,
+    "sda": 4,
+    "user": 3,
+    "note": "Sovereign SAR (RADARSAT) and SSN sensor (Sapphire); strong ground/SDA; negligible sovereign launch."
+   }
   },
   "france": {
    "partner_key": "france",
@@ -3522,7 +3822,8 @@ function buildRail(){
 var TABS=[
   ["factsheet","Factsheet"],["leadership","Leadership & Calendar"],
   ["loe","Lines of Effort"],["opps","Opportunities"],
-  ["artefacts","Artefacts"],["placemat","Placemat"],["generate","Minute / In-brief"]
+  ["artefacts","Artefacts"],["sites","Sites & Architecture"],["newsroom","Newsroom"],
+  ["placemat","Placemat"],["generate","Minute / In-brief"]
 ];
 var CURKEY=null, CURTAB="factsheet";
 function openPartner(key){
@@ -3566,10 +3867,13 @@ function renderTabs(){
   else if(CURTAB==="loe") html=renderLOE(p);
   else if(CURTAB==="opps") html=renderOpps(p);
   else if(CURTAB==="artefacts") html=renderArtefacts(p);
+  else if(CURTAB==="sites") html=renderSites(p);
+  else if(CURTAB==="newsroom") html=renderNewsroom(p);
   else if(CURTAB==="placemat") html=renderPlacemat(p);
   else if(CURTAB==="generate") html=renderGenerate(p);
   els("panels").innerHTML='<div class="panel active">'+html+'</div>';
   if(CURTAB==="artefacts") wireLibrary();
+  if(CURTAB==="sites") wireSites(p);
   if(CURTAB==="generate") wireGenerate();
   if(CURTAB==="placemat"){ var pb=els("pm-print"); if(pb) pb.addEventListener("click",function(){window.print();}); }
   if(CURTAB==="opps") wireOpps();
@@ -3961,6 +4265,115 @@ function wireLibrary(){
   seg("seg-rel",function(v){rel=v;}); seg("seg-status",function(v){stat=v;});
   els("lib-sort").addEventListener("change",function(){sort=this.value;draw();});
   draw();
+}
+
+/* ---------- NEWSROOM (recent developments + conference calendar) ---------- */
+function renderNewsroom(p){
+  var C=p.calendar||{events:[]};
+  var evs=(C.events||[]).slice().sort(function(a,b){return String(b.when).localeCompare(String(a.when));});
+  var recent=evs.filter(function(e){return e.window==="past";});
+  var h='<div class="sec-label">Recent developments — '+esc(p.name)+' <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">(open-source, most recent first)</span></div>';
+  if(!recent.length) h+='<div class="stub">No recent developments recorded for this partner yet.</div>';
+  else{ h+='<div class="news">'; recent.slice(0,12).forEach(function(e){
+    var pend=String(e.label).indexOf("TO_VERIFY")>=0;
+    h+='<div class="news-item"><div class="news-date">'+esc(e.when)+'</div><div class="news-body"><div class="news-t">'+esc(e.title)+(pend?' <span class="lab TO_VERIFY">unconfirmed</span>':'')+'</div><div class="news-m">'+esc(e.level)+' · '+esc(e.note)+'</div></div></div>';
+  }); h+='</div>'; }
+  /* conferences */
+  var conf=(BD.meta.conferences||[]).slice().sort(function(a,b){return String(a.when).localeCompare(String(b.when));});
+  h+='<div class="sec-label" style="margin-top:24px">Upcoming events, conferences &amp; symposiums</div><div class="news">';
+  conf.forEach(function(c){ var pend=String(c.label).indexOf("TO_VERIFY")>=0;
+    h+='<div class="news-item"><div class="news-date next6">'+esc(c.when)+'</div><div class="news-body"><div class="news-t">'+esc(c.title)+(pend?' <span class="lab TO_VERIFY">TBC</span>':'')+'</div><div class="news-m">'+esc(c.where)+' · '+esc(c.note)+'</div></div></div>'; });
+  h+='</div>';
+  h+='<p class="foot-note">This is a curated open-source feed drawn from the engagement calendar and public conference schedules, not a live wire. Items marked unconfirmed/TBC are not yet open-source confirmed.</p>';
+  return h;
+}
+
+/* ---------- SITES & ARCHITECTURE (interactive map + architecture diagram) ---------- */
+function renderSites(p){
+  var sites=p.sites||[], arch=p.arch||null;
+  var h='';
+  /* MAP */
+  h+='<div class="sec-label">Stakeholder map — where '+esc(p.name)+'\'s space architecture sits</div>';
+  if(!sites.length){ h+='<div class="stub">Stakeholder map for this partner is being collected. New Zealand and Australia are complete.</div>'; }
+  else{
+    if(p.sites_note) h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">'+esc(p.sites_note)+'</p>';
+    h+='<div class="mapwrap"><div class="mapbtns"><button class="mapb" data-z="in">+</button><button class="mapb" data-z="out">&minus;</button><button class="mapb" data-z="fit">Fit</button></div>'+
+       '<svg id="smap" viewBox="0 0 600 380" role="img" aria-label="stakeholder map"></svg>'+
+       '<div class="map-detail" id="map-detail">Click a marker for detail.</div></div>'+
+       '<div class="map-legend"><span><i class="ml" style="background:'+sovCol(5)+'"></i>high sovereignty</span><span><i class="ml" style="background:'+sovCol(3)+'"></i>partial</span><span><i class="ml" style="background:'+sovCol(1)+'"></i>low / commercial-foreign</span></div>';
+  }
+  /* ARCHITECTURE */
+  if(arch){
+    h+='<div class="sec-label" style="margin-top:26px">Space architecture — sovereign control by layer <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
+    h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">Hover or tap a segment to see '+esc(p.name)+'\'s sovereign maturity over that part of the architecture (0 none – 5 full).</p>';
+    h+=renderArchSvg(arch);
+    h+='<div class="arch-detail" id="arch-detail">'+esc(arch.note||"")+'</div>';
+  }
+  return h;
+}
+function sovCol(m){ return m>=4?"var(--fact)":(m>=2.5?"var(--assess)":"#b4432f"); }
+var ARCH_LAYERS=[
+  {k:"launch",label:"Launch",x:90,y:300},
+  {k:"satellite",label:"Satellites",x:300,y:70},
+  {k:"ground",label:"Ground segment",x:300,y:300},
+  {k:"sda",label:"SDA sensors",x:500,y:300},
+  {k:"user",label:"User terminals",x:490,y:180}
+];
+function renderArchSvg(arch){
+  var s='<svg id="archsvg" viewBox="0 0 600 340" role="img" aria-label="space architecture" style="width:100%;max-width:640px">';
+  /* orbit arc */
+  s+='<path d="M60,110 Q300,-10 540,110" fill="none" stroke="var(--hair)" stroke-width="1.5" stroke-dasharray="5 4"/>';
+  /* links */
+  s+='<line x1="300" y1="95" x2="300" y2="278" stroke="var(--hair)" stroke-width="1.2"/>';
+  s+='<line x1="300" y1="300" x2="120" y2="300" stroke="var(--hair)" stroke-width="1.2"/>';
+  s+='<line x1="300" y1="300" x2="480" y2="300" stroke="var(--hair)" stroke-width="1.2"/>';
+  s+='<line x1="470" y1="185" x2="315" y2="85" stroke="var(--hair)" stroke-width="1.2" stroke-dasharray="3 3"/>';
+  ARCH_LAYERS.forEach(function(L){
+    var m=arch[L.k]||0, col=sovCol(m);
+    s+='<g class="archnode" data-k="'+L.k+'" data-m="'+m+'" style="cursor:pointer">';
+    s+='<circle cx="'+L.x+'" cy="'+L.y+'" r="30" fill="'+col+'" fill-opacity="0.16" stroke="'+col+'" stroke-width="2"/>';
+    s+='<text x="'+L.x+'" y="'+(L.y+4)+'" text-anchor="middle" font-size="15" font-weight="700" fill="'+col+'" font-family="var(--serif)">'+m+'</text>';
+    s+='<text x="'+L.x+'" y="'+(L.y+46)+'" text-anchor="middle" font-size="10.5" fill="var(--ink2)" font-family="var(--sans)">'+esc(L.label)+'</text>';
+    s+='</g>';
+  });
+  s+='</svg>';
+  return s;
+}
+function wireSites(p){
+  var sites=p.sites||[];
+  if(sites.length){
+    var svg=els("smap"); if(svg){
+      var lats=sites.map(function(s){return s.lat;}), lngs=sites.map(function(s){return s.lng;});
+      var minLat=Math.min.apply(null,lats),maxLat=Math.max.apply(null,lats),minLng=Math.min.apply(null,lngs),maxLng=Math.max.apply(null,lngs);
+      var padLat=(maxLat-minLat)*0.18+0.3, padLng=(maxLng-minLng)*0.18+0.3;
+      minLat-=padLat;maxLat+=padLat;minLng-=padLng;maxLng+=padLng;
+      var W=600,H=380;
+      function X(lng){return (lng-minLng)/(maxLng-minLng)*W;}
+      function Y(lat){return (1-(lat-minLat)/(maxLat-minLat))*H;}
+      var g='<g id="smap-g">';
+      /* graticule */
+      for(var gi=0;gi<=4;gi++){var yy=H*gi/4;g+='<line x1="0" y1="'+yy+'" x2="'+W+'" y2="'+yy+'" stroke="var(--hair2)" stroke-width="1"/>';var xx=W*gi/4;g+='<line x1="'+xx+'" y1="0" x2="'+xx+'" y2="'+H+'" stroke="var(--hair2)" stroke-width="1"/>';}
+      sites.forEach(function(s,i){var x=X(s.lng),y=Y(s.lat),col=sovCol(s.m);
+        g+='<g class="smk" data-i="'+i+'" style="cursor:pointer"><circle cx="'+x+'" cy="'+y+'" r="7" fill="'+col+'" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"/>'+
+           '<text x="'+(x+10)+'" y="'+(y+3.5)+'" font-size="9.5" fill="var(--ink)" font-family="var(--sans)">'+esc(s.n.length>26?s.n.slice(0,25)+"…":s.n)+'</text></g>';
+      });
+      g+='</g>';
+      svg.innerHTML=g;
+      var scale=1,tx=0,ty=0;
+      function apply(){els("smap-g").setAttribute("transform","translate("+tx+","+ty+") scale("+scale+")");}
+      svg.querySelectorAll(".smk").forEach(function(mk){mk.addEventListener("click",function(){var s=sites[+mk.getAttribute("data-i")];els("map-detail").innerHTML='<b>'+esc(s.n)+'</b> — '+esc(s.t)+'<br><span style="color:var(--ink2)">'+esc(s.who)+'</span><br><span style="font-size:11.5px">Sovereignty: '+esc(s.sov)+'</span>';});});
+      var mb=document.querySelectorAll(".mapb");mb.forEach(function(b){b.addEventListener("click",function(){var z=b.getAttribute("data-z");if(z==="in")scale=Math.min(6,scale*1.4);else if(z==="out")scale=Math.max(1,scale/1.4);else{scale=1;tx=0;ty=0;}apply();});});
+      /* drag pan */
+      var dr=false,sx,sy;svg.addEventListener("mousedown",function(e){dr=true;sx=e.clientX-tx;sy=e.clientY-ty;});
+      window.addEventListener("mousemove",function(e){if(dr){tx=e.clientX-sx;ty=e.clientY-sy;apply();}});
+      window.addEventListener("mouseup",function(){dr=false;});
+    }
+  }
+  /* architecture hover */
+  document.querySelectorAll(".archnode").forEach(function(nd){
+    function show(){var k=nd.getAttribute("data-k"),m=nd.getAttribute("data-m");var lbl=(ARCH_LAYERS.filter(function(L){return L.k===k;})[0]||{}).label||k;els("arch-detail").innerHTML='<b>'+esc(lbl)+':</b> sovereign maturity '+esc(m)+'/5. '+esc((p.arch&&p.arch.note)||"");}
+    nd.addEventListener("mouseenter",show); nd.addEventListener("click",show);
+  });
 }
 
 /* ---------- GENERATE (minute + in-brief) ---------- */
