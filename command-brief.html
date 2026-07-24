@@ -208,6 +208,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .pm-tag{display:block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   color:#8a6a2f;margin-bottom:4px}
 .pm-bl{border-left:3px solid var(--navy);background:#f7f5f0;padding:10px 14px;margin-bottom:14px;font-size:12.5px}
+.pm-thin{border:1px dashed #c9b98f;background:#fdfaf2;padding:10px 14px;margin-bottom:14px;font-size:11.5px;color:#5c5344}
 .pm-ask{border-left:3px solid #8a6a2f;background:#fbf6ec;padding:10px 14px;margin:14px 0;font-size:12.5px}
 .pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .pm-box{border:1px solid #e2ddd2;border-radius:6px;padding:11px 13px}
@@ -1542,13 +1543,24 @@ function buildPlacemat(p){
      '<div class="pm-sub">Defence space &middot; placemat for COMD SPACECOMD</div></div>'+
      '<div class="pm-asat">Current as at<br><b>'+esc((BD.meta&&BD.meta.as_at)||"")+'</b></div></div>';
 
+  /* Only New Zealand is staffed to briefing depth. Say so plainly rather than
+     rendering empty boxes, which read as a broken page instead of an honest
+     statement about how far the analysis has been taken. */
+  var thin = !b.bottom_line && !p.current_state && !ops.length;
+  if(thin){
+    h+='<div class="pm-thin"><span class="pm-tag">Depth</span>'+
+       esc(p.name)+' is carried at register depth: factsheet, leadership, artefacts and the '+
+       'authority read below are populated, but the bottom line, current-state assessment and '+
+       'staffed pathways have not been written. New Zealand is the worked example.</div>';
+  }
+
   if(b.bottom_line) h+='<div class="pm-bl"><span class="pm-tag">Bottom line</span>'+esc(scrubEv(b.bottom_line))+'</div>';
 
   h+='<div class="pm-grid">';
   /* left column */
-  h+='<div class="pm-box"><h4>Where it stands</h4>'+
-     (p.current_state?'<p class="pm-lead">'+esc(p.current_state.headline)+'</p><ul>'+
-       p.current_state.points.slice(0,3).map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul>':'')+
+  if(p.current_state) h+='<div class="pm-box"><h4>Where it stands</h4>'+
+     '<p class="pm-lead">'+esc(p.current_state.headline)+'</p><ul>'+
+       p.current_state.points.slice(0,3).map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul>'+
      '</div>';
   h+='<div class="pm-box"><h4>Authority held</h4><div class="pm-marks">'+marks+'</div>'+
      '<p class="pm-verd">'+esc(v.head)+'.</p>'+
@@ -1556,13 +1568,13 @@ function buildPlacemat(p){
      '<div class="pm-mat"><span>Partnership <b>'+esc(String((m.partnership||{}).score||"—"))+'/5</b></span>'+
      '<span>Intrinsic <b>'+esc(String((m.intrinsic||{}).score||"—"))+'/5</b></span></div></div>';
   /* right column */
-  h+='<div class="pm-box"><h4>'+esc(p.name)+' &mdash; who is in the room</h4>'+people(theirs)+'</div>';
-  h+='<div class="pm-box"><h4>Australia</h4>'+people(ours)+'</div>';
+  if(theirs.length) h+='<div class="pm-box"><h4>'+esc(p.name)+' &mdash; who is in the room</h4>'+people(theirs)+'</div>';
+  if(ours.length)   h+='<div class="pm-box"><h4>Australia</h4>'+people(ours)+'</div>';
   h+='</div>';
 
   if(b.ask) h+='<div class="pm-ask"><span class="pm-tag">The ask</span>'+esc(scrubEv(b.ask))+'</div>';
 
-  h+='<div class="pm-box pm-wide"><h4>Priority lines</h4><table class="pm-t"><tbody>'+
+  if(ops.length) h+='<div class="pm-box pm-wide"><h4>Priority lines</h4><table class="pm-t"><tbody>'+
      ops.map(function(o){
        var pw=o.pathway||{};
        return '<tr><td class="pm-id">'+esc(o.id)+'</td><td>'+esc(o.title)+'</td>'+
