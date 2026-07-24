@@ -195,6 +195,49 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .align-node .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy2);font-weight:700;margin-bottom:6px}
 .align-node p{font-size:12.5px;color:var(--ink2)}
 
+/* ---------- placemat: one page, carried into the room ---------- */
+.pm{background:#fff;color:#15202c;border:1px solid var(--hair);border-radius:8px;padding:26px 30px;
+  box-shadow:var(--shadow);font-family:var(--sans);font-size:12px;line-height:1.45}
+@media(prefers-color-scheme:dark){.pm{background:#f7f5f0}}
+.pm-band{text-align:center;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:#6b7280;border-bottom:1px solid #dcd6c9;padding-bottom:7px;margin-bottom:14px}
+.pm-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}
+.pm-hd h3{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;margin:0;color:#15202c}
+.pm-sub{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:#6b7280;margin-top:3px}
+.pm-asat{text-align:right;font-size:10px;color:#6b7280;line-height:1.4;white-space:nowrap}
+.pm-tag{display:block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:#8a6a2f;margin-bottom:4px}
+.pm-bl{border-left:3px solid var(--navy);background:#f7f5f0;padding:10px 14px;margin-bottom:14px;font-size:12.5px}
+.pm-ask{border-left:3px solid #8a6a2f;background:#fbf6ec;padding:10px 14px;margin:14px 0;font-size:12.5px}
+.pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pm-box{border:1px solid #e2ddd2;border-radius:6px;padding:11px 13px}
+.pm-box.pm-wide{grid-column:1/-1;margin-top:12px}
+.pm-box h4{font-size:9.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#6b7280;margin:0 0 7px}
+.pm-lead{font-family:var(--serif);font-size:13px;font-weight:600;margin:0 0 5px}
+.pm-box ul{margin:0;padding-left:15px}
+.pm-box li{font-size:11.5px;margin-bottom:3px}
+.pm-small{font-size:11px;color:#4d5866}
+.pm-verd{font-size:12px;font-weight:600;margin:8px 0 3px}
+.pm-marks{display:flex;gap:5px;flex-wrap:wrap}
+.pm-mk-c{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;min-width:38px}
+.pm-mk-c span:last-child{font-size:8px;letter-spacing:.05em;text-transform:uppercase;color:#8b909a}
+.pm-mat{display:flex;gap:14px;margin-top:8px;padding-top:7px;border-top:1px solid #eee8dc;font-size:11px;color:#4d5866}
+.pm-p{padding:4px 0;border-bottom:1px solid #f0ece2}
+.pm-p:last-child{border-bottom:0}
+.pm-p b{display:block;font-size:12px}
+.pm-p span{font-size:10.5px;color:#6b7280}
+.pm-t{width:100%;border-collapse:collapse}
+.pm-t td{padding:4px 8px 4px 0;border-bottom:1px solid #f0ece2;font-size:11.5px;vertical-align:top}
+.pm-t tr:last-child td{border-bottom:0}
+.pm-t .pm-id{font-family:var(--mono);font-size:10px;color:#6b7280;white-space:nowrap}
+.pm-foot{margin-top:14px;padding-top:9px;border-top:1px solid #dcd6c9;font-size:9.5px;color:#8b909a}
+@media(max-width:760px){.pm-grid{grid-template-columns:1fr}}
+@media print{
+  .pm{border:0;box-shadow:none;padding:0;font-size:10.5px}
+  .pm-box{break-inside:avoid}
+  @page{size:A4 portrait;margin:12mm}
+}
+
 /* load path — states read by FORM as well as tone, so they survive greyscale */
 .cb-lp-card{border-left:3px solid var(--navy)}
 .cb-lp-card.t-warn{border-left-color:var(--assess)}
@@ -1429,11 +1472,14 @@ function wireSites(p){
 }
 
 /* ---------- GENERATE (minute + in-brief) ---------- */
-var GENMODE="minute";
+var GENMODE="placemat";  /* the placemat is what the Commander carries in — lead with it */
 function renderGenerate(p){
   var h='<div class="sec-label">Generate a document — ADF Writing Manual format</div>';
-  h+='<p class="gen-note">Populated from this partner\'s confirmed content and any opportunities you ticked under the Opportunities tab. Items held at TO_VERIFY are flagged in the draft and must be confirmed before the document is finalised. Times New Roman, per the ADF Writing Manual (Ch 10 Minutes, Ch 12 Briefs).</p>';
-  h+='<div class="gen-tabs"><button class="gen-tab '+(GENMODE==="minute"?"on":"")+'" data-m="minute">Minute</button><button class="gen-tab '+(GENMODE==="brief"?"on":"")+'" data-m="brief">In-brief (visit)</button></div>';
+  h+='<p class="gen-note">Populated from this partner\'s confirmed content and any opportunities you ticked under the Opportunities tab. Items held at TO_VERIFY are flagged in the draft and must be confirmed before the document is finalised. The placemat is a one-page carry-in summary; the minute and in-brief follow the ADF Writing Manual (Ch 10 Minutes, Ch 12 Briefs).</p>';
+  h+='<div class="gen-tabs">'+
+     '<button class="gen-tab '+(GENMODE==="placemat"?"on":"")+'" data-m="placemat">Placemat</button>'+
+     '<button class="gen-tab '+(GENMODE==="minute"?"on":"")+'" data-m="minute">Minute</button>'+
+     '<button class="gen-tab '+(GENMODE==="brief"?"on":"")+'" data-m="brief">In-brief (visit)</button></div>';
   h+='<div class="gen-actions"><button class="btn primary" id="gen-copy">Copy text</button><button class="btn" id="gen-print">Print / PDF</button></div>';
   h+='<div id="gen-doc"></div>';
   return h;
@@ -1457,9 +1503,80 @@ function wireGenerate(){
 }
 function drawDoc(){
   var p=BD.partners[CURKEY];
-  els("gen-doc").innerHTML = GENMODE==="minute"?buildMinute(p):buildBrief(p);
+  els("gen-doc").innerHTML = GENMODE==="placemat" ? buildPlacemat(p)
+                           : GENMODE==="minute"   ? buildMinute(p)
+                           : buildBrief(p);
 }
-function today(){var d=new Date(2026,6,24);return d.getDate()+" Jul 26";}
+/* the date a document is raised is the date it is generated — the "current as
+   at" date of the CONTENT is separate and comes from BD.meta.as_at */
+function today(){
+  var d=new Date(), M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return d.getDate()+" "+M[d.getMonth()]+" "+String(d.getFullYear()).slice(2);
+}
+/* ---------- PLACEMAT ----------
+   The thing the Commander carries INTO the room: one page, no scrolling,
+   no prose he has to mine. Bottom line, where it stands, what authority is
+   actually held, the ask, who is in the room, what is coming, and the
+   priority lines with an owner and a by-when. */
+function buildPlacemat(p){
+  var b=p.bluf||{}, m=p.maturity||{}, g=cbGrid(CURKEY), v=cbVerdict(CURKEY,g,p.name);
+  var own=PARTNER_SIDE[CURKEY]||"NZ";
+  var theirs=((p.leadership&&p.leadership.profiles)||[]).filter(function(x){return x.side===own;}).slice(0,4);
+  var ours=((p.leadership&&p.leadership.profiles)||[]).filter(function(x){return x.side==="AU";}).slice(0,3);
+  var soon=((p.calendar&&p.calendar.events)||[]).filter(function(e){return e.window==="next6";}).slice(0,4);
+  var ops=(p.opportunities||[]).slice(0,4);
+
+  function people(list){
+    return list.map(function(x){
+      return '<div class="pm-p"><b>'+esc(x.name)+'</b><span>'+esc(x.appointment)+'</span></div>';
+    }).join("")||'<div class="pm-p"><span>—</span></div>';
+  }
+  var marks=CB_LAYERS.map(function(L){
+    return '<div class="pm-mk-c"><span class="cb-mk s-'+g[L.id].s+'"></span><span>'+esc(L.s)+'</span></div>';
+  }).join("");
+
+  var h='<div class="pm">';
+  h+='<div class="pm-band">UNOFFICIAL — open-source — draft, pending custodian validation</div>';
+  h+='<div class="pm-hd"><div><h3>Australia &ndash; '+esc(p.name)+'</h3>'+
+     '<div class="pm-sub">Defence space &middot; placemat for COMD SPACECOMD</div></div>'+
+     '<div class="pm-asat">Current as at<br><b>'+esc((BD.meta&&BD.meta.as_at)||"")+'</b></div></div>';
+
+  if(b.bottom_line) h+='<div class="pm-bl"><span class="pm-tag">Bottom line</span>'+esc(scrubEv(b.bottom_line))+'</div>';
+
+  h+='<div class="pm-grid">';
+  /* left column */
+  h+='<div class="pm-box"><h4>Where it stands</h4>'+
+     (p.current_state?'<p class="pm-lead">'+esc(p.current_state.headline)+'</p><ul>'+
+       p.current_state.points.slice(0,3).map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul>':'')+
+     '</div>';
+  h+='<div class="pm-box"><h4>Authority held</h4><div class="pm-marks">'+marks+'</div>'+
+     '<p class="pm-verd">'+esc(v.head)+'.</p>'+
+     '<p class="pm-small">'+esc(v.body)+'</p>'+
+     '<div class="pm-mat"><span>Partnership <b>'+esc(String((m.partnership||{}).score||"—"))+'/5</b></span>'+
+     '<span>Intrinsic <b>'+esc(String((m.intrinsic||{}).score||"—"))+'/5</b></span></div></div>';
+  /* right column */
+  h+='<div class="pm-box"><h4>'+esc(p.name)+' &mdash; who is in the room</h4>'+people(theirs)+'</div>';
+  h+='<div class="pm-box"><h4>Australia</h4>'+people(ours)+'</div>';
+  h+='</div>';
+
+  if(b.ask) h+='<div class="pm-ask"><span class="pm-tag">The ask</span>'+esc(scrubEv(b.ask))+'</div>';
+
+  h+='<div class="pm-box pm-wide"><h4>Priority lines</h4><table class="pm-t"><tbody>'+
+     ops.map(function(o){
+       var pw=o.pathway||{};
+       return '<tr><td class="pm-id">'+esc(o.id)+'</td><td>'+esc(o.title)+'</td>'+
+              '<td class="pm-small">'+esc(pw.lead||"—")+'</td>'+
+              '<td class="pm-small">'+esc(pw.timeframe||"—")+'</td></tr>';
+     }).join("")+'</tbody></table></div>';
+
+  if(soon.length) h+='<div class="pm-box pm-wide"><h4>Next six months</h4><table class="pm-t"><tbody>'+
+     soon.map(function(e){return '<tr><td class="pm-id">'+esc(e.when)+'</td><td>'+esc(e.title)+'</td>'+
+       '<td class="pm-small">'+esc(e.level)+'</td></tr>';}).join("")+'</tbody></table></div>';
+
+  h+='<div class="pm-foot">Open-source only. Items held at TO_VERIFY must be confirmed before reliance. Generated '+esc(today())+'.</div>';
+  h+='</div>';
+  return h;
+}
 function buildMinute(p){
   var md=p.minute_defaults||{}, sel=selectedOpps();
   var subj=md.subject||("SPACE COOPERATION WITH "+p.name.toUpperCase());
