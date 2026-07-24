@@ -253,6 +253,27 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .foot-note{font-size:11.5px;color:var(--muted);margin-top:26px;padding-top:14px;border-top:1px solid var(--hair);line-height:1.6}
 .pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:20px;background:var(--surface2);border:1px solid var(--hair);color:var(--ink2)}
 .stub{color:var(--muted);font-size:13px;font-style:italic;padding:18px;text-align:center;border:1px dashed var(--hair);border-radius:10px}
+/* industry / supply chain */
+.sc-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.sc-table th{text-align:left;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:6px 10px;border-bottom:1px solid var(--hair);font-weight:600}
+.sc-table td{padding:9px 10px;border-bottom:1px solid var(--hair2);vertical-align:top}
+.mchip{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.mchip.strong{background:color-mix(in oklab,var(--fact) 15%,transparent);color:var(--fact)}
+.mchip.partial{background:color-mix(in oklab,var(--assess) 15%,transparent);color:var(--assess)}
+.mchip.dependent{background:color-mix(in oklab,var(--verify) 18%,transparent);color:var(--verify)}
+.firmgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:800px){.firmgrid{grid-template-columns:1fr}}
+.firm{background:var(--surface2);border:1px solid var(--hair);border-radius:8px;padding:11px 13px}
+.firm .fn{font-family:var(--serif);font-size:14px;font-weight:600}
+.firm .fr{font-size:12px;color:var(--ink2);margin-top:3px}
+.bshare{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:800px){.bshare{grid-template-columns:1fr}}
+.bshare .col{border-radius:9px;padding:14px 16px;border:1px solid var(--hair)}
+.bshare .share{border-top:3px solid var(--enabling)}
+.bshare .sov{border-top:3px solid var(--accent)}
+.bshare ul{list-style:none} .bshare li{font-size:12.5px;padding:6px 0 6px 16px;position:relative;border-top:1px solid var(--hair2)}
+.bshare li:first-child{border-top:none} .bshare li:before{content:"";position:absolute;left:2px;top:12px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.bshare .share li:before{background:var(--enabling)}
 @media print{.pv-top,.tabs,.cbtn,.rail,#gate,.gen-actions,.pv-back{display:none!important}.panel{display:block!important}}
 </style>
 </head>
@@ -317,19 +338,27 @@ button{font-family:inherit;cursor:pointer;color:inherit}
   "emphasis_partner": "nz"
  },
  "strategic_anchors": {
-  "note": "Populated by the NDS/IIP research stream. Fields below are scaffolded and carry TO_VERIFY until the verbatim strategic text and figures are confirmed.",
+  "note": "Grounded in the operative strategic documents as at 24 July 2026: the 2026 National Defence Strategy and 2026 Integrated Investment Program, both released 16 April 2026.",
   "nds": {
-   "name": "National Defence Strategy",
-   "status_2026": "TO_VERIFY — confirm whether the operative document at Jul 2026 is the NDS 2024 (published 17 April 2024) or a 2026 iteration ('NDS26'). Pending research stream.",
-   "space_treatment": "TO_VERIFY — verbatim space treatment (strategy of denial, space as a domain, assured access and resilience) pending extraction.",
-   "source": "TO_VERIFY"
+   "name": "2026 National Defence Strategy (NDS 2026)",
+   "released": "16 April 2026",
+   "status_2026": "The 2026 NDS is the operative strategy (released 16 Apr 2026, superseding NDS 2024). Next due 2028.",
+   "space_treatment": "Para 1.28: 'Cyber and space capabilities are playing a growing role in military operations... Space is a critical enabler of military operations, supporting communications, targeting and situational awareness. The threat posed by counter-space technologies is accelerating.' The Strategy of Denial spans five domains including space.",
+   "space_commitment": "Para 6.8(f): space capabilities that enhance ISR, provide resilient communications and counter emerging space effects, through a resilient multi-orbit SATCOM system; the Deep-space Advanced Radar Capability (DARC, with the UK and US); geospatial intelligence; and space control capabilities 'to provide the Government with options to ensure Australia's access to space.'",
+   "nz_para": "Para 7.24: 'Australia will seek to enhance interoperability with New Zealand - which is investing in uplifting its military capability... and jointly pursue security and stability in our region. Defence will operationalise the alliance with New Zealand across six lines of effort: force posture activities, combined operations and exercises, preparedness, industry integration, resilience and Pacific security.'",
+   "headline": "Additional $14bn/4yr and $53bn/decade; combined 2024+2026 additional $30bn/4yr and $117bn/decade to 2035-36; Defence spending to reach 3% of GDP by 2033.",
+   "source": "Minister for Defence, '2026 National Defence Strategy and Integrated Investment Program', 16 Apr 2026; NDS 2026 (Department of Defence).",
+   "label": "FACT"
   },
   "iip": {
-   "name": "Integrated Investment Program 2024",
-   "space_envelope": "TO_VERIFY — total space investment figure and the defence-space line items (SDA/JP9360, SATCOM history/SPA9102, DARC) pending extraction.",
-   "source": "TO_VERIFY"
+   "name": "2026 Integrated Investment Program (IIP 2026)",
+   "released": "16 April 2026",
+   "space_envelope": "Para 6.3: '$9-$12 billion over the decade in enhanced space capabilities, with a focus on resilient communications, space domain awareness and space control.' Table 4 (2026-27 to 2035-36): SATCOM $5.2-7.2bn; Space sensors (SDA) $3.2-4.2bn; Space control $680-880m. Whole program ~$425bn.",
+   "source": "IIP 2026, Ch 6 'Space and Cyber' (Department of Defence).",
+   "label": "FACT"
   },
-  "mapping_intro": "How a partnership serves Australia's strategic intent is shown per partner in the 'Strategic alignment' panel. The mapping is grounded in NDS and IIP objectives once the research stream confirms the verbatim text."
+  "nds2024_note": "NDS 2024 (17 Apr 2024) is the predecessor; it introduced the Strategy of Denial across five domains including space and named New Zealand first among key partners beyond the US (paras 1.6, 7.15).",
+  "mapping_intro": "Each partner's 'Strategic alignment' panel maps that partnership to NDS 2026 / IIP 2026 objectives - assured access, resilient multi-orbit SATCOM, SDA/space sensors, space control, geospatial intelligence."
  },
  "radar_dimensions": [
   {
@@ -432,6 +461,10 @@ button{font-family:inherit;cursor:pointer;color:inherit}
      {
       "text": "New Zealand's Minister for Defence and Space has written to the Deputy Prime Minister offering technical briefings and information-sharing on the regime — an open, ministerial-level cooperation hook.",
       "label": "FACT"
+     },
+     {
+      "text": "Note the NZ ministerial picture: Hon Judith Collins KC signed the ground-based space infrastructure letter as Minister for Space; by mid-2026 Hon Chris Penk holds the Defence portfolio. Confirm current space-portfolio holder before the talks.",
+      "label": "TO_VERIFY"
      }
     ],
     "fast_facts": [
@@ -447,18 +480,18 @@ button{font-family:inherit;cursor:pointer;color:inherit}
      },
      {
       "k": "Space workforce",
-      "v": "No. 62 Squadron RNZAF — 'a little over a dozen dedicated personnel' at stand-up (4 July 2025). Wider NZDF space workforce numbers: TO_VERIFY.",
-      "label": "FACT / TO_VERIFY"
+      "v": "No. 62 Squadron RNZAF - 'a little over a dozen' personnel (8 run JCO Pacific-cell shifts). NZDF's first orbital research payloads: Korimako (Mar 2024) and Tui (2025). Wider NZDF space workforce numbers: not public.",
+      "label": "FACT"
      },
      {
       "k": "AUS footprint in NZ",
-      "v": "TO_VERIFY — no standing ADF space presence in NZ identified in open sources; confirm via research stream.",
-      "label": "TO_VERIFY"
+      "v": "A RAAF officer (GPCAPT Michael Duyvene de Wit) is the inaugural Director of the NZDF Air and Space Warfare Centre at Ohakea (announced Feb 2026). Plus LeoLabs' commercial 'Kiwi Space Radar' at Naseby. No standing ADF space base in NZ.",
+      "label": "FACT"
      },
      {
       "k": "NZ footprint in AUS",
-      "v": "TO_VERIFY — reported NZDF embed as Director of the Australian Air and Space Warfare Centre and any NZDF personnel in Australian space organisations pending confirmation.",
-      "label": "TO_VERIFY"
+      "v": "NZDF personnel worked the Joint Commercial Operations floor at RAAF Base Darwin during Exercise Pitch Black 2024. NZ's standing space liaison officer is posted to US (not Australian) Space Command, Colorado. No permanent NZDF embed inside Australian Space Command identified.",
+      "label": "FACT"
      },
      {
       "k": "Launch",
@@ -528,123 +561,254 @@ button{font-family:inherit;cursor:pointer;color:inherit}
     ],
     "pacific": "Both are Pacific-facing. NZ's No. 62 Squadron leads the Pacific cell of Joint Commercial Operations alongside Australia, Japan and the Republic of Korea — a live operational SDA channel and the most promising existing hook for combined AU-NZ SDA work. A joint 'Anzac' space offer to the Pacific is more regionally acceptable than an Australia-only one.",
     "multilateral": "Five Eyes; CSpO (NZ 2015); MNF-OOD (NZ 2024); FPDA (1971); ABCANZ; AUSCANNZUKUS; TTCP; AFIC; the Allied System for Geospatial Intelligence; Artemis Accords (NZ 31 May 2021).",
-    "exercises_ops": "TO_VERIFY — NZ participation in space exercises, Exercise 'Shortlook', Talisman Sabre and RIMPAC space play pending confirmation from the research stream.",
-    "force_overview": "NZDF self-describes as a consumer of space-based services. No. 62 Squadron RNZAF (RNZAF Base Auckland, Whenuapai) is the military space unit; a New Zealand Space Operations Centre is in development. Two NZDF payloads have reached orbit (functions not public). WGS participation since 2012.",
+    "exercises_ops": "NZ participates in Talisman Sabre (2025, space domain), RIMPAC (2026) and worked the JCO floor at RAAF Darwin during Pitch Black 2024. Exercise 'Shortlook' and 'Operation Solene' are referenced in tasking/reporting but are NOT open-source confirmed as to scope - do not assert.",
+    "force_overview": "NZDF self-describes as a consumer of space-based services. No. 62 Squadron RNZAF (RNZAF Base Auckland) is the military space unit and leads the JCO Pacific cell; a NZ Space Operations Centre is in development. NZDF Defence Science flew its first orbital research payloads - Korimako (Mar 2024) and Tui (2025). The NZDF Air and Space Warfare Centre (Ohakea) is directed by an embedded RAAF officer. WGS participation since 2012.",
     "industry": "Rocket Lab (US-domiciled, Mahia); LeoLabs (US-HQ, Naseby radar); plus Dawn Aerospace, Zenno Astronautics, Astrix Astronautics and others with no sourced defence contracts (TO_VERIFY). NZ's civil space regulator is the NZ Space Agency within MBIE.",
-    "capability_assessment_note": "The radar chart compares New Zealand (filled) against Australia (outline). It is an ASSESSMENT on the model's 0-5 anchors, not a measured index. Launch throughput is high but sovereignty-caveated (Rocket Lab is US-domiciled)."
+    "capability_assessment_note": "The radar chart compares New Zealand (filled) against Australia (outline). It is an ASSESSMENT on the model's 0-5 anchors, not a measured index. Launch throughput is high but sovereignty-caveated (Rocket Lab is US-domiciled).",
+    "nds_mapping": "NDS 2026 (para 7.24) directs Defence to operationalise the alliance with New Zealand across SIX lines of effort: force posture activities; combined operations and exercises; preparedness; industry integration; resilience; and Pacific security. A defence-space workstream sits naturally inside 'combined operations and exercises' (SDA/JCO), 'preparedness' (workforce/FORGEN), 'resilience' (dispersed ground segment) and 'Pacific security' (joint Pacific SDA). Space is not yet an explicit NZ line of effort - inserting it is the opportunity. IIP 2026 funds $9-12bn in space (SATCOM, SDA sensors, space control), the architecture a NZ partnership would plug into."
    },
    "leadership": {
-    "note": "Factual professional profiles only — appointment, background, publicly stated priorities. No influence or psychological analysis. Names/appointments marked TO_VERIFY are held pending open-source confirmation from the research stream and render as 'pending confirmation'.",
+    "note": "Factual professional profiles only - appointment, background, publicly stated priorities (no influence or psychological analysis). Confirmed against public sources as at 24 July 2026.",
     "profiles": [
      {
       "side": "AU",
-      "appointment": "Commander Defence Space Command",
-      "name": "MAJGEN Novak (per tasking; open-source confirmation TO_VERIFY)",
-      "rank": "MAJGEN",
-      "since": "TO_VERIFY",
-      "background": "TO_VERIFY",
-      "priorities": "TO_VERIFY",
-      "label": "TO_VERIFY",
+      "appointment": "Commander Space Command (SPACECOMD)",
+      "name": "MAJGEN Greg Novak, AM",
+      "rank": "MAJGEN (Army)",
+      "since": "December 2023",
+      "background": "Succeeded inaugural commander AVM Cath Roberts (from 18 Jan 2022). Former Commander 6th Brigade; extensive space and operational experience incl. work with US Strategic Command on strategic deterrence and space operations. Confirmed in command mid-2026.",
+      "priorities": "Four lines of effort (2026): advance space as an independent domain; a resilient multi-orbit architecture with deterrent capability; specialist trained personnel; and cooperative ties with industry, government and allies. Cites the $9-12bn IIP space envelope.",
+      "label": "FACT",
       "audience": true
      },
      {
+      "side": "AU",
+      "appointment": "Chief of Joint Capabilities (Novak's superior)",
+      "name": "AIRMSHL Glen Braz, AM, CSC, DSM",
+      "rank": "AIRMSHL",
+      "since": "7 July 2026",
+      "background": "~40 years RAAF; former Air Commander Australia, Deputy Chief of Air Force, Commander Australian Air Task Group Middle East. Replaced LTGEN Susan Coyle (now Chief of Army). JCG holds space, cyber, logistics.",
+      "priorities": "Joint Capabilities Group - space, cyber, logistics, national support.",
+      "label": "FACT"
+     },
+     {
+      "side": "AU",
+      "appointment": "Chief of Air Force",
+      "name": "AIRMSHL Stephen Chappell, DSC, CSC, OAM",
+      "rank": "AIRMSHL",
+      "since": "3 July 2024",
+      "background": "F/A-18 pilot; USAF Aggressor exchange; former Head Military Strategic Commitments. Operations Falconer and Okra.",
+      "priorities": "Innovation and readiness in 'the most volatile regional security environment since WWII' (reported).",
+      "label": "FACT"
+     },
+     {
       "side": "NZ",
-      "appointment": "Chief of Air Force (RNZAF) / senior space lead",
-      "name": "AVM Darryn Webb (appointment TO_VERIFY — confirm current role)",
+      "appointment": "Chief of Defence Force",
+      "name": "AIRMSHL Tony Davies, MNZM",
+      "rank": "AIRMSHL",
+      "since": "6 June 2024",
+      "background": "Former Chief of Air Force (2016-18). Succeeded AIRMSHL Kevin Short.",
+      "priorities": "Uplifting NZDF capability under the DCP 2025 and the integrated Anzac force.",
+      "label": "FACT"
+     },
+     {
+      "side": "NZ",
+      "appointment": "Chief of Air Force (RNZAF) — senior space lead",
+      "name": "AVM Darryn Webb, MNZM",
       "rank": "AVM",
-      "since": "TO_VERIFY",
-      "background": "TO_VERIFY",
-      "priorities": "Signed the NZ-US Statement of Intent on military space operations, 1 July 2026 (as Chief of Air Force, per reporting).",
-      "label": "TO_VERIFY"
+      "since": "2 October 2023",
+      "background": "C-130 transport pilot; former Deputy Chief of Air Force; led NZ's Managed Isolation and Quarantine (2020). Signed the NZ liaison-officer arrangement with USSPACECOM (Apr 2025) and the NZ-US military-space Statement of Intent with Gen Saltzman (10 May 2026).",
+      "priorities": "'Space isn't a nice to have, it is the difference between security and vulnerability' (Space Chief's Conclave, Canberra, 18 Mar 2026). Stand-up of NZ military space.",
+      "label": "FACT"
      },
      {
       "side": "NZ",
       "appointment": "No. 62 Squadron RNZAF — Commanding Officer",
       "name": "WGCDR Matt Tristram",
       "rank": "WGCDR",
-      "since": "2025",
-      "background": "Inaugural CO of NZ's first military space unit, stood up 4 July 2025 at RNZAF Base Auckland.",
-      "priorities": "Stand-up of No. 62 Squadron; leads the JCO Pacific cell; NZ Space Operations Centre in development.",
+      "since": "July 2025",
+      "background": "Inaugural CO of NZ's first military space unit, stood up 4 July 2025 at RNZAF Base Auckland; ~a dozen personnel; operates telescopes at a Whangaparaoa observatory; tracked Artemis II at 70,000 km for USSF Delta 5 (Apr 2026).",
+      "priorities": "Leads the JCO Pacific cell; NZ Space Operations Centre in development.",
       "label": "FACT"
      },
      {
       "side": "NZ",
-      "appointment": "NZDF Integrated Project Team Leader — Space",
-      "name": "Dimitri Geidelberg (role TO_VERIFY)",
-      "rank": "TO_VERIFY",
-      "since": "TO_VERIFY",
-      "background": "TO_VERIFY",
-      "priorities": "Reported working-level lead for NZ Defence space capability; a visit to Canberra and Adelaide is among the engagements to confirm.",
-      "label": "TO_VERIFY"
+      "appointment": "Space capability lead, NZ Ministry of Defence / NZ Space Agency",
+      "name": "Dimitri Geidelberg",
+      "rank": "Official",
+      "since": "—",
+      "background": "Works on space capability at the NZ Ministry of Defence; earlier a founding NZ Space Agency staffer (policy/regulatory). Announced NZDF's entry to JCO-Pacific (Sep 2023). Exact current title ('IPT Leader Space') not confirmed in open sources.",
+      "priorities": "Working-level NZ Defence space capability and policy.",
+      "label": "FACT / TO_VERIFY"
+     },
+     {
+      "side": "NZ/AU",
+      "appointment": "Director, NZDF Air and Space Warfare Centre (RAAF officer embedded in NZ)",
+      "name": "GPCAPT Michael Duyvene de Wit (RAAF)",
+      "rank": "GPCAPT",
+      "since": "February 2026",
+      "background": "Inaugural Director of the NZDF Air and Space Warfare Centre at RNZAF Base Ohakea - a RAAF officer leading an NZ air/space organisation (initial staff of 17 split Ohakea/Auckland). A concrete, high-trust Australia-to-NZ embed and the clearest evidence of AU-NZ air/space integration.",
+      "priorities": "Stand-up of the NZDF ASWC.",
+      "label": "FACT"
+     },
+     {
+      "side": "NZ/AU",
+      "appointment": "Deputy Chief of Joint Operations, ADF (NZDF officer embedded in Australia)",
+      "name": "MAJGEN Hugh McAslan (NZDF)",
+      "rank": "MAJGEN",
+      "since": "October 2024",
+      "background": "NZDF officer appointed Australia's Deputy Chief of Joint Operations - described by Defence as the highest senior appointment of a foreign military officer into the ADF.",
+      "priorities": "Trans-Tasman operational integration.",
+      "label": "FACT"
      }
     ]
    },
    "calendar": {
-    "note": "Last 12 months and next 24 months, emphasis on the next 6. Every entry needs an open-source citation; entries marked TO_VERIFY render as 'unconfirmed' and must not be presented as fact in a minute or brief until sourced.",
+    "note": "Last 12 months and next 24 (emphasis: next 6). Confirmed items carry a source; the inaugural 2-star Space Talks, a Geidelberg Canberra/Adelaide visit and Exercise 'Shortlook' are NOT open-source confirmed and are shown only as the tasking premise, flagged - they must not be asserted as fact in a minute or brief.",
     "events": [
+     {
+      "when": "2024-08-05",
+      "window": "past",
+      "title": "NZDF worked the JCO operations floor at RAAF Base Darwin (Exercise Pitch Black 2024)",
+      "level": "Working (space ops)",
+      "note": "NZ space footprint in Australia, alongside ADF, JASDF and BoM.",
+      "label": "FACT"
+     },
      {
       "when": "2025-07-04",
       "window": "past",
       "title": "No. 62 Squadron RNZAF stood up",
       "level": "Service",
-      "note": "RNZAF Base Auckland; NZ's first military space unit.",
+      "note": "RNZAF Base Auckland; NZ's first military space unit (~12 personnel).",
+      "label": "FACT"
+     },
+     {
+      "when": "2025-07 to 08",
+      "window": "past",
+      "title": "Exercise Talisman Sabre 2025 (NZ + Indonesia participated; space domain)",
+      "level": "Multinational exercise",
+      "note": "13 Jul-4 Aug 2025; 19 nations; 600+ NZDF personnel.",
+      "label": "FACT"
+     },
+     {
+      "when": "2025-08-25",
+      "window": "past",
+      "title": "NZ made JCO participation ongoing NZDF core business",
+      "level": "Policy",
+      "note": "62 Sqn runs the JCO Pacific cell.",
+      "label": "FACT"
+     },
+     {
+      "when": "2025-10-01",
+      "window": "past",
+      "title": "Australia-NZ bilateral Defence Ministers' Meeting (Marles-Collins)",
+      "level": "Ministerial",
+      "note": "Australia.",
+      "label": "FACT"
+     },
+     {
+      "when": "2026-02-18",
+      "window": "past",
+      "title": "RAAF GPCAPT Duyvene de Wit named inaugural Director, NZDF Air and Space Warfare Centre",
+      "level": "Service embed (AU->NZ)",
+      "note": "Concrete Australia-to-NZ air/space embed at Ohakea.",
       "label": "FACT"
      },
      {
       "when": "2026-03-17",
       "window": "past",
-      "title": "ANZMIN 2+2 and Anzac 2035 CDR statement",
+      "title": "ANZMIN 2+2 and Anzac 2035 CDR statement (Canberra)",
       "level": "Ministerial",
-      "note": "Canberra; integrated 'Anzac force' vision.",
+      "note": "Integrated 'Anzac force' vision. No space passages in the statement.",
       "label": "FACT"
      },
      {
-      "when": "2026-07-01",
+      "when": "2026-03-17 to 18",
       "window": "past",
-      "title": "NZ-US Statement of Intent on military space operations",
-      "level": "Service (CAF/CSO)",
-      "note": "Webb-Saltzman; NZ's first military-space instrument with any partner.",
+      "title": "Air and Space Power Conference 2026 (Canberra) + Space Chief's Conclave (18 Mar)",
+      "level": "Conference",
+      "note": "AVM Webb attended and spoke at the Space Chief's Conclave, AWM.",
       "label": "FACT"
      },
      {
-      "when": "2026-07-10",
+      "when": "2026-04-05 to 07",
       "window": "past",
-      "title": "Plan ANZAC (army-to-army) signed",
-      "level": "Service",
-      "note": "Trans-Tasman army integration; land domain.",
+      "title": "62 Sqn tracked Artemis II for USSF Delta 5",
+      "level": "Operational (SDA)",
+      "note": "Tracked Orion at ~70,000 km.",
       "label": "FACT"
      },
      {
-      "when": "2026",
-      "window": "next6",
-      "title": "Inaugural AUS-NZ 2-star Space Talks (New Zealand)",
-      "level": "2-star / staff talks",
-      "note": "The engagement this briefing supports. Exact date/scope TO_VERIFY.",
-      "label": "TO_VERIFY"
+      "when": "2026-05-10",
+      "window": "past",
+      "title": "NZ-US military space Statement of Intent signed (Saltzman-Webb)",
+      "level": "Service (CSO/CAF)",
+      "note": "NZ's first military-space instrument with any partner - with the US, not Australia (reported 1 Jul 2026).",
+      "label": "FACT"
      },
      {
-      "when": "2026",
+      "when": "2026-05-30",
+      "window": "past",
+      "title": "Japan-Australia-NZ Trilateral Defence Ministers' Meeting (Singapore)",
+      "level": "Ministerial (trilateral)",
+      "note": "Marles, Penk, Koizumi.",
+      "label": "FACT"
+     },
+     {
+      "when": "2026-06",
+      "window": "past",
+      "title": "RIMPAC 2026 (NZ, Australia, Indonesia among ~30 nations)",
+      "level": "Multinational exercise",
+      "note": "HMNZS Te Mana + Aotearoa; ~280 NZ personnel.",
+      "label": "FACT"
+     },
+     {
+      "when": "2026 (forthcoming)",
       "window": "next6",
-      "title": "Visit by NZDF IPT Leader Space (D. Geidelberg) to Canberra and Adelaide",
-      "level": "Working",
-      "note": "Working-level engagement; date TO_VERIFY.",
+      "title": "Forthcoming AUS-NZ space staff talks (this brief's purpose)",
+      "level": "Staff talks",
+      "note": "An inaugural AUS-NZ 2-star space talks in New Zealand is the tasking premise for this brief; it is NOT open-source confirmed and must not be stated as fact until sourced.",
       "label": "TO_VERIFY"
      },
      {
       "when": "2026-07-29",
       "window": "next6",
-      "title": "GBSI regime — automatic-authorisation transition ends",
+      "title": "NZ ground-based space infrastructure regime - automatic-authorisation transition ends",
       "level": "Regulatory (NZ)",
-      "note": "In-scope operators must be authorised from this date; gates any AU ground infrastructure in NZ.",
+      "note": "Gates any AU-benefiting ground infrastructure in NZ from this date.",
+      "label": "FACT"
+     },
+     {
+      "when": "2026-10-05 to 09",
+      "window": "next24",
+      "title": "International Astronautical Congress 2026 (Antalya)",
+      "level": "Conference",
+      "note": "Global space congress.",
+      "label": "FACT"
+     },
+     {
+      "when": "2026-Q4",
+      "window": "next24",
+      "title": "Rocket Lab Neutron first flight expected",
+      "level": "Industry",
+      "note": "From LC-3, Wallops (plan-of-record, not yet flown).",
+      "label": "TO_VERIFY"
+     },
+     {
+      "when": "2027-02-23 to 28",
+      "window": "next24",
+      "title": "Avalon Australian International Airshow 2027",
+      "level": "Conference / airshow",
+      "note": "Geelong, Victoria.",
       "label": "FACT"
      },
      {
       "when": "2027",
       "window": "next24",
-      "title": "Air and Space Power Conference (Australia) — CJC bilateral",
-      "level": "Conference / bilat",
-      "note": "Annual RAAF conference (Canberra); AVM Webb participation and CJC bilateral TO_VERIFY for the relevant year.",
-      "label": "TO_VERIFY"
+      "title": "ANZMIN 2+2 hosted by New Zealand; Pacific Islands Forum hosted by NZ",
+      "level": "Ministerial / regional",
+      "note": "Per the 17 Mar 2026 joint statement.",
+      "label": "FACT"
      }
     ]
    },
@@ -661,8 +825,8 @@ button{font-family:inherit;cursor:pointer;color:inherit}
      {
       "id": "fgn",
       "name": "2. Workforce design / FORGEN",
-      "current": "No. 62 Squadron is ~12 personnel, stood up Jul 2025; a NZ Space Operations Centre is in development. NZ has minimal organic space workforce depth. A reported NZDF embed in the Australian Air and Space Warfare Centre is TO_VERIFY.",
-      "opportunity": "Combined space workforce generation: shared training and courses, personnel exchanges under the existing status-of-forces arrangement, an Australian training pathway for NZ's growing space cadre, and reciprocal embeds. This is the cheapest, highest-goodwill line of effort and it uses instruments that already exist.",
+      "current": "No. 62 Squadron is ~12 personnel (stood up Jul 2025); a NZ Space Operations Centre is in development. A RAAF officer directs the NZDF Air and Space Warfare Centre at Ohakea - a live, high-trust Australia-to-NZ embed. Australia's own space workforce is maturing (Defence School of Space and Cyber; first ADF space IET graduates 2026).",
+      "opportunity": "Deepen combined workforce generation on the ASWC-embed precedent: shared training and courses, personnel exchanges under the existing status-of-forces arrangement, an Australian training pathway for NZ's growing space cadre, and reciprocal embeds. Cheapest, highest-goodwill line, using instruments that already exist.",
       "constraint": "Scale — NZ's cadre is tiny; Australia would be the net provider. Attrition and personnel shortfalls on both sides (TO_VERIFY NZ figures)."
      },
      {
@@ -741,9 +905,10 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    "minute_defaults": {
     "subject": "AUSTRALIA-NEW ZEALAND SPACE COOPERATION - PRIORITIES FOR THE INAUGURAL 2-STAR SPACE TALKS",
     "references": [
+     "NDS 2026, para 7.24 (operationalise the AU-NZ alliance across six lines of effort)",
      "Anzac 2035 - Closer Defence Relations Statement, 17 Mar 2026",
      "Arrangement between the NZ MBIE and the Australian Space Agency Regarding Space Cooperation for Peaceful Purposes, 22 Oct 2019",
-     "Letter, Hon Judith Collins KC (NZ Minister for Defence and Space) to Deputy Prime Minister, ground-based space infrastructure regime (in hand)"
+     "Letter, Hon Judith Collins KC (NZ Minister for Space) to Deputy Prime Minister on the ground-based space infrastructure regime (in hand)"
     ]
    }
   },
@@ -753,21 +918,21 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    "name": "Australian Industry & Academia",
    "flag": "AU",
    "region": "Sovereign",
-   "one_line": "Australia's sovereign space industrial base and research sector — the supply-side of the partnership plan and the focus of the Defence x Industry view.",
+   "one_line": "Australia's sovereign space industrial base and research sector - genuine niches (ground/SDA hosting, small-sat design-build-operate, returns, data/analytics) against strategic dependencies (large SATCOM, PNT, GEO-class manufacture, critical subsystems). The supply-side of the partnership plan.",
    "maturity": {
     "partnership": {
      "score": 3,
-     "label": "Developing",
      "of": 5,
-     "basis": "Growing Defence-industry engagement; sovereign capability in SDA, EO and components; import/ally-dependent in launch and large SATCOM.",
-     "trajectory": "Expanding"
+     "label": "Developing",
+     "basis": "Defence-industry engagement deepening (Statement on Space 21 Jul 2026; NRFC ~$200m across six space raises in 18 months; first ADF space IET graduates 2026), but JSCFADT found industry has 'limited visibility' of Defence's space requirements (Ch 3).",
+     "trajectory": "Expanding - state-anchored patient capital and a new national space policy."
     },
     "intrinsic": {
      "score": 3,
-     "label": "Developing",
      "of": 5,
-     "basis": "Genuine sovereign niches (ground segment, SDA, cubesats, PNT augmentation, components) against dependence in sovereign launch and large SATCOM. Detail in the Defence x Industry view.",
-     "note": "Populated by the industry research stream."
+     "label": "Developing",
+     "basis": "Real sovereign niches (Inovor small-sat bus, Fleet ASCEND2LEO tactical SATCOM, Southern Launch returns, EOS/HEO/Saber SDA-and-ops) against import/ally dependence in strategic wideband SATCOM, PNT and GEO-class manufacture; sovereign launch licensed and funded but not yet proven to orbit (Gilmour Eris TF1 failed 30 Jul 2025).",
+     "note": "Scored on demonstrated sovereign capability by supply-chain layer (see the stack below)."
     }
    },
    "radar": {
@@ -783,11 +948,220 @@ button{font-family:inherit;cursor:pointer;color:inherit}
     }
    },
    "factsheet": {
-    "strategic_overview": "TO_VERIFY — populated by the Australian industry / supply-chain research stream (LOT 14, full-stack supply chain, barriers to sovereign launch, ASPI, burden-sharing).",
-    "key_messages": [],
-    "fast_facts": [],
-    "key_agreements": [],
-    "capability_assessment_note": "Australian sovereign supply-chain maturity by layer is shown in the Defence x Industry view once the research stream lands."
+    "strategic_overview": "Australia's sovereign space strengths are geography-anchored ground/SDA hosting, small-satellite design-build-operate, orbital returns/re-entry, and space data/analytics. It is import- or ally-dependent in strategic SATCOM, PNT, GEO-class manufacture and critical subsystems; sovereign launch is licensed and funded but not yet proven to orbit. The July 2026 Statement on Space and the NRFC's patient capital are reshaping the incentives.",
+    "bilateral_relationship": "The Defence-industry relationship is the supply side of every partnership option: what Australia can build sovereignly determines where burden-sharing is a choice versus a necessity.",
+    "key_messages": [
+     {
+      "text": "Australia's genuine sovereign strengths are geography (ground/SDA hosting), small-sat design-build-operate, returns/re-entry, and data/analytics. These are exactly the currencies Australia brings to partners - including New Zealand.",
+      "label": "ASSESSMENT"
+     },
+     {
+      "text": "Strategic wideband SATCOM is the burning platform: JP9102 was cancelled 4 Nov 2024, and Optus C1 (EOL 2027), WGS-6 (2027) and IS-22 (2030) are all expiring. The pivot is to resilient multi-orbit (IIP 2026), with a sovereign tactical-LEO edge (Fleet ASCEND2LEO).",
+      "label": "FACT"
+     },
+     {
+      "text": "JSCFADT (Ch 3, Rec 6) told Defence to communicate its requirements to trusted industry, identify the response options only Australian industry can deliver when allied services are disabled/re-tasked, and commit to sovereign capability to reduce reliance on allies for critical space infrastructure. This model is a scaffold for exactly that.",
+      "label": "FACT"
+     },
+     {
+      "text": "Burden-sharing is appropriate for deep-space SDA (DARC), interim strategic SATCOM and workforce; sovereignty is essential for assured ADF communications, reconstitution (responsive launch + small-sat build), and sovereign data custody/mission ops.",
+      "label": "ASSESSMENT"
+     }
+    ],
+    "fast_facts": [
+     {
+      "k": "National space policy",
+      "v": "'Statement on Space' released 21 July 2026 - five focus areas (Trusted Space Services; Spaceflight Ecosystem; Space Platforms; Microgravity; Exploration Technologies). A Statement of Expectations to the ASA targets faster regulatory approvals.",
+      "label": "FACT"
+     },
+     {
+      "k": "IIP 2026 space envelope",
+      "v": "$9-12bn over the decade (SATCOM $5.2-7.2bn; SDA sensors $3.2-4.2bn; space control $680-880m). ASPI notes only a small fraction is approved.",
+      "label": "FACT"
+     },
+     {
+      "k": "SATCOM (JP9102)",
+      "v": "Cancelled 4 Nov 2024 ('a single orbit GEO system would not meet strategic priorities'); pivot to multi-orbit. Interim reliance on Optus C1 (2027), WGS-6 (2027), IS-22 (2030).",
+      "label": "FACT"
+     },
+     {
+      "k": "DARC",
+      "v": "Deep-space Advanced Radar Capability - trilateral (AUS/UK/US); first site Exmouth WA, expected operational ~2026, extending surveillance to GEO under Operation Dyurra. US prime: TO_VERIFY.",
+      "label": "FACT / TO_VERIFY"
+     },
+     {
+      "k": "Sovereign launch",
+      "v": "Gilmour Eris TestFlight 1 flew 30 Jul 2025 (failed on ascent - supplier oxidiser-pump faults); TF2 planned 2026. First orbital facility licence (Bowen, Mar 2024) and first orbital launch permit (Nov 2024). No Australian vehicle has yet reached orbit.",
+      "label": "FACT"
+     },
+     {
+      "k": "Returns / re-entry",
+      "v": "Genuinely sovereign niche: Varda W-5 landed Koonibba 30 Jan 2026; 19-mission Varda pipeline; SpaceWorks agreement; Southern Launch cislunar tracking for Artemis II (23 Jul 2026).",
+      "label": "FACT"
+     },
+     {
+      "k": "Capital",
+      "v": "NRFC invested ~$200m across six space raises in 18 months; Gilmour $217m Series E (Jan 2026); Southern Launch $25m ($10m NRFC, Jun 2026); Fleet Series D A$150m; Myriota $25m NRF.",
+      "label": "FACT"
+     },
+     {
+      "k": "Hub",
+      "v": "Lot Fourteen, Adelaide - co-locates the Australian Space Agency HQ, SmartSat CRC, the Space Discovery Centre, Myriota and defence-adjacent tenants, with a Defence HQ under construction.",
+      "label": "FACT"
+     }
+    ],
+    "supply_chain": [
+     {
+      "layer": "Launch",
+      "maturity": "Emerging",
+      "note": "Licensed and funded; Eris TF1 failed on ascent (Jul 2025), TF2 2026. Spaceports: Bowen, Whalers Way, Koonibba, Cape York. No sovereign vehicle to orbit yet."
+     },
+     {
+      "layer": "Returns / re-entry",
+      "maturity": "Strong (niche)",
+      "note": "Varda landings at Koonibba; 19-mission pipeline; SpaceWorks; Artemis II tracking. A differentiated national capability."
+     },
+     {
+      "layer": "Satellite manufacture / bus",
+      "maturity": "Partial",
+      "note": "Inovor (Buccaneer bus, Kanyini shell), Fleet (Adelaide factory), SMC Optimus 450kg. Small-sat class only; no sovereign GEO-class bus."
+     },
+     {
+      "layer": "Payloads / sensors",
+      "maturity": "Partial",
+      "note": "MANTIS liquid-lens (Buccaneer), Myriota IoT, EOS electro-optics. Niche excellence, thin depth."
+     },
+     {
+      "layer": "Ground segment",
+      "maturity": "Strong (sovereign-operated)",
+      "note": "Kapooka + WA wideband (NG Australia, JP2008 5B2 $223m); Optus Belrose/Lockridge; Cocos tracking for India crewed program."
+     },
+     {
+      "layer": "SDA / SSA",
+      "maturity": "Partial (ally-anchored)",
+      "note": "DARC Exmouth (trilateral, ~2026); EOS optical/laser; HEO Tessera; Saber SBMS; sovereign SkyDome passive-RF trial. Hosting != sovereign tasking of the whole architecture."
+     },
+     {
+      "layer": "PNT",
+      "maturity": "Gap (seedling)",
+      "note": "No sovereign satnav; QuantX optical atomic clocks; SouthPAN augmentation with NZ. Statement on Space lists PNT first among Trusted Space Services."
+     },
+     {
+      "layer": "SATCOM",
+      "maturity": "Dependent",
+      "note": "JP9102 cancelled; expiring assets (C1/WGS-6 2027, IS-22 2030). Sovereign tactical-LEO edge: Fleet ASCEND2LEO $6.4m full-stack ADF demo; Myriota 5G NTN."
+     },
+     {
+      "layer": "Data / analytics / ops",
+      "maturity": "Partial-Strong",
+      "note": "Saber SBMS (3,000+ users, USSF contract), HEO Inspect, Fleet ExoSphere, Myriota. Commercially viable and exportable."
+     },
+     {
+      "layer": "Components / subsystems",
+      "maturity": "Dependent",
+      "note": "Eris TF1 failure traced to external supplier components; Inovor's full-subsystem build is the small-scale counter-example; ANU National Space Test Facility."
+     }
+    ],
+    "firms": [
+     {
+      "name": "Inovor Technologies",
+      "role": "Sovereign small-sat prime; Buccaneer Main Mission bus (DSTG/RAAF/Space Command), Kanyini shell; vertically integrated, dedicated Defence line.",
+      "label": "FACT"
+     },
+     {
+      "name": "Fleet Space",
+      "role": "$6.4m ASCEND2LEO full-stack multi-orbit SATCOM demo for the ADF (Centauri-6 two-way voice/data); new 5,300 sqm Adelaide factory; Series D A$150m.",
+      "label": "FACT"
+     },
+     {
+      "name": "Gilmour Space",
+      "role": "Sovereign launch; DSTG agreement; first orbital facility licence + launch permit; Eris TF1 (failed Jul 2025), TF2 2026; $217m Series E.",
+      "label": "FACT"
+     },
+     {
+      "name": "Southern Launch",
+      "role": "Whalers Way + Koonibba; Varda returns; Artemis II cislunar tracking (23 Jul 2026); $25m raise ($10m NRFC).",
+      "label": "FACT"
+     },
+     {
+      "name": "EOS (Electro Optic Systems)",
+      "role": "Optical SDA, satellite laser ranging, space control telescopes; space sustainability. Named Defence contracts: TO_VERIFY.",
+      "label": "FACT"
+     },
+     {
+      "name": "HEO",
+      "role": "Non-Earth imaging / SDA (Tessera 'sovereign SDA'); Defence & Intelligence customers. Named contracts: TO_VERIFY.",
+      "label": "FACT"
+     },
+     {
+      "name": "Saber Astronautics",
+      "role": "Responsive Space Operations Centres (AU/US); Space Battle Management System (3,000+ users); US$1.2m USSF contract (Jan 2025).",
+      "label": "FACT"
+     },
+     {
+      "name": "Space Machines Company",
+      "role": "Optimus 450kg orbital servicing vehicle; Space MAITRI with NSIL (India) under ASA $18m India program.",
+      "label": "FACT"
+     },
+     {
+      "name": "Northrop Grumman Australia",
+      "role": "Defence SATCOM ground station Kapooka NSW + WA under JP2008 Ph5B2 ($223m, 2017).",
+      "label": "FACT"
+     },
+     {
+      "name": "Optus",
+      "role": "C1 satellite + Defence payload since 2003; extended to inclined orbit to ~2027; ground at Belrose/Lockridge.",
+      "label": "FACT"
+     },
+     {
+      "name": "Lockheed Martin Australia",
+      "role": "JP9102 preferred bidder (Apr 2023) until cancellation (Nov 2024); 1,900+ staff.",
+      "label": "FACT"
+     },
+     {
+      "name": "Myriota",
+      "role": "Direct-to-orbit satellite IoT (Lot Fourteen); $25m NRF; HyperPulse 5G NTN; Defence among partners.",
+      "label": "FACT"
+     },
+     {
+      "name": "Skykraft",
+      "role": "Space-based air traffic management (UNSW Canberra); 2,976-sat ATM constellation filings. Defence role: TO_VERIFY.",
+      "label": "FACT / TO_VERIFY"
+     },
+     {
+      "name": "DSTG / UNSW Canberra",
+      "role": "M-series (M1/M2) RAAF satellites; Buccaneer Risk Mitigation Mission (2017). Biarri: TO_VERIFY.",
+      "label": "FACT"
+     }
+    ],
+    "lot14": "Lot Fourteen (Adelaide) is a 7-hectare innovation district on the old Royal Adelaide Hospital site, co-locating the Australian Space Agency HQ, SmartSat CRC (leading the Kanyini mission), the Australian Space Discovery Centre, Myriota, and defence-adjacent tenants (Saab, MITRE), with a Defence HQ and an Australian Defence Technologies Academy in the pipeline. It is the closest thing Australia has to a national space-industry hub - the natural neutral ground for a Defence-industry partnership model.",
+    "barriers": [
+     "Regulatory: the Space (Launches and Returns) Act 2018 requires separate facility licences and launch permits (Gilmour needed both across ~9 months for a first-of-type). The 21 Jul 2026 Statement of Expectations to the ASA targets faster approvals.",
+     "Technology Safeguards Agreement (in force 23 Jul 2024): enables US launch activity from Australia but launch-technology collaboration sits outside it, under US export-control licensing.",
+     "JP9102 cancellation (Nov 2024) alienated industry mid-build and left expiring SATCOM assets.",
+     "Funding/market: $9-12bn headline but a small fraction approved; NDS/IIP critiqued by ASPI for under-weighting commercial/sovereign launch. NRFC patient capital is the counterweight.",
+     "Industrial: Eris TF1 failed on externally-supplied oxidiser-pump components - the subsystem supply gap is itself a launch barrier."
+    ],
+    "burden_sharing": {
+     "share": [
+      "Deep-space SDA out to GEO (DARC) - Australia contributes irreplaceable geography and gains coverage it could never self-fund.",
+      "Interim strategic wideband SATCOM (WGS + commercial multi-orbit) while sovereign capability matures.",
+      "Civil/exploration and launch-market access (TSA; Australia-US Space Framework Agreement tabled 2026).",
+      "Workforce development - shared training pipelines (first ADF space courses graduated with the US CSO present, Jun 2026)."
+     ],
+     "sovereign": [
+      "Assured ADF communications when allied ISR/comms are 'disabled or re-tasked in the early stages of conflict' (JSCFADT) - sovereign tactical-LEO SATCOM + Australian-controlled ground segment.",
+      "Reconstitution - responsive launch + small-sat manufacture; allies will be reconstituting their own assets first.",
+      "Sovereign data custody and mission ops - national tasking of SDA/ISR analytics and battle management, even when sensors are shared.",
+      "Regulatory sovereignty - the Australian Government remains the decision-maker for all launch/return approvals, including TSA activity."
+     ]
+    },
+    "capability_assessment_note": "The radar chart is an ASSESSMENT on the model's 0-5 anchors. Supply-chain maturity by layer is in the stack above.",
+    "areas_of_cooperation": null,
+    "pacific": "",
+    "multilateral": "",
+    "force_overview": "",
+    "industry": ""
    },
    "leadership": {
     "note": "Industry leadership (incl. named senior industry attendee) handled in the Defence x Industry view.",
@@ -803,13 +1177,49 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": {
     "headline": "Sovereign niches against strategic dependencies.",
-    "points": []
+    "points": [
+     "Sovereign strengths: geography/ground/SDA hosting, small-sat design-build-operate, returns/re-entry, data/analytics.",
+     "Dependencies: strategic wideband SATCOM (JP9102 cancelled; assets expiring), PNT (no sovereign constellation), GEO-class manufacture, critical subsystems.",
+     "Launch licensed and funded (Gilmour, Southern Launch, ELA/ASC) but not yet proven to orbit.",
+     "New policy tailwind: Statement on Space (Jul 2026); NRFC ~$200m patient capital; first ADF space workforce graduates."
+    ]
    },
    "future_state": {
     "headline": "A path to securing the full-stack sovereign space supply chain.",
-    "points": []
+    "points": [
+     "Close the SATCOM gap via resilient multi-orbit + sovereign tactical-LEO edge (Fleet ASCEND2LEO).",
+     "Prove sovereign launch (Gilmour Eris TF2) and scale small-sat build (Inovor/Fleet/SMC) for reconstitution.",
+     "Turn SDA hosting (DARC/Exmouth) into sovereign tasking and data custody (EOS/HEO/Saber).",
+     "Use Lot Fourteen and JSCFADT Rec 6 to structure Defence-to-industry requirements communication.",
+     "Burden-share where appropriate (deep-space SDA, interim SATCOM, workforce); keep sovereignty where essential (assured comms, reconstitution, data custody)."
+    ]
    },
-   "opportunities": []
+   "opportunities": [
+    {
+     "id": "OPP-IND-A",
+     "title": "Close the assured-communications gap: sovereign tactical-LEO SATCOM + Australian-controlled ground segment",
+     "rationale": "JP9102's cancellation and expiring assets (C1/WGS-6 2027) leave a burning platform. Fleet's $6.4m ASCEND2LEO full-stack multi-orbit demo for the ADF proves a sovereign tactical edge; pair with Australian-controlled ground segment (Kapooka/WA) and resilient multi-orbit (IIP 2026).",
+     "deliverability": "Medium-High",
+     "binding_gap": "Strategic wideband remains ally/commercially dependent; multi-orbit acquisition not yet approved.",
+     "loe": []
+    },
+    {
+     "id": "OPP-IND-B",
+     "title": "Prove and scale sovereign reconstitution: responsive launch + small-sat build",
+     "rationale": "JSCFADT: the ADF must plan to reconstitute lost assets; allies will reconstitute their own first. Gilmour (launch), Inovor/Fleet/SMC (build) and Australian spaceports form the chain; NRFC patient capital is flowing.",
+     "deliverability": "Medium",
+     "binding_gap": "No Australian vehicle to orbit yet (Eris TF1 failed); subsystem supply-chain gap.",
+     "loe": []
+    },
+    {
+     "id": "OPP-IND-C",
+     "title": "Turn SDA hosting into sovereign tasking and data custody",
+     "rationale": "DARC/Exmouth gives Australia irreplaceable geography; sovereign exploitation (EOS, HEO, Saber, SkyDome) ensures Australia tasks and interprets, not just hosts.",
+     "deliverability": "Medium-High",
+     "binding_gap": "Defence struggles to articulate its SDA requirement top-down (JSCFADT).",
+     "loe": []
+    }
+   ]
   },
   "us": {
    "partner_key": "us",
@@ -2492,6 +2902,9 @@ function renderFactsheet(p){
     h+='</tbody></table></div>';
   }
 
+  /* industry deep block (Defence x Industry — domestic) */
+  if(f.supply_chain&&f.supply_chain.length){ h+=renderIndustry(f); }
+
   /* cooperation, pacific, multilateral */
   var trip="";
   if(f.areas_of_cooperation) trip+='<div class="card"><div class="sec-label">Areas of cooperation</div><ul style="list-style:none;font-size:12.5px">'+f.areas_of_cooperation.map(function(x){return '<li style="padding:4px 0;border-top:1px solid var(--hair2)">'+esc(x)+'</li>';}).join("")+'</ul></div>';
@@ -2516,6 +2929,27 @@ function renderFactsheet(p){
   return h;
 }
 function cls(l){return String(l||"").replace(/[^A-Za-z]/g,"").toUpperCase().indexOf("TOVERIFY")===0?"TO_VERIFY":(String(l).indexOf("/")>=0?"mix":String(l).toUpperCase());}
+function mchip(m){var s=String(m).toLowerCase();var c=s.indexOf("strong")>=0?"strong":(s.indexOf("depend")>=0||s.indexOf("gap")>=0?"dependent":"partial");return '<span class="mchip '+c+'">'+esc(m)+'</span>';}
+function renderIndustry(f){
+  var h='<div class="card" style="margin:16px 0"><div class="sec-label">Full-stack sovereign supply chain — maturity by layer <span class="lab ASSESSMENT">ASSESSMENT</span></div>'+
+    '<table class="sc-table"><thead><tr><th>Layer</th><th>Sovereign maturity</th><th>Evidence</th></tr></thead><tbody>';
+  f.supply_chain.forEach(function(x){ h+='<tr><td><b>'+esc(x.layer)+'</b></td><td>'+mchip(x.maturity)+'</td><td>'+esc(x.note)+'</td></tr>'; });
+  h+='</tbody></table></div>';
+  if(f.firms&&f.firms.length){
+    h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Australian defence-space industrial base</div><div class="firmgrid">';
+    f.firms.forEach(function(x){ h+='<div class="firm"><div class="fn">'+esc(x.name)+' <span class="lab '+cls(x.label)+'">'+esc(x.label)+'</span></div><div class="fr">'+esc(x.role)+'</div></div>'; });
+    h+='</div></div>';
+  }
+  if(f.lot14) h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Lot Fourteen — the national space-industry hub</div><p style="font-size:13px">'+esc(f.lot14)+'</p></div>';
+  if(f.barriers&&f.barriers.length) h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Barriers to sovereign launch</div><ul style="list-style:none">'+f.barriers.map(function(x){return '<li style="font-size:12.5px;padding:6px 0 6px 16px;position:relative;border-top:1px solid var(--hair2)"><span style="position:absolute;left:0;color:var(--assess)">&bull;</span>'+esc(x)+'</li>';}).join("")+'</ul></div>';
+  if(f.burden_sharing){
+    h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Burden-sharing vs sovereignty <span class="lab ASSESSMENT">ASSESSMENT</span></div><div class="bshare">'+
+      '<div class="col share"><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--enabling);font-weight:700;margin-bottom:4px">Burden-share where appropriate</div><ul>'+f.burden_sharing.share.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>'+
+      '<div class="col sov"><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:4px">Keep sovereign</div><ul>'+f.burden_sharing.sovereign.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>'+
+      '</div></div>';
+  }
+  return h;
+}
 
 /* ---------- RADAR ---------- */
 function renderRadar(p){
@@ -2548,16 +2982,13 @@ function renderRadar(p){
 function renderAlignment(p){
   var sa=BD.strategic_anchors||{};
   var nds=sa.nds||{}, iip=sa.iip||{};
+  function lbl(o){return (o.label&&o.label.indexOf("TO_VERIFY")<0)?'<span class="lab '+cls(o.label)+'">'+esc(o.label)+'</span>':'<span class="lab TO_VERIFY">TO_VERIFY</span>';}
   var h='<div class="align-map">';
-  h+='<div class="align-node"><div class="h">National Defence Strategy</div><p>'+esc(nds.space_treatment&&nds.space_treatment.indexOf("TO_VERIFY")<0?nds.space_treatment:"Space treatment pending confirmation from the strategic-documents stream.")+' <span class="lab TO_VERIFY">TO_VERIFY</span></p></div>';
-  h+='<div class="align-node"><div class="h">Integrated Investment Program</div><p>'+esc(iip.space_envelope&&iip.space_envelope.indexOf("TO_VERIFY")<0?iip.space_envelope:"Space investment envelope pending confirmation.")+' <span class="lab TO_VERIFY">TO_VERIFY</span></p></div>';
+  h+='<div class="align-node"><div class="h">'+esc(nds.name||"National Defence Strategy")+'</div><p>'+esc(nds.space_commitment||nds.space_treatment||"")+' '+lbl(nds)+'</p></div>';
+  h+='<div class="align-node"><div class="h">'+esc(iip.name||"Integrated Investment Program")+'</div><p>'+esc(iip.space_envelope||"")+' '+lbl(iip)+'</p></div>';
   h+='</div>';
-  /* partner-specific mapping */
   var map = (p.factsheet&&p.factsheet.nds_mapping) || null;
-  if(map){ h+='<p style="font-size:12.5px;color:var(--ink2);margin-top:12px">'+esc(map)+'</p>'; }
-  else {
-    h+='<p style="font-size:12.5px;color:var(--ink2);margin-top:12px">A New Zealand partnership serves NDS/IIP intent through assured access and southern-hemisphere / South Pacific SDA, PNT resilience (SouthPAN), allied burden-sharing, and Pacific engagement — the explicit mapping is confirmed once the strategic-documents stream lands. <span class="lab ASSESSMENT">ASSESSMENT</span></p>';
-  }
+  if(map){ h+='<p style="font-size:12.5px;color:var(--ink2);margin-top:12px">'+esc(map)+' <span class="lab ASSESSMENT">ASSESSMENT</span></p>'; }
   return h;
 }
 
