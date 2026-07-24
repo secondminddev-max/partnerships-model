@@ -881,7 +881,7 @@ function renderFactsheet(p){
 function renderKeyLeaders(p){
   var pf=(p.leadership&&p.leadership.profiles)||[];
   if(!pf.length) return "";
-  var own=PARTNER_SIDE[CURKEY]||"NZ", ownName=(FLAGDEF[CURKEY]&&FLAGDEF[CURKEY].name)||p.name;
+  var own=PARTNER_SIDE[CURKEY]||"\u0000", ownName=(FLAGDEF[CURKEY]&&FLAGDEF[CURKEY].name)||p.name;
   /* partner's own leaders first, then AU counterparts — so a country page never reads AUS names as that country's */
   var partnerP=pf.filter(function(x){return x.side===own;});
   var ausP=pf.filter(function(x){return x.side==="AU";});
@@ -975,7 +975,8 @@ function renderAlignment(p){
 }
 
 /* ---------- LEADERSHIP & CALENDAR ---------- */
-var PARTNER_SIDE={nz:"NZ",us:"US",uk:"UK",japan:"JP",canada:"CA",indonesia:"ID",domestic:"AU"};
+var PARTNER_SIDE={nz:"NZ",us:"US",uk:"UK",japan:"JP",canada:"CA",indonesia:"ID",domestic:"AU",
+  france:"FR",germany:"DE",india:"IN",italy:"IT",norway:"NO",rok:"KR",singapore:"SG",uae:"AE",pacific:"PI"};
 var RANKWORDS={GEN:1,LTGEN:1,MAJGEN:1,BGEN:1,BRIG:1,AIRMSHL:1,AVM:1,ACDRE:1,AIRCDRE:1,GPCAPT:1,WGCDR:1,SQNLDR:1,MAJ:1,COL:1,LTCOL:1,ADM:1,VADM:1,RADM:1,CMDR:1,CAPT:1,BGen:1,MajGen:1,Gen:1,Hon:1,Minister:1,Official:1,Mr:1,Ms:1,Dr:1,Sir:1,KC:1,AM:1,CSC:1,DSM:1,DSC:1,OAM:1,MNZM:1,RAN:1};
 function initials(name){
   var parts=String(name||"").replace(/[,()]/g,' ').split(/\s+/).filter(function(w){
@@ -1018,7 +1019,7 @@ function personCard(x){
 }
 function renderLeadership(p){
   var L=p.leadership||{profiles:[]}, C=p.calendar||{events:[]};
-  var own=PARTNER_SIDE[CURKEY]||"NZ", ownName=(FLAGDEF[CURKEY]&&FLAGDEF[CURKEY].name)||p.name;
+  var own=PARTNER_SIDE[CURKEY]||"\u0000", ownName=(FLAGDEF[CURKEY]&&FLAGDEF[CURKEY].name)||p.name;
   var h='';
   if(L.note) h+='<p style="font-size:12px;color:var(--muted);margin-bottom:14px">'+esc(L.note)+'</p>';
   if(!L.profiles.length){ h+='<div class="stub">Leadership profiles pending</div>'; }
@@ -1520,7 +1521,7 @@ function today(){
    priority lines with an owner and a by-when. */
 function buildPlacemat(p){
   var b=p.bluf||{}, m=p.maturity||{}, g=cbGrid(CURKEY), v=cbVerdict(CURKEY,g,p.name);
-  var own=PARTNER_SIDE[CURKEY]||"NZ";
+  var own=PARTNER_SIDE[CURKEY]||"\u0000";
   var theirs=((p.leadership&&p.leadership.profiles)||[]).filter(function(x){return x.side===own;}).slice(0,4);
   var ours=((p.leadership&&p.leadership.profiles)||[]).filter(function(x){return x.side==="AU";}).slice(0,3);
   var soon=((p.calendar&&p.calendar.events)||[]).filter(function(e){return e.window==="next6";}).slice(0,4);
