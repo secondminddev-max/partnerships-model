@@ -318,8 +318,26 @@ button{font-family:inherit;cursor:pointer;color:inherit}
   @page{size:A4 landscape;margin:8mm}
   body{background:#fff}
 }
+/* staffed pathway */
+.pw{margin:10px 0 4px;border:1px solid var(--hair);border-radius:8px;background:var(--surface2)}
+.pw>summary{cursor:pointer;padding:9px 13px;font-size:12px;font-weight:600;color:var(--navy2);list-style:none}
+.pw>summary::-webkit-details-marker{display:none}
+.pw>summary:before{content:"▸ ";color:var(--accent)}
+.pw[open]>summary:before{content:"▾ "}
+.pw-body{padding:4px 15px 14px}
+.pw-obj{font-size:12.5px;margin:6px 0 12px}
+.pw-two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:10px}
+@media(max-width:700px){.pw-two{grid-template-columns:1fr}}
+.pw-h{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:5px}
+.pw-actions,.pw-risks,.pw-meas{margin:0 0 0 16px;font-size:12px;color:var(--ink);line-height:1.5}
+.pw-kv{font-size:12px;color:var(--ink2);margin-bottom:3px}
 /* newsroom */
+.livefeeds{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}
+.lf{padding:8px 13px;border:1px solid var(--hair);border-radius:8px;background:var(--surface);font-size:12.5px;color:var(--navy2);text-decoration:none;font-weight:600}
+.lf:hover{border-color:var(--navy2);text-decoration:none}
+.lf.live{background:var(--navy);color:#fff;border-color:var(--navy)}
 .news{border:1px solid var(--hair);border-radius:10px;overflow:hidden;background:var(--surface)}
+.news-t a{color:var(--ink)}.news-t a:hover{color:var(--navy2)}
 .news-item{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:12px 16px;border-top:1px solid var(--hair2)}
 .news-item:first-child{border-top:none}
 .news-date{font-size:11.5px;font-weight:700;color:var(--ink2)}
@@ -921,7 +939,8 @@ button{font-family:inherit;cursor:pointer;color:inherit}
       "title": "No. 62 Squadron RNZAF stood up",
       "level": "Service",
       "note": "RNZAF Base Auckland; NZ's first military space unit (~12 personnel).",
-      "label": "FACT"
+      "label": "FACT",
+      "url": "https://www.nzdf.mil.nz/media-centre/news/new-space-squadron-unveiled/"
      },
      {
       "when": "2025-08-25",
@@ -929,7 +948,8 @@ button{font-family:inherit;cursor:pointer;color:inherit}
       "title": "NZ made JCO participation ongoing NZDF core business",
       "level": "Policy",
       "note": "62 Sqn runs the JCO Pacific cell.",
-      "label": "FACT"
+      "label": "FACT",
+      "url": "https://www.nzdf.mil.nz/media-centre/news/defence-space-awareness-programme-extended/"
      },
      {
       "when": "2025-10-01",
@@ -953,7 +973,8 @@ button{font-family:inherit;cursor:pointer;color:inherit}
       "title": "RAAF GPCAPT Duyvene de Wit named inaugural Director, NZDF Air and Space Warfare Centre",
       "level": "Service embed (AU->NZ)",
       "note": "Concrete Australia-to-NZ air/space embed at Ohakea.",
-      "label": "FACT"
+      "label": "FACT",
+      "url": "https://www.nzdf.mil.nz/media-centre/news/royal-australian-air-force-officer-heads-nzdf-air-and-space-warfare-centre/"
      },
      {
       "when": "2026-03-17",
@@ -961,7 +982,8 @@ button{font-family:inherit;cursor:pointer;color:inherit}
       "title": "ANZMIN 2+2 and Anzac 2035 CDR statement (Canberra)",
       "level": "Ministerial",
       "note": "Integrated 'Anzac force' vision. No space passages in the statement.",
-      "label": "FACT"
+      "label": "FACT",
+      "url": "https://www.minister.defence.gov.au/statements/2026-03-17/operationalising-australia-new-zealand-alliance-anzac-2035-closer-defence-relations-statement"
      },
      {
       "when": "2026-03-17 to 18",
@@ -985,7 +1007,8 @@ button{font-family:inherit;cursor:pointer;color:inherit}
       "title": "62 Sqn tracked Artemis II for USSF Delta 5",
       "level": "Operational (SDA)",
       "note": "Tracked Orion at ~70,000 km.",
-      "label": "FACT"
+      "label": "FACT",
+      "url": "https://www.nzdf.mil.nz/media-centre/news/stars-align-for-rnzaf-space-squadron-during-historic-artemis-ii-flight/"
      },
      {
       "when": "2026-05-10",
@@ -993,7 +1016,8 @@ button{font-family:inherit;cursor:pointer;color:inherit}
       "title": "NZ-US military space Statement of Intent signed (Saltzman-Webb)",
       "level": "Service (CSO/CAF)",
       "note": "NZ's first military-space instrument with any partner - with the US, not Australia (reported 1 Jul 2026).",
-      "label": "FACT"
+      "label": "FACT",
+      "url": "https://www.rnz.co.nz/news/science-and-technology/648419/nz-and-us-sign-statement-of-intent-over-military-space-operations"
      },
      {
       "when": "2026-05-19",
@@ -1025,7 +1049,8 @@ button{font-family:inherit;cursor:pointer;color:inherit}
       "title": "Build begins on Awarua (Southland) space headquarters (SpaceOps NZ)",
       "level": "Industry/infrastructure",
       "note": "$4.55m HQ; workforce 21->~30; completion early 2027.",
-      "label": "FACT"
+      "label": "FACT",
+      "url": "https://www.beehive.govt.nz/release/build-begins-southland-space-headquarters"
      },
      {
       "when": "2026-07-01",
@@ -1133,7 +1158,33 @@ button{font-family:inherit;cursor:pointer;color:inherit}
      "loe": [
       "cap",
       "interop"
-     ]
+     ],
+     "pathway": {
+      "objective": "Insert a standing defence-space line of effort into the Anzac 2035 / Closer Defence Relations framework so that space is tasked bilaterally, not left to multilateral fora.",
+      "actions": [
+       "At the space staff talks, secure NZ agreement in principle to a space annex to Anzac 2035.",
+       "Draft the annex scoping SDA, workforce and interoperability lines; circulate through the ANZMIN senior officials' channel.",
+       "Table the annex for endorsement at the next ANZMIN 2+2 (NZ to host, 2027).",
+       "Nominate an AU-NZ space working group to own delivery under the existing Joint Steering Committee."
+      ],
+      "lead": "COMD SPACECOMD (AU) with NZDF Chief of Air Force / No. 62 Sqn",
+      "support": "DFAT/MFAT; the ASWC (embedded RAAF director); Defence International Policy",
+      "gate": "Decision to table sits with Defence Ministers via ANZMIN; COMD SPACECOMD sponsors the military content.",
+      "cost": "Negligible — policy/staff effort; no new acquisition.",
+      "timeframe": "Agreement in principle at the talks; annex endorsed at ANZMIN 2027.",
+      "risks": [
+       "NZ signed its first military-space SoI with the US (May 2026) — Washington may be the preferred venue; move before the gap widens.",
+       "Non-binding CDR statements can under-deliver without a tasking owner."
+      ],
+      "measures": [
+       "Space annex endorsed at ANZMIN",
+       "AU-NZ space working group stood up with terms of reference"
+      ],
+      "deps": [
+       "ANZMIN cadence",
+       "2019 MBIE-ASA Joint Steering Committee as the civil counterpart"
+      ]
+     }
     },
     {
      "id": "OPP-NZ-B",
@@ -1144,7 +1195,35 @@ button{font-family:inherit;cursor:pointer;color:inherit}
      "loe": [
       "interop",
       "cap"
-     ]
+     ],
+     "pathway": {
+      "objective": "Stand up a bilateral SDA data-sharing arrangement and a combined space control working group, using the JCO Pacific cell as the operational nucleus.",
+      "actions": [
+       "Confirm releasability and the data-sharing instrument (leverage Five Eyes and the 1989 security-of-information agreement).",
+       "Formalise AU participation in the No. 62 Sqn-led JCO Pacific cell as a combined tasking node.",
+       "Agree an SDA data-sharing arrangement under the 2019 MBIE-ASA Joint Steering Committee (SSA already in scope).",
+       "Establish a combined space control working group to align procedures and threat picture."
+      ],
+      "lead": "COMD SPACECOMD (AU) with No. 62 Sqn (NZ)",
+      "support": "AGO/GEOINT; CSpO/MNF-OOD staffs; MBIE (civil SSA/SRSP)",
+      "gate": "Releasability ruling (AU classification authority); NZ national-interest test under the GBSI/OSHAA regime for any NZ-hosted sensor.",
+      "cost": "Low - uses existing sensors (LeoLabs Naseby feed, 62 Sqn optics) and fora.",
+      "timeframe": "Arrangement achievable within 12 months of the talks.",
+      "risks": [
+       "GBSI national-interest regime can bar operation 'for the benefit of a specified person or class' - scope AU-benefiting infrastructure through it from day one.",
+       "NZ SDA depends on a US-HQ commercial radar (LeoLabs) - data-custody terms must be clear."
+      ],
+      "measures": [
+       "Bilateral SDA arrangement signed",
+       "Combined space control working group meeting on a set cadence",
+       "AU tasking into the JCO Pacific cell"
+      ],
+      "deps": [
+       "GBSI regime (transition ends 29 Jul 2026)",
+       "CSpO/MNF-OOD",
+       "Releasability"
+      ]
+     }
     },
     {
      "id": "OPP-NZ-C",
@@ -1154,7 +1233,34 @@ button{font-family:inherit;cursor:pointer;color:inherit}
      "binding_gap": "Scale asymmetry — Australia is the net provider; confirm the reported NZDF embed in the Australian Air and Space Warfare Centre.",
      "loe": [
       "fgn"
-     ]
+     ],
+     "pathway": {
+      "objective": "Combined space workforce generation - shared training, courses, exchanges and reciprocal embeds - to grow NZ's cadre and deepen interoperability at lowest cost and highest goodwill.",
+      "actions": [
+       "Extend the ASWC-embed precedent (RAAF director at Ohakea; RNZAF Deputy Air Commander Australia) to space-specific exchanges.",
+       "Offer NZ personnel places on Australian space courses (Defence School of Space and Cyber; space IET).",
+       "Establish reciprocal NZDF-SPACECOMD embeds and a shared professional-development pathway.",
+       "Align FORGEN so the two cadres are interchangeable for combined tasking."
+      ],
+      "lead": "COMD SPACECOMD (AU) with NZDF (CAF / 62 Sqn)",
+      "support": "Defence School of Space and Cyber; ASWC; workforce branches both sides",
+      "gate": "Training-place allocation and exchange postings - service-chief level; funded from existing training lines.",
+      "cost": "Low-moderate - Australia is the net provider of training places.",
+      "timeframe": "First NZ course placements and an exchange within 6-12 months.",
+      "risks": [
+       "Scale asymmetry - NZ's cadre is ~a dozen; Australia carries the load.",
+       "Attrition/personnel shortfalls both sides (NZ figures TO_VERIFY)."
+      ],
+      "measures": [
+       "NZ personnel graduated from AU space courses",
+       "Reciprocal space embeds in place",
+       "Combined FORGEN standard agreed"
+      ],
+      "deps": [
+       "1998 status-of-forces agreement (personnel exchange)",
+       "Course capacity"
+      ]
+     }
     },
     {
      "id": "OPP-NZ-D",
@@ -1164,7 +1270,34 @@ button{font-family:inherit;cursor:pointer;color:inherit}
      "binding_gap": "Regulatory, not operational — a trust-building line rather than a capability outcome.",
      "loe": [
       "interop"
-     ]
+     ],
+     "pathway": {
+      "objective": "Reciprocal regulatory cooperation on ground-based space infrastructure - build trust and de-risk future Australian ground infrastructure in New Zealand.",
+      "actions": [
+       "Accept the NZ Minister's standing offer of technical briefings on the GBSI regime (ministerial letter in hand).",
+       "Exchange regulatory approaches (AU's developing posture; NZ's GBSI national-interest model).",
+       "Pre-scope any prospective Australian-linked SDA ground infrastructure in NZ against the GBSI authorisation from the outset.",
+       "Establish an officials-level regulatory cooperation track."
+      ],
+      "lead": "Defence International Policy (AU) with MBIE / NZ Space Agency",
+      "support": "COMD SPACECOMD; DFAT/MFAT; legal",
+      "gate": "Officials-level; no acquisition decision - a trust-building line.",
+      "cost": "Negligible.",
+      "timeframe": "Initiate at/after the talks; briefings within the quarter.",
+      "risks": [
+       "Regulatory, not operational - outcome is de-risking, not capability.",
+       "GBSI transition deadline (29 Jul 2026) means any existing AU-benefiting NZ infrastructure needs authorisation now."
+      ],
+      "measures": [
+       "Technical briefings received",
+       "Officials-level regulatory track established",
+       "GBSI pathway mapped for any AU infrastructure"
+      ],
+      "deps": [
+       "GBSI regime",
+       "Collins-Marles ministerial letter"
+      ]
+     }
     }
    ],
    "minute_defaults": {
@@ -5183,12 +5316,26 @@ function renderOpps(p){
   if(!ops.length) return '<div class="stub">Opportunities pending for this partner.</div>';
   var h='<div class="sec-label">Candidate opportunities — tick to include as action items in the minute</div>';
   ops.forEach(function(o){
-    h+='<div class="opp"><div class="oid">'+esc(o.id)+'</div><h3>'+esc(o.title)+'</h3><div class="orat">'+esc(o.rationale)+'</div>'+
+    h+='<div class="opp"><div class="oid">'+esc(o.id)+'</div><h3>'+esc(o.title)+'</h3><div class="orat">'+esc(scrubEv(o.rationale))+'</div>'+
       '<div class="ometa"><span>Deliverability: <span class="deliv '+esc(String(o.deliverability).replace(/[^A-Za-z-]/g,""))+'">'+esc(o.deliverability)+'</span></span>'+
       (o.loe?'<span>LOE: <b>'+o.loe.map(function(x){return x.toUpperCase();}).join(", ")+'</b></span>':'')+'</div>'+
       '<div class="ometa"><span><b>Binding gap:</b> '+esc(o.binding_gap)+'</span></div>'+
-      '<label class="chk"><input type="checkbox" class="opp-chk" data-oid="'+esc(o.id)+'" data-title="'+esc(o.title)+'"> Include as action item</label></div>';
+      (o.pathway?renderPathway(o.pathway):'')+
+      '<label class="chk"><input type="checkbox" class="opp-chk" data-oid="'+esc(o.id)+'" data-title="'+esc(o.title)+'"> Include as action item in the minute</label></div>';
   });
+  return h;
+}
+function renderPathway(pw){
+  function li(a){return a.map(function(x){return '<li>'+esc(x)+'</li>';}).join("");}
+  var h='<details class="pw"><summary>Staffed pathway — actions, owners, decision gate, cost, risks, measures</summary><div class="pw-body">';
+  h+='<div class="pw-obj"><b>Objective.</b> '+esc(pw.objective)+'</div>';
+  h+='<div class="pw-two"><div><span class="pw-h">Actions</span><ol class="pw-actions">'+li(pw.actions||[])+'</ol></div>'+
+     '<div><span class="pw-h">Owners</span><div class="pw-kv"><b>Lead:</b> '+esc(pw.lead)+'</div><div class="pw-kv"><b>Support:</b> '+esc(pw.support)+'</div>'+
+     '<div class="pw-kv"><b>Decision gate:</b> '+esc(pw.gate)+'</div><div class="pw-kv"><b>Cost:</b> '+esc(pw.cost)+'</div><div class="pw-kv"><b>Timeframe:</b> '+esc(pw.timeframe)+'</div></div></div>';
+  h+='<div class="pw-two"><div><span class="pw-h">Risks</span><ul class="pw-risks">'+li(pw.risks||[])+'</ul></div>'+
+     '<div><span class="pw-h">Measures of success</span><ul class="pw-meas">'+li(pw.measures||[])+'</ul>'+
+     (pw.deps?'<span class="pw-h" style="margin-top:8px">Dependencies</span><div class="pw-kv">'+esc(pw.deps.join(" · "))+'</div>':'')+'</div></div>';
+  h+='</div></details>';
   return h;
 }
 function wireOpps(){}
@@ -5267,16 +5414,39 @@ function wireLibrary(){
   draw();
 }
 
-/* ---------- NEWSROOM (recent developments + conference calendar) ---------- */
+/* ---------- NEWSROOM (live feeds + recent developments + conference calendar) ---------- */
+var LIVEFEEDS={
+  nz:[
+   {l:"Live: NZ defence space news",u:"https://news.google.com/search?q=New%20Zealand%20defence%20space%20when:60d&hl=en-NZ",live:1},
+   {l:"RNZ",u:"https://www.rnz.co.nz/search/results?utf8=%E2%9C%93&q=space%20defence"},
+   {l:"Beehive (space releases)",u:"https://www.beehive.govt.nz/search?query=space"},
+   {l:"NZDF news",u:"https://www.nzdf.mil.nz/media-centre/news/"},
+   {l:"MBIE space",u:"https://www.mbie.govt.nz/science-and-technology/space/"}],
+  domestic:[
+   {l:"Live: Australian defence space news",u:"https://news.google.com/search?q=Australia%20defence%20space%20when:60d&hl=en-AU",live:1},
+   {l:"Defence news",u:"https://www.defence.gov.au/news-events/news"},
+   {l:"Minister for Defence",u:"https://www.minister.defence.gov.au/media-releases"},
+   {l:"Australian Space Agency",u:"https://www.space.gov.au/news-and-media"},
+   {l:"ASPI The Strategist",u:"https://www.aspistrategist.org.au/?s=space"}]
+};
+function liveFeeds(key,name){
+  var f=LIVEFEEDS[key];
+  if(!f) f=[{l:"Live: "+name+" defence space news",u:"https://news.google.com/search?q="+encodeURIComponent(name+" defence space")+"%20when:60d",live:1}];
+  return '<div class="livefeeds">'+f.map(function(x){return '<a class="lf'+(x.live?" live":"")+'" href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.l)+' &#8599;</a>';}).join("")+'</div>';
+}
 function renderNewsroom(p){
   var C=p.calendar||{events:[]};
   var evs=(C.events||[]).slice().sort(function(a,b){return String(b.when).localeCompare(String(a.when));});
   var recent=evs.filter(function(e){return e.window==="past";});
-  var h='<div class="sec-label">Recent developments — '+esc(p.name)+' <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">(open-source, most recent first)</span></div>';
+  var h='<div class="sec-label">Live news feeds — '+esc(p.name)+'</div>';
+  h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">Opens current, real news in a new tab (a self-contained brief cannot embed a live wire directly). Below: the curated open-source development log and confirmed engagements.</p>';
+  h+=liveFeeds(CURKEY,p.name);
+  h+='<div class="sec-label" style="margin-top:18px">Recent developments — '+esc(p.name)+' <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">(open-source, most recent first)</span></div>';
   if(!recent.length) h+='<div class="stub">No recent developments recorded for this partner yet.</div>';
-  else{ h+='<div class="news">'; recent.slice(0,12).forEach(function(e){
+  else{ h+='<div class="news">'; recent.slice(0,14).forEach(function(e){
     var pend=String(e.label).indexOf("TO_VERIFY")>=0;
-    h+='<div class="news-item"><div class="news-date">'+esc(e.when)+'</div><div class="news-body"><div class="news-t">'+esc(e.title)+(pend?' <span class="lab TO_VERIFY">unconfirmed</span>':'')+'</div><div class="news-m">'+esc(e.level)+' · '+esc(e.note)+'</div></div></div>';
+    var title=e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.title)+' &#8599;</a>':esc(e.title);
+    h+='<div class="news-item"><div class="news-date">'+esc(e.when)+'</div><div class="news-body"><div class="news-t">'+title+(pend?' <span class="lab TO_VERIFY">unconfirmed</span>':'')+'</div><div class="news-m">'+esc(e.level)+' · '+esc(e.note)+'</div></div></div>';
   }); h+='</div>'; }
   /* conferences */
   var conf=(BD.meta.conferences||[]).slice().sort(function(a,b){return String(a.when).localeCompare(String(b.when));});
