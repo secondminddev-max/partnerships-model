@@ -429,12 +429,17 @@ details.xp>.xp-bd{padding:8px 12px 10px}
 
 /* ---- v4 ---- */
 #view-architecture table.data{table-layout:fixed;width:100%}
-#view-architecture table.data th:nth-child(1){width:34px}
-#view-architecture table.data th:nth-child(3){width:120px}
-#view-architecture table.data th:nth-child(4){width:104px}
-#view-architecture table.data th:nth-child(5){width:84px}
-#view-architecture table.data th:nth-child(6){width:150px}
-#view-architecture table.data th:nth-child(7){width:88px}
+#view-architecture table.data th:nth-child(2){width:148px}
+#view-architecture table.data th:nth-child(3){width:112px}
+#view-architecture table.data th:nth-child(4){width:100px}
+#view-architecture table.data th:nth-child(5){width:88px}
+#view-architecture table.data th:nth-child(6){width:132px}
+#view-architecture table.data th:nth-child(7){width:84px}
+/* channel tag: bilateral defence is the only one the load path counts, so it
+   is the only one that carries the accent */
+.ch-tag{display:inline-block;font-size:10.5px;letter-spacing:.02em;white-space:nowrap;
+  border:1px solid var(--hair);border-radius:3px;padding:1px 6px;color:var(--muted)}
+.ch-tag.ch-bilateral_def{border-color:var(--accent);color:var(--accent);font-weight:600}
 #view-architecture table.data td{overflow-wrap:break-word}
 #view-architecture .tbl-wrap{max-height:72vh;overflow:auto;border:1px solid var(--hair);border-radius:8px}
 #view-architecture table.data{border-collapse:separate;border-spacing:0}
@@ -3512,18 +3517,30 @@ function renderPartnerView(key, tab) {
 const ARC = { tab: "all", mode: "path", chan: "", rel: "", type: "", status: "", level: "", ver: "", q: "", sortKey: "grp", sortDir: 1 };
 const vehVerdict = v => (v.verification && v.verification.verdict) || "UNREVIEWED";
 
+/* the flag used to have its own column next to the partner name, which said
+   the same thing twice; the flag now sits inline and the column carries
+   channel instead */
 const ARC_COLS = [
-  ["flag",  "",        false],
   ["name",  "Artefact", true],
-  ["grp",   "Partner", true],
-  ["type",  "Type",    true],
-  ["since", "Since",   true],
-  ["status","Status",  true],
-  ["rel",   "Space",   true]
+  ["grp",   "Partner",  true],
+  ["chan",  "Channel",  true],
+  ["type",  "Type",     true],
+  ["since", "Since",    true],
+  ["status","Status",   true],
+  ["rel",   "Space",    true]
 ];
+const CH_SHORT = {
+  bilateral_def: "Bilat defence",
+  bilateral_civ: "Bilat civil",
+  multilateral:  "Multilateral",
+  thirdparty:    "Third party",
+  domestic:      "Domestic",
+  none:          "—"
+};
 function arcSortVal(v, key) {
   switch (key) {
     case "grp":    return groupOrd[v.partner_key] ?? 99;
+    case "chan":   return ["bilateral_def","bilateral_civ","multilateral","thirdparty","domestic","none"].indexOf(v.channel);
     case "name":   return v.name.toLowerCase();
     case "type":   return v.vehicle_type;
     case "since":  return v.signed || "9999";
@@ -3561,10 +3578,10 @@ function renderArcList() {
          title="Sort by ${esc(label)}">${esc(label)}<span class="sarr" aria-hidden="true">${ARC.sortKey === key ? (ARC.sortDir === 1 ? "▲" : "▼") : "↕"}</span></th>`
     : `<th aria-label="Partner group flag">${esc(label)}</th>`).join("");
   el("arc-list").innerHTML = list.map(v => `<tr class="rr-${esc(v.space_relevance)}">
-      <td style="font-size:15px" title="${esc(groupName[v.partner_key] || v.partner_key)}">${gflag(v.partner_key)}</td>
       <td><button type="button" class="vlink" data-veh-open="${esc(v.vehicle_id)}">${esc(v.name)}</button>
         <span class="small mut mono">· ${esc(v.vehicle_id)}</span></td>
-      <td class="small" style="white-space:nowrap">${esc(groupName[v.partner_key] || v.partner_key)}</td>
+      <td class="small" style="white-space:nowrap">${gflag(v.partner_key)} ${esc(groupName[v.partner_key] || v.partner_key)}</td>
+      <td class="small"><span class="ch-tag ch-${esc(v.channel || "none")}" title="${esc(v.channel_basis || "")}">${esc(CH_SHORT[v.channel] || "—")}</span></td>
       <td class="small">${esc(v.vehicle_type)}</td>
       <td class="num" style="white-space:nowrap" title="${esc(v.signed || "")}">${esc((v.signed || "—").slice(0, 10))}</td>
       <td>${vchip(v.status, true)}</td>
