@@ -1461,17 +1461,38 @@ function drawDoc(){
 }
 function today(){var d=new Date(2026,6,24);return d.getDate()+" Jul 26";}
 function buildMinute(p){
-  var md=p.minute_defaults||{}, ops=selectedOpps();
+  var md=p.minute_defaults||{}, sel=selectedOpps();
   var subj=md.subject||("SPACE COOPERATION WITH "+p.name.toUpperCase());
   var refs=(md.references||[]).map(function(r,i){return String.fromCharCode(65+i)+".   "+r;});
+  /* resolve the ticked ids back to the full opportunity records — the staffed
+     pathway (action, lead, gate, timeframe, measure) is what makes an action
+     item actionable rather than a restated title */
+  var byId={}; (p.opportunities||[]).forEach(function(o){ byId[o.id]=o; });
+  var ops=sel.map(function(s){ return byId[s.id]||{id:s.id,title:s.title}; });
+
+  var g=cbGrid(CURKEY), vd=cbVerdict(CURKEY,g,p.name);
   var body=[];
-  body.push("1.    This minute sets out priorities for Defence space cooperation with "+p.name+" ahead of forthcoming staff talks, and seeks agreement to the action items at paragraph 4.");
+  body.push("1.    Purpose. This minute seeks agreement to the action items at paragraph 5, ahead of forthcoming space staff talks with "+p.name+".");
   body.push("2.    Current state. "+(p.current_state?p.current_state.headline+" "+p.current_state.points.slice(0,2).join(" "):""));
-  body.push("3.    Opportunity. "+(p.future_state?p.future_state.headline:"")+" The candidate lines below are drawn from the model's opportunity set.");
-  var a="4.    It is recommended that COMD SPACECOMD agree the following action items:";
+  body.push("3.    Authority held. "+vd.head+". "+vd.body+" (Derived from the partnership register; see the load path on the factsheet.)");
+  body.push("4.    Opportunity. "+(p.future_state?p.future_state.headline:"")+" The action items below are drawn from the model's staffed pathways.");
+
+  var a="5.    It is recommended that COMD SPACECOMD agree the following action items:";
   var subs=[];
-  if(ops.length){ ops.forEach(function(o,i){subs.push("    "+String.fromCharCode(97+i)+".   ["+o.id+"] "+o.title+".");}); }
-  else { subs.push("    a.   [no opportunities ticked] Return to the Opportunities tab and select the action items to include."); }
+  if(ops.length){
+    ops.forEach(function(o,i){
+      var pw=o.pathway||{};
+      var L="    "+String.fromCharCode(97+i)+".   ["+o.id+"] "+o.title+".";
+      if(pw.actions&&pw.actions.length) L+="\n         Action.    "+pw.actions[0];
+      if(pw.lead)      L+="\n         Lead.      "+pw.lead;
+      if(pw.gate)      L+="\n         Gate.      "+pw.gate;
+      if(pw.timeframe) L+="\n         By.        "+pw.timeframe;
+      if(pw.measures&&pw.measures.length) L+="\n         Measure.   "+pw.measures[0];
+      subs.push(L);
+    });
+  } else {
+    subs.push("    a.   [no opportunities ticked] Return to the Opportunities tab and tick the lines to carry into this minute.");
+  }
   var text="";
   text+='<div class="docband">UNOFFICIAL</div>';
   text+='<h4>Minute</h4>';
@@ -1480,8 +1501,8 @@ function buildMinute(p){
   text+='<div class="subj">'+esc(subj)+'</div>';
   text+='References:\n'+refs.map(esc).join("\n")+'\n\n';
   text+=body.map(esc).join("\n\n")+"\n\n";
-  text+=esc(a)+"\n"+subs.map(esc).join("\n")+"\n\n";
-  text+="5.    A visit in-brief in the Chapter 12 format is available under this tab (In-brief).\n";
+  text+=esc(a)+"\n\n"+subs.map(esc).join("\n\n")+"\n\n";
+  text+="6.    A visit in-brief in the Chapter 12 format is available under this tab (In-brief).\n";
   text+='<div class="sig"><b>J Staff</b>\nSO1 Space Partnerships\nDefence Space Command\n\n'+esc(today())+'</div>';
   text+='\n\n<span style="color:#b4432f;font-size:11px">Draft — items marked TO_VERIFY in the model (personnel, dates, budgets) must be confirmed before release.</span>';
   return '<div class="doc">'+text+'</div>';
