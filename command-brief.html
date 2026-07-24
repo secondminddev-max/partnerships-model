@@ -333,6 +333,17 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 #archsvg{display:block;margin:0 auto}
 .archnode:hover circle{fill-opacity:.3}
 .arch-detail{margin-top:10px;padding:12px 16px;background:var(--surface2);border:1px solid var(--hair);border-radius:9px;font-size:12.5px;color:var(--ink)}
+/* exploded component capability */
+.exploded{display:flex;gap:12px;align-items:flex-start}
+.ex-icon{opacity:.85}
+.ex-list{flex:1;min-width:0}
+.ex-part{display:grid;grid-template-columns:26px 1fr 64px;gap:8px;align-items:center;padding:6px 4px;border-top:1px solid var(--hair2);cursor:pointer;border-radius:6px}
+.ex-part:first-child{border-top:none}
+.ex-part:hover{background:var(--surface2)}
+.capnum{width:22px;height:22px;border-radius:5px;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.ex-name{font-size:12px;color:var(--ink);line-height:1.25}
+.ex-bar{height:6px;background:var(--hair);border-radius:3px;overflow:hidden}
+.ex-fill{display:block;height:100%;border-radius:3px}
 .foot-note{font-size:11.5px;color:var(--muted);margin-top:26px;padding-top:14px;border-top:1px solid var(--hair);line-height:1.6}
 .pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:20px;background:var(--surface2);border:1px solid var(--hair);color:var(--ink2)}
 .stub{color:var(--muted);font-size:13px;font-style:italic;padding:18px;text-align:center;border:1px dashed var(--hair);border-radius:10px}
@@ -1239,6 +1250,96 @@ button{font-family:inherit;cursor:pointer;color:inherit}
     "sda": 2,
     "user": 2,
     "note": "NZ hosts world-class launch (Rocket Lab, US-domiciled) and commercial SDA (LeoLabs), but owns few sovereign systems: no sovereign satellites beyond two research payloads; ground segment growing (Awarua, Warkworth); SDA via 62 Sqn optics + commercial radar."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 1,
+      "who": "No sovereign sat-bus manufacture",
+      "note": "Gap; two research payloads only (Korimako, Tui)."
+     },
+     {
+      "part": "Power / solar arrays",
+      "cap": 1,
+      "who": "—",
+      "note": "Gap."
+     },
+     {
+      "part": "Propulsion",
+      "cap": 2,
+      "who": "Dawn Aerospace (satellite propulsion, spaceplane)",
+      "note": "Niche sovereign propulsion."
+     },
+     {
+      "part": "ADCS",
+      "cap": 2,
+      "who": "Zenno Astronautics (superconducting magnetics)",
+      "note": "Emerging niche."
+     },
+     {
+      "part": "On-board computer / avionics",
+      "cap": 2,
+      "who": "NZDF DST research payloads",
+      "note": "Research-level."
+     },
+     {
+      "part": "Comms payload",
+      "cap": 1,
+      "who": "—",
+      "note": "Gap."
+     },
+     {
+      "part": "Sensor payload",
+      "cap": 1,
+      "who": "—",
+      "note": "Gap; SDA via ground sensors not satellites."
+     },
+     {
+      "part": "Thermal / harness",
+      "cap": 1,
+      "who": "—",
+      "note": "Gap."
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 3,
+      "who": "Space Operations NZ (Awarua, Warkworth)",
+      "note": "Sovereign-operated TT&C ground stations."
+     },
+     {
+      "part": "RF front-end / LNA",
+      "cap": 2,
+      "who": "Partial",
+      "note": "Import-dependent."
+     },
+     {
+      "part": "Modem / baseband",
+      "cap": 2,
+      "who": "Partial",
+      "note": "Import-dependent."
+     },
+     {
+      "part": "TT&C software / ops",
+      "cap": 3,
+      "who": "No. 62 Sqn; SpaceOps NZ; LeoLabs platform (US)",
+      "note": "Operated sovereignly; some platforms foreign."
+     },
+     {
+      "part": "Timing / frequency",
+      "cap": 1,
+      "who": "—",
+      "note": "Gap."
+     },
+     {
+      "part": "Data processing / analytics",
+      "cap": 2,
+      "who": "MBIE SRSP (LeoLabs-provided, US)",
+      "note": "Civil SDA outsourced to a US provider."
+     }
+    ]
    }
   },
   "domestic": {
@@ -1490,7 +1591,70 @@ button{font-family:inherit;cursor:pointer;color:inherit}
     "pacific": "",
     "multilateral": "",
     "force_overview": "",
-    "industry": ""
+    "industry": "",
+    "assurance": {
+     "intro": "A defensible, open-source foreign-ownership and adversary-exposure screen for the sovereign space supply chain. This is a due-diligence FRAMEWORK, not an accusation: specific ownership claims require a citable public source (FIRB, ASIC, company filings, ASPI) and are marked TO_VERIFY until confirmed. It answers 'where could sovereignty be compromised by foreign control?', which is the legitimate national-security question behind the request.",
+     "checks": [
+      {
+       "c": "Foreign Investment Review Board (FIRB) record",
+       "w": "Confirms whether a firm or asset has undergone a foreign-investment national-interest test.",
+       "label": "FACT"
+      },
+      {
+       "c": "ASIC ownership & controlling-entity register",
+       "w": "Public record of shareholders and ultimate holding company for Australian entities.",
+       "label": "FACT"
+      },
+      {
+       "c": "Foreign parent / ultimate beneficial owner",
+       "w": "Where a sovereign-critical supplier is a subsidiary of a foreign parent, control sits offshore (e.g. Rocket Lab NZ operating under a US-domiciled parent).",
+       "label": "FACT"
+      },
+      {
+       "c": "Adversary-nexus screen (ASPI / public reporting)",
+       "w": "Screen for board, shareholder or supply links to entities of concern; rely only on published, attributable reporting.",
+       "label": "ASSESSMENT"
+      },
+      {
+       "c": "Component / subsystem provenance",
+       "w": "Critical parts sourced from foreign suppliers are a sovereignty exposure even where the prime is Australian (cf. the Eris TF1 imported oxidiser-pump failure).",
+       "label": "FACT"
+      }
+     ],
+     "layers": [
+      {
+       "layer": "Launch",
+       "exposure": "Moderate",
+       "note": "Australian-owned primes (Gilmour, Southern Launch) but critical subsystems imported; US-domicile control where Rocket Lab operates from NZ. Screen subsystem provenance."
+      },
+      {
+       "layer": "Satellite manufacture",
+       "exposure": "Moderate",
+       "note": "Sovereign small-sat primes (Inovor, Fleet) are Australian-owned; GEO-class buses imported. Verify UBO of new entrants."
+      },
+      {
+       "layer": "SATCOM (strategic)",
+       "exposure": "High dependency",
+       "note": "Reliance on foreign/commercial capacity (WGS, Optus, Intelsat). Not adversary-linked, but sovereignty sits offshore until a sovereign multi-orbit capability is fielded."
+      },
+      {
+       "layer": "Ground segment",
+       "exposure": "Low",
+       "note": "Kapooka and WA stations are sovereign-operated; foreign build (NG Australia) but Australian operation."
+      },
+      {
+       "layer": "SDA / data",
+       "exposure": "Low–moderate",
+       "note": "Sovereign operation (EOS, HEO, Saber) but some data platforms and sensors are commercial/foreign-linked; confirm data-custody terms."
+      },
+      {
+       "layer": "Components / subsystems",
+       "exposure": "High",
+       "note": "Import-dependent; the least-visible and highest sovereignty-risk layer. Provenance mapping is the first-order assurance task."
+      }
+     ],
+     "recommendation": "For any sovereign-critical space acquisition, run the five checks above and require a supplier ownership & provenance declaration. Treat US-domicile of an otherwise 'local' capability (e.g. Rocket Lab) as an allied — not adversary — dependency, but a dependency nonetheless. Do not record an adversary-nexus finding against any named company without a published, attributable source."
+    }
    },
    "leadership": {
     "note": "Industry leadership (incl. named senior industry attendee) handled in the Defence x Industry view.",
@@ -1640,6 +1804,96 @@ button{font-family:inherit;cursor:pointer;color:inherit}
     "sda": 4,
     "user": 3,
     "note": "Australia's sovereign strengths are ground segment and SDA hosting/tasking; small-sat manufacture is partial; strategic SATCOM and PNT are dependent; sovereign launch is licensed but unproven to orbit."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 3,
+      "who": "Inovor, Fleet Space (small-sat class)",
+      "note": "Sovereign small-sat buses; no GEO-class bus."
+     },
+     {
+      "part": "Power / solar arrays",
+      "cap": 2,
+      "who": "Mostly imported cells; some local integration",
+      "note": "Import-dependent for cells."
+     },
+     {
+      "part": "Propulsion",
+      "cap": 2,
+      "who": "Some local electric; import-dependent",
+      "note": "Subsystem gap."
+     },
+     {
+      "part": "ADCS (reaction wheels, star trackers)",
+      "cap": 2,
+      "who": "Niche local (star trackers)",
+      "note": "Partial."
+     },
+     {
+      "part": "On-board computer / avionics",
+      "cap": 3,
+      "who": "Inovor (full-subsystem build)",
+      "note": "Sovereign at small scale."
+     },
+     {
+      "part": "Comms payload / transponder",
+      "cap": 2,
+      "who": "Partial; import-dependent",
+      "note": "Gap at scale."
+     },
+     {
+      "part": "Sensor payload (EO / SAR / RF)",
+      "cap": 3,
+      "who": "EOS (optics), HEO, MANTIS (Buccaneer)",
+      "note": "Genuine niche strength."
+     },
+     {
+      "part": "Thermal / harness",
+      "cap": 2,
+      "who": "Import-dependent",
+      "note": "Subsystem gap."
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 3,
+      "who": "Local integrators; NG-built stations",
+      "note": "Sovereign-operated."
+     },
+     {
+      "part": "RF front-end / LNA",
+      "cap": 2,
+      "who": "Partial",
+      "note": "Import-dependent components."
+     },
+     {
+      "part": "Modem / baseband",
+      "cap": 2,
+      "who": "Partial",
+      "note": "Import-dependent."
+     },
+     {
+      "part": "TT&C software / ops",
+      "cap": 4,
+      "who": "Saber Astronautics (SBMS)",
+      "note": "Sovereign strength (3,000+ users)."
+     },
+     {
+      "part": "Timing / frequency",
+      "cap": 2,
+      "who": "QuantX (optical atomic clocks — seedling)",
+      "note": "Emerging sovereign."
+     },
+     {
+      "part": "Data processing / analytics",
+      "cap": 4,
+      "who": "Saber, HEO, Fleet ExoSphere, Myriota",
+      "note": "Sovereign, exportable."
+     }
+    ]
    }
   },
   "us": {
@@ -1843,7 +2097,55 @@ button{font-family:inherit;cursor:pointer;color:inherit}
     "ground": 5,
     "sda": 5,
     "user": 5,
-    "note": "Full-stack sovereign space power across every layer."
+    "note": "Full-stack sovereign space power across every layer — the benchmark."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 5,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 5,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 5,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 5,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 5,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 5,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 5,
+      "who": "",
+      "note": ""
+     }
+    ]
    }
   },
   "uk": {
@@ -2004,7 +2306,63 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "arch": {
+    "launch": 2,
+    "satellite": 4,
+    "ground": 4,
+    "sda": 4,
+    "user": 4,
+    "note": "Sovereign Skynet SATCOM and a stood-up Space Command; strong ground/SDA (DARC partner); sovereign launch nascent."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ]
+   }
   },
   "japan": {
    "partner_key": "japan",
@@ -2166,7 +2524,63 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "arch": {
+    "launch": 4,
+    "satellite": 4,
+    "ground": 4,
+    "sda": 4,
+    "user": 3,
+    "note": "Operational QZSS PNT, sovereign launch (H3), maturing SDA and a growing military space organisation."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ]
+   }
   },
   "india": {
    "partner_key": "india",
@@ -2282,7 +2696,63 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "arch": {
+    "launch": 5,
+    "satellite": 4,
+    "ground": 3,
+    "sda": 3,
+    "user": 3,
+    "note": "World-class sovereign launch (ISRO) and EO/PNT (NavIC); defence-space organisation still maturing."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 3,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     }
+    ]
+   }
   },
   "germany": {
    "partner_key": "germany",
@@ -2398,7 +2868,63 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "arch": {
+    "launch": 2,
+    "satellite": 4,
+    "ground": 4,
+    "sda": 4,
+    "user": 3,
+    "note": "Sovereign SAR recon (SARah), national SDA (GESTRA/GSSAC) and SATCOMBw; multilateral-first, launch dependent."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ]
+   }
   },
   "uae": {
    "partner_key": "uae",
@@ -2514,7 +3040,63 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "arch": {
+    "launch": 2,
+    "satellite": 3,
+    "ground": 3,
+    "sda": 2,
+    "user": 2,
+    "note": "Well-funded, mission-driven civil space (MBRSC); limited sovereign defence architecture."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 3,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 3,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     }
+    ]
+   }
   },
   "pacific": {
    "partner_key": "pacific",
@@ -2790,6 +3372,54 @@ button{font-family:inherit;cursor:pointer;color:inherit}
     "sda": 4,
     "user": 3,
     "note": "Sovereign SAR (RADARSAT) and SSN sensor (Sapphire); strong ground/SDA; negligible sovereign launch."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ]
    }
   },
   "france": {
@@ -2906,7 +3536,63 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "arch": {
+    "launch": 4,
+    "satellite": 4,
+    "ground": 4,
+    "sda": 4,
+    "user": 4,
+    "note": "Europe's most complete sovereign military space — CSO recon, Syracuse SATCOM, national Space Command, Ariane launch."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ]
+   }
   },
   "italy": {
    "partner_key": "italy",
@@ -3022,7 +3708,63 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "arch": {
+    "launch": 3,
+    "satellite": 4,
+    "ground": 3,
+    "sda": 3,
+    "user": 3,
+    "note": "COSMO-SkyMed SAR and SICRAL SATCOM; capable industry; launch via Vega (European)."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 4,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 4,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 3,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     }
+    ]
+   }
   },
   "norway": {
    "partner_key": "norway",
@@ -3138,7 +3880,63 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "arch": {
+    "launch": 1,
+    "satellite": 3,
+    "ground": 5,
+    "sda": 3,
+    "user": 3,
+    "note": "World-class polar ground segment (Svalbard/KSAT) and SATCOM niche; small sovereign base, negligible launch."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 3,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 5,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 5,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 5,
+      "who": "",
+      "note": ""
+     }
+    ]
+   }
   },
   "rok": {
    "partner_key": "rok",
@@ -3254,7 +4052,63 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "arch": {
+    "launch": 4,
+    "satellite": 3,
+    "ground": 3,
+    "sda": 3,
+    "user": 3,
+    "note": "Sovereign launch (Nuri) and the 425 recon programme; a new and fast-growing military space posture."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 3,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 3,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     }
+    ]
+   }
   },
   "singapore": {
    "partner_key": "singapore",
@@ -3370,7 +4224,63 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "arch": {
+    "launch": 1,
+    "satellite": 3,
+    "ground": 3,
+    "sda": 2,
+    "user": 3,
+    "note": "Capable EO and a strong industrial/analytics niche; small sovereign base, no launch."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 3,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 3,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 3,
+      "who": "",
+      "note": ""
+     }
+    ]
+   }
   },
   "quad": {
    "partner_key": "quad",
@@ -3681,7 +4591,63 @@ button{font-family:inherit;cursor:pointer;color:inherit}
    },
    "current_state": null,
    "future_state": null,
-   "opportunities": []
+   "opportunities": [],
+   "arch": {
+    "launch": 2,
+    "satellite": 2,
+    "ground": 2,
+    "sda": 1,
+    "user": 2,
+    "note": "Civil-led (BRIN) with equatorial launch ambitions at Biak; minimal sovereign defence-space architecture."
+   },
+   "components": {
+    "satellite": [
+     {
+      "part": "Structure / bus",
+      "cap": 2,
+      "who": "",
+      "note": "Derived from satellite-manufacture maturity."
+     },
+     {
+      "part": "Payload / sensors",
+      "cap": 2,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Avionics / ADCS",
+      "cap": 2,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Comms payload",
+      "cap": 2,
+      "who": "",
+      "note": ""
+     }
+    ],
+    "ground": [
+     {
+      "part": "Antenna / dish",
+      "cap": 2,
+      "who": "",
+      "note": "Derived from ground-segment maturity."
+     },
+     {
+      "part": "TT&C / ops software",
+      "cap": 2,
+      "who": "",
+      "note": ""
+     },
+     {
+      "part": "Data processing",
+      "cap": 2,
+      "who": "",
+      "note": ""
+     }
+    ]
+   }
   }
  }
 }</script>
@@ -4040,6 +5006,14 @@ function renderIndustry(f){
   }
   if(f.lot14) h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Lot Fourteen — the national space-industry hub</div><p style="font-size:13px">'+esc(f.lot14)+'</p></div>';
   if(f.barriers&&f.barriers.length) h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Barriers to sovereign launch</div><ul style="list-style:none">'+f.barriers.map(function(x){return '<li style="font-size:12.5px;padding:6px 0 6px 16px;position:relative;border-top:1px solid var(--hair2)"><span style="position:absolute;left:0;color:var(--assess)">&bull;</span>'+esc(x)+'</li>';}).join("")+'</ul></div>';
+  if(f.assurance){
+    var A=f.assurance;
+    h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Supply-chain assurance &amp; foreign-ownership screen <span class="lab ASSESSMENT">FRAMEWORK</span></div>'+
+       '<p style="font-size:12.5px;color:var(--ink2)">'+esc(A.intro)+'</p>';
+    h+='<div class="sec-label" style="margin-top:12px">Due-diligence checks</div><ul style="list-style:none">'+A.checks.map(function(c){return '<li style="font-size:12.5px;padding:6px 0 6px 14px;position:relative;border-top:1px solid var(--hair2)"><span style="position:absolute;left:0;color:var(--navy2)">&bull;</span><b>'+esc(c.c)+'</b> — '+esc(c.w)+' <span class="lab '+cls(c.label)+'">'+esc(c.label)+'</span></li>';}).join("")+'</ul>';
+    h+='<div class="sec-label" style="margin-top:12px">Exposure by layer</div><table class="sc-table"><thead><tr><th>Layer</th><th>Exposure</th><th>Note</th></tr></thead><tbody>'+A.layers.map(function(l){var e=String(l.exposure).toLowerCase();var c=e.indexOf("high")>=0?"dependent":(e.indexOf("low")>=0?"strong":"partial");return '<tr><td><b>'+esc(l.layer)+'</b></td><td><span class="mchip '+c+'">'+esc(l.exposure)+'</span></td><td>'+esc(l.note)+'</td></tr>';}).join("")+'</tbody></table>';
+    h+='<p style="font-size:12.5px;color:var(--ink);margin-top:12px"><b>Recommendation.</b> '+esc(A.recommendation)+'</p></div>';
+  }
   if(f.burden_sharing){
     h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Burden-sharing vs sovereignty <span class="lab ASSESSMENT">ASSESSMENT</span></div><div class="bshare">'+
       '<div class="col share"><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--enabling);font-weight:700;margin-bottom:4px">Burden-share where appropriate</div><ul>'+f.burden_sharing.share.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>'+
@@ -4102,13 +5076,14 @@ function initials(name){
   var a=parts[0][0]||"", b=parts.length>1?parts[parts.length-1][0]:"";
   return (a+b).toUpperCase();
 }
-function avatar(name,accent,pend){
+function avatar(name,accent,pend,photo){
+  if(photo) return '<div class="avatar" style="background:#000;padding:0;overflow:hidden"><img src="'+esc(photo)+'" alt="'+esc(name)+'" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML=\''+esc(initials(name))+'\';this.parentNode.style.background=\''+accent+'\';this.parentNode.style.color=\'#fff\'"></div>';
   return '<div class="avatar" style="background:'+(pend?"var(--surface2)":accent)+';color:'+(pend?"var(--verify)":"#fff")+'">'+esc(initials(name))+'</div>';
 }
 function personCard(x){
   var pend=String(x.label).indexOf("TO_VERIFY")>=0;
   var ac=(x.side==="AU"?FLAGACCENT.domestic:(FLAGACCENT[({NZ:"nz",US:"us",UK:"uk",JP:"japan",CA:"canada",ID:"indonesia"})[x.side]]||"var(--navy2)"));
-  return '<div class="person'+(x.audience?" aud":"")+'"><div class="person-hd">'+avatar(x.name,ac,pend)+
+  return '<div class="person'+(x.audience?" aud":"")+'"><div class="person-hd">'+avatar(x.name,ac,pend,x.photo)+
     '<div class="person-id">'+(x.audience?'<span class="side" style="border-color:var(--accent);color:var(--accent)">Briefing audience</span>':'')+
     '<div class="appt">'+esc(x.appointment)+'</div>'+
     '<div class="nm'+(pend?' pending':'')+'">'+esc(x.name)+'</div>'+
@@ -4302,40 +5277,79 @@ function renderSites(p){
        '<div class="map-detail" id="map-detail">Click a marker for detail.</div></div>'+
        '<div class="map-legend"><span><i class="ml" style="background:'+sovCol(5)+'"></i>high sovereignty</span><span><i class="ml" style="background:'+sovCol(3)+'"></i>partial</span><span><i class="ml" style="background:'+sovCol(1)+'"></i>low / commercial-foreign</span></div>';
   }
-  /* ARCHITECTURE */
+  /* ARCHITECTURE — layer overview (3D schematic) */
   if(arch){
     h+='<div class="sec-label" style="margin-top:26px">Space architecture — sovereign control by layer <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
-    h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">Hover or tap a segment to see '+esc(p.name)+'\'s sovereign maturity over that part of the architecture (0 none – 5 full).</p>';
+    h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">Hover or tap a node to see '+esc(p.name)+'\'s sovereign maturity over that part of the architecture (0 none – 5 full). The satellite orbits the ground segment; badges show the sovereignty score.</p>';
     h+=renderArchSvg(arch);
     h+='<div class="arch-detail" id="arch-detail">'+esc(arch.note||"")+'</div>';
   }
+  /* COMPONENT CAPABILITY — exploded satellite & ground station */
+  var comp=p.components||null;
+  if(comp){
+    h+='<div class="sec-label" style="margin-top:26px">Component capability — which parts '+esc(p.name)+'\'s industry can build or control <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
+    h+='<p style="font-size:12px;color:var(--muted);margin-bottom:12px">The satellite and ground station are broken into subsystems. Each is scored 0–5 for sovereign industrial capability, with the field or firm where evidenced. Hover a component for detail.</p>';
+    h+='<div class="two">';
+    h+='<div class="card"><div class="sec-label">Satellite subsystems</div>'+renderExploded(comp.satellite,"sat")+'</div>';
+    h+='<div class="card"><div class="sec-label">Ground station subsystems</div>'+renderExploded(comp.ground,"gnd")+'</div>';
+    h+='</div>';
+    h+='<div class="arch-detail" id="comp-detail">Hover a subsystem to see the capability assessment and the responsible industry field.</div>';
+  }
+  return h;
+}
+function capChip(c){ var col=sovCol(c); return '<span class="capnum" style="background:'+col+'">'+c+'</span>'; }
+function renderExploded(parts,kind){
+  if(!parts||!parts.length) return '<div class="stub">Component detail pending.</div>';
+  /* schematic icon + component list with capability bars */
+  var icon = kind==="sat"
+    ? '<svg viewBox="0 0 120 90" width="120" height="90" style="flex:0 0 auto"><rect x="46" y="28" width="28" height="34" rx="3" fill="var(--surface2)" stroke="var(--navy2)"/><rect x="10" y="34" width="30" height="22" fill="#2c527f" opacity="0.7"/><rect x="80" y="34" width="30" height="22" fill="#2c527f" opacity="0.7"/><line x1="40" y1="45" x2="46" y2="45" stroke="var(--ink2)"/><line x1="74" y1="45" x2="80" y2="45" stroke="var(--ink2)"/><path d="M60,28 l0,-10 M55,18 l10,0" stroke="var(--ink2)" fill="none"/></svg>'
+    : '<svg viewBox="0 0 120 90" width="120" height="90" style="flex:0 0 auto"><ellipse cx="60" cy="40" rx="34" ry="14" fill="none" stroke="var(--navy2)" stroke-width="2"/><line x1="60" y1="40" x2="60" y2="26" stroke="var(--ink2)"/><circle cx="60" cy="24" r="3" fill="var(--navy2)"/><rect x="40" y="66" width="40" height="10" fill="var(--surface2)" stroke="var(--ink2)"/><line x1="50" y1="54" x2="50" y2="66" stroke="var(--ink2)"/><line x1="70" y1="54" x2="70" y2="66" stroke="var(--ink2)"/></svg>';
+  var h='<div class="exploded"><div class="ex-icon">'+icon+'</div><div class="ex-list">';
+  parts.forEach(function(pt){
+    h+='<div class="ex-part" data-note="'+esc((pt.who?pt.who+' — ':'')+(pt.note||''))+'" data-part="'+esc(pt.part)+'" data-cap="'+pt.cap+'">'+
+       capChip(pt.cap)+'<span class="ex-name">'+esc(pt.part)+'</span>'+
+       '<span class="ex-bar"><span class="ex-fill" style="width:'+(pt.cap*20)+'%;background:'+sovCol(pt.cap)+'"></span></span></div>';
+  });
+  h+='</div></div>';
   return h;
 }
 function sovCol(m){ return m>=4?"var(--fact)":(m>=2.5?"var(--assess)":"#b4432f"); }
 var ARCH_LAYERS=[
-  {k:"launch",label:"Launch",x:90,y:300},
-  {k:"satellite",label:"Satellites",x:300,y:70},
-  {k:"ground",label:"Ground segment",x:300,y:300},
-  {k:"sda",label:"SDA sensors",x:500,y:300},
-  {k:"user",label:"User terminals",x:490,y:180}
+  {k:"satellite",label:"Satellites"},{k:"launch",label:"Launch"},
+  {k:"ground",label:"Ground segment"},{k:"sda",label:"SDA sensors"},{k:"user",label:"User terminals"}
 ];
+function badge(x,y,m,label,key){
+  var col=sovCol(m);
+  return '<g class="archnode" data-k="'+key+'" data-m="'+m+'" style="cursor:pointer">'+
+    '<circle cx="'+x+'" cy="'+y+'" r="17" fill="'+col+'" stroke="#fff" stroke-width="2"/>'+
+    '<text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" font-family="var(--serif)">'+m+'</text>'+
+    '<text x="'+x+'" y="'+(y+33)+'" text-anchor="middle" font-size="10" fill="var(--ink2)" font-family="var(--sans)">'+esc(label)+'</text></g>';
+}
 function renderArchSvg(arch){
-  var s='<svg id="archsvg" viewBox="0 0 600 340" role="img" aria-label="space architecture" style="width:100%;max-width:640px">';
-  /* orbit arc */
-  s+='<path d="M60,110 Q300,-10 540,110" fill="none" stroke="var(--hair)" stroke-width="1.5" stroke-dasharray="5 4"/>';
-  /* links */
-  s+='<line x1="300" y1="95" x2="300" y2="278" stroke="var(--hair)" stroke-width="1.2"/>';
-  s+='<line x1="300" y1="300" x2="120" y2="300" stroke="var(--hair)" stroke-width="1.2"/>';
-  s+='<line x1="300" y1="300" x2="480" y2="300" stroke="var(--hair)" stroke-width="1.2"/>';
-  s+='<line x1="470" y1="185" x2="315" y2="85" stroke="var(--hair)" stroke-width="1.2" stroke-dasharray="3 3"/>';
-  ARCH_LAYERS.forEach(function(L){
-    var m=arch[L.k]||0, col=sovCol(m);
-    s+='<g class="archnode" data-k="'+L.k+'" data-m="'+m+'" style="cursor:pointer">';
-    s+='<circle cx="'+L.x+'" cy="'+L.y+'" r="30" fill="'+col+'" fill-opacity="0.16" stroke="'+col+'" stroke-width="2"/>';
-    s+='<text x="'+L.x+'" y="'+(L.y+4)+'" text-anchor="middle" font-size="15" font-weight="700" fill="'+col+'" font-family="var(--serif)">'+m+'</text>';
-    s+='<text x="'+L.x+'" y="'+(L.y+46)+'" text-anchor="middle" font-size="10.5" fill="var(--ink2)" font-family="var(--sans)">'+esc(L.label)+'</text>';
-    s+='</g>';
-  });
+  var s='<svg id="archsvg" viewBox="0 0 620 400" role="img" aria-label="space architecture — 3D schematic" style="width:100%;max-width:660px;overflow:visible">';
+  /* --- ground plane (isometric) --- */
+  s+='<defs><linearGradient id="gsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--surface2)"/><stop offset="1" stop-color="var(--surface)"/></linearGradient>'+
+     '<radialGradient id="gearth" cx="0.5" cy="0.4" r="0.7"><stop offset="0" stop-color="#2c527f"/><stop offset="1" stop-color="#12283f"/></radialGradient></defs>';
+  s+='<polygon points="310,300 560,340 310,392 60,340" fill="url(#gsky)" stroke="var(--hair)" stroke-width="1"/>';
+  /* iso grid */
+  for(var gi=1;gi<4;gi++){ var t=gi/4; s+='<line x1="'+(60+250*t)+'" y1="'+(340+52*t)+'" x2="'+(310+250*t)+'" y2="'+(300+40*t)+'" stroke="var(--hair2)" stroke-width="1"/>'; s+='<line x1="'+(310-250*t)+'" y1="'+(300+40*t)+'" x2="'+(560-250*t)+'" y2="'+(340-52*t*0)+'" stroke="var(--hair2)" stroke-width="0.6" opacity="0.5"/>'; }
+  /* --- orbit ellipse (3D look) with animated satellite --- */
+  s+='<ellipse cx="310" cy="150" rx="250" ry="72" fill="none" stroke="var(--navy2)" stroke-width="1.4" stroke-dasharray="4 5" opacity="0.55"/>';
+  s+='<path id="orbitpath" d="M60,150 a250,72 0 1,1 500,0 a250,72 0 1,1 -500,0" fill="none" stroke="none"/>';
+  /* Earth-ish core */
+  s+='<circle cx="310" cy="150" r="30" fill="url(#gearth)"/>';
+  /* moving satellite icon */
+  s+='<g><g transform="translate(-9,-6)"><rect x="4" y="0" width="10" height="12" rx="2" fill="#cdd6e2" stroke="#8a929e"/><rect x="-6" y="3" width="8" height="6" fill="#2c527f"/><rect x="16" y="3" width="8" height="6" fill="#2c527f"/></g>'+
+     '<animateMotion dur="16s" repeatCount="indefinite" rotate="0"><mpath href="#orbitpath"/></animateMotion></g>';
+  /* --- layer badges positioned in the scene --- */
+  s+=badge(310,150-52,arch.satellite||0,"Satellites","satellite");   /* on the orbit top */
+  s+=badge(120,318,arch.launch||0,"Launch","launch");                 /* ground left */
+  s+=badge(310,332,arch.ground||0,"Ground segment","ground");         /* ground centre */
+  s+=badge(500,318,arch.sda||0,"SDA sensors","sda");                  /* ground right */
+  s+=badge(516,205,arch.user||0,"User terminals","user");             /* mid right */
+  /* connectors */
+  s+='<g stroke="var(--hair)" stroke-width="1.1" fill="none" opacity="0.8">'+
+     '<line x1="310" y1="120" x2="310" y2="315"/><line x1="310" y1="332" x2="140" y2="322"/><line x1="310" y1="332" x2="480" y2="322"/><line x1="500" y1="301" x2="510" y2="222"/></g>';
   s+='</svg>';
   return s;
 }
@@ -4373,6 +5387,11 @@ function wireSites(p){
   document.querySelectorAll(".archnode").forEach(function(nd){
     function show(){var k=nd.getAttribute("data-k"),m=nd.getAttribute("data-m");var lbl=(ARCH_LAYERS.filter(function(L){return L.k===k;})[0]||{}).label||k;els("arch-detail").innerHTML='<b>'+esc(lbl)+':</b> sovereign maturity '+esc(m)+'/5. '+esc((p.arch&&p.arch.note)||"");}
     nd.addEventListener("mouseenter",show); nd.addEventListener("click",show);
+  });
+  /* component hover */
+  document.querySelectorAll(".ex-part").forEach(function(pt){
+    function show(){ var d=els("comp-detail"); if(d) d.innerHTML='<b>'+esc(pt.getAttribute("data-part"))+' — capability '+esc(pt.getAttribute("data-cap"))+'/5.</b> '+esc(pt.getAttribute("data-note")); }
+    pt.addEventListener("mouseenter",show); pt.addEventListener("click",show);
   });
 }
 
