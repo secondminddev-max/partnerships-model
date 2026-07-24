@@ -240,6 +240,12 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .seg button{padding:6px 11px;font-size:12px;border:none;background:none;border-radius:6px;color:var(--ink2)}
 .seg button.on{background:var(--surface);color:var(--navy2);font-weight:600;box-shadow:var(--shadow)}
 .lib-count{font-size:12px;color:var(--muted)}
+.lib-sort{padding:8px 10px;border:1px solid var(--hair);border-radius:8px;background:var(--surface);font-size:12.5px;color:var(--ink)}
+.flagstrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.flagcard{background:linear-gradient(180deg,var(--accent-soft),var(--surface) 65%);border:1px solid var(--accent);border-radius:9px;padding:12px 13px}
+.flagcard .fc-rel{display:inline-block;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;margin-bottom:6px}
+.flagcard .fc-name{font-family:var(--serif);font-size:13.5px;font-weight:600;line-height:1.25}
+.flagcard .fc-meta{font-size:11px;color:var(--ink2);margin-top:4px}
 .rec{border-bottom:1px solid var(--hair2);padding:14px 2px}
 .rec:last-child{border-bottom:none}
 .rec .rh{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
@@ -3433,6 +3439,8 @@ function buildCarousel(){
   spin();
 }
 function spin(){
+  if(!CARDS.length||isNaN(curIdx)) { curIdx=0; }
+  curIdx=((curIdx%N)+N)%N;
   els("ring").style.transform="translateZ(-"+RADIUS+"px) rotateY("+(-curIdx*STEP)+"deg)";
   for(var i=0;i<CARDS.length;i++){
     var d=Math.abs(((i-curIdx)%N+N+N/2)%N-N/2), c=CARDS[i];  /* angular distance in steps */
@@ -3460,6 +3468,9 @@ var dragging=false, startX=0, dragMoved=false;
   stage.addEventListener("touchend",up);
 })();
 var rotate=spin;
+/* robustness: rebuild the carousel if the page is restored from bfcache or the ring is ever found empty while home is shown */
+window.addEventListener("pageshow",function(e){ if(els("app")&&els("app").style.display!=="none"&&els("hero")&&els("hero").style.display!=="none"){ buildCarousel(); } });
+window.addEventListener("focus",function(){ if(els("hero")&&els("hero").style.display!=="none"&&els("ring")&&!els("ring").children.length){ buildCarousel(); } });
 els("c-prev").addEventListener("click",function(){step(-1);});
 els("c-next").addEventListener("click",function(){step(1);});
 document.addEventListener("keydown",function(e){
@@ -3503,7 +3514,7 @@ function openPartner(key){
   CURTAB="factsheet"; renderTabs();
   window.scrollTo(0,0);
 }
-function goHome(){ els("view").style.display="none"; els("hero").style.display="flex"; CURKEY=null; window.scrollTo(0,0); }
+function goHome(){ els("view").style.display="none"; els("hero").style.display="flex"; CURKEY=null; window.scrollTo(0,0); buildCarousel(); }
 els("pv-back").addEventListener("click",goHome);
 els("pv-home").addEventListener("click",goHome);
 
@@ -3605,8 +3616,8 @@ function renderFactsheet(p){
 
   /* strategic overview + radar */
   h+='<div class="two" style="margin-bottom:16px">';
-  h+='<div class="card"><div class="sec-label">Strategic overview</div><p style="font-size:13.5px">'+esc(f.strategic_overview||"")+'</p>'+
-     (f.bilateral_relationship?'<p style="font-size:13px;color:var(--ink2);margin-top:10px">'+esc(f.bilateral_relationship)+'</p>':'')+'</div>';
+  h+='<div class="card"><div class="sec-label">Strategic overview</div><p style="font-size:13.5px">'+esc(scrubEv(f.strategic_overview||""))+'</p>'+
+     (f.bilateral_relationship?'<p style="font-size:13px;color:var(--ink2);margin-top:10px">'+esc(scrubEv(f.bilateral_relationship))+'</p>':'')+'</div>';
   h+='<div class="card"><div class="sec-label">Capability assessment</div>'+renderRadar(p)+
      (f.capability_assessment_note?'<p style="font-size:11.5px;color:var(--muted);margin-top:10px">'+esc(f.capability_assessment_note)+'</p>':'')+'</div>';
   h+='</div>';
@@ -3614,7 +3625,7 @@ function renderFactsheet(p){
   /* key messages */
   if(f.key_messages&&f.key_messages.length){
     h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Key messages for the Commander</div>';
-    f.key_messages.forEach(function(k){ h+='<div class="km"><p>'+esc(k.text)+' <span class="lab '+cls(k.label)+'">'+esc(k.label)+'</span></p></div>'; });
+    f.key_messages.forEach(function(k){ h+='<div class="km"><p>'+esc(scrubEv(k.text))+' <span class="lab '+cls(k.label)+'">'+esc(k.label)+'</span></p></div>'; });
     h+='</div>';
   }
 
@@ -3628,7 +3639,7 @@ function renderFactsheet(p){
   /* key agreements */
   if(f.key_agreements&&f.key_agreements.length){
     h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Key agreements</div><table class="agtable"><thead><tr><th>Instrument</th><th>Date</th><th>Space</th><th>Note</th></tr></thead><tbody>';
-    f.key_agreements.forEach(function(a){ h+='<tr><td><b>'+esc(a.name)+'</b></td><td>'+esc(a.date)+'</td><td><span class="rel '+esc(a.space)+'">'+esc(a.space)+'</span></td><td>'+esc(a.note)+'</td></tr>'; });
+    f.key_agreements.forEach(function(a){ h+='<tr><td><b>'+esc(a.name)+'</b></td><td>'+esc(a.date)+'</td><td><span class="rel '+esc(a.space)+'">'+esc(a.space)+'</span></td><td>'+esc(scrubEv(a.note))+'</td></tr>'; });
     h+='</tbody></table></div>';
   }
 
@@ -3637,16 +3648,16 @@ function renderFactsheet(p){
 
   /* cooperation, pacific, multilateral */
   var trip="";
-  if(f.areas_of_cooperation) trip+='<div class="card"><div class="sec-label">Areas of cooperation</div><ul style="list-style:none;font-size:12.5px">'+f.areas_of_cooperation.map(function(x){return '<li style="padding:4px 0;border-top:1px solid var(--hair2)">'+esc(x)+'</li>';}).join("")+'</ul></div>';
-  if(f.pacific) trip+='<div class="card"><div class="sec-label">Joint efforts in the Pacific</div><p style="font-size:12.5px">'+esc(f.pacific)+'</p></div>';
-  if(f.multilateral) trip+='<div class="card"><div class="sec-label">Multilateral engagement</div><p style="font-size:12.5px">'+esc(f.multilateral)+'</p></div>';
+  if(f.areas_of_cooperation) trip+='<div class="card"><div class="sec-label">Areas of cooperation</div><ul style="list-style:none;font-size:12.5px">'+f.areas_of_cooperation.map(function(x){return '<li style="padding:4px 0;border-top:1px solid var(--hair2)">'+esc(scrubEv(x))+'</li>';}).join("")+'</ul></div>';
+  if(f.pacific) trip+='<div class="card"><div class="sec-label">Joint efforts in the Pacific</div><p style="font-size:12.5px">'+esc(scrubEv(f.pacific))+'</p></div>';
+  if(f.multilateral) trip+='<div class="card"><div class="sec-label">Multilateral engagement</div><p style="font-size:12.5px">'+esc(scrubEv(f.multilateral))+'</p></div>';
   if(trip) h+='<div class="three" style="margin-bottom:16px">'+trip+'</div>';
 
   /* force / industry / exercises */
   var trip2="";
-  if(f.force_overview) trip2+='<div class="card"><div class="sec-label">Force overview &amp; capabilities</div><p style="font-size:12.5px">'+esc(f.force_overview)+'</p></div>';
-  if(f.exercises_ops) trip2+='<div class="card"><div class="sec-label">Key exercises &amp; operations</div><p style="font-size:12.5px">'+esc(f.exercises_ops)+'</p></div>';
-  if(f.industry) trip2+='<div class="card"><div class="sec-label">Defence space industry</div><p style="font-size:12.5px">'+esc(f.industry)+'</p></div>';
+  if(f.force_overview) trip2+='<div class="card"><div class="sec-label">Force overview &amp; capabilities</div><p style="font-size:12.5px">'+esc(scrubEv(f.force_overview))+'</p></div>';
+  if(f.exercises_ops) trip2+='<div class="card"><div class="sec-label">Key exercises &amp; operations</div><p style="font-size:12.5px">'+esc(scrubEv(f.exercises_ops))+'</p></div>';
+  if(f.industry) trip2+='<div class="card"><div class="sec-label">Defence space industry</div><p style="font-size:12.5px">'+esc(scrubEv(f.industry))+'</p></div>';
   if(trip2) h+='<div class="three" style="margin-bottom:16px">'+trip2+'</div>';
   return h;
 }
@@ -3842,43 +3853,75 @@ function wireOpps(){}
 
 /* ---------- ARTEFACTS ---------- */
 function partnerVehicles(key){ return (VEH[key]||[]).slice(); }
+var FLAGSHIP={
+  us:["Enhanced Space Cooperation","Combined Space Operations","Wideband Global","Deep Space Advanced Radar","DARC","Pine Gap","Technology Safeguards","Olympic Defender"],
+  nz:["Regarding Space Cooperation","SouthPAN","Olympic Defender","Combined Space Operations","Catalyst","Statement of Intent"],
+  canada:["Over-the-Horizon","Combined Space Operations","Sapphire","RADARSAT","Olympic Defender","Space Situational"],
+  uk:["Deep Space Advanced Radar","DARC","Combined Space Operations","Space Bridge","AUKUS"],
+  japan:["Reciprocal Access","Combined Space Operations","Quad","Information Security","Transfer of Defence"],
+  india:["Combined Space Operations","Gaganyaan","Cocos","Quad","Defence and Security"],
+  domestic:[]
+};
+function flagshipFor(key,vs){
+  var kws=FLAGSHIP[key]||[];
+  var picked=[], used={};
+  kws.forEach(function(kw){ vs.forEach(function(v){ if(!used[v.vehicle_id] && v.name.toLowerCase().indexOf(kw.toLowerCase())>=0){ picked.push(v); used[v.vehicle_id]=1; } }); });
+  if(picked.length<3){ vs.filter(function(v){return v.space_relevance==="Direct" && String(v.status).toLowerCase().indexOf("in force")>=0 && !used[v.vehicle_id];}).slice(0,4-picked.length).forEach(function(v){picked.push(v);used[v.vehicle_id]=1;}); }
+  return picked.slice(0,5);
+}
+function recRow(v){
+  var inforce=String(v.status).toLowerCase().indexOf("in force")>=0;
+  return '<div class="rec"><div class="rh"><div><div class="rn">'+esc(v.name)+'</div>'+
+    '<div class="rmeta">'+esc(v.vehicle_type)+(v.signed?' · '+esc(v.signed):'')+(v.level?' · '+esc(v.level):'')+' · <span class="rel '+esc(v.space_relevance)+'">'+esc(v.space_relevance)+'</span> · <span class="lab '+cls(v.label)+'">'+esc(v.label)+'</span></div></div>'+
+    '<span class="chip '+(inforce?"inforce":"other")+'">'+esc(v.status)+'</span></div>'+
+    (v.scope?'<div class="rscope">'+esc(v.scope)+'</div>':'')+
+    '<div class="rsrc">'+esc(v.source_org||"")+(v.source_title?' — '+esc(v.source_title):'')+(v.source_date?' ('+esc(v.source_date)+')':'')+(v.source_ref&&/^https?:/.test(v.source_ref)?' · <a href="'+esc(v.source_ref)+'" target="_blank" rel="noopener">source</a>':'')+(v.verdict?' · <b>'+esc(v.verdict)+'</b>':'')+'</div></div>';
+}
 function renderArtefacts(p){
   var vs=partnerVehicles(CURKEY);
-  if(!vs.length) return '<div class="stub">No artefacts embedded for this partner. The full register is in the <a href="model.html">analytical model</a>.</div>';
-  var h='<div class="sec-label">Artefact library — '+vs.length+' instruments (this partner)</div>';
+  if(!vs.length) return '<div class="stub">No artefacts embedded for this partner. The full register is in the <a href="model.html#/architecture">analytical model</a>.</div>';
+  var flag=flagshipFor(CURKEY,vs);
+  var h='';
+  if(flag.length){
+    h+='<div class="sec-label">Flagship instruments</div><div class="flagstrip">';
+    flag.forEach(function(v){ h+='<div class="flagcard"><div class="fc-rel rel '+esc(v.space_relevance)+'">'+esc(v.space_relevance)+'</div><div class="fc-name">'+esc(v.name)+'</div><div class="fc-meta">'+esc(v.vehicle_type)+(v.signed?' · '+esc(v.signed):'')+'</div></div>'; });
+    h+='</div>';
+  }
+  h+='<div class="sec-label" style="margin-top:18px">Full library — '+vs.length+' instruments</div>';
   h+='<div class="lib-controls">'+
      '<input class="lib-search" id="lib-q" placeholder="Search instruments...">'+
      '<div class="seg" id="seg-rel"><button class="on" data-v="">All</button><button data-v="Direct">Direct</button><button data-v="Enabling">Enabling</button><button data-v="General">General</button></div>'+
+     '<div class="seg" id="seg-status"><button class="on" data-v="">Any status</button><button data-v="force">In force</button></div>'+
+     '<select class="lib-sort" id="lib-sort"><option value="rel">Sort: relevance</option><option value="date">Newest</option><option value="name">Name A–Z</option><option value="type">Type</option></select>'+
      '<span class="lib-count" id="lib-count"></span></div>';
   h+='<div id="lib-list"></div>';
+  h+='<p class="foot-note" style="margin-top:14px">Need portfolio-wide analytics (scoring, pathways, cross-partner comparison)? Open this partner in the <a href="model.html#/architecture">full analytical model</a> — same register, same data.</p>';
   return h;
 }
 function wireLibrary(){
   var vs=partnerVehicles(CURKEY);
-  var q="", rel="";
+  var q="", rel="", stat="", sort="rel";
   function draw(){
     var list=vs.filter(function(v){
       if(rel && v.space_relevance!==rel) return false;
+      if(stat==="force" && String(v.status).toLowerCase().indexOf("in force")<0) return false;
       if(q){var blob=(v.name+" "+v.scope+" "+v.source_org+" "+v.vehicle_type).toLowerCase();return blob.indexOf(q)>=0;}
       return true;
     });
     els("lib-count").textContent=list.length+" shown";
     var order={Direct:0,Enabling:1,General:2};
-    list.sort(function(a,b){return (order[a.space_relevance]||3)-(order[b.space_relevance]||3);});
-    var h="";
-    list.forEach(function(v){
-      var inforce=String(v.status).toLowerCase().indexOf("in force")>=0;
-      h+='<div class="rec"><div class="rh"><div><div class="rn">'+esc(v.name)+'</div>'+
-        '<div class="rmeta">'+esc(v.vehicle_type)+(v.signed?' · '+esc(v.signed):'')+' · '+esc(v.level||"")+' · <span class="rel '+esc(v.space_relevance)+'">'+esc(v.space_relevance)+'</span> · <span class="lab '+cls(v.label)+'">'+esc(v.label)+'</span></div></div>'+
-        '<span class="chip '+(inforce?"inforce":"other")+'">'+esc(v.status)+'</span></div>'+
-        (v.scope?'<div class="rscope">'+esc(v.scope)+'</div>':'')+
-        '<div class="rsrc">'+esc(v.source_org||"")+(v.source_title?' — '+esc(v.source_title):'')+(v.source_date?' ('+esc(v.source_date)+')':'')+(v.source_ref&&/^https?:/.test(v.source_ref)?' · <a href="'+esc(v.source_ref)+'" target="_blank" rel="noopener">source</a>':'')+(v.verdict?' · <b>'+esc(v.verdict)+'</b>':'')+'</div></div>';
+    list.sort(function(a,b){
+      if(sort==="date") return String(b.signed||"").localeCompare(String(a.signed||""));
+      if(sort==="name") return String(a.name).localeCompare(String(b.name));
+      if(sort==="type") return String(a.vehicle_type).localeCompare(String(b.vehicle_type));
+      return (order[a.space_relevance]||3)-(order[b.space_relevance]||3);
     });
-    els("lib-list").innerHTML=h||'<div class="stub">No instruments match.</div>';
+    els("lib-list").innerHTML=list.map(recRow).join("")||'<div class="stub">No instruments match.</div>';
   }
   els("lib-q").addEventListener("input",function(){q=this.value.toLowerCase().trim();draw();});
-  var seg=els("seg-rel");
-  seg.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){seg.querySelectorAll("button").forEach(function(x){x.classList.remove("on");});b.classList.add("on");rel=b.getAttribute("data-v");draw();});});
+  function seg(id,set){var s=els(id);s.querySelectorAll("button").forEach(function(b){b.addEventListener("click",function(){s.querySelectorAll("button").forEach(function(x){x.classList.remove("on");});b.classList.add("on");set(b.getAttribute("data-v"));draw();});});}
+  seg("seg-rel",function(v){rel=v;}); seg("seg-status",function(v){stat=v;});
+  els("lib-sort").addEventListener("change",function(){sort=this.value;draw();});
   draw();
 }
 
