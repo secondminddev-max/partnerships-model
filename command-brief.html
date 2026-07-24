@@ -1601,13 +1601,21 @@ function buildMinute(p){
   var ops=sel.map(function(s){ return byId[s.id]||{id:s.id,title:s.title}; });
 
   var g=cbGrid(CURKEY), vd=cbVerdict(CURKEY,g,p.name);
-  var body=[];
-  body.push("1.    Purpose. This minute seeks agreement to the action items at paragraph 5, ahead of forthcoming space staff talks with "+p.name+".");
-  body.push("2.    Current state. "+(p.current_state?p.current_state.headline+" "+p.current_state.points.slice(0,2).join(" "):""));
-  body.push("3.    Authority held. "+vd.head+". "+vd.body+" (Derived from the partnership register; see the load path on the factsheet.)");
-  body.push("4.    Opportunity. "+(p.future_state?p.future_state.headline:"")+" The action items below are drawn from the model's staffed pathways.");
+  /* paragraphs are numbered after assembly — a partner that is not staffed to
+     briefing depth drops paragraphs rather than emitting empty ones, and the
+     numbering must stay contiguous when it does */
+  var paras=[];
+  paras.push("Purpose. This minute seeks agreement to the action items below, ahead of forthcoming space staff talks with "+p.name+".");
+  if(p.current_state) paras.push("Current state. "+p.current_state.headline+" "+p.current_state.points.slice(0,2).join(" "));
+  paras.push("Authority held. "+vd.head+". "+vd.body+" (Derived from the partnership register; see the load path on the factsheet.)");
+  if(p.future_state) paras.push("Opportunity. "+p.future_state.headline+" The action items below are drawn from the model's staffed pathways.");
+  if(!p.current_state && !ops.length)
+    paras.push("Depth. "+p.name+" is carried in the model at register depth. The authority read above is derived from the register and stands; the current-state assessment and staffed pathways have not been written, and this minute should not be issued until they are. New Zealand is the worked example.");
 
-  var a="5.    It is recommended that COMD SPACECOMD agree the following action items:";
+  var n=0;
+  var body=paras.map(function(t){ n++; return n+".    "+t; });
+  var a=(++n)+".    It is recommended that COMD SPACECOMD agree the following action items:";
+  var tailNum=n+1;
   var subs=[];
   if(ops.length){
     ops.forEach(function(o,i){
@@ -1621,7 +1629,9 @@ function buildMinute(p){
       subs.push(L);
     });
   } else {
-    subs.push("    a.   [no opportunities ticked] Return to the Opportunities tab and tick the lines to carry into this minute.");
+    subs.push((p.opportunities||[]).length
+      ? "    a.   [no opportunities ticked] Return to the Opportunities tab and tick the lines to carry into this minute."
+      : "    a.   [none staffed] No opportunity pathways have been written for "+p.name+" — see paragraph on depth above.");
   }
   var text="";
   text+='<div class="docband">UNOFFICIAL</div>';
@@ -1632,7 +1642,7 @@ function buildMinute(p){
   text+='References:\n'+refs.map(esc).join("\n")+'\n\n';
   text+=body.map(esc).join("\n\n")+"\n\n";
   text+=esc(a)+"\n\n"+subs.map(esc).join("\n\n")+"\n\n";
-  text+="6.    A visit in-brief in the Chapter 12 format is available under this tab (In-brief).\n";
+  text+=tailNum+".    A visit in-brief in the Chapter 12 format is available under this tab (In-brief).\n";
   text+='<div class="sig"><b>J Staff</b>\nSO1 Space Partnerships\nDefence Space Command\n\n'+esc(today())+'</div>';
   text+='\n\n<span style="color:#b4432f;font-size:11px">Draft — items marked TO_VERIFY in the model (personnel, dates, budgets) must be confirmed before release.</span>';
   return '<div class="doc">'+text+'</div>';
@@ -1647,7 +1657,9 @@ function buildBrief(p){
   t+='<b>Reason.</b>  Prepared to support COMD SPACECOMD engagement with '+esc(p.name)+' at the forthcoming space staff talks.\n\n';
   t+='<b>Purpose.</b>  To brief the current state of the bilateral defence space relationship, the priority lines of effort, and the recommended positions.\n\n';
   t+='<b>Scope.</b>  Relationship overview; leadership; lines of effort (capability alignment, workforce/FORGEN, interoperability); opportunities; and recommended actions.\n\n';
-  t+='<b>Background.</b>  '+esc((p.factsheet&&p.factsheet.bilateral_relationship)||"")+'\n\n';
+  var bgTxt=(p.factsheet&&(p.factsheet.bilateral_relationship||p.factsheet.strategic_overview))||"";
+  t+='<b>Background.</b>  '+(bgTxt?esc(scrubEv(bgTxt))
+      :esc('No bilateral-relationship assessment has been written for '+p.name+'; the register entries and leadership below are the extent of the current holding.'))+'\n\n';
   t+='<b>Discussion.</b>\n';
   if(p.current_state){t+='\n  Current state — '+esc(p.current_state.headline)+'\n'+p.current_state.points.map(function(x,i){return "  "+(i+1)+". "+esc(x);}).join("\n")+'\n';}
   if(p.loe&&p.loe.lines){t+='\n  Lines of effort\n'+p.loe.lines.map(function(l){return "  - "+esc(l.name)+": "+esc(l.opportunity);}).join("\n")+'\n';}
@@ -1656,8 +1668,12 @@ function buildBrief(p){
   var bg=cbGrid(CURKEY), bv=cbVerdict(CURKEY,bg,p.name);
   t+='\n  Authority held\n  '+esc(bv.head)+'. '+esc(bv.body)+'\n';
   t+='\n<b>Sensitivity.</b>  Low — all content open-source and UNOFFICIAL.\n\n';
-  t+='<b>Conclusions.</b>  '+esc((p.future_state&&p.future_state.headline)||"")+' The bilateral machinery already exists; the task is to insert defence-space content into it.\n\n';
-  t+='<b>Recommendations.</b>  It is recommended that you:\n';
+  /* the conclusion must come from this partner's own data — the previous
+     wording asserted an NZ-specific finding on every partner's brief */
+  t+='<b>Conclusions.</b>  '+(p.future_state
+      ? esc(p.future_state.headline)+' '+esc((p.future_state.points||[])[0]||'')
+      : esc(p.name)+' is carried at register depth: the authority read above is derived and stands, but no future-state assessment has been written. Not to be issued as a visit brief until it is.')+'\n\n';
+  t+='<b>Recommendations.</b>  '+((p.opportunities||[]).length?'It is recommended that you:':'No opportunity pathways have been staffed for '+esc(p.name)+'. Recommendations cannot be drawn until they are.')+'\n';
   var ops=(p.opportunities||[]).slice(0,4);
   t+=ops.map(function(o,i){
       var pw=o.pathway||{}, tail=[];
