@@ -131,6 +131,14 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .lab.TO_VERIFY,.lab.TOVERIFY{background:color-mix(in oklab,var(--verify) 18%,transparent);color:var(--verify)}
 .lab.mix{background:color-mix(in oklab,var(--assess) 14%,transparent);color:var(--assess)}
 
+/* BLUF */
+.bluf{background:linear-gradient(180deg,var(--accent-soft),var(--surface) 72%);border:1px solid var(--accent);border-left-width:4px;border-radius:11px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow)}
+.bluf-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.bluf-line{font-size:15px;line-height:1.5;color:var(--ink);margin-top:7px;font-weight:500}
+.bluf-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+@media(max-width:700px){.bluf-grid{grid-template-columns:1fr}}
+.bluf-grid > div{font-size:12.5px;color:var(--ink2);line-height:1.5}
+.bluf-h{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy2);font-weight:700;margin-bottom:4px}
 /* dual maturity */
 .mat-row{display:flex;gap:14px;flex-wrap:wrap;margin:2px 0 16px}
 .mat{flex:1;min-width:230px;background:var(--surface);border:1px solid var(--hair);border-radius:11px;padding:16px 18px;box-shadow:var(--shadow)}
@@ -1340,6 +1348,11 @@ button{font-family:inherit;cursor:pointer;color:inherit}
       "note": "Civil SDA outsourced to a US provider."
      }
     ]
+   },
+   "bluf": {
+    "bottom_line": "New Zealand is Australia's closest defence partner and treaty ally, yet the bilateral space relationship is civil-only — no defence-space instrument, no space line of effort in any Anzac statement. The machinery to change that already exists; the content does not. And in July 2026 New Zealand signed its first military-space instrument with the United States, not Australia. The staff talks are the moment to insert a defence-space line of effort into the Anzac framework before that gap widens.",
+    "posture": "Lead with the two cheapest, highest-goodwill lines — combined workforce generation (on the existing ASWC-embed precedent) and SDA interoperability through the JCO Pacific cell — using instruments that already exist. Scope any Australian-benefiting ground infrastructure in New Zealand through the new GBSI national-interest regime from day one.",
+    "ask": "Agree to table a space annex to Anzac 2035 at the next ANZMIN, and to stand up a bilateral SDA data-sharing arrangement under the 2019 MBIE-ASA Joint Steering Committee (where space situational awareness is already in scope)."
    }
   },
   "domestic": {
@@ -1894,6 +1907,11 @@ button{font-family:inherit;cursor:pointer;color:inherit}
       "note": "Sovereign, exportable."
      }
     ]
+   },
+   "bluf": {
+    "bottom_line": "Australia's sovereign space strengths are geography (ground/SDA hosting), small-satellite build, orbital returns, and space data/analytics. It is import- or ally-dependent in strategic SATCOM, PNT, GEO-class manufacture and critical subsystems — the last of which is the least-visible, highest-risk sovereignty gap. JP9102's cancellation left an assured-communications hole now being filled by multi-orbit and a sovereign tactical-LEO edge.",
+    "posture": "Burden-share where it is efficient and low-risk (deep-space SDA via DARC, interim strategic SATCOM, workforce). Hold sovereignty where it is essential — assured ADF communications, reconstitution (responsive launch + small-sat build), and sovereign data custody. Use JSCFADT Rec 6 and Lot Fourteen to structure Defence-to-industry requirements.",
+    "ask": "Prioritise the assured-communications gap (sovereign tactical-LEO + Australian-controlled ground segment) and a component-provenance assurance mandate for sovereign-critical acquisitions."
    }
   },
   "us": {
@@ -4904,6 +4922,13 @@ function matCard(kind,m){
 function renderFactsheet(p){
   var f=p.factsheet||{}, m=p.maturity||{};
   var h="";
+  /* BLUF — bottom line up front for the Commander */
+  if(p.bluf){
+    h+='<div class="bluf"><div class="bluf-tag">Bottom line up front</div>'+
+       '<p class="bluf-line">'+esc(scrubEv(p.bluf.bottom_line))+'</p>'+
+       '<div class="bluf-grid"><div><span class="bluf-h">Recommended posture</span>'+esc(scrubEv(p.bluf.posture))+'</div>'+
+       '<div><span class="bluf-h">The ask</span>'+esc(scrubEv(p.bluf.ask))+'</div></div></div>';
+  }
   /* dual maturity */
   h+='<div class="sec-label">Maturity — partnership (military-to-military) and intrinsic</div><div class="mat-row">'+
      matCard("Partnership",m.partnership)+matCard("Intrinsic (partner)",m.intrinsic)+'</div>';
