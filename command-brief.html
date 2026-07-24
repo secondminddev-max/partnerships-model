@@ -61,27 +61,31 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 #hero .asat{margin-top:10px;font-size:12px;color:var(--muted)}
 
 /* ---------- 3D carousel ---------- */
-.carousel-wrap{margin-top:44px;width:100%;max-width:960px;user-select:none}
+.carousel-wrap{margin-top:40px;width:100%;max-width:1000px;user-select:none}
 .carousel-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.stage{perspective:1400px;height:280px;position:relative}
-.ring{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.22,.61,.36,1);margin:0 auto}
-.flag{position:absolute;top:50%;left:50%;width:190px;height:238px;margin:-119px 0 0 -95px;border-radius:14px;background:var(--surface);border:1px solid var(--hair);box-shadow:var(--shadow);
-  display:flex;flex-direction:column;overflow:hidden;cursor:pointer;backface-visibility:hidden;
-  transition:transform .5s cubic-bezier(.22,.61,.36,1),opacity .5s ease,border-color .2s}
-.flag:hover{border-color:var(--navy2)}
-.flag .band{height:78px;position:relative;display:flex;align-items:center;justify-content:center}
-.flag .code{font-family:var(--serif);font-size:34px;font-weight:600;color:#fff;letter-spacing:.04em;text-shadow:0 1px 4px rgba(0,0,0,.3)}
-.flag .body{padding:14px 14px 12px;flex:1;display:flex;flex-direction:column}
+.stage{perspective:1300px;height:300px;position:relative;cursor:grab}
+.stage:active{cursor:grabbing}
+.ring{position:absolute;width:196px;height:250px;left:50%;top:50%;margin:-125px 0 0 -98px;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.25,.9,.3,1)}
+.flag{position:absolute;width:196px;height:250px;border-radius:15px;background:var(--surface);border:1px solid var(--hair);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;overflow:hidden;cursor:pointer;backface-visibility:hidden;transition:opacity .5s ease,box-shadow .3s,border-color .2s}
+.flag .band{height:84px;position:relative;display:flex;align-items:center;justify-content:center}
+.flag .band:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(0,0,0,.14))}
+.flag .code{position:relative;z-index:1;font-family:var(--serif);font-size:36px;font-weight:700;color:#fff;letter-spacing:.04em;text-shadow:0 1px 5px rgba(0,0,0,.45)}
+.flag .body{padding:14px 15px 13px;flex:1;display:flex;flex-direction:column}
 .flag .fname{font-family:var(--serif);font-size:16.5px;font-weight:600;line-height:1.15}
-.flag .freg{font-size:11px;color:var(--muted);margin-top:3px;flex:1}
+.flag .freg{font-size:10.5px;color:var(--muted);margin-top:3px;flex:1}
 .flag .fmat{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 .matdot{font-size:10px;padding:2px 7px;border-radius:20px;background:var(--surface2);border:1px solid var(--hair);color:var(--ink2)}
-.matdot b{color:var(--navy2)}
-.flag.center{border-color:var(--navy2);box-shadow:0 4px 12px rgba(31,58,95,.16),0 20px 44px rgba(27,36,49,.14)}
-.cbtn{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--hair);box-shadow:var(--shadow);font-size:19px;color:var(--ink2);display:flex;align-items:center;justify-content:center}
-.cbtn:hover{border-color:var(--navy2);color:var(--navy2)}
-.cbtn.prev{left:2px}.cbtn.next{right:2px}
+.matdot b{color:var(--ink)}
+.flag.center{box-shadow:0 6px 16px rgba(27,36,49,.16),0 26px 56px rgba(27,36,49,.2)}
+.flag.center .cta{opacity:1}
+.flag .cta{position:absolute;bottom:11px;left:15px;right:15px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2);opacity:0;transition:opacity .3s}
+.cbtn{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:46px;height:46px;border-radius:50%;background:var(--surface);border:1px solid var(--hair);box-shadow:var(--shadow);font-size:20px;color:var(--ink2);display:flex;align-items:center;justify-content:center}
+.cbtn:hover{border-color:var(--navy2);color:var(--navy2);transform:translateY(-50%) scale(1.06)}
+.cbtn.prev{left:0}.cbtn.next{right:0}
 .carousel-hint{margin-top:14px;font-size:11.5px;color:var(--muted)}
+.hero-nav{margin-top:34px;font-size:12px;color:var(--muted)}
+.hero-nav a{color:var(--navy2)}
 .rail{margin-top:30px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .rail-chip{padding:7px 15px;border-radius:22px;border:1px solid var(--hair);background:var(--surface);font-size:12.5px;color:var(--ink2)}
 .rail-chip:hover{border-color:var(--navy2);color:var(--navy2)}
@@ -172,6 +176,15 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .align-node .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy2);font-weight:700;margin-bottom:6px}
 .align-node p{font-size:12.5px;color:var(--ink2)}
 
+/* key leaders strip */
+.kl-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:800px){.kl-strip{grid-template-columns:1fr 1fr}}
+.kl{background:var(--surface2);border:1px solid var(--hair);border-radius:9px;padding:12px 13px}
+.kl.aud{border-color:var(--accent);background:linear-gradient(180deg,var(--accent-soft),var(--surface2) 70%)}
+.kl-side{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.kl-name{font-family:var(--serif);font-size:14px;font-weight:600;margin-top:4px;line-height:1.2}
+.kl-appt{font-size:11px;color:var(--ink2);margin-top:3px}
+.kl-name.pending{color:var(--verify);font-style:italic}
 /* leadership */
 .lead{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:800px){.lead{grid-template-columns:1fr}}
@@ -250,6 +263,31 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .btn.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
 .gen-note{font-size:12px;color:var(--muted);margin-bottom:14px}
 
+/* placemat */
+.placemat{background:var(--surface);border:1px solid var(--hair);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+.pm-band{height:8px}
+.pm-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:18px 22px 8px}
+.pm-eyebrow{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.pm-title{font-size:26px;margin-top:4px}
+.pm-mat{display:flex;gap:14px;text-align:center}
+.pm-mat b{font-family:var(--serif);font-size:24px;color:var(--navy2)}
+.pm-mat span{display:block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pm-one{padding:0 22px 12px;font-size:12.5px;color:var(--ink2)}
+.pm-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;padding:6px 22px 14px}
+@media(max-width:800px){.pm-grid{grid-template-columns:1fr}}
+.pm-sec{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy2);font-weight:700;margin:10px 0 5px;border-bottom:1px solid var(--hair2);padding-bottom:3px}
+.pm-sec:first-child{margin-top:0}
+.pm-list{list-style:none;margin:0}
+.pm-list li{font-size:11.5px;padding:4px 0 4px 12px;position:relative;line-height:1.4;color:var(--ink)}
+.pm-list li:before{content:"";position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--accent)}
+.pm-list.tight li{padding:2.5px 0 2.5px 12px;font-size:11px}
+.pm-list .pending{color:var(--verify);font-style:italic}
+.pm-foot{padding:10px 22px;border-top:1px solid var(--hair2);font-size:10px;color:var(--muted)}
+@media print{
+  .placemat{border:none;box-shadow:none;page-break-inside:avoid}
+  @page{size:A4 landscape;margin:8mm}
+  body{background:#fff}
+}
 .foot-note{font-size:11.5px;color:var(--muted);margin-top:26px;padding-top:14px;border-top:1px solid var(--hair);line-height:1.6}
 .pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:20px;background:var(--surface2);border:1px solid var(--hair);color:var(--ink2)}
 .stub{color:var(--muted);font-size:13px;font-style:italic;padding:18px;text-align:center;border:1px dashed var(--hair);border-radius:10px}
@@ -307,9 +345,10 @@ button{font-family:inherit;cursor:pointer;color:inherit}
         <div class="ring" id="ring"></div>
         <button class="cbtn next" id="c-next" aria-label="next">&#8250;</button>
       </div>
-      <div class="carousel-hint">Use the arrows or &#8592; &#8594; keys · click a card to open</div>
+      <div class="carousel-hint">Spin with the arrows, &#8592; &#8594; keys or drag · click the front card to open its brief</div>
       <div class="rail" id="rail"></div>
     </div>
+    <div class="hero-nav">Also in this model: <a href="model.html">full analytical register &amp; analytics</a> · <a href="placemats.html">partner placemats</a></div>
   </section>
 
   <!-- PARTNER VIEW -->
@@ -2996,23 +3035,26 @@ var VEH = JSON.parse(document.getElementById("cb-vehicles").textContent);
 
 /* ---- per-country carousel: NZ first (primary), then partners. Each opens its OWN brief. ---- */
 var ORDER = ["nz","us","uk","japan","canada","india","indonesia","germany","france","italy","rok","norway","singapore","uae","domestic"];
+/* bands are flag-inspired, distinct per country (two-tone where the flag is) */
 var FLAGDEF = {
-  nz:       {name:"New Zealand", reg:"Oceania — trans-Tasman", band:"linear-gradient(135deg,#0a2c5e,#12386f)"},
-  us:       {name:"United States", reg:"North America — principal ally", band:"linear-gradient(135deg,#2a3a6b,#355286)"},
-  uk:       {name:"United Kingdom", reg:"Europe — AUKUS", band:"linear-gradient(135deg,#1f2f6b,#33477f)"},
-  japan:    {name:"Japan", reg:"North-east Asia", band:"linear-gradient(135deg,#7a1f2b,#9c2c39)"},
-  canada:   {name:"Canada", reg:"North America — Five Eyes", band:"linear-gradient(135deg,#8a2432,#a63140)"},
-  india:    {name:"India", reg:"South Asia — Quad", band:"linear-gradient(135deg,#b0641f,#c9782c)"},
-  indonesia:{name:"Indonesia", reg:"South-East Asia", band:"linear-gradient(135deg,#8a2432,#a12f3c)"},
-  germany:  {name:"Germany", reg:"Europe", band:"linear-gradient(135deg,#3a3f47,#51575f)"},
-  france:   {name:"France", reg:"Europe", band:"linear-gradient(135deg,#1f2f6b,#2c4a7f)"},
-  italy:    {name:"Italy", reg:"Europe", band:"linear-gradient(135deg,#1f6b4f,#2c7f5c)"},
-  rok:      {name:"Republic of Korea", reg:"North-east Asia", band:"linear-gradient(135deg,#1f3a6b,#2c4f7f)"},
-  norway:   {name:"Norway", reg:"Europe — polar", band:"linear-gradient(135deg,#2a3f6b,#3a527f)"},
-  singapore:{name:"Singapore", reg:"South-East Asia", band:"linear-gradient(135deg,#8a2432,#a12f3c)"},
-  uae:      {name:"United Arab Emirates", reg:"Middle East", band:"linear-gradient(135deg,#1f6b4f,#2c7f5c)"},
-  domestic: {name:"Australia — Industry & Academia", reg:"Sovereign supply-side", band:"linear-gradient(135deg,#0b6b4f,#0e7d5c)"}
+  nz:       {name:"New Zealand", reg:"Oceania — trans-Tasman", band:"linear-gradient(100deg,#012169 0%,#012169 62%,#c8102e 62%,#c8102e 100%)"},
+  us:       {name:"United States", reg:"North America — principal ally", band:"repeating-linear-gradient(180deg,#b22234 0,#b22234 14%,#ffffff 14%,#ffffff 28%),linear-gradient(#3c3b6e,#3c3b6e)"},
+  uk:       {name:"United Kingdom", reg:"Europe — AUKUS", band:"linear-gradient(45deg,#012169 40%,#c8102e 40%,#c8102e 60%,#012169 60%)"},
+  japan:    {name:"Japan", reg:"North-east Asia", band:"radial-gradient(circle at 50% 50%,#bc002d 0,#bc002d 30%,#f2f2f2 30%,#f2f2f2 100%)"},
+  canada:   {name:"Canada", reg:"North America — Five Eyes", band:"linear-gradient(90deg,#d80621 22%,#ffffff 22%,#ffffff 78%,#d80621 78%)"},
+  india:    {name:"India", reg:"South Asia — Quad", band:"linear-gradient(180deg,#ff9933 33%,#ffffff 33%,#ffffff 66%,#138808 66%)"},
+  indonesia:{name:"Indonesia", reg:"South-East Asia", band:"linear-gradient(180deg,#ce1126 50%,#ffffff 50%)"},
+  germany:  {name:"Germany", reg:"Europe", band:"linear-gradient(180deg,#000000 33%,#dd0000 33%,#dd0000 66%,#ffce00 66%)"},
+  france:   {name:"France", reg:"Europe", band:"linear-gradient(90deg,#0055a4 33%,#ffffff 33%,#ffffff 66%,#ef4135 66%)"},
+  italy:    {name:"Italy", reg:"Europe", band:"linear-gradient(90deg,#008c45 33%,#ffffff 33%,#ffffff 66%,#cd212a 66%)"},
+  rok:      {name:"Republic of Korea", reg:"North-east Asia", band:"radial-gradient(circle at 50% 50%,#cd2e3a 0,#cd2e3a 16%,#0047a0 16%,#0047a0 30%,#ffffff 30%)"},
+  norway:   {name:"Norway", reg:"Europe — polar", band:"linear-gradient(90deg,#ba0c2f 36%,#ffffff 36%,#ffffff 44%,#00205b 44%,#00205b 56%,#ffffff 56%,#ffffff 64%,#ba0c2f 64%)"},
+  singapore:{name:"Singapore", reg:"South-East Asia", band:"linear-gradient(180deg,#ef3340 50%,#ffffff 50%)"},
+  uae:      {name:"United Arab Emirates", reg:"Middle East", band:"linear-gradient(90deg,#ff0000 22%,#00732f 22%,#00732f 100%)"},
+  domestic: {name:"Australia — Defence × Industry", reg:"Sovereign supply-side", band:"linear-gradient(120deg,#00843d,#012169)"}
 };
+/* accent per country for maturity emphasis / center glow */
+var FLAGACCENT = {nz:"#012169",us:"#3c3b6e",uk:"#012169",japan:"#bc002d",canada:"#d80621",india:"#ff9933",indonesia:"#ce1126",germany:"#dd0000",france:"#0055a4",italy:"#008c45",rok:"#0047a0",norway:"#00205b",singapore:"#ef3340",uae:"#00732f",domestic:"#00843d"};
 /* fora and aggregates reachable as secondary rail (each still its own view) */
 var RAIL_PENDING = [
   ["pacific","Pacific / PIF"],["multilateral","Multilateral fora"],["quad","Quad"],["aukus","AUKUS"],["cspo","CSpO"]
@@ -3035,8 +3077,8 @@ function pips(score,of){var h="";for(var i=0;i<of;i++)h+='<div class="pip'+(i<sc
   try{ if(sessionStorage.getItem("cb_ok")==="1") unlock(); }catch(e){}
 })();
 
-/* ================= CAROUSEL (coverflow) ================= */
-var curIdx=0, CARDS=[];
+/* ================= CAROUSEL (rotating 3D ring) ================= */
+var curIdx=0, CARDS=[], N=ORDER.length, STEP=360/N, RADIUS=Math.round(98/Math.tan(Math.PI/N))+30;
 function buildCarousel(){
   var ring=els("ring"); ring.innerHTML=""; CARDS=[];
   ORDER.forEach(function(key,i){
@@ -3044,31 +3086,48 @@ function buildCarousel(){
     var mat=p.maturity||{}, pm=mat.partnership, im=mat.intrinsic;
     var card=document.createElement("div");
     card.className="flag"; card.setAttribute("data-key",key);
+    card.style.transform="rotateY("+(i*STEP)+"deg) translateZ("+RADIUS+"px)";
+    var code=key==="domestic"?"AU":(key==="indonesia"?"ID":(key==="japan"?"JP":(key==="rok"?"ROK":key.toUpperCase().slice(0,3))));
     card.innerHTML=
-      '<div class="band" style="background:'+fd.band+'"><span class="code">'+esc(key==="domestic"?"AU":(key==="indonesia"?"ID":(key==="japan"?"JP":key.toUpperCase().slice(0,3))))+'</span></div>'+
+      '<div class="band" style="background:'+fd.band+'"><span class="code">'+esc(code)+'</span></div>'+
       '<div class="body"><div class="fname">'+esc(fd.name)+'</div><div class="freg">'+esc(fd.reg)+'</div>'+
       '<div class="fmat">'+
         (pm&&pm.score!=null?'<span class="matdot">Partnership <b>'+pm.score+'</b></span>':'<span class="matdot">Partnership <b>&middot;</b></span>')+
         (im&&im.score!=null?'<span class="matdot">Intrinsic <b>'+im.score+'</b></span>':'')+
-      '</div></div>';
-    card.addEventListener("click",function(){ if(i===curIdx) openPartner(key); else { curIdx=i; layout(); } });
+      '</div><div class="cta">Open brief &rarr;</div></div>';
+    card.addEventListener("click",function(e){ e.stopPropagation(); if(dragMoved) return; if(i===curIdx) openPartner(key); else { curIdx=i; spin(); } });
     ring.appendChild(card); CARDS.push(card);
   });
-  layout();
+  spin();
 }
-function layout(){
+function spin(){
+  els("ring").style.transform="translateZ(-"+RADIUS+"px) rotateY("+(-curIdx*STEP)+"deg)";
   for(var i=0;i<CARDS.length;i++){
-    var off=i-curIdx, a=Math.abs(off), c=CARDS[i];
-    var tx=off*128, tz=-a*180, ry=off* -32, sc=off===0?1:0.86;
-    c.style.transform="translateX("+tx+"px) translateZ("+tz+"px) rotateY("+ry+"deg) scale("+sc+")";
-    c.style.opacity = a>2 ? "0" : (a===0?"1":(a===1?".82":".38"));
-    c.style.zIndex = 100-a;
-    c.style.pointerEvents = a>2 ? "none" : "auto";
-    c.classList.toggle("center", off===0);
+    var d=Math.abs(((i-curIdx)%N+N+N/2)%N-N/2), c=CARDS[i];  /* angular distance in steps */
+    c.style.opacity = d<0.5?"1":(d<1.5?".62":(d<2.5?".26":"0"));
+    c.style.pointerEvents = d<2.5?"auto":"none";
+    c.classList.toggle("center", d<0.5);
+    var ac=FLAGACCENT[ORDER[i]]||"var(--navy2)";
+    c.style.borderColor = d<0.5?ac:"var(--hair)";
+    var cta=c.querySelector(".cta"); if(cta) cta.style.color=ac;
   }
 }
-function step(d){ curIdx=(curIdx+d+ORDER.length)%ORDER.length; layout(); }
-var rotate=layout;
+function step(d){ curIdx=(curIdx+d+N)%N; spin(); }
+/* drag / swipe to spin */
+var dragging=false, startX=0, dragMoved=false;
+(function(){
+  var stage=document.querySelector(".stage");
+  function down(x){ dragging=true; startX=x; dragMoved=false; }
+  function move(x){ if(!dragging) return; var dx=x-startX; if(Math.abs(dx)>6) dragMoved=true; if(Math.abs(dx)>=58){ step(dx<0?1:-1); startX=x; } }
+  function up(){ dragging=false; setTimeout(function(){dragMoved=false;},30); }
+  stage.addEventListener("mousedown",function(e){down(e.clientX);});
+  window.addEventListener("mousemove",function(e){move(e.clientX);});
+  window.addEventListener("mouseup",up);
+  stage.addEventListener("touchstart",function(e){down(e.touches[0].clientX);},{passive:true});
+  stage.addEventListener("touchmove",function(e){move(e.touches[0].clientX);},{passive:true});
+  stage.addEventListener("touchend",up);
+})();
+var rotate=spin;
 els("c-prev").addEventListener("click",function(){step(-1);});
 els("c-next").addEventListener("click",function(){step(1);});
 document.addEventListener("keydown",function(e){
@@ -3092,7 +3151,7 @@ function buildRail(){
 var TABS=[
   ["factsheet","Factsheet"],["leadership","Leadership & Calendar"],
   ["loe","Lines of Effort"],["opps","Opportunities"],
-  ["artefacts","Artefacts"],["generate","Generate"]
+  ["artefacts","Artefacts"],["placemat","Placemat"],["generate","Minute / In-brief"]
 ];
 var CURKEY=null, CURTAB="factsheet";
 function openPartner(key){
@@ -3124,11 +3183,43 @@ function renderTabs(){
   else if(CURTAB==="loe") html=renderLOE(p);
   else if(CURTAB==="opps") html=renderOpps(p);
   else if(CURTAB==="artefacts") html=renderArtefacts(p);
+  else if(CURTAB==="placemat") html=renderPlacemat(p);
   else if(CURTAB==="generate") html=renderGenerate(p);
   els("panels").innerHTML='<div class="panel active">'+html+'</div>';
   if(CURTAB==="artefacts") wireLibrary();
   if(CURTAB==="generate") wireGenerate();
+  if(CURTAB==="placemat"){ var pb=els("pm-print"); if(pb) pb.addEventListener("click",function(){window.print();}); }
   if(CURTAB==="opps") wireOpps();
+}
+/* ---------- PLACEMAT (one-page, print-ready) ---------- */
+function renderPlacemat(p){
+  var f=p.factsheet||{}, m=p.maturity||{}, fd=FLAGDEF[CURKEY]||{};
+  var pf=(p.leadership&&p.leadership.profiles)||[];
+  var evs=((p.calendar&&p.calendar.events)||[]).slice().sort(function(a,b){return String(a.when).localeCompare(String(b.when));});
+  var next=evs.filter(function(e){return e.window==="next6"||e.window==="next24";}).slice(0,5);
+  var recent=evs.filter(function(e){return e.window==="past";}).slice(-4);
+  var ops=(p.opportunities||[]).slice(0,4);
+  var h='<div class="gen-actions"><button class="btn primary" id="pm-print">Print / PDF placemat</button></div>';
+  h+='<div class="placemat" id="placemat">';
+  h+='<div class="pm-band" style="background:'+(fd.band||'var(--navy)')+'"></div>';
+  h+='<div class="pm-head"><div><div class="pm-eyebrow">Defence Space Relationships Placemat · UNOFFICIAL · as at '+esc(BD.meta.as_at)+'</div><h2 class="pm-title">'+esc(p.name)+'</h2></div>'+
+     '<div class="pm-mat">'+(m.partnership?'<div><b>'+m.partnership.score+'</b>/5<span>Partnership</span></div>':'')+(m.intrinsic&&m.intrinsic.score!=null?'<div><b>'+m.intrinsic.score+'</b>/5<span>Intrinsic</span></div>':'')+'</div></div>';
+  h+='<p class="pm-one">'+esc(p.one_line||f.strategic_overview||"")+'</p>';
+  h+='<div class="pm-grid">';
+  /* col 1: key messages + radar */
+  h+='<div class="pm-col"><div class="pm-sec">Key messages</div><ul class="pm-list">'+((f.key_messages||[]).slice(0,3).map(function(k){return '<li>'+esc(k.text)+'</li>';}).join(""))+'</ul>';
+  h+='<div class="pm-sec">Capability</div>'+renderRadar(p)+'</div>';
+  /* col 2: leaders + agreements */
+  h+='<div class="pm-col"><div class="pm-sec">Key leaders</div><ul class="pm-list tight">'+pf.slice(0,5).map(function(x){return '<li><b>'+esc(x.name)+'</b> — '+esc(x.appointment)+'</li>';}).join("")+'</ul>';
+  h+='<div class="pm-sec">Key agreements</div><ul class="pm-list tight">'+((f.key_agreements||[]).slice(0,5).map(function(a){return '<li><b>'+esc(a.name)+'</b> ('+esc(a.date)+')</li>';}).join(""))+'</ul></div>';
+  /* col 3: engagements + opportunities */
+  h+='<div class="pm-col"><div class="pm-sec">Recent engagements</div><ul class="pm-list tight">'+(recent.length?recent.map(function(e){return '<li>'+esc(e.when)+' — '+esc(e.title)+'</li>';}).join(""):'<li class="pending">none recorded</li>')+'</ul>';
+  h+='<div class="pm-sec">Upcoming (next 6–24 mo)</div><ul class="pm-list tight">'+(next.length?next.map(function(e){return '<li>'+esc(e.when)+' — '+esc(e.title)+(String(e.label).indexOf("TO_VERIFY")>=0?' *':'')+'</li>';}).join(""):'<li class="pending">none recorded</li>')+'</ul>';
+  h+='<div class="pm-sec">Priority opportunities</div><ul class="pm-list tight">'+(ops.length?ops.map(function(o){return '<li><b>'+esc(o.id)+'</b> '+esc(o.title)+'</li>';}).join(""):'<li class="pending">—</li>')+'</ul></div>';
+  h+='</div>';
+  h+='<div class="pm-foot">Grounded in NDS 2026 / IIP 2026. Records: FACT / ASSESSMENT / TO_VERIFY. Items marked * or shown in italic are not yet open-source confirmed. Prepared by the Defence Space Partnership Model — open-source, UNOFFICIAL.</div>';
+  h+='</div>';
+  return h;
 }
 
 /* ---------- FACTSHEET ---------- */
@@ -3145,8 +3236,22 @@ function renderFactsheet(p){
   var f=p.factsheet||{}, m=p.maturity||{};
   var h="";
   /* dual maturity */
-  h+='<div class="sec-label">Maturity — partnership and intrinsic</div><div class="mat-row">'+
+  h+='<div class="sec-label">Maturity — partnership (military-to-military) and intrinsic</div><div class="mat-row">'+
      matCard("Partnership",m.partnership)+matCard("Intrinsic (partner)",m.intrinsic)+'</div>';
+
+  /* KEY LEADERS strip (first-page prominence) */
+  h+=renderKeyLeaders(p);
+
+  /* strategic alignment NDS/IIP — grounds the flow, up front */
+  h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Strategic alignment — NDS 2026 &amp; IIP 2026</div>'+renderAlignment(p)+'</div>';
+
+  /* current vs future — the "now" then the "could be", high on the page */
+  if(p.current_state||p.future_state){
+    h+='<div class="sec-label">Where the relationship is — and where it could go</div><div class="cf" style="margin-bottom:16px">';
+    if(p.current_state) h+='<div class="card now"><h3><span class="tag">Current state — as at '+esc(BD.meta.as_at)+'</span>'+esc(p.current_state.headline)+'</h3><ul>'+p.current_state.points.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>';
+    if(p.future_state) h+='<div class="card fut"><h3><span class="tag">Future state — following opportunities &amp; pathways</span>'+esc(p.future_state.headline)+'</h3><ul>'+p.future_state.points.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>';
+    h+='</div>';
+  }
 
   /* strategic overview + radar */
   h+='<div class="two" style="margin-bottom:16px">';
@@ -3162,9 +3267,6 @@ function renderFactsheet(p){
     f.key_messages.forEach(function(k){ h+='<div class="km"><p>'+esc(k.text)+' <span class="lab '+cls(k.label)+'">'+esc(k.label)+'</span></p></div>'; });
     h+='</div>';
   }
-
-  /* strategic alignment NDS/IIP */
-  h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Strategic alignment — NDS &amp; IIP</div>'+renderAlignment(p)+'</div>';
 
   /* fast facts */
   if(f.fast_facts&&f.fast_facts.length){
@@ -3196,14 +3298,20 @@ function renderFactsheet(p){
   if(f.exercises_ops) trip2+='<div class="card"><div class="sec-label">Key exercises &amp; operations</div><p style="font-size:12.5px">'+esc(f.exercises_ops)+'</p></div>';
   if(f.industry) trip2+='<div class="card"><div class="sec-label">Defence space industry</div><p style="font-size:12.5px">'+esc(f.industry)+'</p></div>';
   if(trip2) h+='<div class="three" style="margin-bottom:16px">'+trip2+'</div>';
-
-  /* current vs future */
-  if(p.current_state||p.future_state){
-    h+='<div class="sec-label">Where the relationship is — and where it could go</div><div class="cf">';
-    if(p.current_state) h+='<div class="card now"><h3><span class="tag">Current state — as at '+esc(BD.meta.as_at)+'</span>'+esc(p.current_state.headline)+'</h3><ul>'+p.current_state.points.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>';
-    if(p.future_state) h+='<div class="card fut"><h3><span class="tag">Future state — following opportunities &amp; pathways</span>'+esc(p.future_state.headline)+'</h3><ul>'+p.future_state.points.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>';
-    h+='</div>';
-  }
+  return h;
+}
+function renderKeyLeaders(p){
+  var pf=(p.leadership&&p.leadership.profiles)||[];
+  if(!pf.length) return "";
+  var top=pf.slice(0,4);
+  var h='<div class="card" style="margin-bottom:16px"><div class="sec-label">Key leaders <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— full profiles &amp; engagement calendar under the Leadership tab</span></div><div class="kl-strip">';
+  top.forEach(function(x){
+    var pend=String(x.label).indexOf("TO_VERIFY")>=0;
+    h+='<div class="kl'+(x.audience?" aud":"")+'"><div class="kl-side">'+esc(x.side)+(x.audience?' · Audience':'')+'</div>'+
+       '<div class="kl-name'+(pend?' pending':'')+'">'+esc(x.name)+'</div>'+
+       '<div class="kl-appt">'+esc(x.appointment)+'</div></div>';
+  });
+  h+='</div></div>';
   return h;
 }
 function cls(l){return String(l||"").replace(/[^A-Za-z]/g,"").toUpperCase().indexOf("TOVERIFY")===0?"TO_VERIFY":(String(l).indexOf("/")>=0?"mix":String(l).toUpperCase());}
