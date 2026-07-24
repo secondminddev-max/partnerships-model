@@ -658,6 +658,13 @@ table.heat td[data-cell]:hover{outline-color:var(--accent)}
 .home-hero h2{font-family:var(--serif);font-size:26px;font-weight:600;margin:0 0 6px;line-height:1.25;letter-spacing:0}
 .home-hero p{margin:4px 0;color:var(--ink2);font-size:13.5px}
 .home-sec{font-family:var(--sans);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin:26px 0 10px;display:flex;align-items:center;gap:12px}
+/* headline figures read as figures, not as a run-on sentence of middots */
+.hdr-home{font-weight:600;text-decoration:none;color:var(--ink2);padding:5px 0;margin-right:14px;border-bottom:1px solid var(--hair)}
+.hdr-home:hover{color:var(--accent);border-bottom-color:var(--accent);text-decoration:none}
+.home-figs{display:flex;flex-wrap:wrap;gap:28px;margin:16px 0 4px;padding-top:14px;border-top:1px solid var(--hair)}
+.home-figs b{display:block;font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.1;
+  font-variant-numeric:tabular-nums;color:var(--ink)}
+.home-figs span{display:block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:3px}
 .home-sec::after{content:"";flex:1;border-top:1px solid var(--hair)}
 .home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px}
 a.pcard{
@@ -798,7 +805,7 @@ a.pfolio-it:hover{border-color:var(--accent);text-decoration:none;background:var
   <div class="hdr-row">
     <h1><span class="kicker">Australia · Defence Space</span>Partnership Opportunity &amp; Pathway Model <span class="conf" title="Model version 5 — country-first navigation, full vehicle register and evidence register embedded (Jul 2026)">v5</span></h1>
     <div class="hdr-meta">
-      <a href="command-brief.html" target="_top" style="font-weight:700;text-decoration:none;padding:6px 12px;border:1px solid currentColor;border-radius:7px;margin-right:10px">&#8962; Command Brief home</a>
+      <a class="hdr-home" href="command-brief.html" target="_top">&#8962; Command Brief</a>
       <span id="hdr-gen"></span>
       <button id="theme-btn" type="button" aria-label="Cycle colour theme">Theme: Auto</button>
     </div>
@@ -3127,19 +3134,35 @@ function groupCard(key) {
            mat: matMin === null ? "—" : (matMin === matMax ? `${matMax}/5` : `${matMin}–${matMax}/5`) };
 }
 
-const PORTFOLIO_LINKS = [
-  ["enterprise",   "Portfolio overview",            "Treatments, value-band heatmap, decision windows and the top scored options."],
-  ["opportunities","Opportunities",                  "Every opportunity in the portfolio with its scored partner options."],
-  ["requirement",  "Australian inputs & comparison", "The full inputs register; partner options compared per requirement."],
-  ["plan",         "Plan — decision layer",          "Tranches, decision asks, rulings sought, risks, measures and watch items."],
-  ["scenarios",    "Scenario stress-tests",          "Portfolio impact and fallbacks under each recorded scenario."],
-  ["dependencies", "Dependencies & concentration",   "The concentration-risk board across the dependency dimensions."],
-  ["sensitivity",  "Weight-sensitivity lab",         "Exploratory re-weighting; never overwrites the approved baseline."],
-  ["analysis",     "Analytical registers",           "Complementarities, gaps & levers, interdependencies and the red-team log."],
-  ["evidence",     "Evidence register",              "Every embedded evidence record with labels, confidence and verification."],
-  ["architecture", "Full artefact register",         "All artefacts across every partner group in one sortable register."],
-  ["about",        "Method",                         "How the model reasons, what is embedded, and the caveats of record."]
+/* Eleven links in one flat wall asked the reader to hold eleven choices at
+   once. Grouped by what you are actually trying to do — reach a decision,
+   stress it, or trace it back to source. */
+const PORTFOLIO_GROUPS = [
+  ["Decide", [
+    ["enterprise",    "Portfolio overview",           "Treatments, value bands, decision windows and the top scored options."],
+    ["plan",          "Plan — decision layer",        "Tranches, decision asks, rulings sought, risks and measures."],
+    ["opportunities", "Opportunities",                "Every opportunity with its scored partner options."]
+  ]],
+  ["Stress-test", [
+    ["scenarios",     "Scenarios",                    "Portfolio impact and fallbacks under each recorded scenario."],
+    ["dependencies",  "Dependencies & concentration", "The concentration-risk board across the dependency dimensions."],
+    ["sensitivity",   "Weight sensitivity",           "Exploratory re-weighting; never overwrites the approved baseline."]
+  ]],
+  ["Trace", [
+    ["architecture",  "Partnership architecture",     "Where each partnership carries weight, layer by layer — with the full artefact register behind it."],
+    ["requirement",   "Australian inputs",            "The inputs register; partner options compared per requirement."],
+    ["analysis",      "Analytical registers",         "Complementarities, gaps & levers, interdependencies and the red-team log."],
+    ["evidence",      "Evidence register",            "Every embedded record with its label, confidence and verification."],
+    ["about",         "Method",                       "How the model reasons, what is embedded, and the caveats of record."]
+  ]]
 ];
+const PORTFOLIO_LINKS = PORTFOLIO_GROUPS.flatMap(g => g[1]);
+function portfolioHTML() {
+  return PORTFOLIO_GROUPS.map(([label, items]) => `
+    <div class="home-sec">${esc(label)}</div>
+    <div class="pfolio">${items.map(([k, t, d]) =>
+      `<a class="pfolio-it" href="#/${k}"><b>${esc(t)}</b><span>${esc(d)}</span></a>`).join("")}</div>`).join("");
+}
 
 function renderHome() {
   const root = el("view-home");
@@ -3149,7 +3172,11 @@ function renderHome() {
     <div class="home-hero">
       <h2>Defence space partnerships, by partner</h2>
       <p>Select a partner to open its artefact library, opportunities, complementarities, gaps and assessment.</p>
-      <p class="small mut">Data ${esc(MODEL.meta.generated)} · ${MODEL.partners.length} partners in ${GROUPS.length} groups · ${VEHICLES.length} artefacts · ${MODEL.opportunities.length} opportunities · ${EVID.records.length} evidence records</p>
+      <div class="home-figs">
+        ${[[MODEL.partners.length, "partners"], [VEHICLES.length, "artefacts"],
+           [MODEL.opportunities.length, "opportunities"], [EVID.records.length, "evidence records"]]
+          .map(([n, l]) => `<div><b>${n}</b><span>${esc(l)}</span></div>`).join("")}
+      </div>
     </div>
     <div class="home-grid">
       ${cards.map(c => `
@@ -3160,11 +3187,7 @@ function renderHome() {
         <div class="ft"><span class="mat">Maturity ${esc(c.mat)}</span><span>${c.nVeh} artefacts</span>${c.nOpt ? `<span>${c.nOpt} scored options</span>` : ""}</div>
       </a>`).join("")}
     </div>
-    <div class="home-sec">Portfolio-wide views</div>
-    <div class="pfolio">
-      ${PORTFOLIO_LINKS.map(([k, t, d]) => `
-      <a class="pfolio-it" href="#/${k}"><b>${esc(t)}</b><span>${esc(d)}</span></a>`).join("")}
-    </div>`;
+    ${portfolioHTML()}`;
 }
 
 function renderPortfolio() {
@@ -3173,10 +3196,7 @@ function renderPortfolio() {
       <h2>Portfolio-wide views</h2>
       <p>Cross-partner analysis: comparison, scenarios, Australian inputs and the decision layer. Per-partner material lives under each <a href="#/">partner</a>.</p>
     </div>
-    <div class="pfolio" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
-      ${PORTFOLIO_LINKS.map(([k, t, d]) => `
-      <a class="pfolio-it" href="#/${k}"><b>${esc(t)}</b><span>${esc(d)}</span></a>`).join("")}
-    </div>`;
+    ${portfolioHTML()}`;
 }
 
 /* ---------- partner detail: library-first tabs ---------- */
@@ -4878,7 +4898,8 @@ document.addEventListener("click", e => {
   }
 });
 window.addEventListener("hashchange", route);
-el("hdr-gen").textContent = `Data ${MODEL.meta.generated} · model v${MODEL.meta.version} · app v5 build 2026-07-22 · Open-source baseline`;
+el("hdr-gen").textContent = `Data ${MODEL.meta.generated}`;
+el("hdr-gen").title = `Model v${MODEL.meta.version} · app v5 build 2026-07-22 · open-source baseline`;
 
 /* ---- soft preview gate ----
    Same session key as the command brief, so unlocking either unlocks both.
