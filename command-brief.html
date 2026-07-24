@@ -79,7 +79,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .matdot b{color:var(--ink)}
 .flag.center{box-shadow:0 6px 16px rgba(27,36,49,.16),0 26px 56px rgba(27,36,49,.2)}
 .flag.center .cta{opacity:1}
-.flag .cta{position:absolute;bottom:11px;left:15px;right:15px;text-align:center;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2);opacity:0;transition:opacity .3s}
+.flag .cta{margin-top:9px;height:13px;text-align:center;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy2);opacity:0;transition:opacity .3s}
 .cbtn{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:46px;height:46px;border-radius:50%;background:var(--surface);border:1px solid var(--hair);box-shadow:var(--shadow);font-size:20px;color:var(--ink2);display:flex;align-items:center;justify-content:center}
 .cbtn:hover{border-color:var(--navy2);color:var(--navy2);transform:translateY(-50%) scale(1.06)}
 .cbtn.prev{left:0}.cbtn.next{right:0}
@@ -714,6 +714,36 @@ button{font-family:inherit;cursor:pointer;color:inherit}
       "background": "NZDF officer appointed Australia's Deputy Chief of Joint Operations - described by Defence as the highest senior appointment of a foreign military officer into the ADF.",
       "priorities": "Trans-Tasman operational integration.",
       "label": "FACT"
+     },
+     {
+      "side": "NZ",
+      "appointment": "Minister of Defence",
+      "name": "Hon Chris Penk",
+      "rank": "Minister",
+      "since": "2026",
+      "background": "Holds the Defence portfolio by mid-2026 (the portfolio moved from Hon Judith Collins KC during 2026). Attended the Japan-Australia-NZ Trilateral Defence Ministers' Meeting (Singapore, 30 May 2026).",
+      "priorities": "Delivery of the Defence Capability Plan 2025 and the integrated Anzac force.",
+      "label": "FACT / TO_VERIFY"
+     },
+     {
+      "side": "NZ",
+      "appointment": "Minister for Space (and Attorney-General)",
+      "name": "Hon Judith Collins KC",
+      "rank": "Minister",
+      "since": "2023",
+      "background": "Minister for Space, Attorney-General, and Minister responsible for the GCSB and NZSIS. Signed the ground-based space infrastructure letter to Australia's Deputy Prime Minister offering technical briefings and information-sharing on the GBSI regime (letter held).",
+      "priorities": "NZ's space regulatory regime (Outer Space and High-altitude Activities Act); intelligence oversight.",
+      "label": "FACT"
+     },
+     {
+      "side": "AU",
+      "appointment": "Director-General Space Capability, Defence Space Command",
+      "name": "BRIG Hamish Ashman",
+      "rank": "BRIG",
+      "since": "—",
+      "background": "DG Space Capability within Defence Space Command; associated with the sovereign SkyDome passive-RF space domain awareness trial (reported Jul 2026).",
+      "priorities": "Sovereign SDA capability; space capability development.",
+      "label": "FACT"
      }
     ]
    },
@@ -721,11 +751,27 @@ button{font-family:inherit;cursor:pointer;color:inherit}
     "note": "Last 12 months and next 24 (emphasis: next 6). Confirmed items carry a source; the inaugural 2-star Space Talks, a Geidelberg Canberra/Adelaide visit and Exercise 'Shortlook' are NOT open-source confirmed and are shown only as the tasking premise, flagged - they must not be asserted as fact in a minute or brief.",
     "events": [
      {
+      "when": "2023-09",
+      "window": "past",
+      "title": "NZDF announced entry to Joint Commercial Operations (Pacific) — Geidelberg",
+      "level": "Working",
+      "note": "Precursor to the 62 Sqn Pacific-cell role.",
+      "label": "FACT"
+     },
+     {
       "when": "2024-08-05",
       "window": "past",
       "title": "NZDF worked the JCO operations floor at RAAF Base Darwin (Exercise Pitch Black 2024)",
       "level": "Working (space ops)",
       "note": "NZ space footprint in Australia, alongside ADF, JASDF and BoM.",
+      "label": "FACT"
+     },
+     {
+      "when": "2025-04",
+      "window": "past",
+      "title": "NZ liaison-officer arrangement with US Space Command signed (Webb)",
+      "level": "Service (LO)",
+      "note": "NZ posted a standing space LO to USSPACECOM, Colorado.",
       "label": "FACT"
      },
      {
@@ -855,6 +901,14 @@ button{font-family:inherit;cursor:pointer;color:inherit}
       "level": "Industry/infrastructure",
       "note": "$4.55m HQ; workforce 21->~30; completion early 2027.",
       "label": "FACT"
+     },
+     {
+      "when": "2026-07-01",
+      "window": "past",
+      "title": "Reporting: No. 62 Squadron plays critical role in 'Operation Solene'",
+      "level": "Operational",
+      "note": "Operation named in reporting; scope not open-source confirmed - do not assert detail.",
+      "label": "TO_VERIFY"
      },
      {
       "when": "2026-07-29",
@@ -3303,11 +3357,17 @@ function renderFactsheet(p){
 function renderKeyLeaders(p){
   var pf=(p.leadership&&p.leadership.profiles)||[];
   if(!pf.length) return "";
-  var top=pf.slice(0,4);
-  var h='<div class="card" style="margin-bottom:16px"><div class="sec-label">Key leaders <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— full profiles &amp; engagement calendar under the Leadership tab</span></div><div class="kl-strip">';
+  var own=PARTNER_SIDE[CURKEY]||"NZ", ownName=(FLAGDEF[CURKEY]&&FLAGDEF[CURKEY].name)||p.name;
+  /* partner's own leaders first, then AU counterparts — so a country page never reads AUS names as that country's */
+  var partnerP=pf.filter(function(x){return x.side===own;});
+  var ausP=pf.filter(function(x){return x.side==="AU";});
+  var top=partnerP.slice(0,2).concat(ausP.slice(0,2));
+  if(!top.length) top=pf.slice(0,4);
+  var h='<div class="card" style="margin-bottom:16px"><div class="sec-label">Key leaders <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— '+esc(own==="AU"?"Australia":ownName)+' leaders and their Australian counterparts · full profiles under Leadership</span></div><div class="kl-strip">';
   top.forEach(function(x){
     var pend=String(x.label).indexOf("TO_VERIFY")>=0;
-    h+='<div class="kl'+(x.audience?" aud":"")+'"><div class="kl-side">'+esc(x.side)+(x.audience?' · Audience':'')+'</div>'+
+    var flag = x.side===own ? esc(ownName) : (x.side==="AU"?"Australia":esc(x.side));
+    h+='<div class="kl'+(x.audience?" aud":"")+'"><div class="kl-side">'+flag+(x.audience?' · Audience':'')+'</div>'+
        '<div class="kl-name'+(pend?' pending':'')+'">'+esc(x.name)+'</div>'+
        '<div class="kl-appt">'+esc(x.appointment)+'</div></div>';
   });
@@ -3341,15 +3401,15 @@ function renderIndustry(f){
 function renderRadar(p){
   var dims=BD.radar_dimensions, r=p.radar||{}; if(!dims) return "";
   var keys=Object.keys(r); if(!keys.length) return '<div class="stub">Capability assessment pending</div>';
-  var size=260, cx=size/2, cy=size/2, R=95, n=dims.length;
+  var size=260, cx=size/2, cy=size/2, R=92, n=dims.length;
   function pt(i,val){var a=-Math.PI/2+i*2*Math.PI/n;var rr=R*(val/5);return [cx+rr*Math.cos(a),cy+rr*Math.sin(a)];}
-  var svg='<svg viewBox="0 0 '+size+' '+size+'" width="100%" style="max-width:300px" role="img" aria-label="capability radar">';
+  var svg='<svg viewBox="-72 -32 404 324" width="100%" style="max-width:360px;overflow:visible" role="img" aria-label="capability radar">';
   /* rings */
   for(var g=1;g<=5;g++){var rr=R*g/5,poly="";for(var i=0;i<n;i++){var a=-Math.PI/2+i*2*Math.PI/n;poly+=(cx+rr*Math.cos(a))+","+(cy+rr*Math.sin(a))+" ";}svg+='<polygon points="'+poly+'" fill="none" stroke="var(--hair)" stroke-width="1"/>';}
   /* axes + labels */
   for(var i2=0;i2<n;i2++){var e=pt(i2,5);svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+e[0]+'" y2="'+e[1]+'" stroke="var(--hair)" stroke-width="1"/>';
-    var lp=pt(i2,5.9),anchor=(lp[0]<cx-6?"end":(lp[0]>cx+6?"start":"middle"));
-    svg+='<text x="'+lp[0]+'" y="'+(lp[1]+3)+'" font-size="8.5" fill="var(--ink2)" text-anchor="'+anchor+'" font-family="var(--sans)">'+esc(dims[i2].label)+'</text>';}
+    var lp=pt(i2,5.45),anchor=(lp[0]<cx-6?"end":(lp[0]>cx+6?"start":"middle"));
+    svg+='<text x="'+lp[0]+'" y="'+(lp[1]+3)+'" font-size="9" fill="var(--ink2)" text-anchor="'+anchor+'" font-family="var(--sans)">'+esc(dims[i2].label)+'</text>';}
   /* series */
   var cols={nz:"#2c527f",au:"#9a6b2f",domestic:"#0e7d5c"};
   keys.forEach(function(sk){
@@ -3379,24 +3439,42 @@ function renderAlignment(p){
 }
 
 /* ---------- LEADERSHIP & CALENDAR ---------- */
+var PARTNER_SIDE={nz:"NZ",us:"US",uk:"UK",japan:"JP",canada:"CA",indonesia:"ID",domestic:"AU"};
+function personCard(x){
+  var pend=String(x.label).indexOf("TO_VERIFY")>=0;
+  return '<div class="person'+(x.audience?" aud":"")+'">'+(x.audience?'<span class="side" style="border-color:var(--accent);color:var(--accent)">Briefing audience</span>':'')+
+    '<div class="appt">'+esc(x.appointment)+'</div>'+
+    '<div class="nm'+(pend?' pending':'')+'">'+esc(x.name)+'</div>'+
+    '<div class="meta">'+(x.rank&&x.rank!=="TO_VERIFY"?'<b>'+esc(x.rank)+'</b>':'')+(x.since&&x.since!=="TO_VERIFY"?(x.rank&&x.rank!=="TO_VERIFY"?' · ':'')+'since '+esc(x.since):'')+'</div>'+
+    (x.background&&x.background!=="TO_VERIFY"?'<div class="meta">'+esc(x.background)+'</div>':'<div class="meta pending">Career background pending confirmation.</div>')+
+    (x.priorities&&x.priorities!=="TO_VERIFY"?'<div class="meta"><b>Priorities:</b> '+esc(x.priorities)+'</div>':'')+
+    ' <span class="lab '+cls(x.label)+'">'+esc(x.label)+'</span></div>';
+}
 function renderLeadership(p){
   var L=p.leadership||{profiles:[]}, C=p.calendar||{events:[]};
-  var h='<div class="sec-label">Space leadership profiles</div>';
-  if(L.note) h+='<p style="font-size:12px;color:var(--muted);margin-bottom:12px">'+esc(L.note)+'</p>';
-  if(!L.profiles.length) h+='<div class="stub">Leadership profiles pending</div>';
+  var own=PARTNER_SIDE[CURKEY]||"NZ", ownName=(FLAGDEF[CURKEY]&&FLAGDEF[CURKEY].name)||p.name;
+  var h='';
+  if(L.note) h+='<p style="font-size:12px;color:var(--muted);margin-bottom:14px">'+esc(L.note)+'</p>';
+  if(!L.profiles.length){ h+='<div class="stub">Leadership profiles pending</div>'; }
   else{
-    h+='<div class="lead">';
-    L.profiles.forEach(function(x){
-      var pend=String(x.label).indexOf("TO_VERIFY")>=0;
-      h+='<div class="person'+(x.audience?" aud":"")+'"><span class="side">'+esc(x.side)+'</span>'+(x.audience?' <span class="side" style="border-color:var(--accent);color:var(--accent)">Briefing audience</span>':'')+
-        '<div class="appt">'+esc(x.appointment)+'</div>'+
-        '<div class="nm'+(pend?' pending':'')+'">'+esc(x.name)+'</div>'+
-        '<div class="meta">'+(x.rank&&x.rank!=="TO_VERIFY"?'<b>'+esc(x.rank)+'</b> · ':'')+(x.since&&x.since!=="TO_VERIFY"?'since '+esc(x.since):'<span class="pending">tenure pending</span>')+'</div>'+
-        (x.background&&x.background!=="TO_VERIFY"?'<div class="meta">'+esc(x.background)+'</div>':'<div class="meta pending">Career background pending confirmation.</div>')+
-        (x.priorities&&x.priorities!=="TO_VERIFY"?'<div class="meta"><b>Priorities:</b> '+esc(x.priorities)+'</div>':'')+
-        ' <span class="lab '+cls(x.label)+'">'+esc(x.label)+'</span></div>';
-    });
-    h+='</div>';
+    var partnerP=L.profiles.filter(function(x){return x.side===own;});
+    var ausP=L.profiles.filter(function(x){return x.side==="AU";});
+    var embedP=L.profiles.filter(function(x){return x.side!==own && x.side!=="AU";});
+    /* PARTNER's own leaders FIRST (this is the partner page) */
+    if(partnerP.length){
+      h+='<div class="sec-label" style="color:var(--navy2)">'+esc(ownName)+' — space &amp; defence leadership</div>';
+      h+='<div class="lead">'+partnerP.map(personCard).join("")+'</div>';
+    }
+    /* Australian counterparts */
+    if(ausP.length){
+      h+='<div class="sec-label" style="margin-top:22px">Australia — SPACECOMD and counterparts (the Commander\'s side)</div>';
+      h+='<div class="lead">'+ausP.map(personCard).join("")+'</div>';
+    }
+    /* Integration / embeds */
+    if(embedP.length){
+      h+='<div class="sec-label" style="margin-top:22px">Integration &amp; embedded officers (cross-posted between the two forces)</div>';
+      h+='<div class="lead">'+embedP.map(personCard).join("")+'</div>';
+    }
   }
   /* calendar */
   h+='<div class="sec-label" style="margin-top:24px">Engagement calendar — last 12 months &amp; next 24 (emphasis: next 6)</div>';
