@@ -1521,11 +1521,21 @@ function buildBrief(p){
   t+='<b>Discussion.</b>\n';
   if(p.current_state){t+='\n  Current state — '+esc(p.current_state.headline)+'\n'+p.current_state.points.map(function(x,i){return "  "+(i+1)+". "+esc(x);}).join("\n")+'\n';}
   if(p.loe&&p.loe.lines){t+='\n  Lines of effort\n'+p.loe.lines.map(function(l){return "  - "+esc(l.name)+": "+esc(l.opportunity);}).join("\n")+'\n';}
+  /* the derived authority finding — the same one the minute carries, so the
+     two documents cannot tell the Commander different things */
+  var bg=cbGrid(CURKEY), bv=cbVerdict(CURKEY,bg,p.name);
+  t+='\n  Authority held\n  '+esc(bv.head)+'. '+esc(bv.body)+'\n';
   t+='\n<b>Sensitivity.</b>  Low — all content open-source and UNOFFICIAL.\n\n';
   t+='<b>Conclusions.</b>  '+esc((p.future_state&&p.future_state.headline)||"")+' The bilateral machinery already exists; the task is to insert defence-space content into it.\n\n';
   t+='<b>Recommendations.</b>  It is recommended that you:\n';
   var ops=(p.opportunities||[]).slice(0,4);
-  t+=ops.map(function(o,i){return "  "+String.fromCharCode(97+i)+". pursue ["+esc(o.id)+"] "+esc(o.title)+".";}).join("\n")+"\n\n";
+  t+=ops.map(function(o,i){
+      var pw=o.pathway||{}, tail=[];
+      if(pw.lead)      tail.push("lead "+pw.lead);
+      if(pw.timeframe) tail.push(pw.timeframe.charAt(0).toLowerCase()+pw.timeframe.slice(1).replace(/\.$/,""));
+      return "  "+String.fromCharCode(97+i)+". pursue ["+esc(o.id)+"] "+esc(o.title).replace(/\.$/,"")+"."+
+             (tail.length?"\n     ("+esc(tail.join("; "))+")":"");
+    }).join("\n")+"\n\n";
   /* leadership annex */
   if(ld.length){t+='<b>Annex A — Leadership.</b>\n'+ld.map(function(x){return "  - "+esc(x.appointment)+": "+esc(x.name)+(String(x.label).indexOf("TO_VERIFY")>=0?" (pending confirmation)":"");}).join("\n")+'\n\n';}
   t+='<div class="sig"><b>J Staff</b>\nSO1 Space Partnerships\nDefence Space Command\n\n'+esc(today())+'</div>';
