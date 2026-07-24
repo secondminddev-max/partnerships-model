@@ -2,6 +2,7 @@
 <html lang="en-AU">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Defence Space Partnership Plan — Briefing Pack — UNOFFICIAL — 18 Jul 2026</title>
 <style>
@@ -127,7 +128,40 @@ table.tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
 }
 </style>
 </head>
-<body>
+<body class="gated">
+<style id="gate-css">
+body.gated>*:not(#gate):not(script):not(style){display:none!important}
+body:not(.gated)>#gate{display:none}
+#gate{position:fixed;inset:0;z-index:99999;background:#f3f1ea;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:22px;padding:24px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+#gate .gate-card{width:100%;max-width:360px;background:#fff;border:1px solid #e4ded2;border-radius:10px;
+  padding:28px 26px;box-shadow:0 1px 2px rgba(27,36,49,.06),0 8px 24px rgba(27,36,49,.06);text-align:center}
+#gate h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:21px;font-weight:600;
+  line-height:1.25;margin:0 0 6px;color:#1b2431}
+#gate p{color:#54606f;font-size:13px;margin:0 0 20px}
+#gate input{width:100%;padding:11px 14px;border:1px solid #e4ded2;border-radius:7px;background:#faf8f3;
+  font:inherit;font-size:15px;color:#1b2431;text-align:center;letter-spacing:.14em;box-sizing:border-box}
+#gate input:focus{outline:2px solid #1f3a5f;outline-offset:1px}
+#gate button{margin-top:12px;width:100%;padding:11px;border:0;border-radius:7px;background:#1f3a5f;
+  color:#fff;font:inherit;font-weight:600;font-size:14px;cursor:pointer}
+#gate .gate-err{color:#b4432f;font-size:12.5px;min-height:16px;margin-top:9px}
+#gate .gate-note{max-width:440px;text-align:center;font-size:11.5px;color:#8b909a;line-height:1.5}
+</style>
+
+<div id="gate">
+  <div class="gate-card">
+    <h1>Narrative Briefing Pack</h1>
+    <p>Defence Space Partnership Model &mdash; restricted preview</p>
+    <input id="gate-pw" type="password" placeholder="Access code" autocomplete="off" autofocus>
+    <button type="button" id="gate-go">Enter</button>
+    <div class="gate-err" id="gate-err" role="alert"></div>
+  </div>
+  <div class="gate-note">The access code is a soft preview gate only &mdash; it is client-side and
+    provides no real security. Do not treat this page as a protected system. Contains open-source,
+    UNOFFICIAL content only.</div>
+</div>
+
 <div class="currency-note" style="position:fixed;top:0;left:0;right:0;z-index:999;
   background:#8a5a06;color:#fff;font:600 11px/1.45 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   padding:6px 14px;text-align:center;letter-spacing:.01em">
@@ -1545,6 +1579,26 @@ table.tbl{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
   addEventListener('resize',fit);
   var h=parseInt((location.hash||'').replace('#s',''),10);
   fit(); show(isNaN(h)?0:h-1);
+})();
+</script>
+
+<script>
+(function(){
+  var g=document.getElementById("gate"), pw=document.getElementById("gate-pw"),
+      go=document.getElementById("gate-go"), er=document.getElementById("gate-err");
+  function unlock(){ document.body.classList.remove("gated"); g.style.display="none"; }
+  function tryPw(){
+    if(pw.value.trim().toUpperCase()==="ADMIN2026"){
+      try{ sessionStorage.setItem("cb_ok","1"); }catch(e){}
+      unlock();
+    } else { er.textContent="Incorrect access code."; pw.select(); }
+  }
+  go.addEventListener("click",tryPw);
+  pw.addEventListener("keydown",function(e){ if(e.key==="Enter") tryPw(); });
+  pw.addEventListener("input",function(){ er.textContent=""; });
+  var open=false;
+  try{ open=sessionStorage.getItem("cb_ok")==="1"; }catch(e){}
+  if(open) unlock(); else pw.focus();
 })();
 </script>
 </body>

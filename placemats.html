@@ -314,7 +314,40 @@ h2 em{font-style:normal;font-size:8.6px;font-weight:700;color:#898781;letter-spa
 }
 </style>
 </head>
-<body>
+<body class="gated">
+<style id="gate-css">
+body.gated>*:not(#gate):not(script):not(style){display:none!important}
+body:not(.gated)>#gate{display:none}
+#gate{position:fixed;inset:0;z-index:99999;background:#f3f1ea;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:22px;padding:24px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+#gate .gate-card{width:100%;max-width:360px;background:#fff;border:1px solid #e4ded2;border-radius:10px;
+  padding:28px 26px;box-shadow:0 1px 2px rgba(27,36,49,.06),0 8px 24px rgba(27,36,49,.06);text-align:center}
+#gate h1{font-family:"Iowan Old Style",Palatino,Georgia,serif;font-size:21px;font-weight:600;
+  line-height:1.25;margin:0 0 6px;color:#1b2431}
+#gate p{color:#54606f;font-size:13px;margin:0 0 20px}
+#gate input{width:100%;padding:11px 14px;border:1px solid #e4ded2;border-radius:7px;background:#faf8f3;
+  font:inherit;font-size:15px;color:#1b2431;text-align:center;letter-spacing:.14em;box-sizing:border-box}
+#gate input:focus{outline:2px solid #1f3a5f;outline-offset:1px}
+#gate button{margin-top:12px;width:100%;padding:11px;border:0;border-radius:7px;background:#1f3a5f;
+  color:#fff;font:inherit;font-weight:600;font-size:14px;cursor:pointer}
+#gate .gate-err{color:#b4432f;font-size:12.5px;min-height:16px;margin-top:9px}
+#gate .gate-note{max-width:440px;text-align:center;font-size:11.5px;color:#8b909a;line-height:1.5}
+</style>
+
+<div id="gate">
+  <div class="gate-card">
+    <h1>Partner Placemats</h1>
+    <p>Defence Space Partnership Model &mdash; restricted preview</p>
+    <input id="gate-pw" type="password" placeholder="Access code" autocomplete="off" autofocus>
+    <button type="button" id="gate-go">Enter</button>
+    <div class="gate-err" id="gate-err" role="alert"></div>
+  </div>
+  <div class="gate-note">The access code is a soft preview gate only &mdash; it is client-side and
+    provides no real security. Do not treat this page as a protected system. Contains open-source,
+    UNOFFICIAL content only.</div>
+</div>
+
 <div class="toolbar"><span class="brand">Partner placemats</span><button class="tab on" data-i="0" style="--tac:#2a78d6">🇺🇸 United States</button><button class="tab" data-i="1" style="--tac:#4a3aa7">🇬🇧 United Kingdom</button><button class="tab" data-i="2" style="--tac:#1baf7a">🇯🇵 Japan</button><button class="tab" data-i="3" style="--tac:#eb6834">🇮🇳 India</button><button class="tab" data-i="4" style="--tac:#eda100">🇩🇪 Germany</button><button class="tab" data-i="5" style="--tac:#e87ba4">🇦🇪 United Arab Emirates</button><button class="tab" data-i="6" style="--tac:#199e70">🌏 Pacific Islands Forum</button><button class="tab" data-i="7" style="--tac:#b3382f">🇨🇦 Canada</button><button class="tab" data-i="8" style="--tac:#1f4e9c">🇫🇷 France</button><button class="tab" data-i="9" style="--tac:#3d8f3d">🇮🇹 Italy</button><button class="tab" data-i="10" style="--tac:#9b2c53">🇳🇴 Norway</button><button class="tab" data-i="11" style="--tac:#7c5cd6">🇰🇷 Republic of Korea</button><button class="tab" data-i="12" style="--tac:#c2571f">🇸🇬 Singapore</button><button class="tab" data-i="13" style="--tac:#0f7a8c">🇳🇿 New Zealand</button><button class="tab" data-i="14" style="--tac:#52514e">🌐 Multilateral groupings</button><button class="tab" data-i="15" style="--tac:#b08a2e">🇦🇺 Australian industry</button>
 <span class="spacer"></span>
 <span class="sheetnav"><button class="pgbtn" id="prev" title="Previous sheet">&larr;</button>
@@ -651,6 +684,26 @@ h2 em{font-style:normal;font-size:8.6px;font-weight:700;color:#898781;letter-spa
   var h = window.location.hash.replace('#', ''), start = 0;
   for (var m = 0; m < mats.length; m++) if (mats[m].id === h) { start = m; break; }
   show(start);
+})();
+</script>
+
+<script>
+(function(){
+  var g=document.getElementById("gate"), pw=document.getElementById("gate-pw"),
+      go=document.getElementById("gate-go"), er=document.getElementById("gate-err");
+  function unlock(){ document.body.classList.remove("gated"); g.style.display="none"; }
+  function tryPw(){
+    if(pw.value.trim().toUpperCase()==="ADMIN2026"){
+      try{ sessionStorage.setItem("cb_ok","1"); }catch(e){}
+      unlock();
+    } else { er.textContent="Incorrect access code."; pw.select(); }
+  }
+  go.addEventListener("click",tryPw);
+  pw.addEventListener("keydown",function(e){ if(e.key==="Enter") tryPw(); });
+  pw.addEventListener("input",function(){ er.textContent=""; });
+  var open=false;
+  try{ open=sessionStorage.getItem("cb_ok")==="1"; }catch(e){}
+  if(open) unlock(); else pw.focus();
 })();
 </script>
 </body>

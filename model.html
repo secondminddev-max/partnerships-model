@@ -445,6 +445,26 @@ details.xp>.xp-bd{padding:8px 12px 10px}
 #view-architecture tr.rr-Direct td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
 #view-architecture tr.rr-Enabling td:first-child{box-shadow:inset 3px 0 0 color-mix(in srgb,var(--accent) 40%,transparent)}
 
+/* ---- soft preview gate ---- */
+body.gated > .class-banner,
+body.gated > header,
+body.gated > main,
+body.gated > footer{display:none}
+body:not(.gated) > #gate{display:none}
+#gate{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:22px;padding:24px}
+.gate-card{width:100%;max-width:360px;background:var(--surface);border:1px solid var(--hair);
+  border-radius:10px;padding:28px 26px;box-shadow:var(--shadow);text-align:center}
+.gate-card h1{font-family:var(--serif);font-size:21px;font-weight:600;line-height:1.25;margin-bottom:6px}
+.gate-card p{color:var(--ink2);font-size:13px;margin-bottom:20px}
+.gate-card input{width:100%;padding:11px 14px;border:1px solid var(--hair);border-radius:7px;
+  background:var(--soft);font:inherit;font-size:15px;color:var(--ink);text-align:center;letter-spacing:.14em}
+.gate-card input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.gate-card button{margin-top:12px;width:100%;padding:11px;border:0;border-radius:7px;
+  background:var(--accent);color:#fff;font:inherit;font-weight:600;font-size:14px;cursor:pointer}
+.gate-err{color:var(--r);font-size:12.5px;min-height:16px;margin-top:9px}
+.gate-note{max-width:440px;text-align:center;font-size:11.5px;color:var(--muted);line-height:1.5}
+
 /* ---- v6: architecture as a load path ----
    Four states are distinguished by FORM as well as tone, so the grid
    still reads printed in mono or by a colour-blind reader. */
@@ -740,7 +760,22 @@ a.pfolio-it:hover{border-color:var(--accent);text-decoration:none;background:var
 }
 </style>
 </head>
-<body>
+<body class="gated">
+
+<!-- soft preview gate; shares the sessionStorage key with the command brief so
+     unlocking one unlocks the other for the session -->
+<div id="gate">
+  <div class="gate-card">
+    <h1>Defence Space Partnership Model</h1>
+    <p>Analytical model — restricted preview</p>
+    <input id="gate-pw" type="password" placeholder="Access code" autocomplete="off" autofocus>
+    <button type="button" id="gate-go">Enter</button>
+    <div class="gate-err" id="gate-err" role="alert"></div>
+  </div>
+  <div class="gate-note">The access code is a soft preview gate only — it is client-side and provides
+    no real security. Do not treat this page as a protected system. Contains open-source,
+    UNOFFICIAL content only.</div>
+</div>
 
 <noscript>
   <div class="noscript-box">
@@ -3232,7 +3267,7 @@ function renderPartnerLibrary(key, host) {
   const grpReg = (VEHREG.partners || []).find(p => p.key === key);
   const sel = (id, labelTxt, opts, cur) => `
     <div class="rl-hd">${esc(labelTxt)}</div>
-    <select id="${id}" aria-label="Filter by ${esc(labelTxt)}">
+    <select id="${id}" aria-label="$"{esc(labelTxt)}">
       <option value="">All</option>
       ${opts.map(o => `<option value="${esc(o)}"${cur === o ? " selected" : ""}>${esc(o)}</option>`).join("")}
     </select>`;
@@ -3683,7 +3718,7 @@ function renderLoadMatrix() {
     </div>`).join("");
   return `<div class="card">
     <h2>Where each partnership carries weight</h2>
-    <p class="sub">Six authority layers, measured on bilateral defence instruments only. A layer is solid where Australia and the partner hold an in-force bilateral defence instrument whose scope is directly space. A small open ring means space is reached at that layer, but on another channel — multilateral, civil or the partner's own law — which is cooperation, not bilateral authority. Pick a flag for the full path.</p>
+    <p class="sub">Six authority layers, measured on bilateral defence instruments only. Pick a flag for a partner's full path.</p>
     <div class="lp-wrap"><div class="lp-grid">${head}${rows}</div></div>
     ${lpLegend()}
   </div>`;
@@ -3853,7 +3888,7 @@ function renderAnalysis(tab) {
     body = `
       <div class="card" style="margin-bottom:14px">
         <h2>Complementarities register — ${MODEL.complementarities.length} records</h2>
-        <p class="sub" style="margin:2px 0 0">Each record answers the four gates: what Australia needs, what the partner contributes, what Australia contributes, and the mutual benefit. Every record cites evidence and names the opportunities it generated.</p>
+        <p class="sub" style="margin:2px 0 0">Four gates per record: what Australia needs, what the partner brings, what Australia gives, the mutual benefit.</p>
       </div>
       ${MODEL.complementarities.map(c => {
         const gen = oppsByComp[c.id] || [];
@@ -3880,7 +3915,7 @@ function renderAnalysis(tab) {
     body = `
       <div class="card">
         <h2>Gaps &amp; levers register — all ${MODEL.gaps_levers.length} GL records</h2>
-        <p class="sub" style="margin:2px 0 8px">Every binding-gap action in the model: owner class, dated action, status, and the opportunity and pathway component it unblocks. All owners TO_ASSIGN pending custodian validation.</p>
+        <p class="sub" style="margin:2px 0 8px">Every binding-gap action, and the pathway component it unblocks.</p>
         <div class="tbl-wrap"><table class="data">
           <thead><tr><th>GL</th><th>Opportunity</th><th>Partner</th><th>Component</th><th>Gap</th><th>Action</th><th>Owner class</th><th>Due</th><th>Status</th></tr></thead>
           <tbody>
@@ -3905,7 +3940,7 @@ function renderAnalysis(tab) {
     body = `
       <div class="card" style="margin-bottom:14px">
         <h2>Interdependencies — ${INTERDEPS.length} recorded relationships</h2>
-        <p class="sub" style="margin:2px 0 0">Every relationship recorded on an opportunity, grouped by kind: constrains · competes-for-resource · hedges / hedged-by · delivery-leg-of. Edges are directional as recorded — a hedge and its mirror both appear.</p>
+        <p class="sub" style="margin:2px 0 0">Recorded relationships between opportunities, grouped by kind. Edges are directional — a hedge and its mirror both appear.</p>
       </div>
       ${order.filter(k => groups[k]).map(k => `
         <div class="card" style="margin-bottom:12px">
@@ -4021,7 +4056,7 @@ function renderPlan() {
       </div>
       <div class="card">
         <h2>Rulings sought — ${(P.resource_decisions || []).length} (RD-1…RD-${(P.resource_decisions || []).length})</h2>
-        <p class="sub" style="margin:2px 0 8px">Three portfolio-level funding/positioning rulings plus two supporting decisions — one authority each, none split.</p>
+        <p class="sub" style="margin:2px 0 8px">Three portfolio-level rulings plus two supporting decisions.</p>
         ${(P.resource_decisions || []).map(rd => `
           <div class="callout warn" style="margin:6px 0">
             <b class="hd"><span class="mono">${esc(rd.id)}</span> <span class="mut" style="text-transform:none;letter-spacing:0">· owner: ${esc(rd.owner)} · need by: ${esc(rd.need_by)}</span></b>
@@ -4052,7 +4087,7 @@ function renderPlan() {
       </div>
       <div class="card">
         <h2>Watch items — ${(P.watch_items || []).length}</h2>
-        <p class="sub" style="margin:2px 0 8px">Uncarried register inputs and standing conditions the plan tracks without tasking. Watch-only inputs are greyed in the <a href="#/requirement">Requirement view</a>.</p>
+        <p class="sub" style="margin:2px 0 8px">Uncarried inputs and standing conditions, tracked without tasking.</p>
         <ul class="tight small">${(P.watch_items || []).map(w => `<li>${linkifyRefs(w.item)}</li>`).join("")}</ul>
       </div>
     </div>
@@ -4117,7 +4152,7 @@ function renderOpportunitiesList() {
       <h2>Opportunities — ${MODEL.opportunities.length} across the portfolio, ${OPTIONS.length} scored partner options</h2>
       <p class="small mut" style="margin:2px 0 10px">Ranked by strongest option, raw weighted score on 0–100. Treatments: ${["Act now","Quick win","Build pathway","Explore","Hold"].filter(t => treatCounts[t])
           .map(t => `<b>${treatCounts[t]}</b> ${esc(t)}`).join(" · ")}.</p>
-      <div class="pick-row" role="group" aria-label="Filter by partner">
+      <div class="pick-row" role="group" aria-label="Partner">
         <button type="button" class="pick-btn${!OPPF.partner ? " on" : ""}" data-oppf="">All partners</button>
         ${partnersWithOpts.map(pid => `<button type="button" class="pick-btn${OPPF.partner === pid ? " on" : ""}"
           data-oppf="${esc(pid)}">${pflag(pid)} ${esc((partnersById[pid] || {}).name || pid)}</button>`).join("")}
@@ -4333,7 +4368,7 @@ function renderDependencies() {
   root.innerHTML = `
     <div class="card" style="margin-bottom:14px">
       <h2>Concentration-risk board — ${deps.length} dependency dimensions</h2>
-      <p class="sub" style="margin:2px 0 6px">${nHigh} of ${deps.length} dimensions carry <b>High</b> concentration. Each card names the treatment and the inputs and opportunities it touches. Chips carry H/M/L glyphs — state never rides on colour alone. How the plan treats each dimension: <a href="#/plan">Plan view</a>.</p>
+      <p class="sub" style="margin:2px 0 6px">${nHigh} of ${deps.length} dimensions carry <b>High</b> concentration.</p>
     </div>
     <div class="grid cols-2">
       ${deps.map(d => `
@@ -4466,7 +4501,7 @@ function renderSensitivity() {
   root.innerHTML = `
     <div class="card" style="margin-bottom:14px">
       <h2>Weight sensitivity lab</h2>
-      <p class="sub" style="margin:2px 0 6px">Move any criterion weight (0–25) and every partner-option score and band recomputes instantly, per the framework calibration rules. Unknown criterion scores stay excluded with weights renormalised, exactly as in the baseline.</p>
+      <p class="sub" style="margin:2px 0 6px">Move any weight (0–25); every score and band recomputes. Unknown scores stay excluded, weights renormalised.</p>
       <div class="callout warn"><b class="hd">Exploratory analysis only</b>
         This lab explores how sensitive band assignments are to the weighting scheme. It does <b>not</b> overwrite the approved baseline —
         the weights of record remain those approved in the framework calibration (V7), and every other view continues to show baseline scores.</div>
@@ -4584,16 +4619,16 @@ function renderEvidence() {
     <div class="card">
       <div class="filter-row">
         <input type="search" id="ev-q" placeholder="Search claim, source, id…" aria-label="Free-text search" value="${esc(EVF.q)}" style="flex:1;min-width:180px">
-        <select id="ev-label" aria-label="Filter by label">
-          <option value="">Label: all</option>
+        <select id="ev-label" aria-label="Label">
+          <option value="">Label</option>
           ${["FACT","ASSESSMENT","TO_VERIFY"].map(l => `<option${EVF.label === l ? " selected" : ""}>${l}</option>`).join("")}
         </select>
-        <select id="ev-conf" aria-label="Filter by confidence">
-          <option value="">Confidence: all</option>
+        <select id="ev-conf" aria-label="Confidence">
+          <option value="">Confidence</option>
           ${["High","Medium","Low"].map(l => `<option${EVF.conf === l ? " selected" : ""}>${l}</option>`).join("")}
         </select>
-        <select id="ev-topic" aria-label="Filter by topic">
-          <option value="">Topic: all</option>
+        <select id="ev-topic" aria-label="Topic">
+          <option value="">Topic</option>
           ${topics.map(t => `<option value="${esc(t)}"${EVF.topic === t ? " selected" : ""}>${esc(t)}</option>`).join("")}
         </select>
         <span class="small mut" id="ev-count"></span>
@@ -4634,6 +4669,18 @@ function renderAbout() {
           <span class="step"><b>Human decision</b></span>
         </div>
         <p class="small">Every recommendation traces backward to evidence records and forward to a named treatment and a dated, owned plan item; nothing terminates in a bare number. v2 added the architecture register, dependency board, scenarios and the sensitivity lab. <b>v3 adds:</b> the full ${VEHICLES.length}-vehicle register embedded verbatim (nothing missing), the <a href="#/analysis">Analysis view</a> (complementarities gates, all ${MODEL.gaps_levers.length} gap actions, interdependencies, red-team log), the <a href="#/plan">Plan view</a> (tranches, ${(PLAN.decision_asks||[]).length} decision asks, rulings, risks, measures, do-nothing, watch items), the full ${INREG.inputs.length}-entry inputs register (${INREG.meta.counts.carried} carried + ${INREG.meta.counts.watch_only} watch-only). <b>v5 restructures navigation country-first:</b> a partner grid is the entry point, each partner opens on its artefact library, and portfolio-wide views (comparison, scenarios, Australian inputs, plan) sit behind a separate secondary entry.</p>
+
+        <h3 style="margin-top:14px">Channel — and why the load path counts only one of them</h3>
+        <p class="small">The architecture view asks whether Australia holds <b>bilateral defence authority</b> with a partner at each of six layers. An instrument answers that only if Australia is a <b>party</b>, the scope is <b>defence</b> rather than civil, and it is <b>bilateral</b> rather than a multilateral membership both countries happen to hold. So every one of the ${VEHICLES.length} instruments carries a channel:</p>
+        <ul class="tight small">
+          <li><b>Bilateral defence</b> — Australia and the partner, defence in scope. The only channel the load path counts.</li>
+          <li><b>Bilateral civil</b> — Australia and the partner, but signed by civil space agencies or civil in scope.</li>
+          <li><b>Multilateral</b> — three or more parties (CSpO, MNF-OOD, JCO, WGS, Artemis, Five Eyes, UN bodies).</li>
+          <li><b>Third party</b> — the partner and someone other than Australia.</li>
+          <li><b>Partner domestic</b> — the partner's own national law, strategy or capability.</li>
+        </ul>
+        <p class="small">This distinction is not cosmetic. Counted naively, New Zealand scored space authority at five of six layers — contradicting both this model's own bottom line and the register's explicit negative finding that no bilateral Australia&#8211;New&nbsp;Zealand defence-space instrument exists. Every instrument producing that score was multilateral, NZ-domestic, civil or NZ&#8211;US. Folding those together flatters the relationship the model exists to test.</p>
+        <p class="small">Channels are assigned by explicit rule from an instrument's name and scope &mdash; never its notes, which carry contextual mentions of other bodies. Because a wrong call here would be briefed as fact, <b>every instrument capable of making a layer load-bearing (in force and directly about space) is curated by hand</b>; no automated guess survives into a verdict. Each instrument shows its channel and the basis for it in the drawer, so any call can be challenged.</p>
 
         <h3 style="margin-top:14px">Three things kept separate — never merged</h3>
         <ul class="tight small">
@@ -4815,7 +4862,34 @@ document.addEventListener("click", e => {
 });
 window.addEventListener("hashchange", route);
 el("hdr-gen").textContent = `Data ${MODEL.meta.generated} · model v${MODEL.meta.version} · app v5 build 2026-07-22 · Open-source baseline`;
-route();
+
+/* ---- soft preview gate ----
+   Same session key as the command brief, so unlocking either unlocks both.
+   Client-side only: a courtesy gate on an UNOFFICIAL open-source product,
+   not a security control. */
+(function () {
+  const gate = el("gate");
+  function unlock() {
+    document.body.classList.remove("gated");
+    gate.style.display = "none";
+    route();
+  }
+  function tryPw() {
+    if (el("gate-pw").value.trim().toUpperCase() === "ADMIN2026") {
+      try { sessionStorage.setItem("cb_ok", "1"); } catch (e) {}
+      unlock();
+    } else {
+      el("gate-err").textContent = "Incorrect access code.";
+      el("gate-pw").select();
+    }
+  }
+  el("gate-go").addEventListener("click", tryPw);
+  el("gate-pw").addEventListener("keydown", e => { if (e.key === "Enter") tryPw(); });
+  el("gate-pw").addEventListener("input", () => { el("gate-err").textContent = ""; });
+  let open = false;
+  try { open = sessionStorage.getItem("cb_ok") === "1"; } catch (e) {}
+  if (open) unlock(); else { gate.style.display = "flex"; el("gate-pw").focus(); }
+})();
 </script>
 </body>
 </html>
