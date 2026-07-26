@@ -27,7 +27,7 @@ body:not(.scrollmode) .slide{display:none;position:absolute;inset:0}
 body:not(.scrollmode) .slide.active{display:block}
 body.scrollmode{padding:26px 0 80px}
 body.scrollmode .deck{position:static;transform:none;width:auto;height:auto}
-body.scrollmode .slide{display:block;margin:0 auto 26px;zoom:var(--z,1)}
+body.scrollmode .slide{display:block;margin:0 auto 26px;zoom:var(--z,1);content-visibility:auto;contain-intrinsic-size:1280px 720px}
 
 /* classification banner + footer (injected) */
 .cls{position:absolute;top:0;left:0;right:0;height:24px;background:var(--wash);

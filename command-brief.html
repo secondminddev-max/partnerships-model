@@ -10,7 +10,7 @@
 <style>
 :root{
   --paper:#f3f1ea; --surface:#ffffff; --surface2:#faf8f3;
-  --ink:#1b2431; --ink2:#54606f; --muted:#8b909a;
+  --ink:#1b2431; --ink2:#54606f; --muted:#656d7a;
   --hair:#e4ded2; --hair2:#efeae0;
   --navy:#1f3a5f; --navy2:#2c527f; --accent:#9a6b2f; --accent-soft:#f0e4d0;
   --fact:#3f7a5a; --assess:#b07d2b; --verify:#6f7682;
@@ -118,14 +118,15 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .tab:hover{color:var(--ink)}
 .tab.active{color:var(--navy2);border-bottom-color:var(--navy2);font-weight:600}
 .panel{display:none;padding-top:22px}
-.panel.active{display:block}
+.panel.active{display:block;animation:panelin .18s ease-out}
+@keyframes panelin{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
 /* generic blocks */
 .grid{display:grid;gap:16px}
 .card{background:var(--surface);border:1px solid var(--hair);border-radius:10px;padding:20px 22px;
   box-shadow:0 1px 2px rgba(27,36,49,.05),0 10px 30px rgba(27,36,49,.05)}
 .card h3{font-size:16px;margin-bottom:12px}
-.sec-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:600}
+.sec-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);margin-bottom:8px;font-weight:600}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media(max-width:800px){.two,.three{grid-template-columns:1fr}}
@@ -139,7 +140,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 /* BLUF */
 .bluf{background:linear-gradient(180deg,var(--accent-soft),var(--surface) 72%);border:1px solid var(--accent);border-left-width:4px;border-radius:11px;padding:18px 22px;margin-bottom:20px;box-shadow:var(--shadow)}
 .bluf-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:800}
-.bluf-line{font-size:15px;line-height:1.5;color:var(--ink);margin-top:7px;font-weight:500}
+.bluf-line{font-family:var(--serif);font-size:17px;line-height:1.45;color:var(--ink);margin-top:7px;font-weight:500}
 .bluf-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
 @media(max-width:700px){.bluf-grid{grid-template-columns:1fr}}
 .bluf-grid > div{font-size:12.5px;color:var(--ink2);line-height:1.5}
@@ -205,7 +206,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
   box-shadow:var(--shadow);font-family:var(--sans);font-size:12px;line-height:1.45}
 @media(prefers-color-scheme:dark){.pm{background:#f7f5f0}}
 .pm-bandtop{height:4px;border-radius:8px 8px 0 0;margin:-26px -30px 18px}
-.pm-band{text-align:center;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+.pm .pm-band{text-align:center;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
   color:#6b7280;border-bottom:1px solid #dcd6c9;padding-bottom:7px;margin-bottom:14px}
 .pm-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}
 .pm-hd h3{font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.15;margin:0;color:#15202c}
@@ -216,7 +217,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .pm-bl{border-left:3px solid var(--navy);background:#f7f5f0;padding:10px 14px;margin-bottom:14px;font-size:12.5px}
 .pm-thin{border:1px dashed #c9b98f;background:#fdfaf2;padding:10px 14px;margin-bottom:14px;font-size:11.5px;color:#5c5344}
 .pm-ask{border-left:3px solid #8a6a2f;background:#fbf6ec;padding:10px 14px;margin:14px 0;font-size:12.5px}
-.pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pm .pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .pm-box{border:1px solid #e2ddd2;border-radius:6px;padding:11px 13px}
 .pm-box.pm-wide{grid-column:1/-1;margin-top:12px}
 .pm-box h4{font-size:9.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:#6b7280;margin:0 0 7px}
@@ -228,7 +229,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .pm-marks{display:flex;gap:5px;flex-wrap:wrap}
 .pm-mk-c{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;min-width:38px}
 .pm-mk-c span:last-child{font-size:8px;letter-spacing:.05em;text-transform:uppercase;color:#8b909a}
-.pm-mat{display:flex;gap:14px;margin-top:8px;padding-top:7px;border-top:1px solid #eee8dc;font-size:11px;color:#4d5866}
+.pm .pm-mat{display:flex;gap:14px;margin-top:8px;padding-top:7px;border-top:1px solid #eee8dc;font-size:11px;color:#4d5866}
 .pm-p{padding:4px 0;border-bottom:1px solid #f0ece2}
 .pm-p:last-child{border-bottom:0}
 .pm-p b{display:block;font-size:12px}
@@ -237,8 +238,8 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 .pm-t td{padding:4px 8px 4px 0;border-bottom:1px solid #f0ece2;font-size:11.5px;vertical-align:top}
 .pm-t tr:last-child td{border-bottom:0}
 .pm-t .pm-id{font-family:var(--mono);font-size:10px;color:#6b7280;white-space:nowrap}
-.pm-foot{margin-top:14px;padding-top:9px;border-top:1px solid #dcd6c9;font-size:9.5px;color:#8b909a}
-@media(max-width:760px){.pm-grid{grid-template-columns:1fr}}
+.pm .pm-foot{margin-top:14px;padding-top:9px;border-top:1px solid #dcd6c9;font-size:9.5px;color:#8b909a}
+@media(max-width:760px){.pm .pm-grid{grid-template-columns:1fr}}
 @media print{
   .pm{border:0;box-shadow:none;padding:0;font-size:10.5px}
   .pm-box{break-inside:avoid}
@@ -282,7 +283,7 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
   border:1px solid var(--hair);border-radius:3px;padding:1px 5px;white-space:nowrap}
 @media(max-width:700px){.cb-lp-c{min-width:60px}.cb-layer-m{margin-left:0;width:100%}}
 
-@media (prefers-reduced-motion: reduce){.ring{transition:none!important}.kl,.card,a{transition:none!important}}
+@media (prefers-reduced-motion: reduce){.ring{transition:none!important}.kl,.card,a{transition:none!important}.panel.active{animation:none!important}.tab,.btn,.cbtn,.pv-back,.rail-chip,.portal-card,.vd{transition:none!important}}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
 
 #verdicts{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:900px}
@@ -304,6 +305,71 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
   text-transform:uppercase;color:var(--muted)}
 .skip{position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;padding:8px 14px;z-index:100000;border-radius:0 0 8px 0}
 .skip:focus{left:0}
+
+.exploded svg .ex-part{transition:opacity .15s}
+.exploded svg:hover .ex-part{opacity:.32}
+.exploded svg .ex-part:hover{opacity:1}
+@keyframes mkpulse{0%,100%{stroke-width:1.6}50%{stroke-width:5}}
+.mk-live{animation:mkpulse 2.2s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.mk-live{animation:none}}
+
+.align-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:820px){.align-grid{grid-template-columns:1fr}}
+.acol{border:1px solid var(--hair);border-radius:9px;padding:13px 15px;background:var(--surface2)}
+.acol h5{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 7px}
+.acol p{font-size:12.5px;color:var(--ink2);margin:0}
+.acol-map{margin-top:8px!important;padding-top:8px;border-top:1px solid var(--hair2)}
+.glt{width:100%;border-collapse:collapse;font-size:12px}
+.glt th{text-align:left;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--hair)}
+.glt td{padding:9px 12px;border-bottom:1px solid var(--hair2);vertical-align:top;color:var(--ink2)}
+.glt tr:last-child td{border-bottom:0}
+.glt-id{font-family:var(--mono);font-size:10px;color:var(--muted);white-space:nowrap}
+.news-item{display:block;padding:9px 2px;border-bottom:1px solid var(--hair2);text-decoration:none;color:inherit}
+.news-item:hover b{color:var(--navy2)}
+.news-item b{display:block;font-size:13px;font-weight:600;line-height:1.35}
+.news-item span{font-size:11px;color:var(--muted)}
+.news-item:last-child{border-bottom:0}
+
+/* hero backdrop: two slow orbital rings, structural not decorative-noise */
+#hero::before,#hero::after{content:"";position:absolute;left:50%;top:44%;border-radius:50%;pointer-events:none}
+#hero::before{width:min(74vw,760px);height:min(74vw,760px);transform:translate(-50%,-50%) rotateX(58deg);
+  border:1px dashed rgba(31,58,95,.16)}
+#hero::after{width:min(52vw,520px);height:min(52vw,520px);transform:translate(-50%,-50%) rotateX(58deg);
+  border:1px solid transparent;border-top-color:rgba(154,107,47,.35);animation:orbitspin 80s linear infinite}
+@keyframes orbitspin{to{transform:translate(-50%,-50%) rotateX(58deg) rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){#hero::after{animation:none}}
+#hero>*{position:relative;z-index:1}
+.hero-portal>*{border:1px solid var(--hair);background:var(--surface);border-radius:9px;
+  transition:border-color .16s, transform .16s, box-shadow .16s}
+.hero-portal>*:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 18px rgba(27,36,49,.08)}
+
+/* 3D component scenes */
+.scene3{position:relative;height:230px;perspective:800px;perspective-origin:50% 42%;
+  border:1px solid var(--hair2);border-radius:9px;background:
+  radial-gradient(420px 200px at 50% 30%, #eee9dd 0%, var(--surface2) 70%);
+  margin-bottom:14px;cursor:grab;touch-action:none;user-select:none;overflow:hidden}
+.scene3:active{cursor:grabbing}
+.obj3{position:absolute;left:50%;top:46%;width:0;height:0;transform-style:preserve-3d}
+.p3{position:absolute;left:0;top:0;transform-style:preserve-3d;backface-visibility:hidden;
+  background:color-mix(in srgb,var(--surface) 88%,var(--navy2));border:1px solid var(--navy2);box-sizing:border-box}
+.p3.hot{cursor:pointer}
+.p3.lit{background:color-mix(in srgb,var(--accent) 26%,var(--surface));border-color:var(--accent);
+  box-shadow:0 0 0 1.5px var(--accent)}
+.wing3{width:88px;height:46px;background:
+  repeating-linear-gradient(90deg,color-mix(in srgb,var(--navy2) 22%,var(--surface)) 0 10px,var(--surface2) 10px 11px)!important}
+.dish3{border-radius:50%!important;background:radial-gradient(circle at 38% 34%,#fff,var(--surface2) 70%)!important}
+.lens3{width:18px;height:18px;border-radius:50%!important;background:var(--navy)!important}
+.noz3{width:24px;height:16px;clip-path:polygon(25% 0,75% 0,100% 100%,0 100%);background:var(--surface2)!important}
+.disc3{width:86px;height:86px;border-radius:50%!important;
+  background:radial-gradient(circle at 42% 38%,#fff,var(--surface2) 62%,color-mix(in srgb,var(--navy2) 24%,var(--surface2)))!important}
+.feed3{width:9px;height:9px;border-radius:50%!important;background:var(--accent)!important;border-color:var(--accent)!important}
+.con3{width:26px;height:18px}
+.ru3{display:block;position:absolute;left:3px;right:3px;height:14px;border:1px solid color-mix(in srgb,var(--navy2) 55%,transparent)}
+.ru3:nth-child(1){top:8px}.ru3:nth-child(2){top:28px}.ru3:nth-child(3){top:48px}
+.ru3h{background:color-mix(in srgb,var(--surface) 70%,var(--navy2))}
+.chip3{display:block;position:absolute;left:8px;width:14px;height:9px;border:1px solid var(--navy2);background:var(--surface2)}
+.scene3-hint{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:10px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);pointer-events:none}
 
 /* avatars */
 .avatar{width:72px;height:72px;min-width:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:23px;font-weight:600;letter-spacing:.02em;
@@ -411,16 +477,16 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
 
 /* placemat */
 .placemat{background:var(--surface);border:1px solid var(--hair);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);position:relative}
-.pm-band{height:8px}
+.placemat .pm-band{height:8px;border-bottom:0;padding-bottom:0;margin-bottom:0}
 .pm-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:18px 22px 8px}
 .pm-eyebrow{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .pm-title{font-size:26px;margin-top:4px}
-.pm-mat{display:flex;gap:14px;text-align:center}
-.pm-mat b{font-family:var(--serif);font-size:24px;color:var(--navy2)}
-.pm-mat span{display:block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.placemat .pm-mat{display:flex;gap:14px;text-align:center;margin-top:0;padding-top:0;border-top:0}
+.placemat .pm-mat b{font-family:var(--serif);font-size:24px;color:var(--navy2)}
+.placemat .pm-mat span{display:block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .pm-one{padding:0 22px 12px;font-size:12.5px;color:var(--ink2)}
-.pm-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;padding:6px 22px 14px}
-@media(max-width:800px){.pm-grid{grid-template-columns:1fr}}
+.placemat .pm-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;padding:6px 22px 14px}
+@media(max-width:800px){.placemat .pm-grid{grid-template-columns:1fr}}
 .pm-sec{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy2);font-weight:700;margin:10px 0 5px;border-bottom:1px solid var(--hair2);padding-bottom:3px}
 .pm-sec:first-child{margin-top:0}
 .pm-list{list-style:none;margin:0}
@@ -428,7 +494,7 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
 .pm-list li:before{content:"";position:absolute;left:0;top:9px;width:4px;height:4px;border-radius:50%;background:var(--accent)}
 .pm-list.tight li{padding:2.5px 0 2.5px 12px;font-size:11px}
 .pm-list .pending{color:var(--verify);font-style:italic}
-.pm-foot{padding:10px 22px;border-top:1px solid var(--hair2);font-size:10px;color:var(--muted)}
+.placemat .pm-foot{margin-top:0;padding:10px 22px;border-top:1px solid var(--hair2);font-size:10px;color:var(--muted)}
 @media print{
   .placemat{border:none;box-shadow:none;page-break-inside:avoid}
   @page{size:A4 landscape;margin:8mm}
@@ -525,11 +591,11 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
   <div class="card">
     <h1>Command Brief</h1>
     <p>Defence Space Partnership Model — restricted preview</p>
-    <input id="gate-pw" type="password" placeholder="Access code" autocomplete="off" autofocus>
+    <input id="gate-pw" type="password" placeholder="Access code" aria-label="Access code" autocomplete="off" autofocus>
     <button id="gate-go">Enter</button>
-    <div class="err" id="gate-err"></div>
+    <div class="err" id="gate-err" role="alert"></div>
   </div>
-  <div class="gate-note">Access code is a soft preview gate only — it is client-side and provides no real security. Do not treat this page as a protected system. Contains open-source, UNOFFICIAL content only.</div>
+  <div class="gate-note">Preview gate only — client-side, not a protected system. Contains open-source, UNOFFICIAL content only.</div>
 </div>
 
 <main id="app" style="display:none">
@@ -541,13 +607,13 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
     <div class="asat">As at 24 July 2026 · grounded in the National Defence Strategy and the Integrated Investment Program · <a href="index.html" style="color:inherit">cover</a> · v6</div>
 
     <div class="carousel-wrap">
-      <div class="carousel-label">Partners</div>
+      <div class="carousel-label">Partners<span id="c-status" aria-live="polite" aria-atomic="true" style="position:absolute;left:-9999px"></span></div>
       <div class="stage">
-        <button class="cbtn prev" id="c-prev" aria-label="previous">&#8249;</button>
+        <button class="cbtn prev" id="c-prev" aria-label="Previous partner">&#8249;</button>
         <div class="ring" id="ring"></div>
-        <button class="cbtn next" id="c-next" aria-label="next">&#8250;</button>
+        <button class="cbtn next" id="c-next" aria-label="Next partner">&#8250;</button>
       </div>
-      <div class="carousel-hint">Spin with the arrows, &#8592; &#8594; keys or drag · click the front card to open its brief · or press a letter to jump</div>
+      <div class="carousel-hint">Cycle with the arrows, &#8592; &#8594; keys or drag · select the front card to open its brief · type a letter to jump to a partner</div>
     <div id="verdicts" aria-label="Load-path verdicts for the worked partners"></div>
       <div class="rail" id="rail"></div>
     </div>
@@ -646,7 +712,7 @@ function pips(score,of){var h="";for(var i=0;i<of;i++)h+='<div class="pip'+(i<sc
     }).join("");
     host.querySelectorAll("[data-vd]").forEach(function(b){ b.addEventListener("click",function(){ openPartner(b.getAttribute("data-vd")); }); });
   }
-  function unlock(){ els("gate").style.display="none"; els("app").style.display="block"; buildCarousel(); buildRail(); buildVerdicts();
+  function unlock(){ els("gate").style.display="none"; els("app").style.display="block"; els("app").setAttribute("tabindex","-1"); els("app").focus({preventScroll:true}); buildCarousel(); buildRail(); buildVerdicts();
     try{ var dp=new URLSearchParams(location.search).get("p");
          if(dp && ORDER.indexOf(dp)>=0) openPartner(dp); }catch(e){}
   }
@@ -696,6 +762,8 @@ function spin(){
     c.style.borderColor = d<0.5?ac:"var(--hair)";
     var cta=c.querySelector(".cta"); if(cta) cta.style.color=ac;
   }
+  var st=els("c-status"), fd=FLAGDEF[ORDER[curIdx]];
+  if(st&&fd) st.textContent=fd.name+", "+(curIdx+1)+" of "+N+". Press Enter to open the brief.";
 }
 function step(d){ curIdx=(curIdx+d+N)%N; spin(); }
 /* drag / swipe to spin */
@@ -738,16 +806,16 @@ function buildRail(){
 /* ================= PARTNER VIEW ================= */
 var TABS=[
   ["factsheet","Factsheet"],["leadership","Leadership & Calendar"],
-  ["loe","Lines of Effort"],["opps","Opportunities"],
-  ["artefacts","Artefacts"],["analysis","Analysis"],["sites","Sites & Architecture"],["newsroom","Newsroom"],
-  ["placemat","Placemat"],["generate","Minute / In-brief"]
+  ["loe","Lines of Effort"],["opps","Opportunities"],["sites","Sites & Architecture"],
+  ["artefacts","Artefacts"],["newsroom","Newsroom"],
+  ["placemat","Placemat"],["generate","Minute / In-brief"],["analysis","Analysis ↗"]
 ];
 var CURKEY=null, CURTAB="factsheet";
 function openPartner(key){
   var wantTab=(location.hash||"").replace("#","");
   var p=BD.partners[key]; if(!p) return;
   CURKEY=key;
-  els("hero").style.display="none"; els("view").style.display="block";
+  els("hero").style.display="none"; els("analytics").style.display="none"; els("view").style.display="block";
   els("pv-crumb-txt").textContent=(FLAGDEF[key]&&FLAGDEF[key].name)||p.name;
   els("pv-title").textContent=p.name;
   els("pv-oneline").textContent=p.one_line||"";
@@ -765,11 +833,12 @@ function openPartner(key){
       if(t[0]==="analysis"){ openAnalyticsAt(MODEL_KEYS.indexOf(CURKEY)>=0?("#/partner/"+CURKEY):"", CURKEY); return; }
       CURTAB=t[0];
       try{ history.replaceState(null,"", "?p="+CURKEY+"#"+CURTAB); }catch(e){}
-      renderTabs(); });
+      renderTabs();
+      window.scrollTo(0,0); });
     b.setAttribute("data-tab",t[0]); tb.appendChild(b);
   });
   els("pv-foot").innerHTML='UNOFFICIAL · open-source only · as at '+esc(BD.meta.as_at)+'. Records labelled <span class="pill">FACT</span> <span class="pill">ASSESSMENT</span> <span class="pill">TO_VERIFY</span>. Personnel, dates and budget figures held at TO_VERIFY render as pending confirmation and must not be asserted in a minute or brief until sourced.';
-  CURTAB = TABS.some(function(t){return t[0]===wantTab;}) ? wantTab : "factsheet";
+  CURTAB = TABS.some(function(t){return t[0]===wantTab && t[0]!=="analysis";}) ? wantTab : "factsheet";
   try{ history.replaceState(null,"", "?p="+key+"#"+CURTAB); }catch(e){}
   renderTabs();
   window.scrollTo(0,0);
@@ -814,6 +883,7 @@ function renderTabs(){
   els("panels").innerHTML='<div class="panel active">'+html+'</div>';
   if(CURTAB==="artefacts") wireLibrary();
   if(CURTAB==="sites") wireSites(p);
+  if(CURTAB==="newsroom") wireNewsroom(p);
   if(CURTAB==="generate") wireGenerate();
   if(CURTAB==="placemat"){ var pb=els("pm-print"); if(pb) pb.addEventListener("click",function(){window.print();}); }
   if(CURTAB==="opps") wireOpps();
@@ -1037,15 +1107,29 @@ function renderRadar(p){
 
 /* ---------- ALIGNMENT (NDS/IIP) ---------- */
 function renderAlignment(p){
-  var sa=BD.strategic_anchors||{};
-  var nds=sa.nds||{}, iip=sa.iip||{};
-  function lbl(o){return (o.label&&o.label.indexOf("TO_VERIFY")<0)?'<span class="lab '+cls(o.label)+'">'+esc(o.label)+'</span>':'<span class="lab TO_VERIFY">TO_VERIFY</span>';}
-  var h='<div class="align-map">';
-  h+='<div class="align-node"><div class="h">'+esc(nds.name||"National Defence Strategy")+'</div><p>'+esc(nds.space_commitment||nds.space_treatment||"")+' '+lbl(nds)+'</p></div>';
-  h+='<div class="align-node"><div class="h">'+esc(iip.name||"Integrated Investment Program")+'</div><p>'+esc(iip.space_envelope||"")+' '+lbl(iip)+'</p></div>';
+  var sa=BD.strategic_anchors||{}, nds=sa.nds||{}, iip=sa.iip||{};
+  function lbl(o){return (o.label&&String(o.label).indexOf("TO_VERIFY")<0)?'<span class="lab '+cls(o.label)+'">'+esc(o.label)+'</span>':'<span class="lab TO_VERIFY">TO_VERIFY</span>';}
+  /* derived, not asserted: funding mix from this partner's own staffed
+     pathways; machinery from the register via the channel classification */
+  var ops=p.opportunities||[];
+  var cheap=ops.filter(function(o){return /negligible|low/i.test((o.pathway||{}).cost||"");});
+  var heavy=ops.filter(function(o){return /high|moderate|capability|IIP/i.test((o.pathway||{}).cost||"") && !/low/i.test((o.pathway||{}).cost||"");});
+  var vs=partnerVehicles(CURKEY);
+  var bilat=vs.filter(function(v){return v.channel==="bilateral_def"&&v.status==="In force";}).length;
+  var space=vs.filter(function(v){return v.status==="In force"&&v.space_relevance==="Direct";}).length;
+  var vd=cbVerdict(CURKEY,cbGrid(CURKEY),p.name);
+
+  var h='<div class="align-grid">';
+  h+='<div class="acol"><h5>Direction — NDS 2026</h5><p>'+esc(scrubEv(nds.space_commitment||nds.space_treatment||""))+' '+lbl(nds)+'</p>'+
+     ((p.factsheet&&p.factsheet.nds_mapping)?'<p class="acol-map">'+esc(p.factsheet.nds_mapping)+' <span class="lab ASSESSMENT">ASSESSMENT</span></p>':'')+'</div>';
+  h+='<div class="acol"><h5>Funding — IIP</h5><p>'+esc(scrubEv(iip.space_envelope||""))+' '+lbl(iip)+'</p>'+
+     (ops.length?'<p class="acol-map">Cost shape of the staffed lines: <b>'+cheap.length+' of '+ops.length+'</b> run on staff effort alone'+
+       (heavy.length?'; <b>'+heavy.length+'</b> '+(heavy.length===1?'is':'are')+' IIP-scale ('+heavy.map(function(o){return esc(o.id);}).join(", ")+')':'')+
+       '. <span class="lab ASSESSMENT">DERIVED</span></p>'
+     :'<p class="acol-map mut">No staffed lines yet — this partner is carried at register depth.</p>')+'</div>';
+  h+='<div class="acol"><h5>Machinery — the register</h5><p>'+vs.length+' instruments held; <b>'+bilat+'</b> bilateral-defence in force; <b>'+space+'</b> in force and directly space (any channel).</p>'+
+     '<p class="acol-map">'+esc(vd.head)+'. <span class="lab ASSESSMENT">DERIVED</span></p></div>';
   h+='</div>';
-  var map = (p.factsheet&&p.factsheet.nds_mapping) || null;
-  if(map){ h+='<p style="font-size:12.5px;color:var(--ink2);margin-top:12px">'+esc(map)+' <span class="lab ASSESSMENT">ASSESSMENT</span></p>'; }
   return h;
 }
 
@@ -1212,6 +1296,22 @@ function renderOpps(p){
       (o.pathway?renderPathway(o.pathway):'')+
       '<label class="chk"><input type="checkbox" class="opp-chk" data-oid="'+esc(o.id)+'" data-title="'+esc(o.title)+'"> Include as action item in the minute</label></div>';
   });
+    /* Gaps & levers — derived row-for-row from the staffed pathways, so the
+     analysis deepens automatically as pathways are staffed. Nothing invented. */
+  var oo=p.opportunities||[];
+  if(oo.length){
+    h+='<div class="sec-label" style="margin-top:26px">Gaps &amp; levers — derived from the staffed pathways <span class="lab ASSESSMENT">DERIVED</span></div>';
+    h+='<div class="card" style="padding:0;overflow:hidden"><table class="glt"><thead><tr><th>Line</th><th>The gap</th><th>The lever</th><th>First risk</th></tr></thead><tbody>';
+    oo.forEach(function(o){
+      var pw=o.pathway||{};
+      h+='<tr><td class="glt-id">'+esc(o.id)+'</td>'+
+         '<td>'+esc(o.binding_gap||"—")+'</td>'+
+         '<td>'+esc(pw.gate||((pw.actions||[])[0]||"—"))+'</td>'+
+         '<td>'+esc(((pw.risks||[])[0]||"—"))+'</td></tr>';
+    });
+    h+='</tbody></table></div>';
+    h+='<p class="foot-note" style="margin-top:10px">Full analytical registers — complementarities, portfolio gaps, interdependencies, red-team log — continue under the <b>Analysis</b> tab.</p>';
+  }
   return h;
 }
 function renderPathway(pw){
@@ -1425,12 +1525,36 @@ function liveFeeds(key,name){
   if(!f) f=[{l:"Live: "+name+" defence space news",u:"https://news.google.com/search?q="+encodeURIComponent(name+" defence space")+"%20when:60d",live:1}];
   return '<div class="livefeeds">'+f.map(function(x){return '<a class="lf'+(x.live?" live":"")+'" href="'+esc(x.u)+'" target="_blank" rel="noopener">'+esc(x.l)+' &#8599;</a>';}).join("")+'</div>';
 }
+function wireNewsroom(p){
+  var host=els("live-news"); if(!host) return;
+  var key="gdelt_"+CURKEY;
+  function render(arts){
+    if(!arts||!arts.length){ host.innerHTML='<div class="stub">Live feed quiet or unavailable — the curated sources below stand.</div>'; return; }
+    host.innerHTML=arts.slice(0,8).map(function(a){
+      var d=String(a.seendate||"");
+      var when=d.length>=8?(parseInt(d.slice(6,8),10)+" "+["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][parseInt(d.slice(4,6),10)]+" "+d.slice(2,4)):"";
+      return '<a class="news-item" href="'+esc(a.url)+'" target="_blank" rel="noopener"><b>'+esc(a.title||a.url)+'</b><span>'+esc(a.domain||"")+(when?' · '+when:'')+'</span></a>';
+    }).join("");
+  }
+  try{
+    var c=JSON.parse(sessionStorage.getItem(key)||"null");
+    if(c && (Date.now()-c.t)<1800000){ render(c.a); return; }
+  }catch(e){}
+  var name=(FLAGDEF[CURKEY]&&FLAGDEF[CURKEY].name)||p.name;
+  var q='"'+name+'" (space OR satellite) (defence OR defense OR military) sourcelang:english';
+  fetch("https://api.gdeltproject.org/api/v2/doc/doc?query="+encodeURIComponent(q)+"&mode=ArtList&maxrecords=10&timespan=21d&sort=DateDesc&format=json")
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(j){ var a=j.articles||[]; try{ sessionStorage.setItem(key,JSON.stringify({t:Date.now(),a:a})); }catch(e){} render(a); })
+    .catch(function(){ render(null); });
+}
 function renderNewsroom(p){
   var C=p.calendar||{events:[]};
   var evs=(C.events||[]).slice().sort(function(a,b){return String(b.when).localeCompare(String(a.when));});
   var recent=evs.filter(function(e){return evWindow(e)==="past";});
-  var h='<div class="sec-label">Live news feeds — '+esc(p.name)+'</div>';
-  h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">Opens current, real news in a new tab (a self-contained brief cannot embed a live wire directly). Below: the curated open-source development log and confirmed engagements.</p>';
+  var h='<div class="sec-label">Live headlines — '+esc(p.name)+' <span class="lab ASSESSMENT">LIVE</span></div>'+
+     '<div id="live-news"><div class="stub">Fetching live headlines\u2026</div></div>'+
+     '<div class="sec-label" style="margin-top:20px">Curated feeds &amp; official sources</div>';
+  h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">Feeds open current reporting in a new tab. Below: the curated open-source development log and confirmed engagements.</p>';
   h+=liveFeeds(CURKEY,p.name);
   h+='<div class="sec-label" style="margin-top:18px">Recent developments — '+esc(p.name)+' <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">(open-source, most recent first)</span></div>';
   if(!recent.length) h+='<div class="stub">No recent developments recorded for this partner yet.</div>';
@@ -1459,7 +1583,7 @@ function renderSites(p){
   else{
     if(p.sites_note) h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">'+esc(p.sites_note)+'</p>';
     h+='<div class="mapwrap"><div id="lmap" role="application" aria-label="Interactive stakeholder map — '+esc(p.name)+'"></div></div>'+
-       '<div class="map-legend"><span><i class="ml" style="background:'+sovCol(5)+'"></i>high sovereignty</span><span><i class="ml" style="background:'+sovCol(3)+'"></i>partial</span><span><i class="ml" style="background:'+sovCol(1)+'"></i>dependent / foreign-controlled</span><span class="mut" style="margin-left:auto">cartography &copy; OpenStreetMap &middot; CARTO &middot; schematic fallback offline</span></div>'+
+       '<div class="map-legend"><span><i class="ml" style="background:'+sovCol(5)+'"></i>high sovereignty</span><span><i class="ml" style="background:'+sovCol(3)+'"></i>partial</span><span><i class="ml" style="background:'+sovCol(1)+'"></i>dependent / foreign-controlled</span><span class="mut" style="margin-left:auto">cartography &copy; OpenStreetMap &middot; CARTO &middot; schematic fallback offline &middot; live launches: TheSpaceDevs</span></div>'+
        '<div class="map-detail" id="map-detail">Select a marker for detail.</div>';
   }
   /* ARCHITECTURE — layer overview (3D schematic) */
@@ -1475,28 +1599,158 @@ function renderSites(p){
     h+='<div class="sec-label" style="margin-top:26px">Component capability — which parts '+esc(p.name)+'\'s industry can build or control <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
     h+='<p style="font-size:12px;color:var(--muted);margin-bottom:12px">The satellite and ground station are broken into subsystems. Each is scored 0–5 for sovereign industrial capability, with the field or firm where evidenced. Hover a component for detail.</p>';
     h+='<div class="two">';
-    h+='<div class="card"><div class="sec-label">Satellite subsystems</div>'+renderExploded(comp.satellite,"sat")+'</div>';
-    h+='<div class="card"><div class="sec-label">Ground station subsystems</div>'+renderExploded(comp.ground,"gnd")+'</div>';
+    h+='<div class="card"><div class="sec-label">Satellite — interactive model</div>'+render3D("sat",comp.satellite)+renderExploded(comp.satellite,"sat")+'</div>';
+    h+='<div class="card"><div class="sec-label">Ground station — interactive model</div>'+render3D("gnd",comp.ground)+renderExploded(comp.ground,"gnd")+'</div>';
     h+='</div>';
-    h+='<div class="arch-detail" id="comp-detail">Hover a subsystem to see the capability assessment and the responsible industry field.</div>';
+    h+='<div class="arch-detail" id="comp-detail">Hover, tap or Tab to a subsystem to see the capability assessment and the responsible industry field.</div>';
   }
   return h;
 }
 function capChip(c){ var col=sovCol(c); return '<span class="capnum" style="background:'+col+'">'+c+'</span>'; }
+/* Component capability — engineering callout drawings, not toy bars.
+   Data-driven: parts map to drawing slots by keyword; every part keeps the
+   .ex-part hover contract (data-part/cap/note -> #comp-detail). Labels carry
+   a mini maturity ring (the arc is the 0-5 score, house bronze). */
+/* ---------- 3D component models (CSS preserve-3d, zero dependencies) ----------
+   Drag to rotate; idle turntable unless reduced-motion; hover a subsystem and
+   the supply-chain line (industry owner + note + sovereign score) appears in
+   the detail panel. Geometry is stylised deliberately — engineering-clean,
+   not toy-render. */
+function render3D(kind,parts){
+  var have={}; parts.forEach(function(pt){ var k=slotFor(kind,pt.part); if(k) have[k]=pt; });
+  function P(cls,slot,style,inner){
+    var pt=have[slot];
+    return '<div class="p3 '+cls+(pt?' hot':'')+'"'+(pt?' data-slot="'+slot+'" title="'+esc(pt.part)+'"':'')+' style="'+style+'">'+(inner||"")+'</div>';
+  }
+  var s='<div class="scene3" data-kind="'+kind+'"><div class="obj3">';
+  if(kind==="sat"){
+    var F="width:70px;height:50px;";
+    s+=P("f3","structure",F+"transform:translate(-50%,-50%) translateZ(25px)");
+    s+=P("f3","structure",F+"transform:translate(-50%,-50%) rotateY(180deg) translateZ(25px)");
+    s+=P("f3","structure","width:50px;height:50px;transform:translate(-50%,-50%) rotateY(-90deg) translateZ(35px)");
+    s+=P("f3 f3-panel","obc","width:50px;height:50px;transform:translate(-50%,-50%) rotateY(90deg) translateZ(35px)",
+        '<i class="chip3" style="top:6px"></i><i class="chip3" style="top:20px"></i><i class="chip3" style="top:34px"></i>');
+    s+=P("f3","thermal",F+"height:50px;transform:translate(-50%,-50%) rotateX(90deg) translateZ(25px)");
+    s+=P("f3","adcs",F+"transform:translate(-50%,-50%) rotateX(-90deg) translateZ(25px)");
+    s+=P("wing3","power","transform:translate(-50%,-50%) translateX(-92px)");
+    s+=P("wing3","power","transform:translate(-50%,-50%) translateX(92px)");
+    s+=P("dish3","comms","width:44px;height:44px;transform:translate(-50%,-50%) translateZ(29px)");
+    s+=P("lens3","sensor","transform:translate(-50%,-50%) rotateX(90deg) translateZ(27px)");
+    s+=P("noz3","propulsion","transform:translate(-50%,-50%) rotateY(180deg) translateZ(27px) translateY(14px)");
+  }else{
+    var B="width:40px;height:64px;";
+    s+=P("f3","dish",B+"transform:translate(-50%,-50%) translateX(-30px) translateZ(20px)");
+    s+=P("f3","dish",B+"transform:translate(-50%,-50%) translateX(-30px) rotateY(180deg) translateZ(20px)");
+    s+=P("f3","dish","width:40px;height:64px;transform:translate(-50%,-50%) translateX(-30px) rotateY(90deg) translateZ(20px)");
+    s+=P("disc3","dish","transform:translate(-50%,-50%) translateX(-30px) translateY(-56px) rotateX(58deg)");
+    s+=P("feed3","feed","transform:translate(-50%,-50%) translateX(-30px) translateY(-56px) translateZ(24px)");
+    s+=P("f3","servers","width:44px;height:74px;transform:translate(-50%,-50%) translateX(46px) translateZ(18px)",
+        '<i class="ru3" data-ru="modem"></i><i class="ru3" data-ru="clock"></i><i class="ru3" data-ru="servers"></i>');
+    s+=P("f3","servers","width:44px;height:74px;transform:translate(-50%,-50%) translateX(46px) rotateY(180deg) translateZ(18px)");
+    s+=P("f3","servers","width:36px;height:74px;transform:translate(-50%,-50%) translateX(46px) rotateY(90deg) translateZ(22px)");
+    s+=P("con3","console","transform:translate(-50%,-50%) translateX(46px) translateY(48px) rotateX(-28deg)");
+    /* rack units map to their own slots when present */
+    if(have.modem)  s+=P("ru3h","modem","width:40px;height:16px;transform:translate(-50%,-50%) translateX(46px) translateY(-22px) translateZ(19px)");
+    if(have.clock)  s+=P("ru3h","clock","width:40px;height:16px;transform:translate(-50%,-50%) translateX(46px) translateY(0px) translateZ(19px)");
+  }
+  s+='</div><div class="scene3-hint">drag to rotate &middot; hover a subsystem for its supply chain</div></div>';
+  return s;
+}
+function wireModels(p){
+  var comp=p.components||{};
+  document.querySelectorAll(".scene3").forEach(function(sc){
+    var kind=sc.getAttribute("data-kind"), parts=(kind==="sat"?comp.satellite:comp.ground)||[];
+    var obj=sc.querySelector(".obj3"); if(!obj) return;
+    var rx=-14, ry=-24, dragging=false, hovered=false, lx=0, ly=0;
+    function apply(){ obj.style.transform="rotateX("+rx+"deg) rotateY("+ry+"deg)"; }
+    apply();
+    sc.addEventListener("pointerdown",function(e){ dragging=true; lx=e.clientX; ly=e.clientY; sc.setPointerCapture(e.pointerId); });
+    sc.addEventListener("pointermove",function(e){ if(!dragging) return;
+      ry+=(e.clientX-lx)*0.45; rx=Math.max(-40,Math.min(40,rx-(e.clientY-ly)*0.3)); lx=e.clientX; ly=e.clientY; apply(); });
+    sc.addEventListener("pointerup",function(){ dragging=false; });
+    sc.addEventListener("mouseenter",function(){ hovered=true; });
+    sc.addEventListener("mouseleave",function(){ hovered=false; });
+    if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)){
+      (function turn(){ if(!dragging&&!hovered){ ry+=0.12; apply(); } requestAnimationFrame(turn); })();
+    }
+    sc.querySelectorAll(".p3.hot").forEach(function(pc){
+      pc.addEventListener("mouseenter",function(){
+        var slot=pc.getAttribute("data-slot");
+        var pt=parts.filter(function(x){ return slotFor(kind,x.part)===slot; })[0]; if(!pt) return;
+        sc.querySelectorAll('[data-slot="'+slot+'"]').forEach(function(x){ x.classList.add("lit"); });
+        var d=els("comp-detail");
+        if(d) d.innerHTML='<b>'+esc(pt.part)+' — sovereign capability '+esc(String(pt.cap))+'/5.</b> '+
+          (pt.who?'<span style="color:var(--accent);font-weight:600">Supply chain:</span> '+esc(pt.who)+'. ':'')+esc(pt.note||"");
+      });
+      pc.addEventListener("mouseleave",function(){
+        sc.querySelectorAll(".lit").forEach(function(x){ x.classList.remove("lit"); });
+      });
+    });
+  });
+}
+function miniRing(x,y,m){
+  var r=8,C=2*Math.PI*r,f=Math.max(0,Math.min(5,m))/5;
+  return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="var(--hair)" stroke-width="2.5"/>'+
+   '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" '+
+   'stroke-dasharray="'+(C*f).toFixed(1)+' '+C.toFixed(1)+'" transform="rotate(-90 '+x+' '+y+')"/>'+
+   '<text x="'+x+'" y="'+(y+3)+'" text-anchor="middle" font-size="8" font-weight="600" fill="var(--ink)" font-family="var(--sans)">'+m+'</text>';
+}
+var SAT_SLOTS={
+  sensor:    {x:120,y:36,  d:'<rect x="-14" y="-9" width="28" height="18" rx="2"/><circle cx="0" cy="0" r="5.5"/><circle cx="0" cy="0" r="2.5"/>'},
+  comms:     {x:120,y:74,  d:'<path d="M-12,6 A14,14 0 0,1 12,6"/><line x1="0" y1="6" x2="0" y2="-6"/><circle cx="0" cy="-8" r="2"/>'},
+  obc:       {x:120,y:110, d:'<rect x="-16" y="-8" width="32" height="16" rx="1.5"/><line x1="-9" y1="-8" x2="-9" y2="8"/><line x1="0" y1="-8" x2="0" y2="8"/><line x1="9" y1="-8" x2="9" y2="8"/>'},
+  adcs:      {x:120,y:146, d:'<circle cx="0" cy="0" r="9"/><circle cx="0" cy="0" r="3.5"/><line x1="9" y1="0" x2="14" y2="0"/><line x1="-9" y1="0" x2="-14" y2="0"/>'},
+  propulsion:{x:120,y:184, d:'<path d="M-6,-8 L6,-8 L4,0 L10,10 L-10,10 L-4,0 Z"/>'},
+  thermal:   {x:120,y:220, d:'<rect x="-16" y="-7" width="32" height="14" rx="2"/><line x1="-12" y1="-7" x2="-6" y2="7"/><line x1="-4" y1="-7" x2="2" y2="7"/><line x1="4" y1="-7" x2="10" y2="7"/>'},
+  structure: {x:120,y:258, d:'<path d="M-13,-11 L13,-11 L17,0 L13,11 L-13,11 L-17,0 Z"/><line x1="-13" y1="-11" x2="-13" y2="11"/><line x1="13" y1="-11" x2="13" y2="11"/>'},
+  power:     {x:120,y:294, d:'<rect x="-44" y="-7" width="30" height="14" rx="1"/><line x1="-36.5" y1="-7" x2="-36.5" y2="7"/><line x1="-29" y1="-7" x2="-29" y2="7"/><line x1="-14" y1="0" x2="14" y2="0"/><rect x="14" y="-7" width="30" height="14" rx="1"/><line x1="21.5" y1="-7" x2="21.5" y2="7"/><line x1="29" y1="-7" x2="29" y2="7"/>'}
+};
+var GND_SLOTS={
+  dish:   {x:96,y:70,  d:'<path d="M-30,10 A34,34 0 0,1 30,-14"/><line x1="0" y1="-2" x2="14" y2="-22"/><circle cx="15" cy="-24" r="2.5"/><line x1="-2" y1="10" x2="-2" y2="34"/><line x1="-14" y1="34" x2="10" y2="34"/>'},
+  feed:   {x:96,y:130, d:'<rect x="-14" y="-7" width="28" height="14" rx="2"/><path d="M14,0 L24,-5 L24,5 Z"/>'},
+  modem:  {x:96,y:172, d:'<rect x="-20" y="-8" width="40" height="16" rx="1.5"/><circle cx="-12" cy="0" r="2"/><circle cx="-4" cy="0" r="2"/><line x1="4" y1="-3" x2="15" y2="-3"/><line x1="4" y1="3" x2="15" y2="3"/>'},
+  console:{x:96,y:214, d:'<rect x="-15" y="-11" width="30" height="17" rx="1.5"/><line x1="0" y1="6" x2="0" y2="11"/><line x1="-9" y1="11" x2="9" y2="11"/>'},
+  clock:  {x:96,y:254, d:'<circle cx="0" cy="0" r="9"/><line x1="0" y1="0" x2="0" y2="-6"/><line x1="0" y1="0" x2="4" y2="2"/>'},
+  servers:{x:96,y:292, d:'<rect x="-16" y="-12" width="32" height="8" rx="1"/><rect x="-16" y="-2" width="32" height="8" rx="1"/><rect x="-16" y="8" width="32" height="8" rx="1"/><circle cx="10" cy="-8" r="1.4"/><circle cx="10" cy="2" r="1.4"/><circle cx="10" cy="12" r="1.4"/>'}
+};
+function slotFor(kind,name){
+  var n=name.toLowerCase();
+  if(kind==="sat"){
+    if(/sensor/.test(n))return "sensor"; if(/comm/.test(n))return "comms";
+    if(/computer|avionic|obc/.test(n))return "obc"; if(/adcs|attitude/.test(n))return "adcs";
+    if(/propul/.test(n))return "propulsion"; if(/thermal|harness/.test(n))return "thermal";
+    if(/structure|bus/.test(n))return "structure"; if(/power|solar/.test(n))return "power";
+  }else{
+    if(/antenna|dish/.test(n))return "dish"; if(/rf|lna|front/.test(n))return "feed";
+    if(/modem|baseband/.test(n))return "modem"; if(/tt&c|ops|software/.test(n))return "console";
+    if(/timing|frequency/.test(n))return "clock"; if(/processing|analytic|data/.test(n))return "servers";
+  }
+  return null;
+}
 function renderExploded(parts,kind){
   if(!parts||!parts.length) return '<div class="stub">Component detail pending.</div>';
-  /* schematic icon + component list with capability bars */
-  var icon = kind==="sat"
-    ? '<svg viewBox="0 0 120 90" width="120" height="90" style="flex:0 0 auto"><rect x="46" y="28" width="28" height="34" rx="3" fill="var(--surface2)" stroke="var(--navy2)"/><rect x="10" y="34" width="30" height="22" fill="#2c527f" opacity="0.7"/><rect x="80" y="34" width="30" height="22" fill="#2c527f" opacity="0.7"/><line x1="40" y1="45" x2="46" y2="45" stroke="var(--ink2)"/><line x1="74" y1="45" x2="80" y2="45" stroke="var(--ink2)"/><path d="M60,28 l0,-10 M55,18 l10,0" stroke="var(--ink2)" fill="none"/></svg>'
-    : '<svg viewBox="0 0 120 90" width="120" height="90" style="flex:0 0 auto"><ellipse cx="60" cy="40" rx="34" ry="14" fill="none" stroke="var(--navy2)" stroke-width="2"/><line x1="60" y1="40" x2="60" y2="26" stroke="var(--ink2)"/><circle cx="60" cy="24" r="3" fill="var(--navy2)"/><rect x="40" y="66" width="40" height="10" fill="var(--surface2)" stroke="var(--ink2)"/><line x1="50" y1="54" x2="50" y2="66" stroke="var(--ink2)"/><line x1="70" y1="54" x2="70" y2="66" stroke="var(--ink2)"/></svg>';
-  var h='<div class="exploded"><div class="ex-icon">'+icon+'</div><div class="ex-list">';
+  var SL=kind==="sat"?SAT_SLOTS:GND_SLOTS, H=kind==="sat"?320:320;
+  var s='<div class="exploded"><svg viewBox="0 0 400 '+H+'" role="img" aria-label="'+(kind==="sat"?"Satellite":"Ground station")+' component schematic" style="width:100%;max-width:560px;overflow:visible">';
+  /* separation axis */
+  s+='<line x1="'+(kind==="sat"?120:96)+'" y1="14" x2="'+(kind==="sat"?120:96)+'" y2="'+(H-10)+'" stroke="var(--hair)" stroke-width="1" stroke-dasharray="2 6"/>';
+  var rowY=30, rows=[];
   parts.forEach(function(pt){
-    h+='<div class="ex-part" data-note="'+esc((pt.who?pt.who+' — ':'')+(pt.note||''))+'" data-part="'+esc(pt.part)+'" data-cap="'+pt.cap+'">'+
-       capChip(pt.cap)+'<span class="ex-name">'+esc(pt.part)+'</span>'+
-       '<span class="ex-bar"><span class="ex-fill" style="width:'+(pt.cap*20)+'%;background:'+sovCol(pt.cap)+'"></span></span></div>';
+    var key=slotFor(kind,pt.part), slot=key?SL[key]:null;
+    var ly=rowY; rowY+=Math.max(34,(H-40)/parts.length);
+    if(ly>H-14) ly=H-14;
+    s+='<g class="ex-part" data-note="'+esc((pt.who?pt.who+' — ':'')+(pt.note||''))+'" data-part="'+esc(pt.part)+'" data-cap="'+pt.cap+'" style="cursor:pointer">';
+    if(slot){
+      s+='<g transform="translate('+slot.x+','+slot.y+')" fill="var(--surface)" stroke="var(--navy2)" stroke-width="1.3">'+slot.d+'</g>';
+      /* leader: dot at part, elbow to label row */
+      s+='<circle cx="'+(slot.x+22)+'" cy="'+slot.y+'" r="1.6" fill="var(--accent)"/>'+
+         '<path d="M'+(slot.x+22)+','+slot.y+' L'+(slot.x+52)+','+ly+' L226,'+ly+'" fill="none" stroke="var(--hair)" stroke-width="1"/>';
+    }
+    s+=miniRing(240,ly,pt.cap)+
+       '<text x="256" y="'+(ly+3.5)+'" font-size="10" fill="var(--ink)" font-family="var(--sans)">'+esc(pt.part.length>24?pt.part.slice(0,23)+"…":pt.part)+'</text>';
+    s+='</g>';
   });
-  h+='</div></div>';
-  return h;
+  s+='</svg></div>';
+  return s;
 }
 function sovCol(m){ return m>=4?"var(--fact)":(m>=2.5?"var(--assess)":"#b4432f"); }
 var ARCH_LAYERS=[
@@ -1505,7 +1759,7 @@ var ARCH_LAYERS=[
 ];
 function archGauge(x,y,m,label,key){
   var r=22, C=2*Math.PI*r, frac=Math.max(0,Math.min(5,m))/5;
-  return '<g class="archnode" data-k="'+key+'" data-m="'+m+'" style="cursor:pointer">'+
+  return '<g class="archnode" tabindex="0" role="button" aria-label="'+esc(label)+' — sovereign maturity '+m+' of 5" data-k="'+key+'" data-m="'+m+'" style="cursor:pointer">'+
     '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="var(--surface)" stroke="var(--hair)" stroke-width="4"/>'+
     '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" '+
       'stroke-dasharray="'+(C*frac).toFixed(1)+' '+C.toFixed(1)+'" transform="rotate(-90 '+x+' '+y+')"/>'+
@@ -1517,50 +1771,116 @@ function archGauge(x,y,m,label,key){
    in the house bronze; glyphs in thin line-art. Hover contract unchanged:
    .archnode + data-k/data-m feed the existing detail panel. */
 function renderArchSvg(arch){
-  var s='<svg id="archsvg" viewBox="0 0 660 400" role="img" aria-label="Space architecture — sovereign control by layer" style="width:100%;max-width:720px;overflow:visible">';
-  s+='<defs><linearGradient id="skyband" x1="0" y1="0" x2="0" y2="1">'+
-     '<stop offset="0" stop-color="var(--navy)" stop-opacity="0.07"/><stop offset="1" stop-color="var(--navy)" stop-opacity="0"/></linearGradient></defs>';
-  /* space band */
-  s+='<rect x="24" y="18" width="612" height="130" fill="url(#skyband)"/>';
-  var stars=[[70,40],[130,68],[205,34],[300,52],[420,38],[500,64],[575,44],[615,80],[90,95],[540,100]];
-  stars.forEach(function(pt){ s+='<circle cx="'+pt[0]+'" cy="'+pt[1]+'" r="1.1" fill="var(--navy2)" opacity="0.35"/>'; });
-  /* section labels + ticks */
-  [['ORBIT',54],['LINK',210],['GROUND',330]].forEach(function(t){
-    s+='<text x="26" y="'+(t[1]-6)+'" font-size="8.5" letter-spacing="2" fill="var(--muted)" font-family="var(--sans)">'+t[0]+'</text>'+
-       '<line x1="24" y1="'+t[1]+'" x2="40" y2="'+t[1]+'" stroke="var(--hair)" stroke-width="1"/>';
+  /* v3 — an orbital operations panel, not a diagram. Dark viewport into the
+     domain (fixed palette, deliberately independent of theme, like a photo),
+     Earth limb, three orbit shells with moving spacecraft, illuminated ground
+     sites on the limb, and the five sovereign-control scores as HUD readouts:
+     segmented bars where the fill IS the score. Hover/focus contract intact
+     (.archnode + data-k/data-m). */
+  var motion = !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var CX=300, CY=768, R=500;                       /* Earth limb geometry */
+  function limbY(x){ var dx=x-CX; return CY-Math.sqrt(Math.max(0,R*R-dx*dx)); }
+  var s='<svg id="archsvg" viewBox="0 0 680 380" role="img" aria-label="Space architecture — sovereign control by layer" style="width:100%;max-width:760px;display:block">';
+  s+='<defs>'+
+     '<radialGradient id="a3bg" cx="0.5" cy="0.1" r="1.1"><stop offset="0" stop-color="#12233d"/><stop offset="1" stop-color="#0a1322"/></radialGradient>'+
+     '<radialGradient id="a3earth" cx="0.5" cy="0.32" r="0.9"><stop offset="0" stop-color="#16304f"/><stop offset="0.75" stop-color="#0d1f36"/><stop offset="1" stop-color="#0a1830"/></radialGradient>'+
+     '<linearGradient id="a3atmo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fa8e8" stop-opacity="0.5"/><stop offset="1" stop-color="#6fa8e8" stop-opacity="0"/></linearGradient>'+
+     '<linearGradient id="a3seg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ecc27a"/><stop offset="1" stop-color="#c08c3e"/></linearGradient>'+
+     '<filter id="a3glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'+
+     '</defs>';
+  s+='<rect x="1" y="1" width="678" height="378" rx="12" fill="url(#a3bg)" stroke="rgba(217,167,85,.4)" stroke-width="1"/>';
+  /* stars */
+  var st=[[46,46,1.1],[92,102,.8],[150,38,1.2],[210,84,.7],[262,52,1],[330,30,.8],[388,70,1.1],[452,44,.7],[262,132,.6],[128,150,.9],[70,196,.7],[196,178,.6],[420,120,.8],[368,158,.6],[480,86,1],[44,262,.6],[502,150,.7],[236,236,.5]];
+  st.forEach(function(p){ s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+p[2]+'" fill="#cfe0f4" opacity="'+(0.25+p[2]*0.25)+'"/>'; });
+  /* orbit shells (clipped to panel by geometry) */
+  [[R+58,'rgba(207,224,244,.22)','none'],[R+104,'rgba(207,224,244,.15)','none'],[R+150,'rgba(207,224,244,.12)','5 7']].forEach(function(o){
+    s+='<circle cx="'+CX+'" cy="'+CY+'" r="'+o[0]+'" fill="none" stroke="'+o[1]+'" stroke-width="1"'+(o[2]!=='none'?' stroke-dasharray="'+o[2]+'"':'')+'/>';
   });
-  /* orbit arcs */
-  s+='<path d="M40,128 Q330,30 620,128" fill="none" stroke="var(--hair)" stroke-width="1" stroke-dasharray="2 5"/>';
-  s+='<path d="M64,148 Q330,78 596,148" fill="none" stroke="var(--navy2)" stroke-width="1.1" stroke-dasharray="4 5" opacity="0.6"/>';
-  /* satellite glyph on the LEO arc */
-  s+='<g transform="translate(330,96)" stroke="var(--navy2)" stroke-width="1.3" fill="var(--surface)">'+
-     '<rect x="-8" y="-6" width="16" height="12" rx="2"/>'+
-     '<line x1="-8" y1="0" x2="-24" y2="0"/><rect x="-34" y="-5" width="10" height="10" rx="1"/>'+
-     '<line x1="8" y1="0" x2="24" y2="0"/><rect x="24" y="-5" width="10" height="10" rx="1"/>'+
-     '<line x1="0" y1="6" x2="0" y2="14" opacity="0.7"/></g>';
-  /* launch trajectory */
-  s+='<path d="M120,296 Q150,180 250,118" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="1.5 6" opacity="0.65"/>';
-  /* link beams: satellite to ground/sda/user */
-  s+='<g class="beam" stroke="var(--accent)" stroke-width="1" fill="none" opacity="0.55">'+
-     '<line x1="326" y1="112" x2="252" y2="292"/><line x1="336" y1="112" x2="448" y2="292"/><line x1="342" y1="110" x2="556" y2="292"/></g>';
-  /* ground baseline */
-  s+='<line x1="40" y1="330" x2="620" y2="330" stroke="var(--hair)" stroke-width="1.4"/>';
-  /* glyphs above ground gauges: rocket, dish, radar fan, terminal */
-  s+='<g stroke="var(--navy2)" stroke-width="1.3" fill="none">'+
-     '<g transform="translate(120,288)"><path d="M0,-16 C4,-10 4,-2 0,4 C-4,-2 -4,-10 0,-16 Z"/><line x1="-5" y1="4" x2="-8" y2="9"/><line x1="5" y1="4" x2="8" y2="9"/></g>'+
-     '<g transform="translate(250,290)"><path d="M-9,-4 A11,11 0 0,1 9,-10" /><line x1="0" y1="-7" x2="0" y2="6"/><line x1="-6" y1="6" x2="6" y2="6"/></g>'+
-     '<g transform="translate(450,290)"><path d="M-10,2 A13,13 0 0,1 10,-8"/><path d="M-6,4 A8,8 0 0,1 6,-3" opacity="0.7"/><line x1="0" y1="6" x2="0" y2="-1"/></g>'+
-     '<g transform="translate(560,290)"><rect x="-9" y="-12" width="18" height="12" rx="1.5"/><line x1="0" y1="0" x2="0" y2="6"/><line x1="-6" y1="6" x2="6" y2="6"/></g></g>';
-  /* gauges */
-  s+=archGauge(330,180,arch.satellite||0,"Satellites","satellite");
-  s+=archGauge(120,352,arch.launch||0,"Launch","launch");
-  s+=archGauge(250,352,arch.ground||0,"Ground segment","ground");
-  s+=archGauge(450,352,arch.sda||0,"SDA sensors","sda");
-  s+=archGauge(560,352,arch.user||0,"User terminals","user");
-  /* connector satellite gauge to glyph */
-  s+='<line x1="330" y1="120" x2="330" y2="156" stroke="var(--hair)" stroke-width="1"/>';
+  /* Earth limb + atmosphere */
+  s+='<circle cx="'+CX+'" cy="'+CY+'" r="'+(R+7)+'" fill="none" stroke="url(#a3atmo)" stroke-width="14" opacity="0.8"/>';
+  s+='<circle cx="'+CX+'" cy="'+CY+'" r="'+R+'" fill="url(#a3earth)"/>';
+  s+='<circle cx="'+CX+'" cy="'+CY+'" r="'+R+'" fill="none" stroke="#7fb2ff" stroke-width="1" opacity="0.35"/>';
+  /* moving spacecraft on two shells */
+  function orbitPath(r){ var y1=CY-r; return 'M -40,'+(limbYr(r,-40))+' A '+r+','+r+' 0 0 1 720,'+(limbYr(r,720)); }
+  function limbYr(r,x){ var dx=x-CX; var v=r*r-dx*dx; return v>0? CY-Math.sqrt(v) : CY-0; }
+  var satBody='<rect x="-5" y="-3.5" width="10" height="7" rx="1"/><line x1="-5" y1="0" x2="-11" y2="0"/><rect x="-16" y="-3" width="5" height="6"/><line x1="5" y1="0" x2="11" y2="0"/><rect x="11" y="-3" width="5" height="6"/>';
+  function sat(anim){ return '<g filter="url(#a3glow)"><g stroke="#cfe0f4" stroke-width="1.1" fill="#0d1f36">'+(anim||"")+satBody+'</g></g>'; }
+  if(motion){
+    s+='<path id="a3o1" d="'+orbitPath(R+58)+'" fill="none" stroke="none"/>'+
+       '<path id="a3o2" d="'+orbitPath(R+104)+'" fill="none" stroke="none"/>'+
+       sat('<animateMotion dur="34s" repeatCount="indefinite" rotate="auto"><mpath href="#a3o1"/></animateMotion>')+
+       sat('<animateMotion dur="55s" repeatCount="indefinite" rotate="auto" begin="-20s"><mpath href="#a3o2"/></animateMotion>');
+  }else{
+    s+='<g transform="translate(210,'+(limbY(210)-58)+')" filter="url(#a3glow)"><g stroke="#cfe0f4" stroke-width="1.1" fill="#0d1f36">'+satBody+'</g></g>';
+  }
+  /* ground sites on the limb */
+  var SITES=[["launch",120,"Launch"],["ground",250,"Ground"],["sda",380,"SDA"],["user",470,"Users"]];
+  SITES.forEach(function(t){
+    var x=t[1], y=limbY(x);
+    s+='<g class="archnode" data-k="'+t[0]+'" data-m="'+(arch[t[0]]||0)+'" tabindex="0" role="button" aria-label="'+t[2]+' — sovereign control '+(arch[t[0]]||0)+' of 5" style="cursor:pointer">'+
+       '<line x1="'+x+'" y1="'+(y-1)+'" x2="'+x+'" y2="'+(y-12)+'" stroke="#d9a755" stroke-width="1.4" filter="url(#a3glow)"/>'+
+       '<circle cx="'+x+'" cy="'+(y-14)+'" r="3" fill="#d9a755" filter="url(#a3glow)"/>'+
+       '<text x="'+x+'" y="'+(y+16)+'" text-anchor="middle" font-size="8.5" letter-spacing="1.4" fill="#9fb1c9" font-family="var(--sans)">'+t[2].toUpperCase()+'</text></g>';
+    s+='<g class="beam"><line x1="'+(motion?300:210)+'" y1="'+(limbY(motion?300:210)-56)+'" x2="'+x+'" y2="'+(y-16)+'" stroke="#d9a755" stroke-width="0.8" opacity="0.4"/></g>';
+  });
+  /* HUD — sovereign-control readouts */
+  s+='<rect x="520" y="26" width="146" height="308" rx="9" fill="rgba(10,19,34,.72)" stroke="rgba(207,224,244,.18)"/>';
+  s+='<text x="533" y="48" font-size="8.5" letter-spacing="2" fill="#d9a755" font-family="var(--sans)">SOVEREIGN CONTROL</text>';
+  var ROWS=[["satellite","SATELLITES"],["launch","LAUNCH"],["ground","GROUND SEG"],["sda","SDA SENSORS"],["user","USER TERM"]];
+  ROWS.forEach(function(rw,i){
+    var m=arch[rw[0]]||0, y=74+i*52;
+    s+='<g class="archnode" data-k="'+rw[0]+'" data-m="'+m+'" tabindex="0" role="button" aria-label="'+rw[1]+' — sovereign control '+m+' of 5" style="cursor:pointer">'+
+       '<text x="533" y="'+y+'" font-size="9" letter-spacing="1.3" fill="#9fb1c9" font-family="var(--sans)">'+rw[1]+'</text>';
+    for(var b=0;b<5;b++){
+      var filled=b<m;
+      s+='<rect x="'+(533+b*20)+'" y="'+(y+8)+'" width="15" height="9" rx="1.5" '+
+         (filled?'fill="url(#a3seg)" filter="url(#a3glow)"':'fill="none" stroke="rgba(207,224,244,.4)" stroke-width="1"')+'/>';
+    }
+    s+='<text x="'+653+'" y="'+(y+17)+'" text-anchor="end" font-size="15" font-weight="600" fill="#f0e6d2" font-family="var(--serif)">'+m+'</text></g>';
+  });
+  s+='<text x="533" y="322" font-size="7.5" letter-spacing="1.6" fill="#5d708a" font-family="var(--sans)">SCALE 0–5 · ASSESSED</text>';
   s+='</svg>';
   return s;
+}
+/* ---------- live launch feed (The Space Devs Launch Library 2) ----------
+   Second knowing external dependency, Sites tab only, cached 30 min,
+   silent-degrading offline. Launches matched to mapped sites by pad
+   proximity, so no manual site-ID mapping to rot. */
+function loadLaunches(){
+  if(window.__ll2P) return window.__ll2P;
+  try{
+    var c=JSON.parse(sessionStorage.getItem("ll2_cache")||"null");
+    if(c && (Date.now()-c.t)<1800000){ window.__ll2P=Promise.resolve(c.d); return window.__ll2P; }
+  }catch(e){}
+  window.__ll2P=fetch("https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=30")
+    .then(function(r){ if(!r.ok) throw new Error("ll2 "+r.status); return r.json(); })
+    .then(function(j){
+      var d=(j.results||[]).map(function(L){ return {
+        name:L.name, net:L.net,
+        status:(L.status&&(L.status.abbrev||L.status.name))||"",
+        lsp:(L.launch_service_provider&&L.launch_service_provider.name)||"",
+        pad:(L.pad&&L.pad.name)||"",
+        lat:L.pad?parseFloat(L.pad.latitude):NaN, lng:L.pad?parseFloat(L.pad.longitude):NaN };});
+      try{ sessionStorage.setItem("ll2_cache",JSON.stringify({t:Date.now(),d:d})); }catch(e){}
+      return d;
+    })
+    .catch(function(){ window.__ll2P=null; return []; });
+  return window.__ll2P;
+}
+function launchesNear(lat,lng,list){
+  return list.filter(function(L){ return isFinite(L.lat)&&Math.abs(L.lat-lat)<1.5&&Math.abs(L.lng-lng)<1.5; })
+    .sort(function(a,b){ return String(a.net).localeCompare(String(b.net)); }).slice(0,3);
+}
+function fmtNet(iso){
+  var d=new Date(iso); if(isNaN(d)) return iso;
+  var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return d.getUTCDate()+" "+M[d.getUTCMonth()]+" "+String(d.getUTCFullYear()).slice(2)+", "+
+         String(d.getUTCHours()).padStart(2,"0")+String(d.getUTCMinutes()).padStart(2,"0")+"Z";
+}
+function launchHTML(near){
+  return '<div style="margin-top:6px;border-top:1px solid rgba(0,0,0,.1);padding-top:5px;font-size:11px">'+
+    '<b style="font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:#8a6a2f">Next launches — live</b>'+
+    near.map(function(L){ return '<br>'+esc(L.name)+' — '+esc(fmtNet(L.net))+(L.status?' ('+esc(L.status)+')':''); }).join("")+'</div>';
 }
 function loadLeaflet(){
   if(window.L) return Promise.resolve();
@@ -1587,13 +1907,27 @@ function initSiteMap(p, sites){
     window.__lmap=map;
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
       attribution:'&copy; OpenStreetMap contributors &copy; CARTO', subdomains:'abcd', maxZoom:18 }).addTo(map);
-    var pts=[];
+    var pts=[], marks=[];
     sites.forEach(function(s){
       if(typeof s.lat!=="number"||typeof s.lng!=="number") return;
       pts.push([s.lat,s.lng]);
-      L.circleMarker([s.lat,s.lng],{radius:8,color:'#fff',weight:1.6,fillColor:sovCol(s.m),fillOpacity:0.92})
+      var mk=L.circleMarker([s.lat,s.lng],{radius:8,color:'#fff',weight:1.6,fillColor:sovCol(s.m),fillOpacity:0.92})
         .addTo(map).bindPopup(siteMapPopup(s))
+        .on('mouseover',function(){ mk.openPopup(); })
         .on('click',function(){ var d=els('map-detail'); if(d) d.innerHTML='<b>'+esc(s.n)+'</b> — '+esc(s.t||'')+(s.who?' · '+esc(s.who):'')+' · sovereign control '+esc(String(s.m))+'/5'+(s.sov?'. '+esc(s.sov):''); });
+      marks.push({s:s,mk:mk});
+    });
+    window.__launchNear=[];
+    loadLaunches().then(function(list){
+      if(!list.length) return;
+      marks.forEach(function(o){
+        var near=launchesNear(o.s.lat,o.s.lng,list);
+        if(!near.length) return;
+        window.__launchNear=window.__launchNear.concat(near);
+        o.mk.setPopupContent(siteMapPopup(o.s)+launchHTML(near));
+        var soon=near.some(function(L){ return (new Date(L.net)-Date.now())<14*86400000; });
+        if(soon && o.mk._path){ o.mk._path.classList.add("mk-live"); }
+      });
     });
     if(pts.length>1) map.fitBounds(pts,{padding:[34,34]});
     else if(pts.length===1) map.setView(pts[0], 6);
@@ -1609,7 +1943,7 @@ function siteSchematic(p, sites){
   var W=600,H=380;
   function X(lng){return (lng-minLng)/(maxLng-minLng)*W;}
   function Y(lat){return (1-(lat-minLat)/(maxLat-minLat))*H;}
-  var g='<svg viewBox="0 0 600 380" style="width:100%;display:block;background:var(--surface2)">';
+  var g='<svg viewBox="0 0 600 380" role="img" aria-label="Offline site map — '+esc(p.name)+' space sites" style="width:100%;display:block;background:var(--surface2)">';
   sites.forEach(function(s){ var x=X(s.lng),y=Y(s.lat);
     g+='<circle cx="'+x+'" cy="'+y+'" r="7" fill="'+sovCol(s.m)+'" stroke="#fff" stroke-width="1.5"/>'+
        '<text x="'+(x+10)+'" y="'+(y+4)+'" font-size="10" fill="var(--ink)">'+esc(s.n.slice(0,26))+'</text>'; });
@@ -1619,15 +1953,26 @@ function siteSchematic(p, sites){
 function wireSites(p){
   var sites=p.sites||[];
   if(sites.length && els("lmap")) initSiteMap(p, sites);
+  wireModels(p);
   /* architecture hover */
   document.querySelectorAll(".archnode").forEach(function(nd){
-    function show(){var k=nd.getAttribute("data-k"),m=nd.getAttribute("data-m");var lbl=(ARCH_LAYERS.filter(function(L){return L.k===k;})[0]||{}).label||k;els("arch-detail").innerHTML='<b>'+esc(lbl)+':</b> sovereign maturity '+esc(m)+'/5. '+esc((p.arch&&p.arch.note)||"");}
-    nd.addEventListener("mouseenter",show); nd.addEventListener("click",show);
+    function show(){
+      var k=nd.getAttribute("data-k"),m=nd.getAttribute("data-m");
+      var lbl=(ARCH_LAYERS.filter(function(L){return L.k===k;})[0]||{}).label||k;
+      var d=els("arch-detail"); if(!d) return;
+      d.innerHTML='<b>'+esc(lbl)+' — sovereign maturity '+esc(m)+'/5.</b> '+esc((p.arch&&p.arch.note)||"");
+      if(k==="launch"&&window.__launchNear&&window.__launchNear.length){
+        var seen={},uniq=window.__launchNear.filter(function(L){ if(seen[L.name])return false; seen[L.name]=1; return true; }).slice(0,3);
+        d.innerHTML+='<div style="margin-top:5px;font-size:11.5px"><b style="color:var(--accent)">Live:</b> next from mapped sites — '+
+          uniq.map(function(L){ return esc(L.name)+' ('+esc(fmtNet(L.net))+')'; }).join(" · ")+'</div>';
+      }
+    }
+    nd.addEventListener("mouseenter",show); nd.addEventListener("click",show); nd.addEventListener("focus",show);
   });
   /* component hover */
   document.querySelectorAll(".ex-part").forEach(function(pt){
     function show(){ var d=els("comp-detail"); if(d) d.innerHTML='<b>'+esc(pt.getAttribute("data-part"))+' — capability '+esc(pt.getAttribute("data-cap"))+'/5.</b> '+esc(pt.getAttribute("data-note")); }
-    pt.addEventListener("mouseenter",show); pt.addEventListener("click",show);
+    pt.addEventListener("mouseenter",show); pt.addEventListener("click",show); pt.addEventListener("focus",show);
   });
 }
 

@@ -19,7 +19,7 @@
 /* ---------- design tokens (light) — v5: navy / slate / off-white, one accent ---------- */
 :root{
   --bg:#f6f5f1; --surface:#fdfdfb; --soft:#f0efe9; --inset:#eceae3;
-  --ink:#1a2330; --ink2:#4a5462; --muted:#737c89;
+  --ink:#1a2330; --ink2:#4a5462; --muted:#5f6a79;
   --hair:#dcd9cf; --ring:rgba(26,35,48,.12);
   --accent:#24466e; --link:#1d4f82; --accent-soft:#e9eef5;
   --g:#2e7d4f; --amber:#b98a2e; --r:#b04138; --bk:#2c3644;
@@ -390,7 +390,8 @@ a.pchip:hover{text-decoration:none;border-color:var(--link);background:var(--sof
 .kv dd{margin:0}
 
 /* ---------- evidence register cards ---------- */
-.ev-card{border:1px solid var(--ring);border-radius:8px;padding:11px 13px;margin-bottom:9px;background:var(--surface)}
+.ev-card{border:1px solid var(--ring);border-radius:8px;padding:11px 13px;margin-bottom:9px;background:var(--surface);content-visibility:auto;contain-intrinsic-size:auto 150px}
+@media print{.ev-card,.lib-entry{content-visibility:visible}}
 .ev-card .top{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:5px}
 .ev-card .claim{font-size:13px}
 .ev-card .src{font-size:11.5px;color:var(--muted);margin-top:5px}
@@ -487,7 +488,7 @@ body:not(.gated) > #gate{display:none}
 .lp-row+.lp-row{border-top:1px solid var(--hair)}
 .lp-lab{width:172px;min-width:172px;display:flex;align-items:center;padding:11px 14px 11px 0;font-size:12.5px;line-height:1.35}
 .lp-lab b{font-weight:600}
-.lp-col{width:46px;min-width:46px;display:flex;align-items:center;justify-content:center}
+.lp-col{width:54px;min-width:54px;display:flex;align-items:center;justify-content:center}
 .lp-head{border-bottom:1px solid var(--hair)}
 .lp-head .lp-col{padding:8px 0}
 .lp-flag{appearance:none;background:none;border:0;cursor:pointer;font-size:17px;line-height:1;padding:3px 2px;border-radius:5px}
@@ -730,7 +731,7 @@ a.pfolio-it:hover{border-color:var(--accent);text-decoration:none;background:var
 .lib-head{border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:4px}
 .lib-head h3.lib-title{font-family:var(--serif);font-size:19px;font-weight:600;margin:0;color:var(--ink);text-transform:none;letter-spacing:0}
 .lib-head .lib-sub{font-size:12px;color:var(--muted);margin:3px 0 0}
-.lib-entry{padding:15px 2px 13px;border-bottom:1px solid var(--hair)}
+.lib-entry{padding:15px 2px 13px;border-bottom:1px solid var(--hair);content-visibility:auto;contain-intrinsic-size:auto 120px}
 .lib-entry:last-child{border-bottom:0}
 .lib-entry .e-top{display:flex;gap:10px;align-items:baseline}
 .lib-entry .e-nm{flex:1;min-width:0;font-family:var(--serif);font-size:15.5px;font-weight:600;line-height:1.35}
@@ -2487,6 +2488,7 @@ const VSTAT_ORD = { "In force":0, "Signed - not yet in force":1, "Under negotiat
 /* ---------- tiny html helpers ---------- */
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const el  = id => document.getElementById(id);
+const debounce = (fn, ms = 120) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
 
 const pflag = pid => `<span class="cbadge" aria-hidden="true">${esc(PFLAG[pid] || "—")}</span>`;
 const gflag = key => `<span class="cbadge" aria-hidden="true">${esc(groupFlag[key] || "—")}</span>`;
@@ -3307,7 +3309,7 @@ function renderPartnerLibrary(key, host) {
   const grpReg = (VEHREG.partners || []).find(p => p.key === key);
   const sel = (id, labelTxt, opts, cur) => `
     <div class="rl-hd">${esc(labelTxt)}</div>
-    <select id="${id}" aria-label="$"{esc(labelTxt)}">
+    <select id="${id}" aria-label="${esc(labelTxt)}">
       <option value="">All</option>
       ${opts.map(o => `<option value="${esc(o)}"${cur === o ? " selected" : ""}>${esc(o)}</option>`).join("")}
     </select>`;
@@ -3356,7 +3358,7 @@ function renderPartnerLibrary(key, host) {
     el("lib-list").innerHTML = rows.length ? rows.map(libEntryHTML).join("")
       : `<p class="lib-empty">No artefacts match the current filters.</p>`;
   };
-  el("lib-q").addEventListener("input", e => { LIB.q = e.target.value; list(); });
+  el("lib-q").addEventListener("input", debounce(e => { LIB.q = e.target.value; list(); }));
   [["lib-type", "type"], ["lib-status", "status"], ["lib-rel", "rel"], ["lib-label", "label"], ["lib-ver", "ver"], ["lib-sort", "sort"]]
     .forEach(([id, k]) => el(id).addEventListener("change", e => { LIB[k] = e.target.value; list(); }));
   list();
@@ -3614,7 +3616,7 @@ function renderArcList() {
   });
   el("arc-count").textContent = `${list.length} of ${VEHICLES.length} artefacts`;
   el("arc-head").innerHTML = ARC_COLS.map(([key, label, sortable]) => sortable
-    ? `<th class="sortable${key === "since" ? " num" : ""}" data-sort="${key}" role="button" tabindex="0"
+    ? `<th class="sortable${key === "since" ? " num" : ""}" data-sort="${key}" tabindex="0"
          aria-sort="${ARC.sortKey === key ? (ARC.sortDir === 1 ? "ascending" : "descending") : "none"}"
          title="Sort by ${esc(label)}">${esc(label)}<span class="sarr" aria-hidden="true">${ARC.sortKey === key ? (ARC.sortDir === 1 ? "▲" : "▼") : "↕"}</span></th>`
     : `<th aria-label="Partner group flag">${esc(label)}</th>`).join("");
@@ -3909,7 +3911,7 @@ function renderRegister() {
   </div>`;
 }
 function wireRegister() {
-  el("arc-q").addEventListener("input",       e => { ARC.q = e.target.value;      renderArcList(); });
+  el("arc-q").addEventListener("input",       debounce(e => { ARC.q = e.target.value;      renderArcList(); }));
   el("arc-chan").addEventListener("change",   e => { ARC.chan = e.target.value;   renderArcList(); });
   el("arc-rel").addEventListener("change",    e => { ARC.rel = e.target.value;    renderArcList(); });
   el("arc-type").addEventListener("change",   e => { ARC.type = e.target.value;   renderArcList(); });
@@ -4695,7 +4697,7 @@ function renderEvidence() {
       <div id="ev-list"></div>
     </div>`;
 
-  el("ev-q").addEventListener("input", e => { EVF.q = e.target.value; renderEvidenceList(); });
+  el("ev-q").addEventListener("input", debounce(e => { EVF.q = e.target.value; renderEvidenceList(); }));
   el("ev-label").addEventListener("change", e => { EVF.label = e.target.value.startsWith("Label") ? "" : e.target.value; renderEvidenceList(); });
   el("ev-conf").addEventListener("change", e => { EVF.conf = e.target.value.startsWith("Confidence") ? "" : e.target.value; renderEvidenceList(); });
   el("ev-topic").addEventListener("change", e => { EVF.topic = e.target.value; renderEvidenceList(); });
