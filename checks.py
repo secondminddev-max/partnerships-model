@@ -185,6 +185,18 @@ for fn, content in pages.items():
         if n: css_bad.append(f"{fn}:{n}")
 check("no floating CSS declarations (root-wrapper bug class)", not css_bad, ",".join(css_bad))
 
+
+print("== register source-url well-formedness ==")
+malformed = []
+for pk, vs in VEH.items():
+    for v in vs:
+        u = str(v.get("source_ref", "")).strip()
+        if not u: continue
+        for part in re.split(r"[;\s]+", u):
+            if part.startswith("http") and not re.match(r"https?://[\w.-]+\.[a-z]{2,}(/|$)", part):
+                malformed.append(v.get("vehicle_id", "?"))
+check("all register source urls are well-formed", not malformed, ",".join(malformed[:5]))
+
 print()
 if fails:
     print("FAILURES:", ", ".join(fails)); sys.exit(1)

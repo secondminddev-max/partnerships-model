@@ -963,6 +963,20 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
    ============================================================ */
 
 var BD = JSON.parse(document.getElementById("briefing-data").textContent);
+/* Comprehensive scrub: strip register-plumbing citation tokens (EV-/VEH-XXX)
+   from EVERY commander-facing partner-narrative string at load. The register
+   (cb-vehicles) keeps its own vehicle_id separately; no narrative field links
+   by these tokens (verified), so this is a safe, total guard against leaks.
+   scrubEv is a hoisted function declaration, callable here. */
+(function(){
+  function walk(o){
+    if(typeof o==="string") return scrubEv(o);
+    if(Array.isArray(o)){ for(var i=0;i<o.length;i++) o[i]=walk(o[i]); return o; }
+    if(o&&typeof o==="object"){ for(var k in o) if(Object.prototype.hasOwnProperty.call(o,k)) o[k]=walk(o[k]); return o; }
+    return o;
+  }
+  try{ if(BD&&BD.partners) walk(BD.partners); }catch(e){}
+})();
 var VEH = JSON.parse(document.getElementById("cb-vehicles").textContent);
 
 /* ---- per-country carousel: NZ first (primary), then partners. Each opens its OWN brief. ---- */
@@ -1012,7 +1026,7 @@ function pips(score,of){var h="";for(var i=0;i<of;i++)h+='<div class="pip'+(i<sc
   }
   function unlock(){ els("gate").style.display="none"; els("app").style.display="block"; els("app").setAttribute("tabindex","-1"); els("app").focus({preventScroll:true}); buildCarousel(); buildRail(); buildVerdicts();
     try{ var dp=new URLSearchParams(location.search).get("p");
-         if(dp && ORDER.indexOf(dp)>=0) openPartner(dp); }catch(e){}
+         if(dp && BD.partners[dp]) openPartner(dp); }catch(e){}
   }
   function tryPw(){
     var v=els("gate-pw").value.trim();
@@ -1185,7 +1199,7 @@ function renderTabs(){
   else if(CURTAB==="placemat") html=renderPlacemat(p);
   else if(CURTAB==="generate") html=renderGenerate(p);
   els("panels").innerHTML='<div class="panel active" role="tabpanel">'+html+'</div>';
-  if(CURTAB==="artefacts") wireLibrary();
+  if(CURTAB==="artefacts" && els("lib-q")) wireLibrary();
   if(CURTAB==="sites") wireSites(p);
   if(CURTAB==="newsroom") wireNewsroom(p);
   if(CURTAB==="generate") wireGenerate();
@@ -1230,9 +1244,19 @@ function scrubEv(s){
   s=s.replace(/[,;]?\s*(?:EV|VEH)-[A-Z0-9]+-[A-Z0-9]+/g,'');   /* drop tokens incl. a leading comma */
   s=s.replace(/\(\s*[,;]?\s*\)/g,'');                           /* ( ) or (, ) */
   s=s.replace(/\(\s*[,;]\s*/g,'(').replace(/[,;]\s*\)/g,')');   /* dangling (, and ,) */
+  s=s.replace(/\(\s*(?:to|and|&amp;|&|,|;|–|-)\s*\)/gi,'');   /* (to) (and) left after token strip */
+  s=s.replace(/\(\s*(?:EV|VEH)-[A-Z0-9-]*$/i,'');              /* broken trailing (EV-GERMAN */
   s=s.replace(/\(\s*\)/g,'');
   s=s.replace(/\s+([.,;:)])/g,'$1').replace(/\(\s+/g,'(').replace(/\s{2,}/g,' ').trim();
   return s;
+}
+/* tidy(): a long string cut mid-sentence by an upstream character cap (some
+   legacy notes/fast-facts were capped at 180/206 chars) is trimmed to its last
+   whole word and ellipsized, so it never renders as a broken fragment. Short
+   phrases and properly-punctuated text pass through untouched. */
+function tidy(s){ s=String(s==null?"":s).trim();
+  if(s.length<140 || /[.!?)\]"'\u2019\u201d]$/.test(s)) return s;
+  return s.replace(/\s+\S*$/,'').replace(/[\s.,;:]+$/,'').trim()+"\u2026";
 }
 /* standing Australian space counterparts — shown under every foreign partner so a country page never lacks the ADF side */
 var AU_SPACE_LEADS=[
@@ -1275,8 +1299,8 @@ function renderFactsheet(p){
   /* current vs future — the "now" then the "could be", high on the page */
   if(p.current_state||p.future_state){
     h+='<div class="sec-label">Where the relationship is — and where it could go</div><div class="cf" style="margin-bottom:16px">';
-    if(p.current_state) h+='<div class="card now"><h3><span class="tag">Current state — as at '+esc(BD.meta.as_at)+'</span>'+esc(p.current_state.headline)+'</h3><ul>'+p.current_state.points.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>';
-    if(p.future_state) h+='<div class="card fut"><h3><span class="tag">Future state — following opportunities &amp; pathways</span>'+esc(p.future_state.headline)+'</h3><ul>'+p.future_state.points.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>';
+    if(p.current_state) h+='<div class="card now"><h3><span class="tag">Current state — as at '+esc(BD.meta.as_at)+'</span>'+esc(p.current_state.headline)+'</h3><ul>'+p.current_state.points.map(function(x){return '<li>'+esc(scrubEv(x))+'</li>';}).join("")+'</ul></div>';
+    if(p.future_state) h+='<div class="card fut"><h3><span class="tag">Future state — following opportunities &amp; pathways</span>'+esc(p.future_state.headline)+'</h3><ul>'+p.future_state.points.map(function(x){return '<li>'+esc(scrubEv(x))+'</li>';}).join("")+'</ul></div>';
     h+='</div>';
   }
 
@@ -1298,14 +1322,14 @@ function renderFactsheet(p){
   /* fast facts */
   if(f.fast_facts&&f.fast_facts.length){
     h+='<div class="sec-label">Fast facts <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— '+f.fast_facts.length+' at a glance</span></div><div class="ff" style="margin-bottom:16px">';
-    f.fast_facts.forEach(function(x){ h+='<div class="cell"><div class="k">'+esc(x.k)+'</div><div class="v">'+esc(scrubEv(x.v))+' <span class="lab '+cls(x.label)+'">'+esc(x.label)+'</span></div></div>'; });
+    f.fast_facts.forEach(function(x){ h+='<div class="cell"><div class="k">'+esc(x.k)+'</div><div class="v">'+esc(tidy(scrubEv(x.v)))+' <span class="lab '+cls(x.label)+'">'+esc(x.label)+'</span></div></div>'; });
     h+='</div>';
   }
 
   /* key agreements */
   if(f.key_agreements&&f.key_agreements.length){
     h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Key agreements <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— '+f.key_agreements.length+' instruments</span></div><table class="agtable"><thead><tr><th>Instrument</th><th>Date</th><th>Space</th><th>Note</th></tr></thead><tbody>';
-    f.key_agreements.forEach(function(a){ h+='<tr><td><b>'+esc(a.name)+'</b></td><td>'+esc(a.date)+'</td><td><span class="rel '+esc(a.space)+'">'+esc(a.space)+'</span></td><td>'+esc(scrubEv(a.note))+'</td></tr>'; });
+    f.key_agreements.forEach(function(a){ h+='<tr><td><b>'+esc(a.name)+'</b></td><td>'+esc(a.date)+'</td><td><span class="rel '+esc(a.space)+'">'+esc(a.space)+'</span></td><td>'+esc(tidy(scrubEv(a.note)))+'</td></tr>'; });
     h+='</tbody></table></div>';
   }
 
@@ -1586,12 +1610,12 @@ function renderLOE(p){
   var lo=p.loe||{lines:[]};
   if(!lo.lines.length) return '<div class="stub">Lines of effort are defined for New Zealand (the primary partner). Other partners pending.</div>';
   var h='<div class="sec-label">SPACECOMD international-engagement lines of effort — applied to '+esc(p.name)+'</div>';
-  if(lo.note) h+='<p style="font-size:12.5px;color:var(--ink2);margin-bottom:16px">'+esc(lo.note)+'</p>';
+  if(lo.note) h+='<p style="font-size:12.5px;color:var(--ink2);margin-bottom:16px">'+esc(scrubEv(lo.note))+'</p>';
   lo.lines.forEach(function(l){
     h+='<div class="loe"><h3>'+esc(l.name)+'</h3>'+
-      '<div class="row"><div class="rk">Current state</div><div class="rv">'+esc(l.current)+'</div></div>'+
-      '<div class="row"><div class="rk rk-opp">Opportunity</div><div class="rv">'+esc(l.opportunity)+'</div></div>'+
-      '<div class="row"><div class="rk rk-con">Binding constraint</div><div class="rv">'+esc(l.constraint)+'</div></div></div>';
+      '<div class="row"><div class="rk">Current state</div><div class="rv">'+esc(scrubEv(l.current))+'</div></div>'+
+      '<div class="row"><div class="rk rk-opp">Opportunity</div><div class="rv">'+esc(scrubEv(l.opportunity))+'</div></div>'+
+      '<div class="row"><div class="rk rk-con">Binding constraint</div><div class="rv">'+esc(scrubEv(l.constraint))+'</div></div></div>';
   });
   return h;
 }
@@ -1605,7 +1629,7 @@ function renderOpps(p){
     h+='<div class="opp"><div class="oid">'+esc(o.id)+'</div><h3>'+esc(o.title)+'</h3><div class="orat">'+esc(scrubEv(o.rationale))+'</div>'+
       '<div class="ometa"><span>Deliverability: <span class="deliv '+esc(String(o.deliverability).replace(/[^A-Za-z-]/g,""))+'">'+esc(o.deliverability)+'</span></span>'+
       (o.loe?'<span>LOE: <b>'+o.loe.map(function(x){return x.toUpperCase();}).join(", ")+'</b></span>':'')+'</div>'+
-      '<div class="ometa"><span><b>Binding gap:</b> '+esc(o.binding_gap)+'</span></div>'+
+      '<div class="ometa"><span><b>Binding gap:</b> '+esc(scrubEv(o.binding_gap))+'</span></div>'+
       (o.pathway?renderPathway(o.pathway):'')+
       '<label class="chk"><input type="checkbox" class="opp-chk" data-oid="'+esc(o.id)+'" data-title="'+esc(o.title)+'"> Include as action item in the minute</label></div>';
   });
@@ -1619,7 +1643,7 @@ function renderOpps(p){
       var pw=o.pathway||{};
       h+='<tr><td class="glt-id">'+esc(o.id)+'</td>'+
          '<td>'+esc(o.binding_gap||"—")+'</td>'+
-         '<td>'+esc(pw.gate||((pw.actions||[])[0]||"—"))+'</td>'+
+         '<td>'+esc(scrubEv(pw.gate||((pw.actions||[])[0]||"—")))+'</td>'+
          '<td>'+esc(((pw.risks||[])[0]||"—"))+'</td>'+'<td><span class="deliv '+esc(String(o.deliverability).replace(/[^A-Za-z-]/g,""))+'">'+esc(o.deliverability||"—")+'</span></td></tr>';
     });
     h+='</tbody></table></div>';
@@ -1628,15 +1652,15 @@ function renderOpps(p){
   return h;
 }
 function renderPathway(pw){
-  function li(a){return a.map(function(x){return '<li>'+esc(x)+'</li>';}).join("");}
+  function li(a){return a.map(function(x){return '<li>'+esc(scrubEv(x))+'</li>';}).join("");}
   var h='<details class="pw"><summary>Staffed pathway — actions, owners, decision gate, cost, risks, measures</summary><div class="pw-body">';
-  h+='<div class="pw-obj"><b>Objective.</b> '+esc(pw.objective)+'</div>';
+  h+='<div class="pw-obj"><b>Objective.</b> '+esc(scrubEv(pw.objective))+'</div>';
   h+='<div class="pw-two"><div><span class="pw-h">Actions</span><ol class="pw-actions">'+li(pw.actions||[])+'</ol></div>'+
      '<div><span class="pw-h">Owners</span><div class="pw-kv"><b>Lead:</b> '+esc(pw.lead)+'</div><div class="pw-kv"><b>Support:</b> '+esc(pw.support)+'</div>'+
-     '<div class="pw-kv"><b>Decision gate:</b> '+esc(pw.gate)+'</div><div class="pw-kv"><b>Cost:</b> '+esc(pw.cost)+'</div><div class="pw-kv"><b>Timeframe:</b> '+esc(pw.timeframe)+'</div></div></div>';
+     '<div class="pw-kv"><b>Decision gate:</b> '+esc(scrubEv(pw.gate))+'</div><div class="pw-kv"><b>Cost:</b> '+esc(pw.cost)+'</div><div class="pw-kv"><b>Timeframe:</b> '+esc(pw.timeframe)+'</div></div></div>';
   h+='<div class="pw-two"><div><span class="pw-h">Risks</span><ul class="pw-risks">'+li(pw.risks||[])+'</ul></div>'+
      '<div><span class="pw-h">Measures of success</span><ul class="pw-meas">'+li(pw.measures||[])+'</ul>'+
-     (pw.deps?'<span class="pw-h" style="margin-top:8px">Dependencies</span><div class="pw-kv">'+esc(pw.deps.join(" · "))+'</div>':'')+'</div></div>';
+     (pw.deps?'<span class="pw-h" style="margin-top:8px">Dependencies</span><div class="pw-kv">'+esc(scrubEv(pw.deps.join(" · ")))+'</div>':'')+'</div></div>';
   h+='</div></details>';
   return h;
 }
@@ -1864,7 +1888,7 @@ function renderNewsroom(p){
   var C=p.calendar||{events:[]};
   var evs=(C.events||[]).slice().sort(function(a,b){return String(b.when).localeCompare(String(a.when));});
   var recent=evs.filter(function(e){return evWindow(e)==="past";});
-  var h='<div class="sec-label">Live headlines — '+esc(p.name)+' <span class="lab ASSESSMENT">LIVE</span></div>'+
+  var h='<div class="sec-label">Newsroom — '+esc(p.name)+'</div>'+
      '<div id="live-news"><div class="stub">Retrieving live headlines\u2026</div></div>'+
      '<div class="sec-label" style="margin-top:20px">Curated feeds &amp; official sources</div>';
   h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">Feeds open current reporting in a new tab. Below: the curated open-source development log and confirmed engagements.</p>';
@@ -2776,7 +2800,7 @@ function buildPlacemat(p){
   /* left column */
   if(p.current_state) h+='<div class="pm-box"><h4>Where it stands</h4>'+
      '<p class="pm-lead">'+esc(p.current_state.headline)+'</p><ul>'+
-       p.current_state.points.slice(0,3).map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul>'+
+       p.current_state.points.slice(0,3).map(function(x){return '<li>'+esc(scrubEv(x))+'</li>';}).join("")+'</ul>'+
      '</div>';
   h+='<div class="pm-box"><h4>Authority held</h4><div class="pm-marks">'+marks+'</div>'+
      '<p class="pm-verd">'+esc(v.head)+'.</p>'+
@@ -2824,7 +2848,7 @@ function buildMinute(p){
      numbering must stay contiguous when it does */
   var paras=[];
   paras.push("Purpose. This minute seeks agreement to the action items below, ahead of forthcoming space staff talks with "+p.name+".");
-  if(p.current_state) paras.push("Current state. "+p.current_state.headline+" "+p.current_state.points.slice(0,2).join(" "));
+  if(p.current_state) paras.push("Current state. "+scrubEv(p.current_state.headline+" "+p.current_state.points.slice(0,2).join(" ")));
   paras.push("Authority held. "+vd.head+". "+vd.body+" (Derived from the partnership register; see the load path on the factsheet.)");
   if(p.future_state) paras.push("Opportunity. "+p.future_state.headline+" The action items below are drawn from the model's staffed pathways.");
   if(!p.current_state && !ops.length)
@@ -2879,8 +2903,8 @@ function buildBrief(p){
   t+='<b>Background.</b>  '+(bgTxt?esc(scrubEv(bgTxt))
       :esc('No bilateral-relationship assessment has been written for '+p.name+'; the register entries and leadership below are the extent of the current holding.'))+'\n\n';
   t+='<b>Discussion.</b>\n';
-  if(p.current_state){t+='\n  Current state — '+esc(p.current_state.headline)+'\n'+p.current_state.points.map(function(x,i){return "  "+(i+1)+". "+esc(x);}).join("\n")+'\n';}
-  if(p.loe&&p.loe.lines){t+='\n  Lines of effort\n'+p.loe.lines.map(function(l){return "  - "+esc(l.name)+": "+esc(l.opportunity);}).join("\n")+'\n';}
+  if(p.current_state){t+='\n  Current state — '+esc(p.current_state.headline)+'\n'+p.current_state.points.map(function(x,i){return "  "+(i+1)+". "+esc(scrubEv(x));}).join("\n")+'\n';}
+  if(p.loe&&p.loe.lines){t+='\n  Lines of effort\n'+p.loe.lines.map(function(l){return "  - "+esc(l.name)+": "+esc(scrubEv(l.opportunity));}).join("\n")+'\n';}
   /* the derived authority finding — the same one the minute carries, so the
      two documents cannot tell the Commander different things */
   var bg=cbGrid(CURKEY), bv=cbVerdict(CURKEY,bg,p.name);
@@ -2926,7 +2950,7 @@ window.addEventListener("error",function(ev){
   if(window.__errShown) return; window.__errShown=1;
   var d=document.createElement("div");
   d.style.cssText="position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:99999;background:#7a2e24;color:#fff;font:12.5px/1.4 -apple-system,sans-serif;padding:10px 16px;border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.3)";
-  d.textContent="A view failed to render. Reload the page; if it recurs, run checks.py against this build.";
+  d.textContent="This section could not be displayed. Please reload the page.";
   document.body.appendChild(d); setTimeout(function(){ d.remove(); window.__errShown=0; },6000);
 });
 document.addEventListener("keydown",function(e){
