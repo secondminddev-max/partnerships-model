@@ -462,12 +462,15 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
 .news-m{font-size:12px;color:var(--ink2);margin-top:3px}
 /* map */
 .mapwrap{position:relative;border:1px solid var(--hair);border-radius:10px;background:var(--surface);overflow:hidden}
+#lmap{height:460px;width:100%;background:var(--surface2)}
+#lmap .leaflet-container{font:12px var(--sans)}
+.leaflet-popup-content{font:12.5px/1.5 var(--sans);color:var(--ink)}
+.map-legend{display:flex;align-items:center;flex-wrap:wrap;gap:14px}
+.beam line{stroke-dasharray:5 7;animation:beamflow 2.6s linear infinite}
+@keyframes beamflow{to{stroke-dashoffset:-24}}
+@media (prefers-reduced-motion: reduce){.beam line{animation:none}}
 #smap{width:100%;height:auto;display:block;background:linear-gradient(180deg,var(--surface2),var(--surface));cursor:grab;touch-action:none}
 #smap:active{cursor:grabbing}
-.mapbtns{position:absolute;top:10px;right:10px;display:flex;gap:5px;z-index:2}
-.mapb{width:30px;height:30px;border-radius:7px;border:1px solid var(--hair);background:var(--surface);font-size:14px;font-weight:600;color:var(--ink2);box-shadow:var(--shadow)}
-.mapb[data-z="fit"]{width:auto;padding:0 10px;font-size:12px}
-.mapb:hover{border-color:var(--navy2);color:var(--navy2)}
 .map-detail{padding:12px 16px;border-top:1px solid var(--hair);font-size:13px;min-height:44px}
 .map-legend{display:flex;gap:18px;margin-top:8px;font-size:11.5px;color:var(--ink2)}
 .map-legend .ml{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:middle}
@@ -1443,10 +1446,9 @@ function renderSites(p){
   if(!sites.length){ h+='<div class="stub">Stakeholder map for this partner is being collected. New Zealand and Australia are complete.</div>'; }
   else{
     if(p.sites_note) h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">'+esc(p.sites_note)+'</p>';
-    h+='<div class="mapwrap"><div class="mapbtns"><button class="mapb" data-z="in">+</button><button class="mapb" data-z="out">&minus;</button><button class="mapb" data-z="fit">Fit</button></div>'+
-       '<svg id="smap" viewBox="0 0 600 380" role="img" aria-label="stakeholder map"></svg>'+
-       '<div class="map-detail" id="map-detail">Click a marker for detail.</div></div>'+
-       '<div class="map-legend"><span><i class="ml" style="background:'+sovCol(5)+'"></i>high sovereignty</span><span><i class="ml" style="background:'+sovCol(3)+'"></i>partial</span><span><i class="ml" style="background:'+sovCol(1)+'"></i>low / commercial-foreign</span></div>';
+    h+='<div class="mapwrap"><div id="lmap" role="application" aria-label="Interactive stakeholder map — '+esc(p.name)+'"></div></div>'+
+       '<div class="map-legend"><span><i class="ml" style="background:'+sovCol(5)+'"></i>high sovereignty</span><span><i class="ml" style="background:'+sovCol(3)+'"></i>partial</span><span><i class="ml" style="background:'+sovCol(1)+'"></i>dependent / foreign-controlled</span><span class="mut" style="margin-left:auto">cartography &copy; OpenStreetMap &middot; CARTO &middot; schematic fallback offline</span></div>'+
+       '<div class="map-detail" id="map-detail">Select a marker for detail.</div>';
   }
   /* ARCHITECTURE — layer overview (3D schematic) */
   if(arch){
@@ -1489,71 +1491,122 @@ var ARCH_LAYERS=[
   {k:"satellite",label:"Satellites"},{k:"launch",label:"Launch"},
   {k:"ground",label:"Ground segment"},{k:"sda",label:"SDA sensors"},{k:"user",label:"User terminals"}
 ];
-function badge(x,y,m,label,key){
-  var col=sovCol(m);
+function archGauge(x,y,m,label,key){
+  var r=22, C=2*Math.PI*r, frac=Math.max(0,Math.min(5,m))/5;
   return '<g class="archnode" data-k="'+key+'" data-m="'+m+'" style="cursor:pointer">'+
-    '<circle cx="'+x+'" cy="'+y+'" r="17" fill="'+col+'" stroke="#fff" stroke-width="2"/>'+
-    '<text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" font-size="15" font-weight="700" fill="#fff" font-family="var(--serif)">'+m+'</text>'+
-    '<text x="'+x+'" y="'+(y+33)+'" text-anchor="middle" font-size="10" fill="var(--ink2)" font-family="var(--sans)">'+esc(label)+'</text></g>';
+    '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="var(--surface)" stroke="var(--hair)" stroke-width="4"/>'+
+    '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" '+
+      'stroke-dasharray="'+(C*frac).toFixed(1)+' '+C.toFixed(1)+'" transform="rotate(-90 '+x+' '+y+')"/>'+
+    '<text x="'+x+'" y="'+(y+5)+'" text-anchor="middle" font-size="14.5" font-weight="600" fill="var(--ink)" font-family="var(--serif)">'+m+'</text>'+
+    '<text x="'+x+'" y="'+(y+40)+'" text-anchor="middle" font-size="9" letter-spacing="1.1" fill="var(--muted)" font-family="var(--sans)" style="text-transform:uppercase">'+esc(label)+'</text></g>';
 }
+/* Sovereign control by layer — a sectioned elevation, not a cartoon.
+   Orbit band, link band, ground baseline; five maturity gauges (0-5 arcs)
+   in the house bronze; glyphs in thin line-art. Hover contract unchanged:
+   .archnode + data-k/data-m feed the existing detail panel. */
 function renderArchSvg(arch){
-  var s='<svg id="archsvg" viewBox="0 0 620 400" role="img" aria-label="space architecture — 3D schematic" style="width:100%;max-width:660px;overflow:visible">';
-  /* --- ground plane (isometric) --- */
-  s+='<defs><linearGradient id="gsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--surface2)"/><stop offset="1" stop-color="var(--surface)"/></linearGradient>'+
-     '<radialGradient id="gearth" cx="0.5" cy="0.4" r="0.7"><stop offset="0" stop-color="#2c527f"/><stop offset="1" stop-color="#12283f"/></radialGradient></defs>';
-  s+='<polygon points="310,300 560,340 310,392 60,340" fill="url(#gsky)" stroke="var(--hair)" stroke-width="1"/>';
-  /* iso grid */
-  for(var gi=1;gi<4;gi++){ var t=gi/4; s+='<line x1="'+(60+250*t)+'" y1="'+(340+52*t)+'" x2="'+(310+250*t)+'" y2="'+(300+40*t)+'" stroke="var(--hair2)" stroke-width="1"/>'; s+='<line x1="'+(310-250*t)+'" y1="'+(300+40*t)+'" x2="'+(560-250*t)+'" y2="'+(340-52*t*0)+'" stroke="var(--hair2)" stroke-width="0.6" opacity="0.5"/>'; }
-  /* --- orbit ellipse (3D look) with animated satellite --- */
-  s+='<ellipse cx="310" cy="150" rx="250" ry="72" fill="none" stroke="var(--navy2)" stroke-width="1.4" stroke-dasharray="4 5" opacity="0.55"/>';
-  s+='<path id="orbitpath" d="M60,150 a250,72 0 1,1 500,0 a250,72 0 1,1 -500,0" fill="none" stroke="none"/>';
-  /* Earth-ish core */
-  s+='<circle cx="310" cy="150" r="30" fill="url(#gearth)"/>';
-  /* moving satellite icon */
-  s+='<g><g transform="translate(-9,-6)"><rect x="4" y="0" width="10" height="12" rx="2" fill="#cdd6e2" stroke="#8a929e"/><rect x="-6" y="3" width="8" height="6" fill="#2c527f"/><rect x="16" y="3" width="8" height="6" fill="#2c527f"/></g>'+
-     '<animateMotion dur="16s" repeatCount="indefinite" rotate="0"><mpath href="#orbitpath"/></animateMotion></g>';
-  /* --- layer badges positioned in the scene --- */
-  s+=badge(310,150-52,arch.satellite||0,"Satellites","satellite");   /* on the orbit top */
-  s+=badge(120,318,arch.launch||0,"Launch","launch");                 /* ground left */
-  s+=badge(310,332,arch.ground||0,"Ground segment","ground");         /* ground centre */
-  s+=badge(500,318,arch.sda||0,"SDA sensors","sda");                  /* ground right */
-  s+=badge(516,205,arch.user||0,"User terminals","user");             /* mid right */
-  /* connectors */
-  s+='<g stroke="var(--hair)" stroke-width="1.1" fill="none" opacity="0.8">'+
-     '<line x1="310" y1="120" x2="310" y2="315"/><line x1="310" y1="332" x2="140" y2="322"/><line x1="310" y1="332" x2="480" y2="322"/><line x1="500" y1="301" x2="510" y2="222"/></g>';
+  var s='<svg id="archsvg" viewBox="0 0 660 400" role="img" aria-label="Space architecture — sovereign control by layer" style="width:100%;max-width:720px;overflow:visible">';
+  s+='<defs><linearGradient id="skyband" x1="0" y1="0" x2="0" y2="1">'+
+     '<stop offset="0" stop-color="var(--navy)" stop-opacity="0.07"/><stop offset="1" stop-color="var(--navy)" stop-opacity="0"/></linearGradient></defs>';
+  /* space band */
+  s+='<rect x="24" y="18" width="612" height="130" fill="url(#skyband)"/>';
+  var stars=[[70,40],[130,68],[205,34],[300,52],[420,38],[500,64],[575,44],[615,80],[90,95],[540,100]];
+  stars.forEach(function(pt){ s+='<circle cx="'+pt[0]+'" cy="'+pt[1]+'" r="1.1" fill="var(--navy2)" opacity="0.35"/>'; });
+  /* section labels + ticks */
+  [['ORBIT',54],['LINK',210],['GROUND',330]].forEach(function(t){
+    s+='<text x="26" y="'+(t[1]-6)+'" font-size="8.5" letter-spacing="2" fill="var(--muted)" font-family="var(--sans)">'+t[0]+'</text>'+
+       '<line x1="24" y1="'+t[1]+'" x2="40" y2="'+t[1]+'" stroke="var(--hair)" stroke-width="1"/>';
+  });
+  /* orbit arcs */
+  s+='<path d="M40,128 Q330,30 620,128" fill="none" stroke="var(--hair)" stroke-width="1" stroke-dasharray="2 5"/>';
+  s+='<path d="M64,148 Q330,78 596,148" fill="none" stroke="var(--navy2)" stroke-width="1.1" stroke-dasharray="4 5" opacity="0.6"/>';
+  /* satellite glyph on the LEO arc */
+  s+='<g transform="translate(330,96)" stroke="var(--navy2)" stroke-width="1.3" fill="var(--surface)">'+
+     '<rect x="-8" y="-6" width="16" height="12" rx="2"/>'+
+     '<line x1="-8" y1="0" x2="-24" y2="0"/><rect x="-34" y="-5" width="10" height="10" rx="1"/>'+
+     '<line x1="8" y1="0" x2="24" y2="0"/><rect x="24" y="-5" width="10" height="10" rx="1"/>'+
+     '<line x1="0" y1="6" x2="0" y2="14" opacity="0.7"/></g>';
+  /* launch trajectory */
+  s+='<path d="M120,296 Q150,180 250,118" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="1.5 6" opacity="0.65"/>';
+  /* link beams: satellite to ground/sda/user */
+  s+='<g class="beam" stroke="var(--accent)" stroke-width="1" fill="none" opacity="0.55">'+
+     '<line x1="326" y1="112" x2="252" y2="292"/><line x1="336" y1="112" x2="448" y2="292"/><line x1="342" y1="110" x2="556" y2="292"/></g>';
+  /* ground baseline */
+  s+='<line x1="40" y1="330" x2="620" y2="330" stroke="var(--hair)" stroke-width="1.4"/>';
+  /* glyphs above ground gauges: rocket, dish, radar fan, terminal */
+  s+='<g stroke="var(--navy2)" stroke-width="1.3" fill="none">'+
+     '<g transform="translate(120,288)"><path d="M0,-16 C4,-10 4,-2 0,4 C-4,-2 -4,-10 0,-16 Z"/><line x1="-5" y1="4" x2="-8" y2="9"/><line x1="5" y1="4" x2="8" y2="9"/></g>'+
+     '<g transform="translate(250,290)"><path d="M-9,-4 A11,11 0 0,1 9,-10" /><line x1="0" y1="-7" x2="0" y2="6"/><line x1="-6" y1="6" x2="6" y2="6"/></g>'+
+     '<g transform="translate(450,290)"><path d="M-10,2 A13,13 0 0,1 10,-8"/><path d="M-6,4 A8,8 0 0,1 6,-3" opacity="0.7"/><line x1="0" y1="6" x2="0" y2="-1"/></g>'+
+     '<g transform="translate(560,290)"><rect x="-9" y="-12" width="18" height="12" rx="1.5"/><line x1="0" y1="0" x2="0" y2="6"/><line x1="-6" y1="6" x2="6" y2="6"/></g></g>';
+  /* gauges */
+  s+=archGauge(330,180,arch.satellite||0,"Satellites","satellite");
+  s+=archGauge(120,352,arch.launch||0,"Launch","launch");
+  s+=archGauge(250,352,arch.ground||0,"Ground segment","ground");
+  s+=archGauge(450,352,arch.sda||0,"SDA sensors","sda");
+  s+=archGauge(560,352,arch.user||0,"User terminals","user");
+  /* connector satellite gauge to glyph */
+  s+='<line x1="330" y1="120" x2="330" y2="156" stroke="var(--hair)" stroke-width="1"/>';
   s+='</svg>';
   return s;
 }
+function loadLeaflet(){
+  if(window.L) return Promise.resolve();
+  if(window.__lfP) return window.__lfP;
+  window.__lfP=new Promise(function(res,rej){
+    var c=document.createElement("link"); c.rel="stylesheet"; c.href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"; document.head.appendChild(c);
+    var s=document.createElement("script"); s.src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+    s.onload=function(){ res(); }; s.onerror=function(){ rej(new Error("leaflet load")); };
+    document.head.appendChild(s);
+    setTimeout(function(){ if(!window.L) rej(new Error("leaflet timeout")); }, 7000);
+  });
+  return window.__lfP;
+}
+function siteMapPopup(s){
+  var b='<b>'+esc(s.n)+'</b><br>'+esc(s.t||"")+(s.who?' — '+esc(s.who):'');
+  b+='<br><span style="font-size:11px">Sovereign control '+esc(String(s.m))+'/5'+(s.sov?' · '+esc(s.sov):'')+'</span>';
+  return b;
+}
+function initSiteMap(p, sites){
+  loadLeaflet().then(function(){
+    var el=els("lmap"); if(!el) return;
+    if(window.__lmap){ try{ window.__lmap.remove(); }catch(e){} window.__lmap=null; }
+    var map=L.map(el,{scrollWheelZoom:true, worldCopyJump:true});
+    window.__lmap=map;
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+      attribution:'&copy; OpenStreetMap contributors &copy; CARTO', subdomains:'abcd', maxZoom:18 }).addTo(map);
+    var pts=[];
+    sites.forEach(function(s){
+      if(typeof s.lat!=="number"||typeof s.lng!=="number") return;
+      pts.push([s.lat,s.lng]);
+      L.circleMarker([s.lat,s.lng],{radius:8,color:'#fff',weight:1.6,fillColor:sovCol(s.m),fillOpacity:0.92})
+        .addTo(map).bindPopup(siteMapPopup(s))
+        .on('click',function(){ var d=els('map-detail'); if(d) d.innerHTML='<b>'+esc(s.n)+'</b> — '+esc(s.t||'')+(s.who?' · '+esc(s.who):'')+' · sovereign control '+esc(String(s.m))+'/5'+(s.sov?'. '+esc(s.sov):''); });
+    });
+    if(pts.length>1) map.fitBounds(pts,{padding:[34,34]});
+    else if(pts.length===1) map.setView(pts[0], 6);
+    L.control.scale({imperial:false}).addTo(map);
+  }).catch(function(){ siteSchematic(p, sites); });
+}
+/* offline fallback: the pre-Leaflet schematic, kept so the page degrades honestly */
+function siteSchematic(p, sites){
+  var el=els("lmap"); if(!el) return;
+  var lats=sites.map(function(s){return s.lat;}), lngs=sites.map(function(s){return s.lng;});
+  var minLat=Math.min.apply(null,lats)-1, maxLat=Math.max.apply(null,lats)+1;
+  var minLng=Math.min.apply(null,lngs)-1, maxLng=Math.max.apply(null,lngs)+1;
+  var W=600,H=380;
+  function X(lng){return (lng-minLng)/(maxLng-minLng)*W;}
+  function Y(lat){return (1-(lat-minLat)/(maxLat-minLat))*H;}
+  var g='<svg viewBox="0 0 600 380" style="width:100%;display:block;background:var(--surface2)">';
+  sites.forEach(function(s){ var x=X(s.lng),y=Y(s.lat);
+    g+='<circle cx="'+x+'" cy="'+y+'" r="7" fill="'+sovCol(s.m)+'" stroke="#fff" stroke-width="1.5"/>'+
+       '<text x="'+(x+10)+'" y="'+(y+4)+'" font-size="10" fill="var(--ink)">'+esc(s.n.slice(0,26))+'</text>'; });
+  g+='</svg><div class="mut" style="font-size:11px;padding:6px 10px">Offline schematic — live cartography unavailable.</div>';
+  el.innerHTML=g;
+}
 function wireSites(p){
   var sites=p.sites||[];
-  if(sites.length){
-    var svg=els("smap"); if(svg){
-      var lats=sites.map(function(s){return s.lat;}), lngs=sites.map(function(s){return s.lng;});
-      var minLat=Math.min.apply(null,lats),maxLat=Math.max.apply(null,lats),minLng=Math.min.apply(null,lngs),maxLng=Math.max.apply(null,lngs);
-      var padLat=(maxLat-minLat)*0.18+0.3, padLng=(maxLng-minLng)*0.18+0.3;
-      minLat-=padLat;maxLat+=padLat;minLng-=padLng;maxLng+=padLng;
-      var W=600,H=380;
-      function X(lng){return (lng-minLng)/(maxLng-minLng)*W;}
-      function Y(lat){return (1-(lat-minLat)/(maxLat-minLat))*H;}
-      var g='<g id="smap-g">';
-      /* graticule */
-      for(var gi=0;gi<=4;gi++){var yy=H*gi/4;g+='<line x1="0" y1="'+yy+'" x2="'+W+'" y2="'+yy+'" stroke="var(--hair2)" stroke-width="1"/>';var xx=W*gi/4;g+='<line x1="'+xx+'" y1="0" x2="'+xx+'" y2="'+H+'" stroke="var(--hair2)" stroke-width="1"/>';}
-      sites.forEach(function(s,i){var x=X(s.lng),y=Y(s.lat),col=sovCol(s.m);
-        g+='<g class="smk" data-i="'+i+'" style="cursor:pointer"><circle cx="'+x+'" cy="'+y+'" r="7" fill="'+col+'" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"/>'+
-           '<text x="'+(x+10)+'" y="'+(y+3.5)+'" font-size="9.5" fill="var(--ink)" font-family="var(--sans)">'+esc(s.n.length>26?s.n.slice(0,25)+"…":s.n)+'</text></g>';
-      });
-      g+='</g>';
-      svg.innerHTML=g;
-      var scale=1,tx=0,ty=0;
-      function apply(){els("smap-g").setAttribute("transform","translate("+tx+","+ty+") scale("+scale+")");}
-      svg.querySelectorAll(".smk").forEach(function(mk){mk.addEventListener("click",function(){var s=sites[+mk.getAttribute("data-i")];els("map-detail").innerHTML='<b>'+esc(s.n)+'</b> — '+esc(s.t)+'<br><span style="color:var(--ink2)">'+esc(s.who)+'</span><br><span style="font-size:11.5px">Sovereignty: '+esc(s.sov)+'</span>';});});
-      var mb=document.querySelectorAll(".mapb");mb.forEach(function(b){b.addEventListener("click",function(){var z=b.getAttribute("data-z");if(z==="in")scale=Math.min(6,scale*1.4);else if(z==="out")scale=Math.max(1,scale/1.4);else{scale=1;tx=0;ty=0;}apply();});});
-      /* drag pan */
-      var dr=false,sx,sy;svg.addEventListener("mousedown",function(e){dr=true;sx=e.clientX-tx;sy=e.clientY-ty;});
-      window.addEventListener("mousemove",function(e){if(dr){tx=e.clientX-sx;ty=e.clientY-sy;apply();}});
-      window.addEventListener("mouseup",function(){dr=false;});
-    }
-  }
+  if(sites.length && els("lmap")) initSiteMap(p, sites);
   /* architecture hover */
   document.querySelectorAll(".archnode").forEach(function(nd){
     function show(){var k=nd.getAttribute("data-k"),m=nd.getAttribute("data-m");var lbl=(ARCH_LAYERS.filter(function(L){return L.k===k;})[0]||{}).label||k;els("arch-detail").innerHTML='<b>'+esc(lbl)+':</b> sovereign maturity '+esc(m)+'/5. '+esc((p.arch&&p.arch.note)||"");}
