@@ -5,6 +5,7 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230e1826%27/%3E%3Ctext x=%2716%27 y=%2721%27 font-family=%27Georgia%27 font-size=%2713%27 font-weight=%27600%27 fill=%27%23c89b5a%27 text-anchor=%27middle%27%3EDS%3C/text%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Defence Space Partnership Model — UNOFFICIAL open-source analytical product. Country-first command briefs, load-path analysis, placemats, minutes and in-briefs.">
 <title>Defence Space Partnership Plan — Briefing Pack — UNOFFICIAL — 18 Jul 2026</title>
 <style>
 :root{
@@ -154,7 +155,7 @@ body:not(.gated)>#gate{display:none}
   <div class="gate-card">
     <h1>Narrative Briefing Pack</h1>
     <p>Defence Space Partnership Model &mdash; restricted preview</p>
-    <input id="gate-pw" type="password" placeholder="Access code" autocomplete="off" autofocus>
+    <input id="gate-pw" type="password" placeholder="Access code" aria-label="Access code" autocomplete="off" autofocus>
     <button type="button" id="gate-go">Enter</button>
     <div class="gate-err" id="gate-err" role="alert"></div>
   </div>
@@ -180,14 +181,14 @@ body:not(.gated)>#gate{display:none}
   <div style="position:absolute;right:52px;top:120px;text-align:right;color:var(--ink3)">
     <div style="font-size:13px;font-weight:650;color:var(--ink2)">517 <span style="font-weight:400">evidence records</span></div>
     <div style="font-size:13px;font-weight:650;color:var(--ink2);margin-top:4px">253 <span style="font-weight:400">partnership vehicles</span></div>
-    <div style="font-size:13px;font-weight:650;color:var(--ink2);margin-top:4px">37 <span style="font-weight:400">slides</span></div>
+    <div style="font-size:13px;font-weight:650;color:var(--ink2);margin-top:4px"><span id="slidecount">37</span> <span style="font-weight:400">slides</span></div>
   </div>
   <div style="height:100%;display:flex;flex-direction:column;justify-content:center">
     <div class="k">Briefing pack &middot; Staff paper for decision</div>
     <h1 style="font-size:52px;font-weight:700;letter-spacing:-.02em;line-height:1.05;max-width:900px">Defence Space Partnership Plan</h1>
     <p style="font-size:17px;color:var(--ink2);margin-top:14px;max-width:820px">Nine decisions over the next five months — what to approve, what to direct, what to verify first, and what doing nothing selects by default.</p>
     <div style="display:flex;gap:26px;margin-top:30px;align-items:center">
-      <div><div style="font-size:13px;font-weight:650">18 July 2026</div><div class="xs muted">Prepared as at date</div></div>
+      <div><div style="font-size:13px;font-weight:650">18 July 2026</div><div class="xs muted">As-at date</div></div>
       <div style="width:1px;height:30px;background:var(--line)"></div>
       <div><div style="font-size:13px;font-weight:650">UNOFFICIAL</div><div class="xs muted">Open-source baseline</div></div>
       <div style="width:1px;height:30px;background:var(--line)"></div>
@@ -583,7 +584,7 @@ body:not(.gated)>#gate{display:none}
   <div class="k">Tranche 2 &middot; 2027–28 &middot; gate-opening levers run from late 2026 &middot; 2 of 2</div>
   <h1 class="t">Tranche 2 — remaining six</h1>
   <p class="sub">Including the two RED pathways held in Build by design: one resource (Landsat), one security (MTCR/ETL).</p>
-  <table class="tbl">
+  <table class="tbl" style="margin-top:20px">
     <tr><th style="width:26%">Item</th><th style="width:9%">Score</th><th style="width:12%">Treatment</th><th style="width:29%">Gate-opening lever and date</th><th style="width:24%">Exit condition (recorded)</th></tr>
     <tr><td><span class="id">OPP-15</span> <span class="pdot us"></span>M-code / MGUE (Military GPS User Equipment) accession</td><td><strong>73</strong> <span class="band">B</span> <span class="xs muted">(77 renorm, sensitivity)</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Confirm</strong> MGUE PA accession + releasability before mature fielding proposals</td><td>Shift weight to OPP-16 + the sovereign quantum line; route via the <span class="id">VEH-US-25</span> service-chief channel if the AUSMIN slate is full (<span class="id">RD-3</span> Rank 3)</td></tr>
     <tr><td><span class="id">OPP-20</span> <span class="pdot us"></span>Maxar DAP (Direct Access Program) assured-access layer</td><td><strong>73</strong> <span class="band">B</span></td><td>Build <span class="chip a"><b class="gl">A</b>AMBER</span></td><td><strong>Verify</strong> DEF799 status (<span class="id">EV-EOCONTIN-20</span>) by DAP renewal; contract the &sect;54 crisis-priority/availability clause set into the renewal (<span class="id">AUS-IN-16</span> conversion) so the OPP-10 hedge becomes contractual</td><td>Multi-vendor (Planet-class, NSW precedent)</td></tr>
@@ -684,7 +685,8 @@ body:not(.gated)>#gate{display:none}
 <section class="slide" data-title="Decision asks — portfolio-level">
   <div class="k">Decision asks &middot; the full register &middot; 2 of 2</div>
   <h1 class="t">Fourteen asks — the five portfolio-level asks (10–14)</h1>
-  <table class="tbl dense" style="margin-top:100px">
+  <p class="sub">The five portfolio-level asks map to RD-1–RD-5 — each decided once, at portfolio level, not re-litigated opportunity by opportunity.</p>
+  <table class="tbl dense" style="margin-top:10px">
     <tr><th style="width:4%">#</th><th style="width:10%">Verb</th><th style="width:42%">Decision</th><th style="width:22%">Condition</th><th style="width:10%">Owner</th><th style="width:12%">Need by</th></tr>
     <tr><td>10</td><td><span class="vb dr">DIRECT</span></td><td>A single named authority to take the <span class="id">RD-1</span> decision — DARC support vs JP9360 tranche funding; priority OPP-03 &gt; OPP-02 &gt; OPP-18 if no new money</td><td><span class="id">GL-03</span>/<span class="id">GL-08</span>/<span class="id">GL-29</span> as one decision; <span class="id">EV-AUINPUTS-14</span> validated</td><td>Strategy &amp; Plans</td><td>Before next AUSMIN; IIP cycle</td></tr>
     <tr><td>11</td><td><span class="vb ap">APPROVE</span></td><td><span class="id">RD-2</span> sovereign-balance ruling Option A (OPP-04 now; OPP-17 scoping accelerated)</td><td>If declined: record explicit DEP-01 acceptance with review trigger</td><td>Strategy &amp; Plans</td><td>With tranche-1 approval</td></tr>
@@ -1554,6 +1556,7 @@ body:not(.gated)>#gate{display:none}
     s.insertAdjacentHTML('beforeend','<div class="foot"><span>Defence Space Partnership Plan — UNOFFICIAL — 18 Jul 2026</span><b>'+(i+1)+' / '+slides.length+'</b></div>');
   });
   var cur=0, body=document.body, cnt=document.getElementById('cnt');
+  var sc=document.getElementById('slidecount'); if(sc) sc.textContent=slides.length;
   function show(i){
     cur=Math.max(0,Math.min(slides.length-1,i));
     slides.forEach(function(s,j){s.classList.toggle('active',j===cur)});
@@ -1573,11 +1576,28 @@ body:not(.gated)>#gate{display:none}
     if(!body.classList.contains('scrollmode')) show(cur); else slides[cur].scrollIntoView({block:'start'});
   };
   addEventListener('keydown',function(e){
+    if(document.body.classList.contains('gated'))return;
+    var t=e.target&&e.target.tagName;
+    if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT')return;
+    if(t==='BUTTON'&&e.key===' ')return;
     if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(cur+1)}
     else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(cur-1)}
     else if(e.key==='Home'){show(0)} else if(e.key==='End'){show(slides.length-1)}
   });
   addEventListener('resize',fit);
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      if(!body.classList.contains('scrollmode'))return;
+      es.forEach(function(en){
+        if(en.isIntersecting){
+          cur=slides.indexOf(en.target);
+          cnt.textContent=(cur+1)+' / '+slides.length;
+          try{history.replaceState(null,'','#s'+(cur+1));}catch(e){}
+        }
+      });
+    },{threshold:.5});
+    slides.forEach(function(s){io.observe(s)});
+  }
   var h=parseInt((location.hash||'').replace('#s',''),10);
   fit(); show(isNaN(h)?0:h-1);
 })();

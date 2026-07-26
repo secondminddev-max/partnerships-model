@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
 <head>
 <meta charset="utf-8">
-<title>Defence Space Partnership Opportunity &amp; Pathway Model v5</title>
+<meta name="robots" content="noindex,nofollow">
+<title>Defence Space Partnership Opportunity &amp; Pathway Model v5 — UNOFFICIAL</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230e1826%27/%3E%3Ctext x=%2716%27 y=%2721%27 font-family=%27Georgia%27 font-size=%2713%27 font-weight=%27600%27 fill=%27%23c89b5a%27 text-anchor=%27middle%27%3EDS%3C/text%3E%3C/svg%3E">
 <meta name="description" content="Defence Space Partnership Model — UNOFFICIAL open-source analytical product. Country-first command briefs, load-path analysis, placemats, minutes and in-briefs.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -174,7 +175,7 @@ hr.sep{border:none;border-top:1px solid var(--hair);margin:12px 0}
   display:inline-flex;align-items:center;gap:4px;cursor:pointer;
   border:1px solid var(--ring);background:var(--soft);border-radius:5px;
   padding:1px 6px;font-family:var(--mono);font-size:10.5px;color:var(--link);
-  margin:1px 1px;
+  margin:1px 1px;transition:border-color .12s,background .12s;
 }
 .ev-chip:hover,.ev-inline:hover{border-color:var(--accent);background:var(--accent-soft)}
 .ev-chip .tag{font-family:var(--sans);font-size:8.5px;font-weight:800;padding:0 3px;border-radius:3px;background:var(--inset);color:var(--ink2)}
@@ -245,9 +246,12 @@ table.data .num{text-align:right;font-variant-numeric:tabular-nums}
 table.data tr.band-change td{background:var(--warn-bg)}
 table.data tr.band-change:hover td{background:var(--warn-bg)}
 table.data tr.band-change td:first-child{border-left:3px solid var(--amber)}
+table.data td.tbl-empty{padding:28px 14px;text-align:center;color:var(--muted);font-size:12.5px}
 table.data th.sortable{cursor:pointer;user-select:none}
 table.data th.sortable:hover{color:var(--ink)}
-table.data th .sarr{font-size:9px;margin-left:2px}
+table.data th .sarr{font-size:9px;margin-left:2px;opacity:.38}
+table.data th.sortable:hover .sarr{opacity:.7}
+table.data th[aria-sort="ascending"] .sarr,table.data th[aria-sort="descending"] .sarr{opacity:1}
 .vlink{background:none;border:none;padding:0;color:var(--link);cursor:pointer;text-align:left;font-size:inherit}
 .vlink:hover{text-decoration:underline}
 .delta{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
@@ -275,12 +279,13 @@ table.data th .sarr{font-size:9px;margin-left:2px}
 /* ---------- selectors ---------- */
 select,input[type=search],input[type=text]{
   background:var(--surface);border:1px solid var(--ring);color:var(--ink);
-  border-radius:6px;padding:6px 9px;font:inherit;font-size:13px;
+  border-radius:6px;padding:6px 9px;font:inherit;font-size:13px;transition:border-color .12s;
 }
+select:hover,input[type=search]:hover,input[type=text]:hover{border-color:var(--accent)}
 .pick-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
 .pick-btn{
   border:1px solid var(--ring);background:var(--surface);border-radius:6px;
-  padding:5px 11px;font-size:12.5px;cursor:pointer;font-weight:600;color:var(--ink2);
+  padding:5px 11px;font-size:12.5px;cursor:pointer;font-weight:600;color:var(--ink2);transition:border-color .12s,background .12s,color .12s;
 }
 .pick-btn:hover{border-color:var(--accent);color:var(--ink)}
 .pick-btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
@@ -291,7 +296,7 @@ select,input[type=search],input[type=text]{
 .ftab{
   display:inline-flex;align-items:center;gap:7px;border:1px solid var(--ring);
   background:var(--surface);border-radius:7px;padding:6px 12px;font-size:12.5px;
-  font-weight:600;color:var(--ink2);cursor:pointer;white-space:nowrap;
+  font-weight:600;color:var(--ink2);cursor:pointer;white-space:nowrap;transition:border-color .12s,background .12s,color .12s;
 }
 .ftab:hover{border-color:var(--accent);color:var(--ink)}
 .ftab.on{background:var(--accent-soft);border-color:var(--accent);color:var(--ink);font-weight:700}
@@ -380,20 +385,20 @@ a.pchip:hover{text-decoration:none;border-color:var(--link);background:var(--sof
 #drawer.open{transform:none}
 #drawer .dr-hd{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--hair);background:var(--soft)}
 #drawer .dr-hd .mono{font-weight:700}
-#drawer .dr-bd{overflow-y:auto;padding:14px 16px;flex:1}
-#dr-close{margin-left:auto;border:1px solid var(--ring);background:var(--surface);border-radius:6px;width:28px;height:28px;cursor:pointer;font-size:15px;line-height:1}
-#dr-close:hover{border-color:var(--accent)}
+#drawer .dr-bd{overflow-y:auto;padding:14px 16px;flex:1;overscroll-behavior:contain}
+#dr-close{margin-left:auto;border:1px solid var(--ring);background:var(--surface);border-radius:6px;width:28px;height:28px;cursor:pointer;font-size:15px;line-height:1;color:var(--ink2);transition:border-color .12s,color .12s}
+#dr-close:hover{border-color:var(--accent);color:var(--ink)}
 .correction{border:2px solid var(--alert-line);background:var(--alert-bg);border-radius:7px;padding:9px 11px;margin:10px 0;font-size:12.5px}
 .correction .hd{font-weight:800;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--r);margin-bottom:3px}
 .kv{display:grid;grid-template-columns:110px 1fr;gap:3px 10px;font-size:12px;margin:8px 0}
-.kv dt{color:var(--muted);font-weight:600}
+.kv dt{color:var(--muted);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding-top:2px}
 .kv dd{margin:0}
 
 /* ---------- evidence register cards ---------- */
 .ev-card{border:1px solid var(--ring);border-radius:8px;padding:11px 13px;margin-bottom:9px;background:var(--surface);content-visibility:auto;contain-intrinsic-size:auto 150px}
 @media print{.ev-card,.lib-entry{content-visibility:visible}}
 .ev-card .top{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:5px}
-.ev-card .claim{font-size:13px}
+.ev-card .claim{font-size:13px;line-height:1.55;max-width:78ch}
 .ev-card .src{font-size:11.5px;color:var(--muted);margin-top:5px}
 
 /* ---------- about / misc ---------- */
@@ -438,11 +443,17 @@ details.xp>.xp-bd{padding:8px 12px 10px}
 #view-architecture table.data th:nth-child(5){width:88px}
 #view-architecture table.data th:nth-child(6){width:132px}
 #view-architecture table.data th:nth-child(7){width:84px}
+/* long statuses ("Signed - not yet in force") wrap inside the chip rather
+   than bleeding across the fixed 132px Status column */
+#view-architecture table.data .chip{white-space:normal}
 /* channel tag: bilateral defence is the only one the load path counts, so it
    is the only one that carries the accent */
 .ch-tag{display:inline-block;font-size:10.5px;letter-spacing:.02em;white-space:nowrap;
   border:1px solid var(--hair);border-radius:3px;padding:1px 6px;color:var(--muted)}
 .ch-tag.ch-bilateral_def{border-color:var(--accent);color:var(--accent);font-weight:600}
+/* negative finding (channel "none"): dashed, matching the UNKNOWN-chip and
+   watch-tag convention for absence-of-record */
+.ch-tag.ch-none{border-style:dashed}
 #view-architecture table.data td{overflow-wrap:break-word}
 #view-architecture .tbl-wrap{max-height:72vh;overflow:auto;border:1px solid var(--hair);border-radius:8px}
 #view-architecture table.data{border-collapse:separate;border-spacing:0}
@@ -452,6 +463,18 @@ details.xp>.xp-bd{padding:8px 12px 10px}
 #view-architecture table.data tbody tr:hover td{background:color-mix(in srgb,var(--accent-soft) 65%,transparent)}
 #view-architecture tr.rr-Direct td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
 #view-architecture tr.rr-Enabling td:first-child{box-shadow:inset 3px 0 0 color-mix(in srgb,var(--accent) 40%,transparent)}
+/* analysis registers (gaps & levers, red-team log): same scroll frame,
+   sticky header and row striping as the architecture register */
+#view-analysis .tbl-wrap{max-height:72vh;overflow:auto;border:1px solid var(--hair);border-radius:8px;scrollbar-width:thin}
+#view-analysis .tbl-wrap::-webkit-scrollbar{height:8px;width:8px}
+#view-analysis .tbl-wrap::-webkit-scrollbar-thumb{background:var(--hair);border-radius:4px}
+#view-analysis table.data{border-collapse:separate;border-spacing:0}
+#view-analysis table.data thead th{position:sticky;top:0;background:var(--surface);z-index:3;box-shadow:0 1px 0 var(--hair)}
+#view-analysis table.data tbody tr:nth-child(even) td{background:color-mix(in srgb,var(--soft) 60%,transparent)}
+#view-analysis table.data tbody tr:hover td{background:color-mix(in srgb,var(--accent-soft) 65%,transparent)}
+/* the nine-column gaps register keeps its column rhythm and scrolls sideways
+   instead of crushing the Gap and Action columns */
+#view-analysis .tbl-wrap:has(th:nth-child(8)) table.data{min-width:960px}
 
 /* ---- soft preview gate ---- */
 body.gated > .class-banner,
@@ -478,24 +501,25 @@ body:not(.gated) > #gate{display:none}
    still reads printed in mono or by a colour-blind reader. */
 .lp-modes{display:flex;gap:2px;margin:0 0 14px;border-bottom:1px solid var(--hair)}
 .lp-mode{appearance:none;background:none;border:0;border-bottom:2px solid transparent;padding:7px 14px;margin-bottom:-1px;
-  font:inherit;font-size:13px;color:var(--muted);cursor:pointer}
+  font:inherit;font-size:13px;color:var(--muted);cursor:pointer;transition:color .12s,border-color .12s}
 .lp-mode:hover{color:var(--ink)}
 .lp-mode.on{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
 
-.lp-wrap{overflow-x:auto;padding-bottom:4px;margin-top:16px}
+.lp-wrap{overflow-x:auto;padding-bottom:4px;margin-top:16px;scrollbar-width:thin}
 .lp-grid{min-width:min-content}
 .lp-row{display:flex;align-items:stretch}
 .lp-row+.lp-row{border-top:1px solid var(--hair)}
+.lp-row:not(.lp-head):hover{background:color-mix(in srgb,var(--soft) 60%,transparent)}
 .lp-lab{width:172px;min-width:172px;display:flex;align-items:center;padding:11px 14px 11px 0;font-size:12.5px;line-height:1.35}
 .lp-lab b{font-weight:600}
 .lp-col{width:54px;min-width:54px;display:flex;align-items:center;justify-content:center}
 .lp-head{border-bottom:1px solid var(--hair)}
 .lp-head .lp-col{padding:8px 0}
-.lp-flag{appearance:none;background:none;border:0;cursor:pointer;font-size:17px;line-height:1;padding:3px 2px;border-radius:5px}
+.lp-flag{appearance:none;background:none;border:0;cursor:pointer;font-size:17px;line-height:1;padding:3px 2px;border-radius:5px;transition:background .12s}
 .lp-flag:hover{background:var(--accent-soft)}
 
 .lp-c{appearance:none;background:none;border:0;cursor:pointer;width:100%;height:38px;
-  display:flex;align-items:center;justify-content:center;gap:3px;border-radius:5px;position:relative}
+  display:flex;align-items:center;justify-content:center;gap:3px;border-radius:5px;position:relative;transition:background .12s}
 .lp-c:hover{background:var(--accent-soft)}
 .lp-c .lp-n{font:600 10px/1 var(--mono);color:var(--muted)}
 .lp-c.s-none{cursor:default}
@@ -669,10 +693,10 @@ table.heat td[data-cell]:hover{outline-color:var(--accent)}
 .home-hero{margin:6px 0 20px;max-width:820px}
 .home-hero h2{font-family:var(--serif);font-size:28px;font-weight:600;margin:0 0 6px;line-height:1.22;letter-spacing:0}
 .home-hero h2::after{content:"";display:block;width:56px;height:1px;background:var(--accent);margin-top:14px;opacity:.8}
-.home-hero p{margin:4px 0;color:var(--ink2);font-size:13.5px}
+.home-hero p{margin:4px 0;color:var(--ink2);font-size:13.5px;line-height:1.6}
 .home-sec{font-family:var(--sans);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-weight:700;margin:26px 0 10px;display:flex;align-items:center;gap:12px}
 /* headline figures read as figures, not as a run-on sentence of middots */
-.hdr-home{font-weight:600;text-decoration:none;color:var(--ink2);padding:5px 0;margin-right:14px;border-bottom:1px solid var(--hair)}
+.hdr-home{font-weight:600;text-decoration:none;color:var(--ink2);padding:5px 0;margin-right:14px;border-bottom:1px solid var(--hair);transition:color .12s,border-color .12s}
 .hdr-home:hover{color:var(--accent);border-bottom-color:var(--accent);text-decoration:none}
 .home-figs{display:flex;flex-wrap:wrap;gap:28px;margin:16px 0 4px;padding-top:14px;border-top:1px solid var(--hair)}
 .home-figs b{display:block;font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.1;
@@ -685,7 +709,7 @@ a.pcard{
   background:var(--surface);padding:14px 16px 12px;color:var(--ink);text-decoration:none;
   box-shadow:var(--shadow);transition:border-color .12s,transform .1s;
 }
-a.pcard:hover{border-color:var(--accent);text-decoration:none;transform:translateY(-1px)}
+a.pcard:hover{border-color:var(--accent);text-decoration:none;transform:translateY(-1px);box-shadow:var(--shadow),0 6px 16px var(--ring)}
 .pcard .top{display:flex;align-items:baseline;gap:8px}
 .pcard .nm{font-family:var(--serif);font-size:16.5px;font-weight:600;line-height:1.25;flex:1;min-width:0}
 .pcard .reg{font-size:11px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-weight:600}
@@ -696,7 +720,7 @@ a.pcard:hover{border-color:var(--accent);text-decoration:none;transform:translat
 .pfolio{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
 a.pfolio-it{
   display:block;border:1px solid var(--hair);border-radius:8px;background:transparent;
-  padding:10px 13px;color:var(--ink);text-decoration:none;transition:border-color .12s;
+  padding:10px 13px;color:var(--ink);text-decoration:none;transition:border-color .12s,background .12s;
 }
 a.pfolio-it:hover{border-color:var(--accent);text-decoration:none;background:var(--surface)}
 .pfolio-it b{display:block;font-size:13px;font-weight:650}
@@ -813,7 +837,7 @@ a.pfolio-it:hover{border-color:var(--accent);text-decoration:none;background:var
   </div>
 </noscript>
 
-<div class="class-banner">UNOFFICIAL — Analytical model — all records pending custodian validation</div>
+<div class="class-banner">Unofficial — open-source evidence only — draft, pending custodian validation</div>
 
 <header class="app-hdr">
   <div class="hdr-row">
@@ -851,7 +875,7 @@ a.pfolio-it:hover{border-color:var(--accent);text-decoration:none;background:var
   <section class="view" id="view-about"        aria-label="About the method"></section>
 </main>
 
-<div class="class-banner bottom">UNOFFICIAL — Analytical model — all records pending custodian validation</div>
+<div class="class-banner bottom">Unofficial — open-source evidence only — draft, pending custodian validation</div>
 <footer class="action-strip" id="action-strip"><div class="inner"></div></footer>
 
 <div id="scrim"></div>
@@ -3211,7 +3235,7 @@ function renderPortfolio() {
   el("view-portfolio").innerHTML = `
     <div class="home-hero">
       <h2>Portfolio-wide views</h2>
-      <p>Cross-partner analysis: comparison, scenarios, Australian inputs and the decision layer. Per-partner material lives under each <a href="#/">partner</a>.</p>
+      <p>Cross-partner analysis: comparison, scenarios, Australian inputs and the decision layer. Per-partner material sits under each <a href="#/">partner</a>.</p>
     </div>
     ${portfolioHTML()}`;
 }
@@ -3623,13 +3647,13 @@ function renderArcList() {
   el("arc-list").innerHTML = list.map(v => `<tr class="rr-${esc(v.space_relevance)}">
       <td><button type="button" class="vlink" data-veh-open="${esc(v.vehicle_id)}">${esc(v.name)}</button>
         <span class="small mut mono">· ${esc(v.vehicle_id)}</span></td>
-      <td class="small" style="white-space:nowrap">${gflag(v.partner_key)} ${esc(groupName[v.partner_key] || v.partner_key)}</td>
+      <td class="small">${gflag(v.partner_key)} ${esc(groupName[v.partner_key] || v.partner_key)}</td>
       <td class="small"><span class="ch-tag ch-${esc(v.channel || "none")}" title="${esc(v.channel_basis || "")}">${esc(CH_SHORT[v.channel] || "—")}</span></td>
       <td class="small">${esc(v.vehicle_type)}</td>
       <td class="num" style="white-space:nowrap" title="${esc(v.signed || "")}">${esc((v.signed || "—").slice(0, 10))}</td>
       <td>${vchip(v.status, true)}</td>
       <td>${relTag(v.space_relevance)}</td>
-    </tr>`).join("") || `<tr><td colspan="7" class="mut">No artefacts match the current filters.</td></tr>`;
+    </tr>`).join("") || `<tr><td colspan="7" class="tbl-empty">No artefacts match the current filters. Use Reset to clear them.</td></tr>`;
 
   el("arc-head").querySelectorAll("[data-sort]").forEach(th => {
     const go = () => {
@@ -3738,7 +3762,7 @@ function lpVerdict(key, grid) {
           + (otherN
               ? `Space is reached instead through ${otherN} instrument${otherN === 1 ? "" : "s"} on other channels — ${chans.join(", ").toLowerCase()} — at ${viaOther.map(l => l.short).join(", ")}. That is real cooperation, but it is not bilateral defence authority and cannot be tasked as though it were.`
               : `Nothing on any other channel reaches space either.`)
-        : `Nothing bilateral and defence is recorded for ${name} at any authority layer.`
+        : `No bilateral defence instrument is recorded for ${name} at any authority layer.`
     };
   }
   const top = bearing[0], low = bearing[bearing.length - 1];
@@ -3778,7 +3802,7 @@ function renderLoadMatrix() {
     </div>`).join("");
   return `<div class="card">
     <h2>Where each partnership carries weight</h2>
-    <p class="sub">Six authority layers, measured on bilateral defence instruments only. Pick a flag for a partner's full path.</p>
+    <p class="sub">Six authority layers, measured on bilateral defence instruments only. Select a flag for a partner's full path.</p>
     <div class="lp-wrap"><div class="lp-grid">${head}${rows}</div></div>
     ${lpLegend()}
   </div>`;
@@ -3948,7 +3972,7 @@ function renderAnalysis(tab) {
     body = `
       <div class="card" style="margin-bottom:14px">
         <h2>Complementarities register — ${MODEL.complementarities.length} records</h2>
-        <p class="sub" style="margin:2px 0 0">Four gates per record: what Australia needs, what the partner brings, what Australia gives, the mutual benefit.</p>
+        <p class="sub" style="margin:2px 0 0">Four gates per record: what Australia needs, what the partner contributes, what Australia contributes, the mutual benefit.</p>
       </div>
       ${MODEL.complementarities.map(c => {
         const gen = oppsByComp[c.id] || [];
@@ -3975,7 +3999,7 @@ function renderAnalysis(tab) {
     body = `
       <div class="card">
         <h2>Gaps &amp; levers register — all ${MODEL.gaps_levers.length} GL records</h2>
-        <p class="sub" style="margin:2px 0 8px">Every binding-gap action, and the pathway component it unblocks.</p>
+        <p class="sub" style="margin:2px 0 8px">Every binding-gap action and the pathway component it unblocks.</p>
         <div class="tbl-wrap"><table class="data">
           <thead><tr><th>GL</th><th>Opportunity</th><th>Partner</th><th>Component</th><th>Gap</th><th>Action</th><th>Owner class</th><th>Due</th><th>Status</th></tr></thead>
           <tbody>
@@ -4000,7 +4024,7 @@ function renderAnalysis(tab) {
     body = `
       <div class="card" style="margin-bottom:14px">
         <h2>Interdependencies — ${INTERDEPS.length} recorded relationships</h2>
-        <p class="sub" style="margin:2px 0 0">Recorded relationships between opportunities, grouped by kind. Edges are directional — a hedge and its mirror both appear.</p>
+        <p class="sub" style="margin:2px 0 0">Relationships between opportunities, grouped by kind. Edges are directional — a hedge and its mirror both appear.</p>
       </div>
       ${order.filter(k => groups[k]).map(k => `
         <div class="card" style="margin-bottom:12px">
@@ -4116,7 +4140,7 @@ function renderPlan() {
       </div>
       <div class="card">
         <h2>Rulings sought — ${(P.resource_decisions || []).length} (RD-1…RD-${(P.resource_decisions || []).length})</h2>
-        <p class="sub" style="margin:2px 0 8px">Three portfolio-level rulings plus two supporting decisions.</p>
+        <p class="sub" style="margin:2px 0 8px">Portfolio-level rulings and supporting decisions, each with its owner and need-by date.</p>
         ${(P.resource_decisions || []).map(rd => `
           <div class="callout warn" style="margin:6px 0">
             <b class="hd"><span class="mono">${esc(rd.id)}</span> <span class="mut" style="text-transform:none;letter-spacing:0">· owner: ${esc(rd.owner)} · need by: ${esc(rd.need_by)}</span></b>
@@ -4730,8 +4754,8 @@ function renderAbout() {
         </div>
         <p class="small">Every recommendation traces backward to evidence records and forward to a named treatment and a dated, owned plan item; nothing terminates in a bare number. v2 added the architecture register, dependency board, scenarios and the sensitivity lab. <b>v3 adds:</b> the full ${VEHICLES.length}-vehicle register embedded verbatim (nothing missing), the <a href="#/analysis">Analysis view</a> (complementarities gates, all ${MODEL.gaps_levers.length} gap actions, interdependencies, red-team log), the <a href="#/plan">Plan view</a> (tranches, ${(PLAN.decision_asks||[]).length} decision asks, rulings, risks, measures, do-nothing, watch items), the full ${INREG.inputs.length}-entry inputs register (${INREG.meta.counts.carried} carried + ${INREG.meta.counts.watch_only} watch-only). <b>v5 restructures navigation country-first:</b> a partner grid is the entry point, each partner opens on its artefact library, and portfolio-wide views (comparison, scenarios, Australian inputs, plan) sit behind a separate secondary entry.</p>
 
-        <h3 style="margin-top:14px">Channel — and why the load path counts only one of them</h3>
-        <p class="small">The architecture view asks whether Australia holds <b>bilateral defence authority</b> with a partner at each of six layers. An instrument answers that only if Australia is a <b>party</b>, the scope is <b>defence</b> rather than civil, and it is <b>bilateral</b> rather than a multilateral membership both countries happen to hold. So every one of the ${VEHICLES.length} instruments carries a channel:</p>
+        <h3 style="margin-top:14px">Channels — and why the load path counts only one</h3>
+        <p class="small">The architecture view asks whether Australia holds <b>bilateral defence authority</b> with a partner at each of six layers. An instrument answers that only if Australia is a <b>party</b>, the scope is <b>defence</b> rather than civil, and it is <b>bilateral</b> rather than a multilateral membership both countries happen to hold. Each of the ${VEHICLES.length} instruments therefore carries a channel:</p>
         <ul class="tight small">
           <li><b>Bilateral defence</b> — Australia and the partner, defence in scope. The only channel the load path counts.</li>
           <li><b>Bilateral civil</b> — Australia and the partner, but signed by civil space agencies or civil in scope.</li>
@@ -4742,7 +4766,7 @@ function renderAbout() {
         <p class="small">This distinction is not cosmetic. Counted naively, New Zealand scored space authority at five of six layers — contradicting both this model's own bottom line and the register's explicit negative finding that no bilateral Australia&#8211;New&nbsp;Zealand defence-space instrument exists. Every instrument producing that score was multilateral, NZ-domestic, civil or NZ&#8211;US. Folding those together flatters the relationship the model exists to test.</p>
         <p class="small">Channels are assigned by explicit rule from an instrument's name and scope &mdash; never its notes, which carry contextual mentions of other bodies. Because a wrong call here would be briefed as fact, <b>every instrument capable of making a layer load-bearing (in force and directly about space) is curated by hand</b>; no automated guess survives into a verdict. Each instrument shows its channel and the basis for it in the drawer, so any call can be challenged.</p>
 
-        <h3 style="margin-top:14px">Three things kept separate — never merged</h3>
+        <h3 style="margin-top:14px">Three judgements kept separate — never merged</h3>
         <ul class="tight small">
           <li><b>Score band</b> (A–E on the 0–100 weighted score) says how valuable an option is.</li>
           <li><b>Pathway status</b> (GREEN/AMBER/RED/BLACK across ten components) says whether it can be executed, with a named binding gap.</li>
