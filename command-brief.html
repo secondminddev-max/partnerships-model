@@ -522,6 +522,143 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
   body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 
+/* score-tinted subsystem faces — the hot 3D faces now carry their cap colour */
+.p3.hot{box-shadow:inset 0 0 0 1.4px var(--capcol,var(--navy2))}
+.p3.hot.lit{background:color-mix(in srgb,var(--capcol) 24%,var(--surface));border-color:var(--capcol);box-shadow:0 0 0 2px var(--capcol),inset 0 0 12px color-mix(in srgb,var(--capcol) 28%,transparent)}
+/* ===== full-stack space supply-chain model ===== */
+.scstack-card{margin:8px 0 16px}
+.scstack-lead{font-size:12.5px;color:var(--ink2);margin:2px 0 12px;max-width:72ch}
+.scstack{display:flex;flex-direction:column;gap:8px}
+.sctier{display:flex;background:var(--surface2);border:1px solid var(--hair);border-radius:9px;overflow:hidden}
+.sct-rail{width:5px;min-width:5px}
+.sct-main{flex:1;min-width:0;padding:11px 14px}
+.sct-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.sct-icon{font-size:13px;line-height:1}
+.sct-name{font-family:var(--serif);font-size:14.5px;font-weight:600}
+.sct-mat{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:12px}
+.sct-mat b{font-size:15px;color:var(--ink)}
+.sct-of{color:var(--muted);font-size:11px}
+.sct-bar{width:88px;height:6px;border-radius:4px;background:var(--hair);overflow:hidden}
+.sct-bar i{display:block;height:100%;border-radius:4px}
+.sct-split{display:flex;height:6px;border-radius:4px;overflow:hidden;margin:9px 0 8px;gap:1.5px;background:var(--hair)}
+.sct-split span{display:block}
+.sct-layers{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.sct-lchip{font-size:10.5px;color:var(--ink2);border:1px solid var(--hair);border-left-width:3px;border-radius:5px;padding:2px 7px;display:inline-flex;align-items:center;gap:5px;background:var(--surface)}
+.sct-lchip i{width:6px;height:6px;border-radius:50%;display:inline-block}
+.sct-lchip em{font-style:normal;color:var(--muted);font-size:10px}
+.sct-firms{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.fchip{font-size:11px;font-weight:600;color:var(--navy);background:color-mix(in oklab,var(--navy) 8%,transparent);border:1px solid color-mix(in oklab,var(--navy) 20%,transparent);border-radius:20px;padding:2px 9px;cursor:default}
+.fchip em{font-style:normal;font-weight:700;color:var(--accent);margin-left:4px}
+.fchip.tv{border-style:dashed;color:var(--verify)}
+.sct-barr{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.barchip{font-size:10.5px;font-weight:600;color:#b4432f;background:color-mix(in oklab,#b4432f 10%,transparent);border:1px solid color-mix(in oklab,#b4432f 26%,transparent);border-radius:5px;padding:2px 8px;cursor:help}
+.sct-path{font-size:12px;color:var(--ink2);border-top:1px dashed var(--hair);padding-top:7px}
+.sct-path-lab{font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-right:6px}
+.scstack-legend{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:11px;font-size:11px;color:var(--ink2)}
+.scstack-legend span{display:inline-flex;align-items:center;gap:5px}
+.scstack-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.scstack-legend .mut{color:var(--muted);flex:1;min-width:220px}
+/* supply-chain table ordered bar */
+.scbar{display:block;width:74px;height:5px;border-radius:3px;background:var(--hair);overflow:hidden;margin-top:5px}
+.scbar i{display:block;height:100%;border-radius:3px}
+/* firm meta */
+.firm-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.fstat{font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:5px;padding:1px 8px}
+.flayer{font-size:10px;font-weight:600;color:var(--enabling);border:1px solid var(--hair);border-radius:20px;padding:1px 8px}
+/* funding strip */
+.fundstrip{display:flex;flex-wrap:wrap;gap:8px 16px;margin:2px 0 12px;padding:10px 12px;background:var(--surface2);border:1px solid var(--hair);border-radius:8px}
+.fund{font-size:11px;color:var(--ink2);display:inline-flex;align-items:baseline;gap:5px}
+.fund b{font-family:var(--serif);font-size:13px;color:var(--accent)}
+/* lot fourteen tenants */
+.lot14-tenants{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.tenant{background:var(--surface2);border:1px solid var(--hair);border-radius:7px;padding:6px 10px;display:flex;flex-direction:column;line-height:1.25}
+.tenant b{font-size:12px;color:var(--ink)}
+.tenant span{font-size:9.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.tenant.pipe{border-style:dashed;opacity:.85}
+/* barriers */
+.barlist{list-style:none;margin:0;padding:0}
+.barrow{display:flex;align-items:baseline;gap:10px;font-size:12.5px;padding:8px 0;border-top:1px solid var(--hair2)}
+.barcat{flex:0 0 auto;min-width:88px;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#b4432f}
+.barbody{flex:1;color:var(--ink2)}
+.barlayer{flex:0 0 auto;font-size:10px;font-weight:600;color:var(--enabling);border:1px solid var(--hair);border-radius:20px;padding:1px 8px;white-space:nowrap}
+/* burden-sharing layer tag */
+.blayer{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--navy2);border-radius:4px;padding:1px 6px;margin-right:2px;vertical-align:1px}
+/* assurance exposure risk bar */
+.expbar{display:block;width:70px;height:6px;border-radius:3px;background:var(--hair);overflow:hidden}
+.expbar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--assess),#b4432f)}
+@media(max-width:640px){.barrow{flex-wrap:wrap}.barcat{min-width:0}.sct-mat{margin-left:0}}
+
+/* assurance — foreign-control exposure instrument */
+.assur-posture{margin:12px 0 4px;padding:12px 14px;border:1px solid var(--hair);border-radius:8px;background:var(--surface2)}
+.assur-posture .ap-h{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);font-weight:700;margin-bottom:9px}
+.ap-bands{display:flex;gap:8px;flex-wrap:wrap}
+.ap-b{flex:1 1 68px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px;border-radius:6px;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--hair)}
+.ap-b b{font-size:22px;font-family:var(--serif);color:var(--ink);line-height:1}
+.ap-b.sev-4{background:rgba(180,67,47,.1);border-color:rgba(180,67,47,.45)}
+.ap-b.sev-4 b{color:#b4432f}
+.ap-b.sev-2{background:color-mix(in oklab,var(--assess) 12%,transparent);border-color:color-mix(in oklab,var(--assess) 40%,transparent)}
+.ap-b.sev-1{background:color-mix(in oklab,var(--assess) 6%,transparent)}
+.ap-b.sev-0{background:color-mix(in oklab,var(--fact) 12%,transparent);border-color:color-mix(in oklab,var(--fact) 35%,transparent)}
+.ap-note{margin-top:9px;font-size:11.5px;color:var(--ink2);line-height:1.5}
+.ap-note b{color:#b4432f}
+.xmeter{display:inline-flex;gap:2px;vertical-align:middle;margin-right:8px}
+.xseg{width:6px;height:13px;border-radius:1px;background:var(--hair)}
+.xmeter.sev-4 .xseg.on{background:#b4432f}
+.xmeter.sev-2 .xseg.on{background:var(--assess)}
+.xmeter.sev-1 .xseg.on{background:color-mix(in oklab,var(--assess) 62%,var(--surface))}
+.xmeter.sev-0 .xseg.on{background:var(--fact)}
+.xcell{white-space:nowrap}
+.xlab{font-size:11.5px;font-weight:600;vertical-align:middle}
+.xtable tr.sev-4 td:first-child{box-shadow:inset 3px 0 0 #b4432f}
+.xtable tr.sev-2 td:first-child{box-shadow:inset 3px 0 0 var(--assess)}
+.xtable tr.sev-1 td:first-child{box-shadow:inset 3px 0 0 color-mix(in oklab,var(--assess) 62%,var(--surface))}
+.xtable tr.sev-0 td:first-child{box-shadow:inset 3px 0 0 var(--fact)}
+.xscale{margin-top:8px;font-size:10.5px;color:var(--muted);display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+/* assurance — due-diligence register + directive */
+.ddtable .dd-n{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--navy);color:#fff;font-size:9.5px;font-weight:700;margin-right:7px;vertical-align:middle}
+.ddtable td:first-child{width:34%}
+.assur-directive{margin-top:14px;display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:8px;border:1px solid color-mix(in oklab,var(--navy) 30%,transparent);background:color-mix(in oklab,var(--navy) 6%,transparent)}
+.assur-directive .ad-tag{flex:none;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--navy);padding:3px 8px;border-radius:4px;margin-top:1px}
+.assur-directive p{margin:0;font-size:12.5px;color:var(--ink);line-height:1.55}
+/* burden-sharing ledger */
+.bs-lede{font-size:12px;color:var(--ink2);line-height:1.55;margin:0 0 12px}
+.bsledger .bs-hd{display:flex;flex-direction:column;gap:2px;font-size:11px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.bsledger .bs-hd.share{color:var(--enabling)}
+.bsledger .bs-hd.sov{color:var(--accent)}
+.bsledger .bs-sub{font-size:9.5px;letter-spacing:.04em;text-transform:none;font-weight:500;color:var(--muted)}
+.bsledger li{padding-left:4px!important}
+.bsledger li:before{display:none!important}
+.bs-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:1px 6px;border-radius:4px;margin-right:7px;background:color-mix(in oklab,var(--enabling) 16%,transparent);color:var(--enabling);vertical-align:baseline}
+.bs-tag.sov{background:color-mix(in oklab,var(--accent) 16%,transparent);color:var(--accent)}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:stretch}
+.mapgrid .mapwrap{min-width:0}
+@media(max-width:760px){.mapgrid{grid-template-columns:1fr}}
+.sitelist{border:1px solid var(--hair);border-radius:10px;background:var(--surface);max-height:460px;overflow:auto;padding:5px}
+.site-row{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--hair);border-radius:7px;padding:7px 8px;cursor:pointer;font:inherit;color:var(--ink)}
+.site-row:last-child{border-bottom:0}
+.site-row:hover,.site-row:focus,.site-row.is-hi{background:var(--surface2);outline:none}
+.site-row.is-hi{box-shadow:inset 3px 0 0 var(--accent)}
+.sr-dot{position:relative;width:20px;height:20px;min-width:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1px rgba(255,255,255,.7)}
+.sr-gl{font-size:10px;line-height:1;color:#fff;text-shadow:0 0 1px rgba(0,0,0,.55)}
+.sr-body{display:flex;flex-direction:column;min-width:0;flex:1}
+.sr-n{font-size:12px;font-weight:600;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-t{font-size:10.5px;color:var(--muted);line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-m{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--ink2);min-width:14px;text-align:center}
+.sr-live{font-size:9px;letter-spacing:.04em;text-transform:uppercase;padding:2px 5px;border-radius:20px;background:var(--hair);color:var(--ink2);white-space:nowrap}
+.sr-live.soon{background:#b4432f;color:#fff}
+.sitefilters{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}
+.sfchip{font:inherit;font-size:11px;letter-spacing:.02em;padding:4px 11px;border-radius:20px;border:1px solid var(--hair);background:var(--surface);color:var(--ink2);cursor:pointer}
+.sfchip::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sf,var(--muted));margin-right:6px;vertical-align:middle}
+.sfchip[data-band="all"]::before{display:none}
+.sfchip:hover{border-color:var(--accent)}
+.sfchip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.site-live{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink);background:linear-gradient(90deg,rgba(180,67,47,.10),transparent);border:1px solid var(--hair);border-left:3px solid #b4432f;border-radius:8px;padding:9px 13px;margin-bottom:12px}
+.site-live .pulse{width:9px;height:9px;min-width:9px;border-radius:50%;background:#b4432f;animation:slpulse 1.8s ease-out infinite}
+@keyframes slpulse{0%{box-shadow:0 0 0 0 rgba(180,67,47,.55)}100%{box-shadow:0 0 0 9px rgba(180,67,47,0)}}
+.mk-hi{stroke:var(--accent)!important;stroke-width:4!important}
+.map-legend .mk-live-key{background:#b4432f;box-shadow:0 0 0 3px rgba(180,67,47,.25)}
+.md-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
+@media(prefers-reduced-motion: reduce){.site-live .pulse{animation:none}}
 /* avatars */
 .avatar{width:72px;height:72px;min-width:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:23px;font-weight:600;letter-spacing:.02em;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 0 0 1px var(--hair),0 1px 4px rgba(0,0,0,.28)}
@@ -1154,20 +1291,20 @@ function renderFactsheet(p){
   /* key messages */
   if(f.key_messages&&f.key_messages.length){
     h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Key messages for the Commander</div>';
-    f.key_messages.forEach(function(k){ h+='<div class="km"><p>'+esc(scrubEv(k.text))+' <span class="lab '+cls(k.label)+'">'+esc(k.label)+'</span></p></div>'; });
+    f.key_messages.forEach(function(k,i){ h+='<div class="km"><p><span style="display:inline-block;min-width:16px;font-weight:700;color:var(--accent)">'+(i+1)+'.</span> '+esc(scrubEv(k.text))+' <span class="lab '+cls(k.label)+'">'+esc(k.label)+'</span></p></div>'; });
     h+='</div>';
   }
 
   /* fast facts */
   if(f.fast_facts&&f.fast_facts.length){
-    h+='<div class="sec-label">Fast facts</div><div class="ff" style="margin-bottom:16px">';
+    h+='<div class="sec-label">Fast facts <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— '+f.fast_facts.length+' at a glance</span></div><div class="ff" style="margin-bottom:16px">';
     f.fast_facts.forEach(function(x){ h+='<div class="cell"><div class="k">'+esc(x.k)+'</div><div class="v">'+esc(scrubEv(x.v))+' <span class="lab '+cls(x.label)+'">'+esc(x.label)+'</span></div></div>'; });
     h+='</div>';
   }
 
   /* key agreements */
   if(f.key_agreements&&f.key_agreements.length){
-    h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Key agreements</div><table class="agtable"><thead><tr><th>Instrument</th><th>Date</th><th>Space</th><th>Note</th></tr></thead><tbody>';
+    h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Key agreements <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— '+f.key_agreements.length+' instruments</span></div><table class="agtable"><thead><tr><th>Instrument</th><th>Date</th><th>Space</th><th>Note</th></tr></thead><tbody>';
     f.key_agreements.forEach(function(a){ h+='<tr><td><b>'+esc(a.name)+'</b></td><td>'+esc(a.date)+'</td><td><span class="rel '+esc(a.space)+'">'+esc(a.space)+'</span></td><td>'+esc(scrubEv(a.note))+'</td></tr>'; });
     h+='</tbody></table></div>';
   }
@@ -1177,7 +1314,7 @@ function renderFactsheet(p){
 
   /* cooperation, pacific, multilateral */
   var trip="";
-  if(f.areas_of_cooperation) trip+='<div class="card"><div class="sec-label">Areas of cooperation</div><ul style="list-style:none;font-size:12.5px">'+f.areas_of_cooperation.map(function(x){return '<li style="padding:4px 0;border-top:1px solid var(--hair2)">'+esc(scrubEv(x))+'</li>';}).join("")+'</ul></div>';
+  if(f.areas_of_cooperation) trip+='<div class="card"><div class="sec-label">Areas of cooperation <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— '+f.areas_of_cooperation.length+' lines</span></div><ul style="list-style:none;font-size:12.5px">'+f.areas_of_cooperation.map(function(x,i){return '<li style="padding:4px 0 4px 22px;position:relative;border-top:1px solid var(--hair2)"><span style="position:absolute;left:2px;top:4px;font-size:10px;font-weight:700;color:var(--accent)">'+(i+1)+'</span>'+esc(scrubEv(x))+'</li>';}).join("")+'</ul></div>';
   if(f.pacific) trip+='<div class="card"><div class="sec-label">Joint efforts in the Pacific</div><p style="font-size:12.5px">'+esc(scrubEv(f.pacific))+'</p></div>';
   if(f.multilateral) trip+='<div class="card"><div class="sec-label">Multilateral engagement</div><p style="font-size:12.5px">'+esc(scrubEv(f.multilateral))+'</p></div>';
   if(trip) h+='<div class="three" style="margin-bottom:16px">'+trip+'</div>';
@@ -1214,32 +1351,40 @@ function renderKeyLeaders(p){
   return h;
 }
 function cls(l){return String(l||"").replace(/[^A-Za-z]/g,"").toUpperCase().indexOf("TOVERIFY")===0?"TO_VERIFY":(String(l).indexOf("/")>=0?"mix":String(l).toUpperCase());}
-function mchip(m){var s=String(m).toLowerCase();var c=s.indexOf("strong")>=0?"strong":(s.indexOf("depend")>=0||s.indexOf("gap")>=0?"dependent":"partial");return '<span class="mchip '+c+'">'+esc(m)+'</span>';}
+function mchip(m){var v=scMat(m);var c=v>=3.8?"strong":(v>=2?"partial":"dependent");return '<span class="mchip '+c+'">'+esc(m)+'</span>';}
 function renderIndustry(f){
-  var h='<div class="sec-label" style="margin-top:22px">Defence &times; Industry — sovereign industrial assessment</div>'+
+  var h=renderScStack(f);
+  h+='<div class="sec-label" style="margin-top:22px">Defence &times; Industry — sovereign industrial assessment</div>'+
     '<div class="card" style="margin:8px 0 16px"><div class="sec-label">Supply-chain maturity by layer <span class="lab ASSESSMENT">ASSESSMENT</span></div>'+
-    '<table class="sc-table"><thead><tr><th>Layer</th><th>Sovereign maturity</th><th>Evidence</th></tr></thead><tbody>';
-  f.supply_chain.forEach(function(x){ h+='<tr><td><b>'+esc(x.layer)+'</b></td><td>'+mchip(x.maturity)+'</td><td>'+esc(x.note)+'</td></tr>'; });
+    '<table class="sc-table"><thead><tr><th>Layer</th><th>Sovereign maturity <span style="font-weight:400;color:var(--muted)">0–5</span></th><th>Evidence</th></tr></thead><tbody>';
+  f.supply_chain.forEach(function(x){ var mv=scMat(x.maturity); h+='<tr><td><b>'+esc(x.layer)+'</b></td><td>'+mchip(x.maturity)+'<span class="scbar"><i style="width:'+Math.round(mv/5*100)+'%;background:'+scColOf(mv)+'"></i></span></td><td>'+esc(x.note)+'</td></tr>'; });
   h+='</tbody></table></div>';
   if(f.firms&&f.firms.length){
-    h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Australian defence-space industrial base <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— principal firms, by role</span></div><div class="firmgrid">';
-    f.firms.forEach(function(x){ h+='<div class="firm"><div class="fn">'+esc(x.name)+' <span class="lab '+cls(x.label)+'">'+esc(x.label)+'</span></div><div class="fr">'+esc(x.role)+'</div></div>'; });
+    h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Australian defence-space industrial base <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">— principal firms, by role</span></div>';
+    var fund=f.firms.map(function(x){var g=firmFig(x.role);return g?{n:x.name.replace(/\s*\(.*\)$/,""),g:g}:null;}).filter(Boolean);
+    if(fund.length) h+='<div class="fundstrip">'+fund.map(function(o){return '<span class="fund"><b>'+esc(o.g)+'</b>'+esc(o.n)+'</span>';}).join("")+'</div>';
+    h+='<div class="firmgrid">';
+    f.firms.forEach(function(x){ var fig=firmFig(x.role); var lys=firmLayers(x.name); h+='<div class="firm"><div class="fn">'+esc(x.name)+' <span class="lab '+cls(x.label)+'">'+esc(x.label)+'</span></div>'+((fig||lys.length)?'<div class="firm-meta">'+(fig?'<span class="fstat">'+esc(fig)+'</span>':'')+lys.map(function(l){return '<span class="flayer">'+l+'</span>';}).join("")+'</div>':'')+'<div class="fr">'+esc(x.role)+'</div></div>'; });
     h+='</div></div>';
   }
-  if(f.lot14) h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Lot Fourteen — national space-industry hub</div><p style="font-size:13px">'+esc(f.lot14)+'</p></div>';
-  if(f.barriers&&f.barriers.length) h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Barriers to sovereign launch <span class="lab ASSESSMENT">ASSESSMENT</span></div><ul style="list-style:none">'+f.barriers.map(function(x){return '<li style="font-size:12.5px;padding:6px 0 6px 16px;position:relative;border-top:1px solid var(--hair2)"><span style="position:absolute;left:0;color:var(--assess)">&bull;</span>'+esc(x)+'</li>';}).join("")+'</ul></div>';
+  if(f.lot14){ var tenants=[["Australian Space Agency","HQ"],["SmartSat CRC","Kanyini lead"],["Space Discovery Centre","public"],["Myriota","IoT prime"],["Saab","defence"],["MITRE","defence-adjacent"],["Defence HQ","pipeline"],["ADT Academy","pipeline"]]; h+='<div class="card lot14-card" style="margin-bottom:16px"><div class="sec-label">Lot Fourteen — the neutral ground</div><p style="font-size:12.5px;color:var(--ink2)">'+esc(f.lot14)+'</p><div class="lot14-tenants">'+tenants.map(function(t){return '<span class="tenant'+(/pipeline/.test(t[1])?" pipe":"")+'"><b>'+esc(t[0])+'</b><span>'+esc(t[1])+'</span></span>';}).join("")+'</div></div>'; }
+  if(f.barriers&&f.barriers.length) h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Barriers to sovereign launch <span class="lab ASSESSMENT">ASSESSMENT</span></div><ul class="barlist">'+f.barriers.map(function(x){var mt=barrierMeta(x);var body=String(x).replace(/^[^:]+:\s*/,"");var tl=(SC_TIERS.filter(function(T){return T.k===mt.layer;})[0]||{}).label||"";return '<li class="barrow"><span class="barcat">'+esc(mt.cat)+'</span><span class="barbody">'+esc(body)+'</span>'+(tl?'<span class="barlayer">'+tl+'</span>':'')+'</li>';}).join("")+'</ul></div>';
   if(f.assurance){
     var A=f.assurance;
     h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Supply-chain assurance &amp; foreign-ownership screen <span class="lab ASSESSMENT">FRAMEWORK</span></div>'+
        '<p style="font-size:12.5px;color:var(--ink2)">'+esc(A.intro)+'</p>';
-    h+='<div class="sec-label" style="margin-top:12px">Foreign-ownership exposure by layer</div><table class="sc-table"><thead><tr><th>Layer</th><th>Exposure</th><th>Assessment</th></tr></thead><tbody>'+A.layers.map(function(l){var e=String(l.exposure).toLowerCase();var c=e.indexOf("high")>=0?"dependent":(e.indexOf("low")>=0?"strong":"partial");return '<tr><td><b>'+esc(l.layer)+'</b></td><td><span class="mchip '+c+'">'+esc(l.exposure)+'</span></td><td>'+esc(l.note)+'</td></tr>';}).join("")+'</tbody></table>';
+    h+=assurPosture(A.layers);
+    h+='<div class="sec-label" style="margin-top:12px">Foreign-ownership exposure by layer <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">&mdash; ranked, highest concentration first</span></div><table class="sc-table xtable"><thead><tr><th>Layer</th><th>Foreign-control exposure</th><th>Assessment</th></tr></thead><tbody>'+A.layers.slice().sort(function(a,b){return exposureRank(b.exposure).r-exposureRank(a.exposure).r;}).map(function(l){var k=exposureRank(l.exposure);return '<tr class="'+k.c+'"><td><b>'+esc(l.layer)+'</b></td><td class="xcell">'+exposureMeter(k.r)+'<span class="xlab">'+esc(l.exposure)+'</span></td><td>'+esc(l.note)+'</td></tr>';}).join("")+'</tbody></table><div class="xscale"><span class="xmeter sev-0"><span class="xseg on"></span><span class="xseg"></span><span class="xseg"></span><span class="xseg"></span><span class="xseg"></span></span>contained &middot; <span class="xmeter sev-4"><span class="xseg on"></span><span class="xseg on"></span><span class="xseg on"></span><span class="xseg on"></span><span class="xseg on"></span></span>severe &mdash; longer, redder bars carry greater foreign-control dependency.</div>';
     h+='<div class="sec-label" style="margin-top:12px">Due-diligence checks</div><ul style="list-style:none">'+A.checks.map(function(c){return '<li style="font-size:12.5px;padding:6px 0 6px 14px;position:relative;border-top:1px solid var(--hair2)"><span style="position:absolute;left:0;color:var(--navy2)">&bull;</span><b>'+esc(c.c)+'</b> — '+esc(c.w)+' <span class="lab '+cls(c.label)+'">'+esc(c.label)+'</span></li>';}).join("")+'</ul>';
-    h+='<p style="font-size:12.5px;color:var(--ink);margin-top:12px"><b>Recommendation.</b> '+esc(A.recommendation)+'</p></div>';
+    h+='<div class="assur-directive"><span class="ad-tag">Directive</span><p>'+esc(A.recommendation)+'</p></div></div>';
   }
   if(f.burden_sharing){
-    h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Burden-sharing vs sovereignty <span class="lab ASSESSMENT">ASSESSMENT</span></div><div class="bshare">'+
-      '<div class="col share"><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--enabling);font-weight:700;margin-bottom:4px">Burden-share where appropriate</div><ul>'+f.burden_sharing.share.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>'+
-      '<div class="col sov"><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:4px">Keep sovereign</div><ul>'+f.burden_sharing.sovereign.map(function(x){return '<li>'+esc(x)+'</li>';}).join("")+'</ul></div>'+
+    var bsS=f.burden_sharing.share||[], bsK=f.burden_sharing.sovereign||[];
+    h+='<div class="card" style="margin-bottom:16px"><div class="sec-label">Burden-sharing ledger &mdash; achievable vs hold-sovereign <span class="lab ASSESSMENT">ASSESSMENT</span></div>'+
+      '<p class="bs-lede">Read against the exposure screen above. A layer can be burden-shared only where an <b>allied dependency is acceptable</b>; where sovereignty must survive contested conditions, allied capacity is a complement, never a substitute. <b>'+bsS.length+'</b> lines are safely shareable; <b>'+bsK.length+'</b> must be held sovereign.</p>'+
+      '<div class="bshare bsledger">'+
+      '<div class="col share"><div class="bs-hd share">Achievable through allied burden-share<span class="bs-sub">allied dependency acceptable</span></div><ul>'+bsS.map(function(x){return '<li><span class="bs-tag">'+esc(bsLayer(x))+'</span>'+esc(x)+'</li>';}).join("")+'</ul></div>'+
+      '<div class="col sov"><div class="bs-hd sov">Hold sovereign &mdash; not burden-shareable<span class="bs-sub">dependency unacceptable when contested</span></div><ul>'+bsK.map(function(x){return '<li><span class="bs-tag sov">'+esc(bsLayer(x))+'</span>'+esc(x)+'</li>';}).join("")+'</ul></div>'+
       '</div></div>';
   }
   return h;
@@ -1469,13 +1614,13 @@ function renderOpps(p){
   var oo=p.opportunities||[];
   if(oo.length){
     h+='<div class="sec-label" style="margin-top:26px">Gaps &amp; levers — derived from the staffed pathways <span class="lab ASSESSMENT">DERIVED</span></div>';
-    h+='<div class="card" style="padding:0;overflow:hidden"><table class="glt"><thead><tr><th>Line</th><th>The gap</th><th>The lever</th><th>First risk</th></tr></thead><tbody>';
+    h+='<div class="card" style="padding:0;overflow:hidden"><table class="glt"><thead><tr><th>Line</th><th>The gap</th><th>The lever</th><th>First risk</th><th>Deliverability</th></tr></thead><tbody>';
     oo.forEach(function(o){
       var pw=o.pathway||{};
       h+='<tr><td class="glt-id">'+esc(o.id)+'</td>'+
          '<td>'+esc(o.binding_gap||"—")+'</td>'+
          '<td>'+esc(pw.gate||((pw.actions||[])[0]||"—"))+'</td>'+
-         '<td>'+esc(((pw.risks||[])[0]||"—"))+'</td></tr>';
+         '<td>'+esc(((pw.risks||[])[0]||"—"))+'</td>'+'<td><span class="deliv '+esc(String(o.deliverability).replace(/[^A-Za-z-]/g,""))+'">'+esc(o.deliverability||"—")+'</span></td></tr>';
     });
     h+='</tbody></table></div>';
     h+='<p class="foot-note" style="margin-top:10px">Full analytical registers — complementarities, portfolio gaps, interdependencies, red-team log — continue under the <b>Analysis</b> tab.</p>';
@@ -1750,9 +1895,12 @@ function renderSites(p){
   if(!sites.length){ h+='<div class="stub">Stakeholder map not yet compiled for this partner. New Zealand and Australia are complete.</div>'; }
   else{
     if(p.sites_note) h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">'+esc(p.sites_note)+'</p>';
-    h+='<div class="mapwrap"><div id="lmap" role="application" aria-label="Interactive stakeholder map — '+esc(p.name)+'"></div></div>'+
-       '<div class="map-legend"><span><i class="ml" style="background:'+sovCol(5)+'"></i>high sovereignty</span><span><i class="ml" style="background:'+sovCol(3)+'"></i>partial</span><span><i class="ml" style="background:'+sovCol(1)+'"></i>dependent / foreign-controlled</span><span class="mut" style="margin-left:auto">cartography &copy; OpenStreetMap &middot; CARTO &middot; schematic fallback offline &middot; live launches: TheSpaceDevs</span></div>'+
-       '<div class="map-detail" id="map-detail">Select a marker for detail.</div>';
+    h+=siteFilterBar(sites)+
+       '<div class="site-live" id="site-live" role="status" hidden></div>'+
+       '<div class="mapgrid"><div class="mapwrap"><div id="lmap" role="application" aria-label="Interactive stakeholder map — '+esc(p.name)+'"></div></div>'+
+       '<aside class="sitelist" id="sitelist" aria-label="Site register — synchronised with the map">'+siteListHTML(sites)+'</aside></div>'+
+       '<div class="map-legend"><span><i class="ml" style="background:'+sovCol(5)+'"></i>high sovereignty</span><span><i class="ml" style="background:'+sovCol(3)+'"></i>partial</span><span><i class="ml" style="background:'+sovCol(1)+'"></i>dependent / foreign-controlled</span><span><i class="ml mk-live-key"></i>launch window &lt; 14 days</span><span class="mut" style="margin-left:auto">cartography &copy; OpenStreetMap &middot; CARTO &middot; schematic fallback offline &middot; live launches: TheSpaceDevs</span></div>'+
+       '<div class="map-detail" id="map-detail">Select a marker &mdash; or a row in the register &mdash; for detail.</div>';
   }
   /* ARCHITECTURE — layer overview (3D schematic) */
   if(arch){
@@ -1765,13 +1913,14 @@ function renderSites(p){
   var comp=p.components||null;
   if(comp){
     h+='<div class="sec-label" style="margin-top:26px">Component capability — '+esc(p.name)+' sovereign build/control by subsystem <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
-    h+='<p style="font-size:12px;color:var(--muted);margin-bottom:12px">Satellite and ground station decomposed to subsystem level; each subsystem scored 0–5 for sovereign industrial capability, with the responsible field or firm cited where evidenced. Hover a subsystem for detail.</p>';
+    h+='<p style="font-size:12px;color:var(--muted);margin-bottom:12px">Satellite and ground station decomposed to subsystem level; each subsystem scored 0–5 for sovereign industrial capability (ring colour tracks the score), joined to its parent supply-chain layer and national maturity, and cross-referenced to the research base below. Hover a subsystem for the full assessment.</p>';
     h+='<div class="two">';
     h+='<div class="card"><div class="sec-label">Space segment — satellite subsystems</div>'+render3D("sat",comp.satellite)+renderExploded(comp.satellite,"sat")+'</div>';
     h+='<div class="card"><div class="sec-label">Ground segment — station subsystems</div>'+render3D("gnd",comp.ground)+renderExploded(comp.ground,"gnd")+'</div>';
     h+='</div>';
     h+='<div class="arch-detail" id="comp-detail" role="status">Select a subsystem (hover, tap or Tab) for its capability assessment and responsible industry field.</div>';
   }
+  h+=renderResearch(p);
   return h;
 }
 function capChip(c){ var col=sovCol(c); return '<span class="capnum" style="background:'+col+'">'+c+'</span>'; }
@@ -1788,7 +1937,7 @@ function render3D(kind,parts){
   var have={}; parts.forEach(function(pt){ var k=slotFor(kind,pt.part); if(k) have[k]=pt; });
   function P(cls,slot,style,inner){
     var pt=have[slot];
-    return '<div class="p3 '+cls+(pt?' hot':'')+'"'+(pt?' data-slot="'+slot+'" title="'+esc(pt.part)+'" tabindex="0" role="button" aria-label="'+esc(pt.part)+' — show supply chain"':'')+' style="'+style+'">'+(inner||"")+'</div>';
+    return '<div class="p3 '+cls+(pt?' hot':'')+'"'+(pt?' data-slot="'+slot+'" data-cap="'+pt.cap+'" title="'+esc(pt.part)+' — sovereign capability '+pt.cap+'/5" tabindex="0" role="button" aria-label="'+esc(pt.part)+' — capability '+pt.cap+' of 5, show supply chain"':'')+' style="'+style+(pt?';--capcol:'+sovCol(pt.cap):'')+'">'+(inner||"")+'</div>';
   }
   var s='<div class="scene3" data-kind="'+kind+'"><div class="obj3">';
   if(kind==="sat"){
@@ -1847,8 +1996,10 @@ function wireModels(p){
         var pt=parts.filter(function(x){ return slotFor(kind,x.part)===slot; })[0]; if(!pt) return;
         sc.querySelectorAll('[data-slot="'+slot+'"]').forEach(function(x){ x.classList.add("lit"); });
         var d=els("comp-detail");
+        var _scl=subLayer(pt.part), _scr=scFind((p.factsheet||{}).supply_chain,_scl);
         if(d) d.innerHTML='<b>'+esc(pt.part)+' — sovereign capability '+esc(String(pt.cap))+'/5.</b> '+
-          (pt.who?'<span style="color:var(--accent);font-weight:600">Supply chain:</span> '+esc(pt.who)+'. ':'')+esc(pt.note||"");
+          (pt.who?'<span style="color:var(--accent);font-weight:600">Industry:</span> '+esc(pt.who)+'. ':'')+esc(pt.note||"")+
+          (_scr?'<div style="margin-top:5px;font-size:11.5px;color:var(--muted)">Supply-chain layer <b style="color:var(--ink2)">'+esc(_scr.layer)+'</b> &middot; national maturity <b>'+esc(_scr.maturity)+'</b></div>':'');
       };
       var unlit=function(){
         sc.querySelectorAll(".lit").forEach(function(x){ x.classList.remove("lit"); });
@@ -1858,10 +2009,183 @@ function wireModels(p){
     });
   });
 }
+/* ===== full-stack space supply-chain model (domestic Defence x Industry) ===== */
+function scMat(s){s=String(s).toLowerCase();
+  if(/strong \(sovereign/.test(s))return 4.5;
+  if(/partial-strong/.test(s))return 3.5;
+  if(/strong/.test(s))return 4;
+  if(/gap|dependent/.test(s))return 1;
+  if(/ally-anchored/.test(s))return 2.5;
+  if(/emerging/.test(s))return 2;
+  if(/partial/.test(s))return 2.5;
+  return 2;}
+function scColOf(m){return m>=3.8?"var(--fact)":(m>=2?"var(--assess)":"#b4432f");}
+function scClass(m){return m>=3.8?"sov":(m>=2?"par":"dep");}
+function firmFig(role){var m=String(role).match(/(?:A|US)?\$\s?[\d.,]+\s?(?:bn|m|k)?/i);return m?m[0].replace(/\s+/g,""):"";}
+var SC_TIERS=[
+ {k:"launch",label:"Launch &amp; Return",icon:"&#9650;",sc:["Launch","Returns / re-entry"],firms:["Gilmour Space","Southern Launch"],path:"No sovereign vehicle to orbit yet &mdash; prove Eris (TF2, 2026) and close the imported-subsystem gap."},
+ {k:"satellite",label:"Satellite &amp; Payload",icon:"&#9670;",sc:["Satellite manufacture / bus","Payloads / sensors","Components / subsystems"],firms:["Inovor Technologies","Fleet Space","Space Machines Company","EOS (Electro Optic Systems)","DSTG / UNSW Canberra"],path:"Small-sat class is sovereign; GEO-class bus and subsystems imported &mdash; build depth."},
+ {k:"ground",label:"Ground &amp; SATCOM",icon:"&#9661;",sc:["Ground segment","SATCOM"],firms:["Northrop Grumman Australia","Optus","Lockheed Martin Australia","Fleet Space","Myriota"],path:"Ground is sovereign-operated; strategic SATCOM went dependent after JP9102 &mdash; build the tactical-LEO edge."},
+ {k:"sda",label:"SDA / SSA",icon:"&#9671;",sc:["SDA / SSA"],firms:["EOS (Electro Optic Systems)","HEO","Saber Astronautics","Skykraft"],path:"Ally-anchored hosting (DARC) plus sovereign optical/RF &mdash; move from hosting to sovereign tasking."},
+ {k:"user",label:"Data &middot; PNT &middot; User",icon:"&#9673;",sc:["Data / analytics / ops","PNT"],firms:["Saber Astronautics","HEO","Myriota","Fleet Space"],path:"Data/analytics is exportable-grade; PNT is a seedling &mdash; stand up sovereign PNT and national data custody."}
+];
+function firmLayers(n){var out=[];SC_TIERS.forEach(function(T){if(T.firms.indexOf(n)>=0)out.push(T.label);});return out;}
+function barrierMeta(b){var s=String(b),t=s.toLowerCase(),ci=s.indexOf(":"),cat="";
+  if(ci>0&&ci<22)cat=s.slice(0,ci).trim();
+  else if(/safeguard|\btsa\b/.test(t))cat="TSA";
+  else if(/jp9102/.test(t))cat="JP9102";
+  else if(/regulat/.test(t))cat="Regulatory";
+  else if(/funding|market/.test(t))cat="Funding";
+  else if(/industrial|subsystem|component/.test(t))cat="Industrial";
+  else cat=s.split(" ").slice(0,2).join(" ");
+  if(cat.length>20)cat=cat.slice(0,18)+"…";
+  var k="launch";
+  if(/jp9102|satcom/.test(t))k="ground";
+  else if(/subsystem|component|oxidiser|industrial/.test(t))k="satellite";
+  return {cat:cat,layer:k};}
+function renderScStack(f){
+  var sc=f.supply_chain||[],firms=f.firms||[],barr=f.barriers||[];
+  var byName={};sc.forEach(function(x){byName[x.layer]=x;});
+  var fByName={};firms.forEach(function(x){fByName[x.name]=x;});
+  var h='<div class="card scstack-card"><div class="sec-label">The full-stack space supply-chain model <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
+  h+='<p class="scstack-lead">Pad to user terminal in five layers. Each carries its sovereign supply-chain maturity, the sovereign&ndash;dependent split beneath it, the firms that hold the layer, live barriers, and the read on the path to sovereignty.</p>';
+  h+='<div class="scstack">';
+  SC_TIERS.forEach(function(T){
+    var rows=T.sc.map(function(n){return byName[n];}).filter(Boolean);
+    if(!rows.length)return;
+    var vals=rows.map(function(r){return scMat(r.maturity);});
+    var mean=vals.reduce(function(a,b){return a+b;},0)/vals.length;
+    var cnt={sov:0,par:0,dep:0};vals.forEach(function(v){cnt[scClass(v)]++;});
+    var tot=vals.length,col=scColOf(mean),cl=scClass(mean);
+    h+='<div class="sctier" data-cls="'+cl+'"><div class="sct-rail" style="background:'+col+'"></div><div class="sct-main">';
+    h+='<div class="sct-head"><span class="sct-icon" style="color:'+col+'">'+T.icon+'</span><span class="sct-name">'+T.label+'</span>';
+    h+='<span class="sct-mat"><span class="sct-bar"><i style="width:'+Math.round(mean/5*100)+'%;background:'+col+'"></i></span><b>'+mean.toFixed(1)+'</b><span class="sct-of">/5</span></span></div>';
+    h+='<div class="sct-split" role="img" aria-label="sovereign to dependent split">';
+    [["sov","var(--fact)","sovereign"],["par","var(--assess)","partial"],["dep","#b4432f","dependent"]].forEach(function(sg){if(cnt[sg[0]])h+='<span style="flex:'+cnt[sg[0]]+';background:'+sg[1]+'" title="'+cnt[sg[0]]+' of '+tot+' layers &mdash; '+sg[2]+'"></span>';});
+    h+='</div>';
+    h+='<div class="sct-layers">'+rows.map(function(r){var m=scMat(r.maturity);return '<span class="sct-lchip" style="border-left-color:'+scColOf(m)+'"><i style="background:'+scColOf(m)+'"></i>'+esc(r.layer)+' <em>'+esc(r.maturity)+'</em></span>';}).join("")+'</div>';
+    var chips=T.firms.map(function(n){var fm=fByName[n];if(!fm)return "";var fig=firmFig(fm.role);var tv=/TO_VERIFY/.test(fm.label||"")||/TO_VERIFY/.test(fm.role||"");return '<span class="fchip'+(tv?" tv":"")+'" title="'+esc(fm.role)+'">'+esc(fm.name.replace(/\s*\(.*\)$/,""))+(fig?' <em>'+esc(fig)+'</em>':'')+'</span>';}).filter(Boolean).join("");
+    if(chips)h+='<div class="sct-firms">'+chips+'</div>';
+    var bs=barr.filter(function(b){return barrierMeta(b).layer===T.k;});
+    if(bs.length)h+='<div class="sct-barr">'+bs.map(function(b){return '<span class="barchip" title="'+esc(b)+'">&#9888; '+esc(barrierMeta(b).cat)+'</span>';}).join("")+'</div>';
+    h+='<div class="sct-path"><span class="sct-path-lab">Path</span> '+T.path+'</div>';
+    h+='</div></div>';
+  });
+  h+='</div>';
+  h+='<div class="scstack-legend"><span><i style="background:var(--fact)"></i>sovereign</span><span><i style="background:var(--assess)"></i>partial</span><span><i style="background:#b4432f"></i>dependent</span><span class="mut">maturity = mean of constituent supply-chain layers &middot; firm chips carry headline raise/contract where evidenced &middot; &#9888; = barrier bearing on this layer</span></div>';
+  h+='</div>';
+  return h;
+}
+/* assurance: ordered foreign-control severity 0(contained)-4(severe) from the exposure vocabulary */
+function exposureRank(x){var e=String(x||"").toLowerCase();if(e.indexOf("high")>=0)return{r:4,c:"sev-4"};if(e.indexOf("moderate")>=0&&e.indexOf("low")>=0)return{r:1,c:"sev-1"};if(e.indexOf("moderate")>=0)return{r:2,c:"sev-2"};if(e.indexOf("low")>=0)return{r:0,c:"sev-0"};return{r:2,c:"sev-2"};}
+/* assurance: graded 5-segment exposure meter (longer+redder = greater foreign-control dependency) */
+function exposureMeter(r){var s="";for(var i=0;i<5;i++)s+='<span class="xseg'+(i<=r?" on":"")+'"></span>';return '<span class="xmeter sev-'+r+'" aria-hidden="true">'+s+'</span>';}
+/* assurance: at-a-glance posture — how many layers sit in each severity band + the concentration points */
+function assurPosture(layers){var band={0:0,1:0,2:0,4:0},hi=[];layers.forEach(function(l){var k=exposureRank(l.exposure);band[k.r]=(band[k.r]||0)+1;if(k.r>=4)hi.push(l.layer);});return '<div class="assur-posture"><div class="ap-h">Assurance posture — foreign-control concentration across '+layers.length+' supply-chain layers</div><div class="ap-bands"><span class="ap-b sev-4"><b>'+(band[4]||0)+'</b>Severe</span><span class="ap-b sev-2"><b>'+(band[2]||0)+'</b>Elevated</span><span class="ap-b sev-1"><b>'+(band[1]||0)+'</b>Guarded</span><span class="ap-b sev-0"><b>'+(band[0]||0)+'</b>Contained</span></div>'+(hi.length?'<div class="ap-note"><b>Concentration points:</b> '+hi.map(function(x){return esc(x);}).join(", ")+' — sovereignty-critical, and the hardest layers to burden-share.</div>':'')+'</div>';}
+/* burden-sharing: derive the architecture layer a share/sovereign line speaks to, so the ledger reads against the same taxonomy as the exposure screen */
+function bsLayer(t){var s=String(t).toLowerCase();if(/satcom|wideband|wgs|comms/.test(s))return "SATCOM";if(/isr|analytics|battle management|mission ops|data custody|tasking/.test(s))return "Data / ops";if(/darc|sda|space domain|surveillance/.test(s))return "SDA";if(/regulat|approval|decision-maker|licen/.test(s))return "Regulatory";if(/workforce|training|course|pipeline/.test(s))return "Workforce";if(/civil|exploration|framework|market access/.test(s))return "Civil";if(/launch|reconstitut|re-entry|return/.test(s))return "Launch";return "Cross-cutting";}
+function sovBand(m){ return m>=4?"high":(m>=2.5?"partial":"dep"); }
+function siteTypeGlyph(t){
+  var s=String(t||"").toLowerCase();
+  if(/launch|return/.test(s)) return "▲";
+  if(/sda|radar|optical/.test(s)) return "◆";
+  if(/hq|command|unit/.test(s)) return "★";
+  if(/hub|industry/.test(s)) return "■";
+  if(/regulator|joint/.test(s)) return "○";
+  if(/ground|c2/.test(s)) return "●";
+  return "•";
+}
+function siteFilterBar(sites){
+  var b={high:0,partial:0,dep:0}; sites.forEach(function(s){ b[sovBand(s.m)]++; });
+  function chip(v,lab,col){ return '<button class="sfchip" data-band="'+v+'"'+(col?' style="--sf:'+col+'"':'')+'>'+esc(lab)+'</button>'; }
+  return '<div class="sitefilters" id="sitefilters" role="group" aria-label="Filter sites by sovereignty band">'+
+    chip("all","All ("+sites.length+")","")+
+    chip("high","High ("+b.high+")",sovCol(5))+
+    chip("partial","Partial ("+b.partial+")",sovCol(3))+
+    chip("dep","Dependent ("+b.dep+")",sovCol(1))+'</div>';
+}
+function siteListHTML(sites){
+  return sites.map(function(s,i){
+    var band=sovBand(s.m);
+    return '<button class="site-row" data-si="'+i+'" data-band="'+band+'" aria-label="'+esc(s.n)+', sovereign control '+esc(String(s.m))+' of 5">'+
+      '<span class="sr-dot" style="background:'+sovCol(s.m)+'"><span class="sr-gl">'+siteTypeGlyph(s.t)+'</span></span>'+
+      '<span class="sr-body"><span class="sr-n">'+esc(s.n)+'</span>'+
+      '<span class="sr-t">'+esc(s.t||"")+(s.who?' &middot; '+esc(s.who):'')+'</span></span>'+
+      '<span class="sr-live" data-si="'+i+'" hidden></span>'+
+      '<span class="sr-m" title="sovereign control '+esc(String(s.m))+' of 5">'+esc(String(s.m))+'</span></button>';
+  }).join("");
+}
+function siteRowHi(si,on){
+  var r=document.querySelector('.site-row[data-si="'+si+'"]');
+  if(r) r.classList.toggle("is-hi",!!on);
+}
+function siteDetail(s){
+  var d=els('map-detail'); if(!d) return;
+  d.innerHTML='<span class="md-dot" style="background:'+sovCol(s.m)+'"></span><b>'+esc(s.n)+'</b> &mdash; '+esc(s.t||'')+
+    (s.who?' &middot; '+esc(s.who):'')+' &middot; sovereign control '+esc(String(s.m))+'/5'+(s.sov?'. '+esc(s.sov):'');
+}
+function wireSiteList(map, marks){
+  var byIdx={}; marks.forEach(function(o){ byIdx[o.si]=o; });
+  document.querySelectorAll(".site-row").forEach(function(row){
+    var si=+row.getAttribute("data-si"), o=byIdx[si]; if(!o) return;
+    function enter(){ if(o.mk._path) o.mk._path.classList.add("mk-hi"); o.mk.openPopup(); row.classList.add("is-hi"); siteDetail(o.s); }
+    function leave(){ if(o.mk._path) o.mk._path.classList.remove("mk-hi"); row.classList.remove("is-hi"); }
+    row.addEventListener("mouseenter",enter); row.addEventListener("focus",enter);
+    row.addEventListener("mouseleave",leave); row.addEventListener("blur",leave);
+    row.addEventListener("click",function(){ map.setView(o.mk.getLatLng(), Math.max(map.getZoom(),6), {animate:true}); o.mk.openPopup(); siteDetail(o.s); });
+  });
+  var fb=els("sitefilters"); if(!fb) return;
+  fb.querySelectorAll(".sfchip").forEach(function(c){
+    c.addEventListener("click",function(){
+      var band=c.getAttribute("data-band");
+      fb.querySelectorAll(".sfchip").forEach(function(x){ x.classList.toggle("on",x===c); });
+      marks.forEach(function(o){
+        var show=(band==="all"||o.band===band);
+        if(o.mk._path) o.mk._path.style.display=show?"":"none";
+        var r=document.querySelector('.site-row[data-si="'+o.si+'"]'); if(r) r.hidden=!show;
+      });
+    });
+  });
+  var allc=fb.querySelector('.sfchip[data-band="all"]'); if(allc) allc.classList.add("on");
+}
+/* Academia & research base — derived strictly from firms/supply-chain notes.
+   Surfaces universities, defence-science and CRC entities already named in the
+   industrial evidence and ties them to the component/subsystem base above. */
+function renderResearch(p){
+  var f=(p&&p.factsheet)||{}; if(!f.firms&&!f.supply_chain) return "";
+  var RX=/UNSW|ANU\b|Universit|DSTG|Defence Science|CRC\b|SmartSat|Institute|Test Facility|academ/i;
+  var items=[], seen={};
+  (f.firms||[]).forEach(function(x){ if((RX.test(x.name)||RX.test(x.role))&&!seen[x.name]){ seen[x.name]=1; items.push({n:x.name,r:x.role,src:"firm",label:x.label}); } });
+  (f.supply_chain||[]).forEach(function(x){ if(RX.test(x.note)&&!seen[x.layer]){ seen[x.layer]=1; items.push({n:x.layer+" — research inputs",r:x.note,src:"layer"}); } });
+  if(!items.length) return "";
+  var h='<div class="sec-label" style="margin-top:26px">Research &amp; academic base — sovereign R&amp;D behind the subsystems <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
+  h+='<p style="font-size:12px;color:var(--muted);margin-bottom:12px">Universities, defence-science and cooperative-research entities named in the industrial evidence — the R&amp;D layer feeding the component base above: test and qualification, sovereign avionics, atomic-clock/PNT science, and space-based air-traffic-management research. Derived only from firms and supply-chain notes already in the record.</p>';
+  h+='<div class="firmgrid">';
+  items.forEach(function(it){ var lb=it.src==="firm"?(it.label||"FACT"):"ASSESSMENT"; var lt=it.src==="firm"?(it.label||"FACT"):"EVIDENCE"; h+='<div class="firm"><div class="fn">'+esc(it.n)+' <span class="lab '+cls(lb)+'">'+esc(lt)+'</span></div><div class="fr">'+esc(it.r)+'</div></div>'; });
+  h+='</div>';
+  return h;
+}
+/* subsystem -> parent supply-chain layer: the explicit, data-joined link
+   between the component decomposition and the national supply-chain table.
+   Keyword map onto the exact layer strings held in factsheet.supply_chain. */
+function subLayer(part){
+  var n=String(part||"").toLowerCase();
+  if(/structure|bus|avionic|obc|computer/.test(n)) return "Satellite manufacture / bus";
+  if(/sensor|optic|imag|eo\b|sar\b/.test(n)) return "Payloads / sensors";
+  if(/comm|transponder|satcom/.test(n)) return "SATCOM";
+  if(/timing|frequency|clock|pnt/.test(n)) return "PNT";
+  if(/antenna|dish|lna|front|modem|baseband|feed|rf\b/.test(n)) return "Ground segment";
+  if(/tt&c|ops|software|processing|analytic|data/.test(n)) return "Data / analytics / ops";
+  if(/power|solar|propuls|adcs|attitude|thermal|harness/.test(n)) return "Components / subsystems";
+  return null;
+}
+function scFind(sc,layer){ if(!sc||!layer) return null; for(var i=0;i<sc.length;i++){ if(sc[i].layer===layer) return sc[i]; } return null; }
+
+function scEvidenceFor(p,k){var sc=((p.factsheet||{}).supply_chain)||[];var map={launch:"Launch",satellite:"Satellite manufacture / bus",ground:"Ground segment",sda:"SDA / SSA",user:"Data / analytics / ops"};var row=sc.filter(function(x){return x.layer===map[k];})[0];return row?row.note:"";}
 function miniRing(x,y,m){
   var r=8,C=2*Math.PI*r,f=Math.max(0,Math.min(5,m))/5;
   return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="var(--hair)" stroke-width="2.5"/>'+
-   '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" '+
+   '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="'+sovCol(m)+'" stroke-width="2.5" stroke-linecap="round" '+
    'stroke-dasharray="'+(C*f).toFixed(1)+' '+C.toFixed(1)+'" transform="rotate(-90 '+x+' '+y+')"/>'+
    '<text x="'+x+'" y="'+(y+3)+'" text-anchor="middle" font-size="8" font-weight="600" fill="var(--ink)" font-family="var(--sans)">'+m+'</text>';
 }
@@ -1912,11 +2236,13 @@ function renderExploded(parts,kind){
     if(slot){
       s+='<g transform="translate('+slot.x+','+slot.y+')" fill="var(--surface)" stroke="var(--navy2)" stroke-width="1.3">'+slot.d+'</g>';
       /* leader: dot at part, elbow to label row */
-      s+='<circle cx="'+(slot.x+22)+'" cy="'+slot.y+'" r="1.6" fill="var(--accent)"/>'+
+      s+='<circle cx="'+(slot.x+22)+'" cy="'+slot.y+'" r="1.6" fill="'+sovCol(pt.cap)+'"/>'+
          '<path d="M'+(slot.x+22)+','+slot.y+' L'+(slot.x+52)+','+ly+' L226,'+ly+'" fill="none" stroke="var(--hair)" stroke-width="1"/>';
     }
+    var _scl=subLayer(pt.part);
     s+=miniRing(240,ly,pt.cap)+
-       '<text x="256" y="'+(ly+3.5)+'" font-size="10" fill="var(--ink)" font-family="var(--sans)">'+esc(pt.part.length>24?pt.part.slice(0,23)+"…":pt.part)+'</text>';
+       '<text x="256" y="'+(ly+1)+'" font-size="10" fill="var(--ink)" font-family="var(--sans)">'+esc(pt.part.length>24?pt.part.slice(0,23)+"…":pt.part)+'</text>'+
+       (_scl?'<text x="256" y="'+(ly+10.5)+'" font-size="7.3" fill="var(--muted)" font-family="var(--sans)" letter-spacing="0.4" style="text-transform:uppercase">&#8594; '+esc(_scl)+'</text>':'');
     s+='</g>';
   });
   s+='</svg></div>';
@@ -2248,9 +2574,13 @@ function loadLeaflet(){
   return window.__lfP;
 }
 function siteMapPopup(s){
-  var b='<b>'+esc(s.n)+'</b><br>'+esc(s.t||"")+(s.who?' — '+esc(s.who):'');
-  b+='<br><span style="font-size:11px">Sovereign control '+esc(String(s.m))+'/5'+(s.sov?' · '+esc(s.sov):'')+'</span>';
-  return b;
+  var col=sovCol(s.m), pips="";
+  for(var i=1;i<=5;i++) pips+='<i style="display:inline-block;width:9px;height:6px;margin-right:2px;border-radius:1px;background:'+(i<=s.m?col:"#d9d3c6")+'"></i>';
+  return '<div style="border-left:3px solid '+col+';padding-left:8px">'+
+    '<b style="font-size:12.5px">'+siteTypeGlyph(s.t)+' '+esc(s.n)+'</b>'+
+    '<br><span style="font-size:11px;color:#5a5346">'+esc(s.t||"")+(s.who?' — '+esc(s.who):'')+'</span>'+
+    '<br><span style="font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#8a6a2f">Sovereign control '+esc(String(s.m))+'/5</span> '+pips+
+    (s.sov?'<br><span style="font-size:11px">'+esc(s.sov)+'</span>':'')+'</div>';
 }
 function initSiteMap(p, sites){
   loadLeaflet().then(function(){
@@ -2261,30 +2591,38 @@ function initSiteMap(p, sites){
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
       attribution:'&copy; OpenStreetMap contributors &copy; CARTO', subdomains:'abcd', maxZoom:18 }).addTo(map);
     var pts=[], marks=[];
-    sites.forEach(function(s){
+    sites.forEach(function(s,si){
       if(typeof s.lat!=="number"||typeof s.lng!=="number") return;
       pts.push([s.lat,s.lng]);
       var mk=L.circleMarker([s.lat,s.lng],{radius:8,color:'#fff',weight:1.6,fillColor:sovCol(s.m),fillOpacity:0.92})
         .addTo(map).bindPopup(siteMapPopup(s))
-        .on('mouseover',function(){ mk.openPopup(); })
-        .on('click',function(){ var d=els('map-detail'); if(d) d.innerHTML='<b>'+esc(s.n)+'</b> — '+esc(s.t||'')+(s.who?' · '+esc(s.who):'')+' · sovereign control '+esc(String(s.m))+'/5'+(s.sov?'. '+esc(s.sov):''); });
-      marks.push({s:s,mk:mk});
+        .on('mouseover',function(){ mk.openPopup(); siteRowHi(si,true); })
+        .on('mouseout',function(){ siteRowHi(si,false); })
+        .on('click',function(){ siteDetail(s); });
+      if(mk._path){ mk._path.setAttribute("data-si",si); mk._path.setAttribute("data-band",sovBand(s.m)); }
+      marks.push({s:s,mk:mk,si:si,band:sovBand(s.m)});
     });
     window.__launchNear=[];
     loadLaunches().then(function(list){
       if(!list.length) return;
+      var liveCount=0, soonest=null;
       marks.forEach(function(o){
         var near=launchesNear(o.s.lat,o.s.lng,list);
         if(!near.length) return;
         window.__launchNear=window.__launchNear.concat(near);
         o.mk.setPopupContent(siteMapPopup(o.s)+launchHTML(near));
         var soon=near.some(function(L){ return (new Date(L.net)-Date.now())<14*86400000; });
-        if(soon && o.mk._path){ o.mk._path.classList.add("mk-live"); }
+        var badge=document.querySelector('.sr-live[data-si="'+o.si+'"]');
+        if(badge){ badge.hidden=false; badge.className='sr-live'+(soon?' soon':''); badge.textContent=soon?'● <14d':'upcoming'; badge.title=esc(near[0].name)+' — '+esc(fmtNet(near[0].net)); }
+        if(soon){ liveCount++; if(!soonest||new Date(near[0].net)<new Date(soonest.net)) soonest=near[0]; if(o.mk._path) o.mk._path.classList.add("mk-live"); }
       });
+      var lb=els("site-live");
+      if(lb && soonest){ lb.hidden=false; lb.innerHTML='<span class="pulse"></span><b>Live launch cadence</b> &mdash; '+liveCount+' mapped site'+(liveCount===1?'':'s')+' with a window inside 14 days &middot; next: '+esc(soonest.name)+' '+esc(fmtNet(soonest.net)); }
     });
     if(pts.length>1) map.fitBounds(pts,{padding:[34,34]});
     else if(pts.length===1) map.setView(pts[0], 6);
     L.control.scale({imperial:false}).addTo(map);
+    wireSiteList(map, marks);
   }).catch(function(){ siteSchematic(p, sites); });
 }
 /* offline fallback: the pre-Leaflet schematic, kept so the page degrades honestly */
@@ -2298,8 +2636,9 @@ function siteSchematic(p, sites){
   function Y(lat){return (1-(lat-minLat)/(maxLat-minLat))*H;}
   var g='<svg viewBox="0 0 600 380" role="img" aria-label="Offline site map — '+esc(p.name)+' space sites" style="width:100%;display:block;background:var(--surface2)">';
   sites.forEach(function(s){ var x=X(s.lng),y=Y(s.lat);
-    g+='<circle cx="'+x+'" cy="'+y+'" r="7" fill="'+sovCol(s.m)+'" stroke="#fff" stroke-width="1.5"/>'+
-       '<text x="'+(x+10)+'" y="'+(y+4)+'" font-size="10" fill="var(--ink)">'+esc(s.n.slice(0,26))+'</text>'; });
+    g+='<circle cx="'+x+'" cy="'+y+'" r="8" fill="'+sovCol(s.m)+'" stroke="#fff" stroke-width="1.5"/>'+
+       '<text x="'+x+'" y="'+(y+3)+'" text-anchor="middle" font-size="8" font-weight="600" fill="#fff">'+esc(String(s.m))+'</text>'+
+       '<text x="'+(x+12)+'" y="'+(y+4)+'" font-size="10" fill="var(--ink)">'+esc(s.n.slice(0,26))+'</text>'; });
   g+='</svg><div class="mut" style="font-size:11px;padding:6px 10px">Offline schematic — live cartography unavailable.</div>';
   el.innerHTML=g;
 }
@@ -2314,7 +2653,8 @@ function wireSites(p){
       var k=nd.getAttribute("data-k"),m=nd.getAttribute("data-m");
       var lbl=(ARCH_LAYERS.filter(function(L){return L.k===k;})[0]||{}).label||k;
       var d=els("arch-detail"); if(!d) return;
-      d.innerHTML='<b>'+esc(lbl)+' — sovereign maturity '+esc(m)+'/5.</b> '+esc((p.arch&&p.arch.note)||"");
+      var ev=scEvidenceFor(p,k);
+      d.innerHTML='<b>'+esc(lbl)+' — sovereign maturity '+esc(m)+'/5.</b> '+esc(ev||(p.arch&&p.arch.note)||"");
       if(k==="launch"&&window.__launchNear&&window.__launchNear.length){
         var seen={},uniq=window.__launchNear.filter(function(L){ if(seen[L.name])return false; seen[L.name]=1; return true; }).slice(0,3);
         d.innerHTML+='<div style="margin-top:5px;font-size:11.5px"><b style="color:var(--accent)">Live:</b> next from mapped sites — '+
@@ -2327,7 +2667,7 @@ function wireSites(p){
   });
   /* component hover */
   document.querySelectorAll(".ex-part").forEach(function(pt){
-    function show(){ var d=els("comp-detail"); if(d) d.innerHTML='<b>'+esc(pt.getAttribute("data-part"))+' — capability '+esc(pt.getAttribute("data-cap"))+'/5.</b> '+esc(pt.getAttribute("data-note")); }
+    function show(){ var d=els("comp-detail"); if(!d) return; var _pn=pt.getAttribute("data-part"), _scl=subLayer(_pn), _scr=scFind((p.factsheet||{}).supply_chain,_scl); d.innerHTML='<b>'+esc(_pn)+' — capability '+esc(pt.getAttribute("data-cap"))+'/5.</b> '+esc(pt.getAttribute("data-note"))+(_scr?'<div style="margin-top:5px;font-size:11.5px;color:var(--muted)">Feeds supply-chain layer <b style="color:var(--ink2)">'+esc(_scr.layer)+'</b> &middot; national maturity <b>'+esc(_scr.maturity)+'</b></div>':''); }
     pt.addEventListener("mouseenter",show); pt.addEventListener("click",show); pt.addEventListener("focus",show);
   });
 }
