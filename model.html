@@ -511,6 +511,9 @@ i.lp-mark{vertical-align:-2px;margin-right:6px}
 
 .skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:#fff;padding:8px 14px;z-index:100000;border-radius:0 0 8px 0}
 .skip:focus{left:0}
+html.embedded .class-banner,html.embedded footer,html.embedded .hdr-row{display:none!important}
+html.embedded header.app-hdr{padding-top:4px}
+html.embedded main{padding-top:10px}
 .lp-mini{display:flex;gap:3px;margin:2px 0 4px}
 .lp-mini .lp-mark{width:10px;height:10px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
@@ -4915,6 +4918,11 @@ document.addEventListener("click", e => {
     renderArchitecture();
   }
 });
+/* embed mode: inside the command brief the model sheds its own chrome —
+   banner, masthead and footer — and keeps only the working surface. */
+try{
+  if(new URLSearchParams(location.search).get("embed")==="1") document.documentElement.classList.add("embedded");
+}catch(e){}
 window.addEventListener("hashchange", route);
 el("hdr-gen").textContent = `Data ${MODEL.meta.generated}`;
 el("hdr-gen").title = `Model v${MODEL.meta.version} · app v5 build 2026-07-22 · open-source baseline`;

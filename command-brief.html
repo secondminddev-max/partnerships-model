@@ -565,7 +565,8 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
   <section id="analytics">
     <div class="an-top">
       <button class="pv-back" id="an-home">&#8962; Home</button>
-      <span class="an-title">Portfolio &amp; Analytics — full analytical register (same data as the briefs)</span>
+      <button class="pv-back" id="an-back" style="display:none"></button>
+      <span class="an-title">Analysis — the full register and scoring, in place. Same data as the briefs.</span>
       <a class="an-open" id="an-newtab" href="model.html" target="_blank" rel="noopener">Open full-screen &#8599;</a>
     </div>
     <iframe id="an-frame" title="Analytical model — portfolio-wide views"></iframe>
@@ -738,7 +739,7 @@ function buildRail(){
 var TABS=[
   ["factsheet","Factsheet"],["leadership","Leadership & Calendar"],
   ["loe","Lines of Effort"],["opps","Opportunities"],
-  ["artefacts","Artefacts"],["sites","Sites & Architecture"],["newsroom","Newsroom"],
+  ["artefacts","Artefacts"],["analysis","Analysis"],["sites","Sites & Architecture"],["newsroom","Newsroom"],
   ["placemat","Placemat"],["generate","Minute / In-brief"]
 ];
 var CURKEY=null, CURTAB="factsheet";
@@ -760,7 +761,9 @@ function openPartner(key){
   var tb=els("tabs"); tb.innerHTML="";
   TABS.forEach(function(t){
     var b=document.createElement("button"); b.className="tab"+(t[0]===CURTAB?" active":"");
-    b.textContent=t[1]; b.addEventListener("click",function(){ CURTAB=t[0];
+    b.textContent=t[1]; b.addEventListener("click",function(){
+      if(t[0]==="analysis"){ openAnalyticsAt(MODEL_KEYS.indexOf(CURKEY)>=0?("#/partner/"+CURKEY):"", CURKEY); return; }
+      CURTAB=t[0];
       try{ history.replaceState(null,"", "?p="+CURKEY+"#"+CURTAB); }catch(e){}
       renderTabs(); });
     b.setAttribute("data-tab",t[0]); tb.appendChild(b);
@@ -775,11 +778,20 @@ function goHome(){ els("view").style.display="none"; els("analytics").style.disp
 els("pv-back").addEventListener("click",goHome);
 els("pv-home").addEventListener("click",goHome);
 els("an-home").addEventListener("click",goHome);
-function openAnalyticsAt(hash){
+els("an-back").addEventListener("click",function(){ if(AN_FROM) openPartner(AN_FROM); else goHome(); });
+var MODEL_KEYS=["nz","us","uk","japan","india","germany","uae","pacific","canada","france","italy","norway","rok","singapore","domestic","multilateral"];
+var AN_FROM=null;  /* the partner we entered analysis from, for the return path */
+function openAnalyticsAt(hash, fromKey){
+  AN_FROM=fromKey||null;
   els("hero").style.display="none"; els("view").style.display="none";
-  var f=els("an-frame"), want="model.html"+(hash||"");
+  var f=els("an-frame"), want="model.html?embed=1"+(hash||"");
   if(f.getAttribute("src")!==want) f.setAttribute("src",want);
-  els("analytics").style.display="flex"; els("an-newtab").setAttribute("href",want); window.scrollTo(0,0);
+  els("analytics").style.display="flex";
+  els("an-newtab").setAttribute("href","model.html"+(hash||""));
+  var bk=els("an-back");
+  if(bk){ bk.style.display=AN_FROM?"":"none";
+    bk.textContent=AN_FROM?("\u25C2 Back to "+((FLAGDEF[AN_FROM]&&FLAGDEF[AN_FROM].name)||AN_FROM)+" brief"):""; }
+  window.scrollTo(0,0);
 }
 window.openAnalyticsAt=openAnalyticsAt;
 els("open-analytics").addEventListener("click",function(){ openAnalyticsAt(""); });
@@ -1363,7 +1375,7 @@ function renderArtefacts(p){
      '<select class="lib-sort" id="lib-sort"><option value="rel">Sort: relevance</option><option value="date">Newest</option><option value="name">Name A–Z</option><option value="type">Type</option></select>'+
      '<span class="lib-count" id="lib-count"></span></div>';
   h+='<div id="lib-list"></div>';
-  h+='<p class="foot-note" style="margin-top:14px">Need portfolio-wide analytics (scoring, pathways, cross-partner comparison)? Open the <a href="#" class="js-analytics">full analytical model</a> — same register, same data.</p>';
+  h+='<p class="foot-note" style="margin-top:14px">Scoring, pathways and cross-partner comparison continue under this partner\'s <b>Analysis</b> tab — the full register opens in place, same data.</p>';
   return h;
 }
 function wireLibrary(){
