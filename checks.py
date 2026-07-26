@@ -165,6 +165,28 @@ if mv:
 else:
     check("cover verdict strip present", False)
 
+
+print("== css structure (catches floating declarations) ==")
+def css_lint(css):
+    import re as _re
+    css=_re.sub(r"/\*.*?\*/","",css,flags=_re.S)
+    depth=0; buf=""; orphans=0
+    for ch in css:
+        if ch=="{": depth+=1; buf=""
+        elif ch=="}": depth-=1; buf=""
+        elif ch==";" and depth==0:
+            frag=buf.strip()
+            if ":" in frag and not frag.startswith("@"): orphans+=1
+            buf=""
+        else: buf+=ch
+    return orphans
+css_bad=[]
+for fn, content in pages.items():
+    for m in re.finditer(r"<style[^>]*>(.*?)</style>", content, re.S):
+        n=css_lint(m.group(1))
+        if n: css_bad.append(f"{fn}:{n}")
+check("no floating CSS declarations (root-wrapper bug class)", not css_bad, ",".join(css_bad))
+
 print()
 if fails:
     print("FAILURES:", ", ".join(fails)); sys.exit(1)
