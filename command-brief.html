@@ -384,6 +384,144 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
 .scene3-hint{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:10px;letter-spacing:.06em;
   text-transform:uppercase;color:var(--muted);pointer-events:none}
 
+/* ===== architecture: layer explorer (Concept C) ===== */
+  /* dark viewport — fixed like a photograph, independent of theme */
+  --vp-bg1:#12233d; --vp-bg2:#0a1322;
+  --vp-ink:#cfe0f4; --vp-ink2:#9fb1c9; --vp-mut:#5d708a;
+  --vp-hair:rgba(207,224,244,.14); --vp-hair2:rgba(207,224,244,.07);
+  --bronze:#d9a755; --bronze-hi:#ecc27a; --bronze-lo:#c08c3e;
+  --sans:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+}
+/* ---------- dark viewport ---------- */
+.ax-viewport{position:relative;border-radius:12px;overflow:hidden;
+  background:radial-gradient(120% 110% at 50% 0%, var(--vp-bg1) 0%, var(--vp-bg2) 100%);
+  border:1px solid rgba(154,107,47,.45);
+  box-shadow:0 18px 40px -18px rgba(31,58,95,.35)}
+.ax-topbar{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:14px 20px 12px;border-bottom:1px solid var(--vp-hair)}
+.ax-topbar .t1{font-size:10px;letter-spacing:.22em;color:var(--bronze);font-weight:600}
+.ax-topbar .t1 b{color:var(--vp-ink);font-weight:600}
+.ax-topbar .t2{font-size:9.5px;letter-spacing:.18em;color:var(--vp-mut)}
+.ax-cols{display:flex;gap:0;align-items:stretch}
+
+/* ---------- sovereign rail ---------- */
+.ax-rail{flex:0 0 178px;padding:16px 14px 14px 18px;border-right:1px solid var(--vp-hair)}
+.ax-rail-h{font-size:8.5px;letter-spacing:.2em;color:var(--bronze);font-weight:600;margin-bottom:12px}
+.ax-score{display:block;width:100%;padding:7px 6px 8px;margin:0 -6px 2px;border-radius:7px;
+  cursor:pointer;border:1px solid transparent;background:none;text-align:left;color:inherit}
+.ax-score:hover{background:rgba(217,167,85,.07)}
+.ax-score:focus-visible{outline:2px solid var(--bronze);outline-offset:1px}
+.ax-score.is-lit{background:rgba(217,167,85,.1);border-color:rgba(217,167,85,.35)}
+.ax-score-lab{display:block;font-size:9px;letter-spacing:.14em;color:var(--vp-ink2);margin-bottom:5px}
+.ax-score-row{display:flex;align-items:center;gap:10px}
+.ax-pips{display:flex;gap:4px;flex:1}
+.ax-pip{width:17px;height:9px;border-radius:2px;border:1px solid rgba(207,224,244,.35)}
+.ax-pip.on{border-color:transparent;background:linear-gradient(180deg,var(--bronze-hi),var(--bronze-lo));
+  box-shadow:0 0 6px rgba(217,167,85,.5)}
+.ax-score-num{font-family:var(--serif);font-size:17px;color:#f0e6d2;min-width:14px;text-align:right}
+.ax-rail-note{margin-top:12px;font-size:7.5px;letter-spacing:.16em;color:var(--vp-mut)}
+
+/* ---------- stack ---------- */
+.ax-stackwrap{flex:1;min-width:0;overflow-x:auto}
+.ax-stack{min-width:830px;padding:10px 18px 6px 12px}
+.ax-axis{display:grid;grid-template-columns:26px 170px 1fr;margin-bottom:2px}
+.ax-axis svg{display:block;width:600px;height:20px}
+.ax-band{display:grid;grid-template-columns:26px 170px 1fr;grid-template-rows:auto auto;
+  border-top:1px solid var(--vp-hair2)}
+.ax-band:first-of-type{border-top:none}
+.ax-band:nth-of-type(even) {background:rgba(207,224,244,.025)}
+/* gutter — the load-path spine */
+.ax-gutter{grid-row:1/3;grid-column:1;position:relative}
+.lp-line{position:absolute;left:12px;width:2px;background:var(--bronze);opacity:0;border-radius:1px}
+.lp-line.up{top:0;height:19px}
+.lp-line.down{top:33px;bottom:0}
+.lp-up .lp-line.up{opacity:.85}
+.lp-down .lp-line.down{opacity:.85}
+.lp-gap .lp-line{background:repeating-linear-gradient(180deg,var(--bronze) 0 3px,transparent 3px 7px);opacity:.5}
+.lp-node{position:absolute;left:8px;top:22px;width:10px;height:10px;border-radius:50%;
+  background:linear-gradient(180deg,var(--bronze-hi),var(--bronze-lo));
+  box-shadow:0 0 8px rgba(217,167,85,.65);display:none}
+.lp-dot .lp-node{display:block}
+.lp-gap .lp-node{display:block;background:none;box-shadow:none;border:2px dashed rgba(217,167,85,.75);
+  width:9px;height:9px}
+/* band button */
+.ax-bandbtn{grid-column:2;grid-row:1;display:flex;flex-direction:column;justify-content:center;
+  gap:1px;text-align:left;background:none;border:none;border-radius:7px;cursor:pointer;
+  padding:8px 10px;margin:3px 4px 3px 0;color:inherit;font-family:inherit;position:relative;
+  transition:background .18s}
+.ax-bandbtn:hover{background:rgba(217,167,85,.08)}
+.ax-bandbtn:focus-visible{outline:2px solid var(--bronze);outline-offset:1px}
+.ax-lname{font-size:11px;letter-spacing:.18em;font-weight:600;color:var(--vp-ink);
+  display:flex;align-items:center;gap:7px}
+.ax-lname .chev{display:inline-block;width:7px;height:7px;border-right:1.5px solid var(--bronze);
+  border-bottom:1.5px solid var(--bronze);transform:rotate(-45deg);transition:transform .25s;flex:none}
+.ax-bandbtn[aria-expanded="true"] .chev{transform:rotate(45deg)}
+.ax-lsub{font-size:9.5px;color:var(--vp-mut);letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:152px}
+.ax-lcount{font-size:9.5px;color:var(--vp-ink2);letter-spacing:.06em;white-space:nowrap}
+.ax-lcount em{font-style:normal;color:var(--bronze)}
+/* strip */
+.ax-strip{grid-column:3;grid-row:1;display:flex;align-items:center}
+.ax-strip svg{display:block;width:600px;height:52px}
+.inode{cursor:pointer}
+.inode:focus-visible{outline:2px solid var(--bronze);outline-offset:2px;border-radius:4px}
+.inode:hover .n-hit{stroke:rgba(217,167,85,.5);stroke-width:1}
+/* expanding detail */
+.ax-detail{grid-column:2/4;grid-row:2;display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .3s cubic-bezier(.3,.7,.3,1)}
+.ax-detail.open{grid-template-rows:1fr}
+.ax-detail-in{overflow:hidden;min-height:0}
+.ax-detail ul{list-style:none;padding:2px 14px 12px 10px}
+.ax-drow{display:grid;grid-template-columns:24px 1fr auto;gap:8px;align-items:center;
+  padding:5px 8px;border-radius:6px;border-top:1px solid var(--vp-hair2)}
+.ax-drow:first-child{border-top:none}
+.ax-drow.row-hl{background:rgba(217,167,85,.14)}
+.ax-drow svg{display:block;width:20px;height:20px}
+.ax-dname{font-size:12px;color:var(--vp-ink);line-height:1.3}
+.ax-dtype{font-size:9.5px;color:var(--vp-mut);letter-spacing:.05em}
+.ax-chips{display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.axchip{font-size:8.5px;letter-spacing:.09em;text-transform:uppercase;padding:2px 7px;
+  border-radius:9px;border:1px solid;white-space:nowrap}
+.axchip.stIF{color:#6bbd90;border-color:rgba(107,189,144,.5)}
+.axchip.stSN{color:#dcae63;border-color:rgba(220,174,99,.5)}
+.axchip.stUN{color:#dcae63;border-color:rgba(220,174,99,.5);border-style:dashed}
+.axchip.stTV{color:#98a0ab;border-color:rgba(152,160,171,.55);border-style:dotted}
+.axchip.stLP{color:#7c8794;border-color:rgba(124,135,148,.4);text-decoration:line-through}
+.axchip.rel{color:var(--vp-ink2);border-color:var(--vp-hair)}
+.axchip.rel.Direct{color:var(--bronze);border-color:rgba(217,167,85,.45)}
+
+/* ---------- legend ---------- */
+.ax-legend{display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center;
+  padding:11px 20px 13px;border-top:1px solid var(--vp-hair)}
+.ax-legend .li{display:flex;align-items:center;gap:7px;font-size:9px;letter-spacing:.1em;
+  color:var(--vp-ink2);text-transform:uppercase}
+.ax-legend svg{display:block;width:18px;height:14px;flex:none}
+.ax-legend .sep{width:1px;height:14px;background:var(--vp-hair)}
+
+/* ---------- tooltip ---------- */
+.ax-tip{position:absolute;z-index:6;max-width:280px;pointer-events:none;opacity:0;
+  transition:opacity .14s;background:rgba(10,19,34,.96);border:1px solid rgba(217,167,85,.55);
+  border-radius:8px;padding:9px 12px 10px;box-shadow:0 10px 26px -8px rgba(0,0,0,.6)}
+.ax-tip.show{opacity:1}
+.ax-tip .tt-name{font-family:var(--serif);font-size:13.5px;color:#f0e6d2;line-height:1.3;margin-bottom:4px}
+.ax-tip .tt-meta{font-size:9.5px;letter-spacing:.06em;color:var(--vp-ink2);line-height:1.6}
+.ax-tip .tt-meta b{color:var(--bronze);font-weight:600}
+
+/* ---------- host detail card (production contract demo) ---------- */
+.arch-detail{margin-top:14px;padding:12px 16px;background:var(--surface2);
+  border:1px solid var(--hair);border-radius:9px;font-size:12.5px;color:var(--ink)}
+.arch-detail b{color:var(--navy)}
+.cap{margin-top:10px;font-size:11px;color:var(--muted)}
+.cap b{color:var(--accent);font-weight:600}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;animation:none !important}
+}
+@media print{
+  .ax-detail{grid-template-rows:1fr}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
 /* avatars */
 .avatar{width:72px;height:72px;min-width:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:23px;font-weight:600;letter-spacing:.02em;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 0 0 1px var(--hair),0 1px 4px rgba(0,0,0,.28)}
@@ -1620,7 +1758,7 @@ function renderSites(p){
   if(arch){
     h+='<div class="sec-label" style="margin-top:26px">Space architecture — sovereign control by layer <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
     h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">Hover or tap a node to see '+esc(p.name)+'\'s sovereign maturity over that part of the architecture (0 none – 5 full). Ground sites sit on the Earth limb; the readouts at right carry the score for each layer.</p>';
-    h+=renderArchSvg(arch);
+    h+=renderArchSvg(arch, cbArchCtx(p));
     h+='<div class="arch-detail" id="arch-detail" role="status">'+esc(arch.note||"")+'</div>';
   }
   /* COMPONENT CAPABILITY — exploded satellite & ground station */
@@ -1802,82 +1940,265 @@ function archGauge(x,y,m,label,key){
    Orbit band, link band, ground baseline; five maturity gauges (0-5 arcs)
    in the house bronze; glyphs in thin line-art. Hover contract unchanged:
    .archnode + data-k/data-m feed the existing detail panel. */
-function renderArchSvg(arch){
-  /* v3 — an orbital operations panel, not a diagram. Dark viewport into the
-     domain (fixed palette, deliberately independent of theme, like a photo),
-     Earth limb, three orbit shells with moving spacecraft, illuminated ground
-     sites on the limb, and the five sovereign-control scores as HUD readouts:
-     segmented bars where the fill IS the score. Hover/focus contract intact
-     (.archnode + data-k/data-m). */
-  var motion = !(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
-  var CX=300, CY=768, R=500;                       /* Earth limb geometry */
-  function limbY(x){ var dx=x-CX; return CY-Math.sqrt(Math.max(0,R*R-dx*dx)); }
-  var s='<svg id="archsvg" viewBox="0 0 680 380" role="img" aria-label="Space architecture — sovereign control by layer" style="width:100%;max-width:760px;display:block">';
-  s+='<defs>'+
-     '<radialGradient id="a3bg" cx="0.5" cy="0.1" r="1.1"><stop offset="0" stop-color="#12233d"/><stop offset="1" stop-color="#0a1322"/></radialGradient>'+
-     '<radialGradient id="a3earth" cx="0.5" cy="0.32" r="0.9"><stop offset="0" stop-color="#16304f"/><stop offset="0.75" stop-color="#0d1f36"/><stop offset="1" stop-color="#0a1830"/></radialGradient>'+
-     '<linearGradient id="a3atmo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fa8e8" stop-opacity="0.5"/><stop offset="1" stop-color="#6fa8e8" stop-opacity="0"/></linearGradient>'+
-     '<linearGradient id="a3seg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ecc27a"/><stop offset="1" stop-color="#c08c3e"/></linearGradient>'+
-     '<filter id="a3glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'+
-     '</defs>';
-  s+='<rect x="1" y="1" width="678" height="378" rx="12" fill="url(#a3bg)" stroke="rgba(217,167,85,.4)" stroke-width="1"/>';
-  /* stars */
-  var st=[[46,46,1.1],[92,102,.8],[150,38,1.2],[210,84,.7],[262,52,1],[330,30,.8],[388,70,1.1],[452,44,.7],[262,132,.6],[128,150,.9],[70,196,.7],[196,178,.6],[420,120,.8],[368,158,.6],[480,86,1],[44,262,.6],[502,150,.7],[236,236,.5]];
-  st.forEach(function(p){ s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+p[2]+'" fill="#cfe0f4" opacity="'+(0.25+p[2]*0.25)+'"/>'; });
-  /* orbit shells (clipped to panel by geometry) */
-  [[R+58,'rgba(207,224,244,.22)','none'],[R+104,'rgba(207,224,244,.15)','none'],[R+150,'rgba(207,224,244,.12)','5 7']].forEach(function(o){
-    s+='<circle cx="'+CX+'" cy="'+CY+'" r="'+o[0]+'" fill="none" stroke="'+o[1]+'" stroke-width="1"'+(o[2]!=='none'?' stroke-dasharray="'+o[2]+'"':'')+'/>';
-  });
-  /* Earth limb + atmosphere */
-  s+='<circle cx="'+CX+'" cy="'+CY+'" r="'+(R+7)+'" fill="none" stroke="url(#a3atmo)" stroke-width="14" opacity="0.8"/>';
-  s+='<circle cx="'+CX+'" cy="'+CY+'" r="'+R+'" fill="url(#a3earth)"/>';
-  s+='<circle cx="'+CX+'" cy="'+CY+'" r="'+R+'" fill="none" stroke="#7fb2ff" stroke-width="1" opacity="0.35"/>';
-  /* moving spacecraft on two shells */
-  function orbitPath(r){ var y1=CY-r; return 'M -40,'+(limbYr(r,-40))+' A '+r+','+r+' 0 0 1 720,'+(limbYr(r,720)); }
-  function limbYr(r,x){ var dx=x-CX; var v=r*r-dx*dx; return v>0? CY-Math.sqrt(v) : CY-0; }
-  var satBody='<rect x="-5" y="-3.5" width="10" height="7" rx="1"/><line x1="-5" y1="0" x2="-11" y2="0"/><rect x="-16" y="-3" width="5" height="6"/><line x1="5" y1="0" x2="11" y2="0"/><rect x="11" y="-3" width="5" height="6"/>';
-  function sat(anim){ return '<g filter="url(#a3glow)"><g stroke="#cfe0f4" stroke-width="1.1" fill="#0d1f36">'+(anim||"")+satBody+'</g></g>'; }
-  if(motion){
-    s+='<path id="a3o1" d="'+orbitPath(R+58)+'" fill="none" stroke="none"/>'+
-       '<path id="a3o2" d="'+orbitPath(R+104)+'" fill="none" stroke="none"/>'+
-       sat('<animateMotion dur="34s" repeatCount="indefinite" rotate="auto"><mpath href="#a3o1"/></animateMotion>')+
-       sat('<animateMotion dur="55s" repeatCount="indefinite" rotate="auto" begin="-20s"><mpath href="#a3o2"/></animateMotion>');
-  }else{
-    s+='<g transform="translate(210,'+(limbY(210)-58)+')" filter="url(#a3glow)"><g stroke="#cfe0f4" stroke-width="1.1" fill="#0d1f36">'+satBody+'</g></g>';
+/* build the layer-explorer ctx from this partner's register slice */
+function cbArchCtx(p){
+  return { partnerName:(FLAGDEF[CURKEY]&&FLAGDEF[CURKEY].name)||(p&&p.name)||"",
+           instruments:partnerVehicles(CURKEY),
+           layerOf:function(v){ var k=cbLayerOf(v); return k==="span"?"working":k; } };
+}
+
+/* ================= model ================= */
+var AX_LAYERS=[
+  {k:"leader", label:"LEADER",  sub:"Heads of government"},
+  {k:"minister",label:"MINISTER",sub:"Portfolio ministers"},
+  {k:"official",label:"OFFICIAL",sub:"Senior officials & agencies"},
+  {k:"command", label:"COMMAND", sub:"Commanders & service chiefs"},
+  {k:"working", label:"WORKING", sub:"Working groups & programmes"},
+  {k:"ops",     label:"OPS",     sub:"Operations & exercises"}
+];
+var AX_COLS=[
+  {k:"bilateral_def",label:"BILATERAL · DEFENCE",x:0,  w:200},
+  {k:"multilateral", label:"MULTILATERAL",       x:200,w:166},
+  {k:"bilateral_civ",label:"CIVIL · BILATERAL",  x:366,w:116},
+  {k:"other",        label:"DOMESTIC & OTHER",   x:482,w:118}
+];
+var ARCH_ROWS=[["satellite","SATELLITES"],["launch","LAUNCH"],["ground","GROUND SEG"],["sda","SDA SENSORS"],["user","USER TERM"]];
+var CH_LABEL={bilateral_def:"Bilateral · defence",multilateral:"Multilateral",bilateral_civ:"Bilateral · civil",domestic:"Domestic",thirdparty:"Third-party",none:"Unaligned"};
+function colOf(ch){return (ch==="bilateral_def"||ch==="multilateral"||ch==="bilateral_civ")?ch:"other";}
+function relR(rel){return rel==="Direct"?6.5:(rel==="Enabling"?4.6:3);}
+function statusChip(st){
+  if(st==="In force") return '<span class="axchip stIF">In force</span>';
+  if(st==="Signed - not yet in force") return '<span class="axchip stSN">Signed</span>';
+  if(st==="Under negotiation") return '<span class="axchip stUN">Negotiating</span>';
+  if(st==="TO_VERIFY") return '<span class="axchip stTV">To verify</span>';
+  if(st==="Lapsed/superseded") return '<span class="axchip stLP">Lapsed</span>';
+  return '<span class="axchip stTV">'+esc(st)+'</span>';
+}
+/* one instrument as an SVG mark. cx,cy in local coords. */
+function nodeMark(inst,cx,cy){
+  var r=relR(inst.space_relevance), ch=inst.channel, st=inst.status, s="";
+  var negotiating=(st==="Under negotiation");
+  var fillA=(st==="Signed - not yet in force")?0.6:1;
+  var core="";
+  if(ch==="bilateral_def"){
+    core=negotiating
+      ? '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="rgba(217,167,85,.22)" stroke="#d9a755" stroke-width="1.4" stroke-dasharray="2.4 2.2"/>'
+      : '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="#d9a755" fill-opacity="'+fillA+'" stroke="#ecc27a" stroke-width="0.8"/>';
+  }else if(ch==="multilateral"){
+    core='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#cfe0f4" stroke-width="1.5"'+(negotiating?' stroke-dasharray="2.4 2.2" opacity=".7"':' opacity="'+fillA+'"')+'/>';
+  }else if(ch==="bilateral_civ"){
+    core='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="#9fb1c9" stroke-width="1.4" stroke-dasharray="3 2.6"'+(negotiating?' opacity=".6"':' opacity="'+fillA+'"')+'/>';
+  }else if(ch==="domestic"){
+    core='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="rgba(207,224,244,.24)"'+(negotiating?' stroke="rgba(207,224,244,.5)" stroke-width="1" stroke-dasharray="2.4 2.2"':'')+' opacity="'+fillA+'"/>';
+  }else{ /* thirdparty / none */
+    core='<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="rgba(207,224,244,.5)" stroke-width="1.2" stroke-dasharray="1.4 2.6"/>';
   }
-  /* ground sites on the limb */
-  var SITES=[["launch",120,"Launch"],["ground",250,"Ground"],["sda",380,"SDA"],["user",470,"Users"]];
-  SITES.forEach(function(t){
-    var x=t[1], y=limbY(x);
-    s+='<g class="archnode" data-k="'+t[0]+'" data-m="'+(arch[t[0]]||0)+'" tabindex="0" role="button" aria-label="'+t[2]+' — sovereign control '+(arch[t[0]]||0)+' of 5" style="cursor:pointer">'+
-       '<line x1="'+x+'" y1="'+(y-1)+'" x2="'+x+'" y2="'+(y-12)+'" stroke="#d9a755" stroke-width="1.4" filter="url(#a3glow)"/>'+
-       '<circle cx="'+x+'" cy="'+(y-14)+'" r="3" fill="#d9a755" filter="url(#a3glow)"/>'+
-       '<text x="'+x+'" y="'+(y+16)+'" text-anchor="middle" font-size="8.5" letter-spacing="1.4" fill="#9fb1c9" font-family="var(--sans)">'+t[2].toUpperCase()+'</text></g>';
-    s+='<g class="beam"><line x1="'+(motion?300:210)+'" y1="'+(limbY(motion?300:210)-56)+'" x2="'+x+'" y2="'+(y-16)+'" stroke="#d9a755" stroke-width="0.8" opacity="0.4"/></g>';
-  });
-  /* HUD — sovereign-control readouts */
-  s+='<rect x="520" y="26" width="146" height="308" rx="9" fill="rgba(10,19,34,.72)" stroke="rgba(207,224,244,.18)"/>';
-  s+='<text x="533" y="48" font-size="8.5" letter-spacing="2" fill="#d9a755" font-family="var(--sans)">SOVEREIGN CONTROL</text>';
-  var ROWS=[["satellite","SATELLITES"],["launch","LAUNCH"],["ground","GROUND SEG"],["sda","SDA SENSORS"],["user","USER TERM"]];
-  ROWS.forEach(function(rw,i){
-    var m=arch[rw[0]]||0, y=74+i*52;
-    s+='<g class="archnode" data-k="'+rw[0]+'" data-m="'+m+'" tabindex="0" role="button" aria-label="'+rw[1]+' — sovereign control '+m+' of 5" style="cursor:pointer">'+
-       '<text x="533" y="'+y+'" font-size="9" letter-spacing="1.3" fill="#9fb1c9" font-family="var(--sans)">'+rw[1]+'</text>';
-    for(var b=0;b<5;b++){
-      var filled=b<m;
-      s+='<rect x="'+(533+b*20)+'" y="'+(y+8)+'" width="15" height="9" rx="1.5" '+
-         (filled?'fill="url(#a3seg)" filter="url(#a3glow)"':'fill="none" stroke="rgba(207,224,244,.4)" stroke-width="1"')+'/>';
-    }
-    s+='<text x="'+653+'" y="'+(y+17)+'" text-anchor="end" font-size="15" font-weight="600" fill="#f0e6d2" font-family="var(--serif)">'+m+'</text></g>';
-  });
-  s+='<text x="533" y="322" font-size="7.5" letter-spacing="1.6" fill="#5d708a" font-family="var(--sans)">SCALE 0–5 · ASSESSED</text>';
-  s+='</svg>';
+  if(st==="TO_VERIFY") s+='<circle cx="'+cx+'" cy="'+cy+'" r="'+(r+3.2)+'" fill="none" stroke="#8a93a1" stroke-width="1" stroke-dasharray="1 2.6"/>';
+  s+=core;
+  if(st==="Lapsed/superseded"){
+    s='<g opacity="0.35">'+s+'</g>'+
+      '<line x1="'+(cx-r-2.5)+'" y1="'+(cy+r+2.5)+'" x2="'+(cx+r+2.5)+'" y2="'+(cy-r-2.5)+'" stroke="#9fb1c9" stroke-width="1.1"/>';
+  }
   return s;
 }
-/* ---------- live launch feed (The Space Devs Launch Library 2) ----------
-   Second knowing external dependency, Sites tab only, cached 30 min,
-   silent-degrading offline. Launches matched to mapped sites by pad
-   proximity, so no manual site-ID mapping to rot. */
+function sortNodes(a,b){
+  var R={Direct:0,Enabling:1,General:2}, S={"In force":0,"Signed - not yet in force":1,"Under negotiation":2,"TO_VERIFY":3,"Lapsed/superseded":4};
+  return (R[a.space_relevance]-R[b.space_relevance])||(S[a.status]-S[b.status])||a.name.localeCompare(b.name);
+}
+function colSeparators(h){
+  var s="";
+  for(var i=1;i<AX_COLS.length;i++)
+    s+='<line x1="'+AX_COLS[i].x+'" y1="3" x2="'+AX_COLS[i].x+'" y2="'+(h-3)+'" stroke="rgba(207,224,244,.09)" stroke-width="1"/>';
+  return s;
+}
+
+/* ================= renderArchSvg — drop-in replacement =================
+   Same production signature: renderArchSvg(arch). The instrument register
+   comes from window.ARCH_CTX at integration (host sets it before render);
+   the prototype falls back to MOCK_CTX. Returns an HTML string, exactly
+   like production. The five sovereign readouts carry the unchanged host
+   hover contract: .archnode + data-k + data-m + tabindex + role + aria. */
+function renderArchSvg(arch,ctx){
+  ctx=ctx||{instruments:[],layerOf:function(){return "ops";},partnerName:""};
+  var ins=ctx.instruments||[];
+  /* group instruments by layer, preserving original index for tooltips */
+  var byLayer={}; AX_LAYERS.forEach(function(L){byLayer[L.k]=[];});
+  ins.forEach(function(v,i){
+    var lk=ctx.layerOf(v); if(!byLayer[lk]) lk="ops";
+    byLayer[lk].push({inst:v,idx:i});
+  });
+  /* load path: layers holding an in-force bilateral-defence space instrument */
+  function inPath(lk){
+    return byLayer[lk].some(function(o){var v=o.inst;
+      return v.channel==="bilateral_def"&&v.status==="In force"&&(v.space_relevance==="Direct"||v.space_relevance==="Enabling");});
+  }
+  var pathFlags=AX_LAYERS.map(function(L){return inPath(L.k);});
+  var first=pathFlags.indexOf(true), last=pathFlags.lastIndexOf(true);
+
+  var h='<div class="ax" id="ax-root">';
+  h+='<div class="ax-viewport" id="ax-vp">';
+  h+='<div class="ax-topbar"><span class="t1">SPACE ARCHITECTURE — <b>'+esc(String(ctx.partnerName||"").toUpperCase())+'</b></span>'+
+     '<span class="t2">'+ins.length+' INSTRUMENTS · 6 AUTHORITY LAYERS · 4 CHANNELS</span></div>';
+  h+='<div class="ax-cols">';
+
+  /* ---- sovereign rail (host hover contract lives here) ---- */
+  h+='<aside class="ax-rail"><div class="ax-rail-h">SOVEREIGN CONTROL</div>';
+  ARCH_ROWS.forEach(function(rw){
+    var m=arch[rw[0]]||0, pips="";
+    for(var b=0;b<5;b++) pips+='<span class="ax-pip'+(b<m?" on":"")+'"></span>';
+    h+='<div class="archnode ax-score" tabindex="0" role="button" data-k="'+rw[0]+'" data-m="'+m+'" '+
+       'aria-label="'+esc(rw[1])+' — sovereign control '+m+' of 5">'+
+       '<span class="ax-score-lab">'+rw[1]+'</span>'+
+       '<span class="ax-score-row"><span class="ax-pips">'+pips+'</span>'+
+       '<span class="ax-score-num">'+m+'</span></span></div>';
+  });
+  h+='<div class="ax-rail-note">SCALE 0–5 · ASSESSED</div></aside>';
+
+  /* ---- stack ---- */
+  h+='<div class="ax-stackwrap"><div class="ax-stack">';
+  /* channel axis */
+  h+='<div class="ax-axis"><span></span><span></span><svg viewBox="0 0 600 20" aria-hidden="true">';
+  AX_COLS.forEach(function(c){
+    h+='<text x="'+(c.x+6)+'" y="13" font-size="8" letter-spacing="1.6" fill="#5d708a" font-family="var(--sans)">'+c.label+'</text>';
+  });
+  h+=colSeparators(20)+'</svg></div>';
+
+  AX_LAYERS.forEach(function(L,li){
+    var rows=byLayer[L.k].slice();
+    var nDirect=rows.filter(function(o){return o.inst.space_relevance==="Direct";}).length;
+    var onPath=pathFlags[li], inRange=(first>=0&&li>=first&&li<=last);
+    var gcls=[];
+    if(inRange){
+      if(li>first) gcls.push("lp-up");
+      if(li<last) gcls.push("lp-down");
+      gcls.push(onPath?"lp-dot":"lp-gap");
+    }
+    h+='<section class="ax-band" data-layer="'+L.k+'">';
+    h+='<div class="ax-gutter '+gcls.join(" ")+'"'+
+       (inRange&&!onPath?' title="Load path breaks here — no in-force bilateral-defence space instrument at this layer"':'')+
+       '><span class="lp-line up"></span><span class="lp-line down"></span><span class="lp-node"></span></div>';
+    h+='<button class="ax-bandbtn" aria-expanded="false" aria-controls="ax-d-'+L.k+'">'+
+       '<span class="ax-lname"><span class="chev"></span>'+L.label+'</span>'+
+       '<span class="ax-lsub">'+L.sub+'</span>'+
+       '<span class="ax-lcount">'+rows.length+' instruments'+(nDirect?' <em>· '+nDirect+' space-direct</em>':'')+'</span></button>';
+
+    /* strip: nodes laid into channel columns */
+    h+='<div class="ax-strip"><svg viewBox="0 0 600 52" aria-hidden="false" role="group" aria-label="'+esc(L.sub)+' — '+rows.length+' instruments">';
+    h+=colSeparators(52);
+    AX_COLS.forEach(function(c){
+      var cell=rows.filter(function(o){return colOf(o.inst.channel)===c.k;})
+                   .sort(function(a,b){return sortNodes(a.inst,b.inst);});
+      var n=cell.length; if(!n) return;
+      var gap=Math.min(26,(c.w-30)/Math.max(1,n-1));
+      cell.forEach(function(o,i2){
+        var cx=c.x+17+i2*gap, cy=26, v=o.inst;
+        h+='<g class="inode" tabindex="0" role="button" data-i="'+o.idx+'" data-layer="'+L.k+'" '+
+           'aria-label="'+esc(v.name)+' — '+esc(v.vehicle_type)+', '+esc(v.status)+', '+esc(CH_LABEL[v.channel]||v.channel)+', space relevance '+esc(v.space_relevance)+'">'+
+           '<circle class="n-hit" cx="'+cx+'" cy="'+cy+'" r="11" fill="transparent" stroke="none"/>'+
+           nodeMark(v,cx,cy)+'</g>';
+      });
+    });
+    h+='</svg></div>';
+
+    /* expanding register */
+    h+='<div class="ax-detail" id="ax-d-'+L.k+'"><div class="ax-detail-in"><ul>';
+    rows.sort(function(a,b){
+      var C={bilateral_def:0,multilateral:1,bilateral_civ:2,domestic:3,thirdparty:4,none:5};
+      return (C[a.inst.channel]-C[b.inst.channel])||sortNodes(a.inst,b.inst);
+    }).forEach(function(o){
+      var v=o.inst;
+      h+='<li class="ax-drow" data-i="'+o.idx+'">'+
+         '<svg viewBox="0 0 20 20" aria-hidden="true">'+nodeMark(v,10,10)+'</svg>'+
+         '<span><span class="ax-dname">'+esc(v.name)+'</span><br><span class="ax-dtype">'+esc(v.vehicle_type)+' · '+esc(CH_LABEL[v.channel]||v.channel)+'</span></span>'+
+         '<span class="ax-chips">'+statusChip(v.status)+'<span class="axchip rel '+esc(v.space_relevance)+'">'+esc(v.space_relevance)+'</span></span></li>';
+    });
+    h+='</ul></div></div>';
+    h+='</section>';
+  });
+  h+='</div></div>'; /* stack, stackwrap */
+  h+='</div>';       /* ax-cols */
+
+  /* legend — every mark explained, nothing decorative */
+  h+='<div class="ax-legend">'+
+     '<span class="li"><svg viewBox="0 0 18 14"><circle cx="9" cy="7" r="5" fill="#d9a755" stroke="#ecc27a" stroke-width="0.8"/></svg>Bilateral defence</span>'+
+     '<span class="li"><svg viewBox="0 0 18 14"><circle cx="9" cy="7" r="5" fill="none" stroke="#cfe0f4" stroke-width="1.5"/></svg>Multilateral</span>'+
+     '<span class="li"><svg viewBox="0 0 18 14"><circle cx="9" cy="7" r="5" fill="none" stroke="#9fb1c9" stroke-width="1.4" stroke-dasharray="3 2.6"/></svg>Civil</span>'+
+     '<span class="li"><svg viewBox="0 0 18 14"><circle cx="9" cy="7" r="5" fill="rgba(207,224,244,.24)"/></svg>Domestic</span>'+
+     '<span class="li"><svg viewBox="0 0 18 14"><circle cx="9" cy="7" r="5" fill="none" stroke="rgba(207,224,244,.5)" stroke-width="1.2" stroke-dasharray="1.4 2.6"/></svg>Third-party</span>'+
+     '<span class="sep"></span>'+
+     '<span class="li"><svg viewBox="0 0 18 14"><circle cx="4.5" cy="7" r="5" fill="#d9a755"/><circle cx="12" cy="7" r="3.4" fill="#d9a755"/><circle cx="16.4" cy="7" r="2" fill="#d9a755"/></svg>Size = space relevance</span>'+
+     '<span class="li"><svg viewBox="0 0 18 14"><circle cx="9" cy="7" r="4" fill="#d9a755"/><circle cx="9" cy="7" r="6.4" fill="none" stroke="#8a93a1" stroke-width="1" stroke-dasharray="1 2.6"/></svg>To verify</span>'+
+     '<span class="sep"></span>'+
+     '<span class="li"><svg viewBox="0 0 18 14"><line x1="9" y1="1" x2="9" y2="13" stroke="#d9a755" stroke-width="2"/><circle cx="9" cy="7" r="3.4" fill="#d9a755"/></svg>Load path — in-force bilateral-defence space authority</span>'+
+     '<span class="li"><svg viewBox="0 0 18 14"><line x1="9" y1="0" x2="9" y2="14" stroke="#d9a755" stroke-width="1.6" stroke-dasharray="3 3" opacity=".6"/><circle cx="9" cy="7" r="3.6" fill="none" stroke="#d9a755" stroke-width="1.5" stroke-dasharray="2 2"/></svg>Break in path</span>'+
+     '</div>';
+
+  h+='<div class="ax-tip" id="ax-tip" role="status" aria-live="polite"></div>';
+  h+='</div></div>'; /* viewport, ax */
+  return h;
+}
+
+/* ================= wireArch — optional behaviour layer =================
+   Adds: band expand/collapse (animated height), instrument tooltips
+   (hover + keyboard focus), click-through from a mark to its register row,
+   Escape to dismiss. The host may skip this call; the panel still renders
+   and the .archnode contract still works via the host's own listeners. */
+function wireArch(rootEl,ctx){
+  ctx=ctx||{instruments:[],layerOf:function(){return "ops";},partnerName:""};
+  var ins=ctx.instruments||[];
+  var vp=rootEl.querySelector("#ax-vp"), tip=rootEl.querySelector("#ax-tip");
+
+  function toggleBand(btn,force){
+    var d=rootEl.querySelector("#"+btn.getAttribute("aria-controls"));
+    var open=(force!=null)?force:!(btn.getAttribute("aria-expanded")==="true");
+    btn.setAttribute("aria-expanded",open?"true":"false");
+    d.classList.toggle("open",open);
+  }
+  rootEl.querySelectorAll(".ax-bandbtn").forEach(function(btn){
+    btn.addEventListener("click",function(){toggleBand(btn);});
+  });
+
+  function showTip(nd){
+    var i=+nd.getAttribute("data-i"), v=ins[i]; if(!v||!tip) return;
+    tip.innerHTML='<div class="tt-name">'+esc(v.name)+'</div>'+
+      '<div class="tt-meta"><b>'+esc(v.vehicle_type)+'</b> · '+esc(v.level)+'<br>'+
+      esc(CH_LABEL[v.channel]||v.channel)+' · '+esc(v.status)+' · space: '+esc(v.space_relevance)+'</div>';
+    var vr=vp.getBoundingClientRect(), nr=nd.getBoundingClientRect();
+    var x=nr.left-vr.left+nr.width/2, yTop=nr.top-vr.top;
+    tip.classList.add("show");
+    var tw=tip.offsetWidth||240;
+    x=Math.max(tw/2+8,Math.min(vr.width-tw/2-8,x));
+    if(yTop>78){ tip.style.top=(yTop-10)+"px"; tip.style.transform="translate(-50%,-100%)"; }
+    else{ tip.style.top=(nr.bottom-vr.top+10)+"px"; tip.style.transform="translate(-50%,0)"; }
+    tip.style.left=x+"px";
+  }
+  function hideTip(){ if(tip) tip.classList.remove("show"); }
+
+  rootEl.querySelectorAll(".inode").forEach(function(nd){
+    nd.addEventListener("mouseenter",function(){showTip(nd);});
+    nd.addEventListener("mouseleave",hideTip);
+    nd.addEventListener("focus",function(){showTip(nd);});
+    nd.addEventListener("blur",hideTip);
+    function activate(){
+      var band=nd.getAttribute("data-layer");
+      var btn=rootEl.querySelector('.ax-band[data-layer="'+band+'"] .ax-bandbtn');
+      if(btn){ toggleBand(btn,true); }
+      var row=rootEl.querySelector('.ax-drow[data-i="'+nd.getAttribute("data-i")+'"]');
+      if(row){
+        row.classList.add("row-hl");
+        setTimeout(function(){row.classList.remove("row-hl");},1600);
+        if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches))
+          setTimeout(function(){row.scrollIntoView({block:"nearest",behavior:"smooth"});},320);
+      }
+    }
+    nd.addEventListener("click",activate);
+    nd.addEventListener("keydown",function(e){
+      if(e.key==="Enter"||e.key===" "){e.preventDefault();activate();}
+    });
+  });
+  rootEl.addEventListener("keydown",function(e){ if(e.key==="Escape") hideTip(); });
+}
+
 function loadLaunches(){
   if(window.__ll2P) return window.__ll2P;
   try{
@@ -1986,6 +2307,7 @@ function wireSites(p){
   var sites=p.sites||[];
   if(sites.length && els("lmap")) initSiteMap(p, sites);
   wireModels(p);
+  try{ wireArch(els("panels")||document, cbArchCtx(p)); }catch(e){}
   /* architecture hover */
   document.querySelectorAll(".archnode").forEach(function(nd){
     function show(){
@@ -1999,7 +2321,9 @@ function wireSites(p){
           uniq.map(function(L){ return esc(L.name)+' ('+esc(fmtNet(L.net))+')'; }).join(" · ")+'</div>';
       }
     }
-    nd.addEventListener("mouseenter",show); nd.addEventListener("click",show); nd.addEventListener("focus",show);
+    var lit=function(){ document.querySelectorAll(".ax-score").forEach(function(s){ s.classList.toggle("is-lit",s===nd); }); };
+    var show2=function(){ show(); lit(); };
+    nd.addEventListener("mouseenter",show2); nd.addEventListener("click",show2); nd.addEventListener("focus",show2);
   });
   /* component hover */
   document.querySelectorAll(".ex-part").forEach(function(pt){
