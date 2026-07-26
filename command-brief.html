@@ -1587,7 +1587,7 @@ function buildPlacemat(p){
     h+='<div class="pm-thin"><span class="pm-tag">Depth</span>'+
        esc(p.name)+' is carried at register depth: factsheet, leadership, artefacts and the '+
        'authority read below are populated, but the bottom line, current-state assessment and '+
-       'staffed pathways have not been written. New Zealand is the worked example.</div>';
+       'staffed pathways have not been written. New Zealand and the United States are the worked examples.</div>';
   }
 
   if(b.bottom_line) h+='<div class="pm-bl"><span class="pm-tag">Bottom line</span>'+esc(scrubEv(b.bottom_line))+'</div>';
@@ -1646,7 +1646,7 @@ function buildMinute(p){
   paras.push("Authority held. "+vd.head+". "+vd.body+" (Derived from the partnership register; see the load path on the factsheet.)");
   if(p.future_state) paras.push("Opportunity. "+p.future_state.headline+" The action items below are drawn from the model's staffed pathways.");
   if(!p.current_state && !ops.length)
-    paras.push("Depth. "+p.name+" is carried in the model at register depth. The authority read above is derived from the register and stands; the current-state assessment and staffed pathways have not been written, and this minute should not be issued until they are. New Zealand is the worked example.");
+    paras.push("Depth. "+p.name+" is carried in the model at register depth. The authority read above is derived from the register and stands; the current-state assessment and staffed pathways have not been written, and this minute should not be issued until they are. New Zealand and the United States are the worked examples.");
 
   var n=0;
   var body=paras.map(function(t){ n++; return n+".    "+t; });
