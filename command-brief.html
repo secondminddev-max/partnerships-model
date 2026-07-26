@@ -659,6 +659,144 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
 .map-legend .mk-live-key{background:#b4432f;box-shadow:0 0 0 3px rgba(180,67,47,.25)}
 .md-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle}
 @media(prefers-reduced-motion: reduce){.site-live .pulse{animation:none}}
+/* ===== orbital domain plate (Concept C) ===== */
+
+:root{
+  --paper:#f3f1ea; --ink:#1b2431; --ink2:#54606f; --muted:#656d7a; --hair:#ddd8cc;
+  --accent:#9a6b2f; --accent-b:#d9a755; --accent-hi:#ecc27a;
+  --space0:#0a1322; --space1:#12233d; --steel:#9fb1c9; --steel-hi:#cfe0f4;
+  --serif:"Iowan Old Style",Georgia,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"SFMono-Regular",ui-monospace,"Roboto Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;padding:34px 22px 60px}
+
+/* ============ PLATE — the dark viewport framed into the paper brief ============ */
+.orb{--o-accent:var(--accent-b);position:relative;border-radius:12px;overflow:hidden;
+  background:linear-gradient(180deg,#0b1526,#0a1322 60%,#080f1c);
+  border:1px solid #26160a;
+  box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 18px 44px -22px rgba(20,15,5,.55),
+    0 0 0 1px rgba(217,167,85,.16);}
+.orb::before{content:"";position:absolute;inset:7px;border:1px solid rgba(217,167,85,.28);
+  border-radius:7px;pointer-events:none;z-index:6}
+.orb-corner{position:absolute;width:15px;height:15px;z-index:7;pointer-events:none;
+  border:0 solid rgba(217,167,85,.62)}
+.orb-corner.tl{top:11px;left:11px;border-top-width:1.5px;border-left-width:1.5px}
+.orb-corner.tr{top:11px;right:11px;border-top-width:1.5px;border-right-width:1.5px}
+.orb-corner.bl{bottom:11px;left:11px;border-bottom-width:1.5px;border-left-width:1.5px}
+.orb-corner.br{bottom:11px;right:11px;border-bottom-width:1.5px;border-right-width:1.5px}
+
+.orb-topbar{position:relative;z-index:5;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  padding:15px 22px 9px;font-size:10.5px;letter-spacing:.16em}
+.orb-topbar .tt{color:var(--accent-hi);font-weight:700;text-transform:uppercase}
+.orb-topbar .tt b{color:#fff;letter-spacing:.2em}
+.orb-topbar .td{color:#6f88ab;text-transform:uppercase}
+.orb-topbar .tflag{margin-left:auto;color:#8a6a3c;border:1px solid rgba(217,167,85,.4);
+  padding:2px 8px;border-radius:20px;font-weight:700;text-transform:uppercase;letter-spacing:.14em}
+
+.orb-stage{position:relative;z-index:2;padding:0 8px}
+.orb-stage svg{display:block;width:100%;height:auto}
+
+/* orbit shells, satellites, launch, cones, gauges */
+.o-shell{fill:none;stroke:var(--steel);stroke-width:.7;opacity:.5}
+.o-shell.prime{stroke:var(--accent-b);stroke-width:.9;opacity:.85}
+.o-shelllbl{font-family:var(--sans);font-size:8.2px;fill:#93a7c6;letter-spacing:.02em}
+.o-shelllbl .km{font-family:var(--mono);fill:#c7d5ea;font-size:8.2px}
+.o-shelllbl.prime{fill:#bcd0ec}
+.o-shelllbl.prime .km{fill:var(--accent-hi)}
+.o-node{fill:var(--accent-b)}
+.o-bandlbl{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.12em;fill:#e7edf6}
+.o-bandkm{font-family:var(--mono);font-size:8.6px;fill:var(--accent-hi);letter-spacing:.02em}
+.o-bandcon{font-family:var(--sans);font-size:8.4px;fill:#93a7c6}
+.o-lead{stroke:rgba(217,167,85,.34);stroke-width:.7;fill:none;stroke-dasharray:2 2}
+.o-axline{stroke:rgba(159,177,201,.42);stroke-width:.8}
+.o-axtick{stroke:rgba(159,177,201,.5);stroke-width:.8}
+.o-axtick.min{stroke:rgba(159,177,201,.26)}
+.o-axlbl{font-family:var(--mono);font-size:8.2px;fill:#9fb1c9;letter-spacing:.02em}
+.o-axtitle{font-family:var(--sans);font-size:8px;font-weight:700;letter-spacing:.22em;fill:#7f96b6}
+
+.orbnode{cursor:pointer;outline:none}
+.orbnode:focus-visible .foc,.orbnode.active .foc{opacity:1}
+.foc{opacity:0;transition:opacity .12s}
+.orbnode:hover .o-shell{opacity:1;stroke-width:1.3}
+.sat-body{fill:var(--accent-b);stroke:#ffe9c4;stroke-width:.4}
+.sat-panel{fill:#6f89ad;stroke:#31445f;stroke-width:.35}
+.sat-ant{stroke:#e7edf6;stroke-width:.5}
+.orbnode:hover .sat-body{fill:var(--accent-hi)}
+
+.cone{fill:url(#sdaCone);opacity:.5}
+.orbnode:hover .cone{opacity:.85}
+.gs-mast{stroke:var(--accent-hi);stroke-width:1}
+.gs-dish{fill:#d7e2f0;stroke:#7f96b6;stroke-width:.5}
+.gs-lbl{font-family:var(--mono);font-size:7.6px;fill:#bcd0ec;letter-spacing:.02em}
+
+.launch-path{fill:none;stroke:url(#launchGrad);stroke-width:1.7;stroke-linecap:round;
+  stroke-dasharray:3.4 2.8}
+.launch-cap{font-family:var(--mono);font-size:7.4px;fill:#e7c187;letter-spacing:.02em}
+.launch-node{fill:#e7edf6;stroke:var(--accent-b);stroke-width:.7}
+
+.gauge-plate{fill:rgba(8,16,28,.72);stroke:rgba(217,167,85,.22);stroke-width:.8}
+.gauge-track{fill:none;stroke:#0b1a2b;stroke-width:4.4}
+.gauge-val{fill:none;stroke:var(--accent-b);stroke-width:3.1;stroke-linecap:round}
+.gauge-num{font-family:var(--serif);font-size:12.5px;font-weight:600;fill:#fff}
+.gauge-lbl{font-family:var(--sans);font-size:7.4px;font-weight:700;letter-spacing:.09em;fill:#c7d5ea}
+.gauge-sub{font-family:var(--mono);font-size:6.8px;fill:#7f96b6;letter-spacing:.02em}
+.orbnode:hover .gauge-val,.orbnode.active .gauge-val{stroke:var(--accent-hi)}
+.gauge-rail-h{font-family:var(--sans);font-size:7.2px;font-weight:700;letter-spacing:.18em;fill:#7f96b6}
+
+.star{fill:#cfe0f4}
+.horizon{fill:none;stroke:#7fb6e0;stroke-width:1.1;opacity:.85}
+.grat{fill:none;stroke:rgba(150,190,225,.16);stroke-width:.5}
+.citylt{fill:#e7b871}
+
+/* HUD readout */
+.orb-hud{position:relative;z-index:5;margin:2px 12px 12px;border-radius:8px;
+  background:linear-gradient(180deg,rgba(14,26,44,.9),rgba(9,17,30,.92));
+  border:1px solid rgba(217,167,85,.2);display:grid;grid-template-columns:1.15fr 1fr;
+  gap:0;overflow:hidden}
+.hud-l{padding:12px 15px;border-right:1px solid rgba(217,167,85,.14)}
+.hud-r{padding:12px 15px}
+.hud-ey{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#7f96b6;font-weight:700;margin-bottom:6px}
+.hud-name{font-family:var(--serif);font-size:16px;color:#f2ede3;font-weight:600;line-height:1.2}
+.hud-tag{font-family:var(--mono);font-size:10px;color:var(--accent-hi);margin-top:2px}
+.hud-params{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 10px;margin-top:11px}
+.hud-params .p .k{font-size:8.4px;letter-spacing:.1em;text-transform:uppercase;color:#6f88ab;font-weight:600}
+.hud-params .p .v{font-family:var(--mono);font-size:12px;color:#e7edf6;margin-top:2px}
+.hud-params .p .v small{font-size:8.6px;color:#8ba3c4}
+.hud-note{font-size:11.5px;color:#b7c4d6;line-height:1.5;margin-top:11px}
+.hud-seg-h{display:flex;align-items:baseline;justify-content:space-between}
+.hud-seg-name{font-size:11px;font-weight:700;letter-spacing:.06em;color:#e7edf6}
+.hud-seg-score{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--accent-hi);line-height:1}
+.hud-seg-score small{font-size:12px;color:#8ba3c4;font-weight:400}
+.hud-pips{display:flex;gap:4px;margin:9px 0 4px}
+.hud-pip{width:100%;height:5px;border-radius:3px;background:#12233d;border:1px solid #24405f}
+.hud-pip.on{background:var(--accent-b);border-color:var(--accent-hi)}
+.hud-seg-note{font-size:11px;color:#9fb1c9;line-height:1.5;margin-top:8px}
+.hud-live{position:absolute;left:-9999px}
+
+.orb-legend{position:relative;z-index:5;display:flex;flex-wrap:wrap;gap:6px 16px;
+  padding:0 22px 16px;font-size:9.6px;color:#8ba3c4;letter-spacing:.02em}
+.orb-legend .li{display:inline-flex;align-items:center;gap:5px}
+.orb-legend svg{overflow:visible}
+.orb-legend .sep{width:1px;height:11px;background:rgba(159,177,201,.24)}
+
+
+@media (max-width:680px){ .orb-hud{grid-template-columns:1fr} .hud-l{border-right:none;border-bottom:1px solid rgba(217,167,85,.14)} }
+
+/* ============ MOTION — every animation gated by reduced-motion ============ */
+@keyframes orb-ride{ from{offset-distance:0%} to{offset-distance:100%} }
+@keyframes orb-twk{ 0%,100%{opacity:.25} 50%{opacity:.9} }
+@keyframes orb-limbpulse{ 0%,100%{opacity:.75} 50%{opacity:1} }
+@keyframes orb-climb{ from{offset-distance:0%} to{offset-distance:100%} }
+.sat{ offset-rotate:auto; }
+.rocket{ offset-rotate:auto; animation:orb-climb 7s ease-in infinite; }
+.horizon{ animation:orb-limbpulse 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce){
+  .orb *{ animation:none !important; }
+}
+
 /* avatars */
 .avatar{width:72px;height:72px;min-width:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:23px;font-weight:600;letter-spacing:.02em;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.18),0 0 0 1px var(--hair),0 1px 4px rgba(0,0,0,.28)}
@@ -1928,6 +2066,9 @@ function renderSites(p){
   }
   /* ARCHITECTURE — layer overview (3D schematic) */
   if(arch){
+    h+='<div class="sec-label" style="margin-top:26px">Orbital domain — the segments at true altitude <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
+    h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">A ground-to-GEO elevation on a logarithmic altitude axis: each regime at true relative altitude with its real constellations, sovereign maturity engraved per segment. Hover, tap or Tab any element for its orbital parameters and score.</p>';
+    h+=orbitalDomain(arch, cbOrbCtx(p));
     h+='<div class="sec-label" style="margin-top:26px">Space architecture — sovereign control by layer <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
     h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">Hover or tap a node to see '+esc(p.name)+'\'s sovereign maturity over that part of the architecture (0 none – 5 full). Ground sites sit on the Earth limb; the readouts at right carry the score for each layer.</p>';
     h+=renderArchSvg(arch, cbArchCtx(p));
@@ -2206,6 +2347,462 @@ function subLayer(part){
 function scFind(sc,layer){ if(!sc||!layer) return null; for(var i=0;i<sc.length;i++){ if(sc[i].layer===layer) return sc[i]; } return null; }
 
 function scEvidenceFor(p,k){var sc=((p.factsheet||{}).supply_chain)||[];var map={launch:"Launch",satellite:"Satellite manufacture / bus",ground:"Ground segment",sda:"SDA / SSA",user:"Data / analytics / ops"};var row=sc.filter(function(x){return x.layer===map[k];})[0];return row?row.note:"";}
+(function(){
+
+/* =====================================================================
+   orbitalDomain(arch, ctx) -> HTML/SVG string   (+ wireOrbital for interaction)
+   CONCEPT C · "Scaled elevation" — the technically-honest KSP option.
+
+   arch : {satellite,launch,ground,sda,user}  each 0-5 sovereign maturity
+   ctx  : { partnerName, sites:[{n,t,lat,lng,who,sov,m}], launchesNear:[{name,net}] }
+
+   Geometry — Earth centre O far below the frame, so the orbit shells render as
+   genuine concentric arcs (real orbital geometry) that stack as an altitude
+   elevation. Radius maps altitude LOGARITHMICALLY above the atmosphere, so the
+   400 km LEO floor and the 35,786 km GEO belt both read on one plate.
+   ===================================================================== */
+
+var O={x:480,y:3600}, RSURF=3080, R100=3120, PXDEC=164, WIN=7.0; /* visible half-angle deg */
+function ralt(a){ return R100 + PXDEC*(Math.log10(Math.max(a,100))-2); }
+function ptr(r,deg){ var t=deg*Math.PI/180; return {x:O.x+r*Math.sin(t), y:O.y-r*Math.cos(t)}; }
+function ptA(a,deg){ return ptr(ralt(a),deg); }
+function yA(a){ return O.y-ralt(a); }                 /* screen-y of altitude a at zenith */
+function yShellAtX(r,x){ var s=Math.max(-1,Math.min(1,(x-O.x)/r)); return O.y - r*Math.cos(Math.asin(s)); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+function n1(x){ return (Math.round(x*10)/10).toFixed(1); }
+function fmt(x){ return String(x).replace(/\B(?=(\d{3})+(?!\d))/g,','); }
+
+/* sampled arc across an angular window: a real orbit shell */
+function arc(r,d0,d1,seg,cont){
+  var s='';
+  for(var i=0;i<=seg;i++){ var d=d0+(d1-d0)*i/seg, p=ptr(r,d);
+    s+=((i===0)?(cont?'L':'M'):'L')+p.x.toFixed(1)+','+p.y.toFixed(1); }
+  return s;
+}
+function circlePath(r){ /* full orbit for offset-path motion; only the top arc is on-frame */
+  var top=(O.y-r).toFixed(1), bot=(O.y+r).toFixed(1);
+  return 'M'+O.x+','+top+' A'+r.toFixed(1)+','+r.toFixed(1)+' 0 1,1 '+O.x+','+bot+
+         ' A'+r.toFixed(1)+','+r.toFixed(1)+' 0 1,1 '+O.x+','+top;
+}
+
+/* orbital velocity (circular, vis-viva) & period from altitude — physically true */
+var MU=398600, RE=6371;
+function orbV(a){ return Math.sqrt(MU/(RE+a)); }                   /* km/s */
+function orbT(a){ var r=RE+a; return 2*Math.PI*Math.sqrt(r*r*r/MU); } /* s */
+function perStr(a){ var s=orbT(a), m=s/60; if(m<600) return Math.round(m)+' min';
+  var h=Math.floor(m/60), mm=Math.round(m-h*60); return h+' h '+(mm<10?'0':'')+mm+' m'; }
+
+/* ---- regime model: real bands, shells, constellations ---- */
+var REGIMES=[
+  { k:'geo', name:'GEOSTATIONARY', lo:35786, hi:35786, seg:'satellite',
+    con:'Optus · Inmarsat · SkyNet',
+    shells:[ {a:35786,who:'Optus · Inmarsat',prime:true,sats:[{deg:-2.2,tone:'#d9a755',dur:0},{deg:2.2,tone:'#d9a755',dur:0}]} ] },
+  { k:'meo', name:'MEDIUM EARTH ORBIT', lo:8000, hi:25000, seg:'satellite',
+    con:'GPS · Galileo · GLONASS',
+    shells:[
+      {a:8062, who:'O3b mPOWER',prime:false,sats:[{deg:1.4,tone:'#8fa9cc',dur:34}]},
+      {a:20180,who:'GPS',prime:true, below:true, sats:[{deg:-4.1,tone:'#d9a755',dur:52},{deg:2.6,tone:'#d9a755',dur:52}]},
+      {a:23222,who:'Galileo',prime:false,sats:[{deg:-1.2,tone:'#8fa9cc',dur:57}]} ] },
+  { k:'leo', name:'LOW EARTH ORBIT', lo:400, hi:2000, seg:'satellite',
+    con:'Starlink · Planet · OneWeb',
+    shells:[
+      {a:550, who:'Starlink · EO',prime:true, sats:[{deg:-5.6,tone:'#d9a755',dur:15},{deg:-1.0,tone:'#d9a755',dur:15},{deg:4.4,tone:'#d9a755',dur:15}]},
+      {a:1200,who:'OneWeb · Iridium',prime:false,sats:[{deg:-3.0,tone:'#8fa9cc',dur:19},{deg:2.2,tone:'#8fa9cc',dur:19}]} ] }
+];
+
+/* segment sovereignty rail — the five scores, engraved at their true altitude */
+var SEG_ORDER=[
+  {k:'sda',      lbl:'SDA SENSORS',   sub:'surveillance', y:96},
+  {k:'satellite',lbl:'SATELLITES',    sub:'space segment',y:232},
+  {k:'launch',   lbl:'LAUNCH',        sub:'orbital access',y:372},
+  {k:'ground',   lbl:'GROUND SEG',    sub:'teleports',    y:492},
+  {k:'user',     lbl:'USER TERM',     sub:'terminals',    y:578}
+];
+
+/* satellite craft icon, drawn about (0,0); offset-rotate banks it along track */
+function satIcon(tone){
+  return '<g class="foc"><circle cx="0" cy="0" r="9" fill="none" stroke="#ecc27a" stroke-width="1.1" opacity="1"/></g>'+
+    '<line class="sat-panel" x1="-13" y1="0" x2="13" y2="0" stroke-width="0.35"/>'+
+    '<rect class="sat-panel" x="-12.5" y="-2.3" width="7.5" height="4.6" rx="0.6"/>'+
+    '<rect class="sat-panel" x="5" y="-2.3" width="7.5" height="4.6" rx="0.6"/>'+
+    '<line class="sat-panel" x1="-8.7" y1="-2.3" x2="-8.7" y2="2.3"/>'+
+    '<line class="sat-panel" x1="8.7" y1="-2.3" x2="8.7" y2="2.3"/>'+
+    '<rect class="sat-body" x="-3.1" y="-2.6" width="6.2" height="5.2" rx="1" style="fill:'+tone+'"/>'+
+    '<line class="sat-ant" x1="0" y1="-2.6" x2="0" y2="-5.4"/>';
+}
+function satNode(a,who,s){
+  var v=orbV(a), dist=(((s.deg/360)*100)+100)%100;
+  var style='offset-path:path(\''+circlePath(ralt(a))+'\');offset-distance:'+dist.toFixed(2)+'%;';
+  if(s.dur>0) style+='animation:orb-ride '+s.dur+'s linear infinite;animation-delay:-'+(dist/100*s.dur).toFixed(2)+'s;';
+  return '<g class="orbnode sat" tabindex="0" role="button" data-k="satellite" '+
+    'data-name="'+esc(who)+'" data-a="'+a+'" data-v="'+n1(v)+'" data-t="'+esc(perStr(a))+'" '+
+    'aria-label="'+esc(who)+' satellite, altitude '+fmt(a)+' km, velocity '+n1(v)+' km per second" '+
+    'style="'+style+'">'+satIcon(s.tone)+'</g>';
+}
+
+/* engraved circular gauge (0-5) */
+function gauge(cx,cy,m,seg,lbl,sub){
+  var r=17, C=2*Math.PI*r, frac=Math.max(0,Math.min(5,m))/5;
+  return '<g class="orbnode" tabindex="0" role="button" data-k="'+seg+'" '+
+      'aria-label="'+esc(lbl)+' sovereign maturity '+m+' of 5">'+
+    '<circle class="gauge-track" cx="'+cx+'" cy="'+cy+'" r="'+r+'"/>'+
+    '<circle class="foc" cx="'+cx+'" cy="'+cy+'" r="'+(r+4.5)+'" fill="none" stroke="#ecc27a" stroke-width="1" opacity="1" stroke-dasharray="2 2.4"/>'+
+    '<circle class="gauge-val" cx="'+cx+'" cy="'+cy+'" r="'+r+'" '+
+      'stroke-dasharray="'+(C*frac).toFixed(1)+' '+C.toFixed(1)+'" transform="rotate(-90 '+cx+' '+cy+')"/>'+
+    '<text class="gauge-num" x="'+cx+'" y="'+(cy+4.3)+'" text-anchor="middle">'+m+'</text>'+
+    '<text class="gauge-lbl" x="'+cx+'" y="'+(cy+r+11)+'" text-anchor="middle">'+esc(lbl)+'</text>'+
+    '<text class="gauge-sub" x="'+cx+'" y="'+(cy+r+20)+'" text-anchor="middle">'+esc(sub)+'</text></g>';
+}
+
+function orbitalDomain(arch, ctx){
+  arch=arch||{}; ctx=ctx||{};
+  var partner=ctx.partnerName||'Partner';
+  var sites=ctx.sites||[], nextL=(ctx.launchesNear||[])[0];
+  function m(k){ return (arch[k]==null?0:arch[k]); }
+
+  var svg='<svg viewBox="0 0 960 640" role="group" aria-label="Orbital domain elevation for '+esc(partner)+', ground to geostationary orbit">';
+
+  /* ---- defs ---- */
+  svg+='<defs>'+
+    '<linearGradient id="spaceGrad" x1="0" y1="0" x2="0" y2="1">'+
+      '<stop offset="0" stop-color="#080f1c"/><stop offset="0.62" stop-color="#0c1729"/>'+
+      '<stop offset="0.86" stop-color="#122741"/><stop offset="1" stop-color="#173352"/></linearGradient>'+
+    '<linearGradient id="earthGrad" x1="0.1" y1="1" x2="0.9" y2="0.15">'+   /* terminator: sun upper-right */
+      '<stop offset="0" stop-color="#08111e"/><stop offset="0.4" stop-color="#0e1f34"/>'+
+      '<stop offset="0.62" stop-color="#1c3a5c"/><stop offset="0.82" stop-color="#2c527f"/>'+
+      '<stop offset="1" stop-color="#3f6a97"/></linearGradient>'+
+    '<linearGradient id="atmGrad" x1="0" y1="1" x2="0" y2="0">'+
+      '<stop offset="0" stop-color="#7fb6e0" stop-opacity="0.5"/>'+
+      '<stop offset="0.45" stop-color="#4d86bf" stop-opacity="0.16"/>'+
+      '<stop offset="1" stop-color="#4d86bf" stop-opacity="0"/></linearGradient>'+
+    '<linearGradient id="launchGrad" x1="0" y1="1" x2="1" y2="0">'+
+      '<stop offset="0" stop-color="#f0d49a"/><stop offset="1" stop-color="#9a6b2f"/></linearGradient>'+
+    '<radialGradient id="sdaCone" cx="0.5" cy="1" r="1">'+
+      '<stop offset="0" stop-color="#7fb6e0" stop-opacity="0.34"/>'+
+      '<stop offset="1" stop-color="#7fb6e0" stop-opacity="0"/></radialGradient>'+
+    '<clipPath id="earthClip"><path d="'+earthFillPath()+'"/></clipPath>'+
+  '</defs>';
+
+  /* ---- deep space + starfield ---- */
+  svg+='<rect x="0" y="0" width="960" height="640" fill="url(#spaceGrad)"/>';
+  svg+=starfield();
+
+  /* ---- regime band shading (subtle annular fills) ---- */
+  REGIMES.forEach(function(rg){
+    var rlo=ralt(rg.lo), rhi=ralt(rg.k==='geo'?rg.hi+2400:rg.hi);
+    if(rg.k==='geo'){ rlo=ralt(35786)-8; rhi=ralt(35786)+8; }
+    svg+='<path d="'+arc(rhi,-WIN-0.4,WIN+0.4,26,false)+arc(rlo,WIN+0.4,-WIN-0.4,26,true)+'Z" '+
+      'fill="rgba(159,177,201,0.045)"/>';
+  });
+
+  /* ---- orbit shells + node markers + km label riding each line ---- */
+  REGIMES.forEach(function(rg){
+    rg.shells.forEach(function(sh){
+      var r=ralt(sh.a);
+      svg+='<path class="o-shell'+(sh.prime?' prime':'')+'" d="'+arc(r,-WIN-0.6,WIN+0.6,30,false)+'"/>';
+      /* ascending / descending node markers (KSP-style ⬦) */
+      [-WIN+0.7, WIN-0.7].forEach(function(nd){
+        var p=ptr(r,nd);
+        svg+='<path class="o-node" d="M'+p.x.toFixed(1)+','+(p.y-2.2).toFixed(1)+' l2,2.2 l-2,2.2 l-2,-2.2 Z" opacity="'+(sh.prime?0.9:0.5)+'"/>';
+      });
+      /* km + constellation flag riding just off the left of the line (clear of the axis) */
+      var lx=178, ly=yShellAtX(r,lx)+(sh.below?10:-3.4);
+      svg+='<circle class="o-node" cx="'+(lx-6).toFixed(1)+'" cy="'+yShellAtX(r,lx-6).toFixed(1)+'" r="1.2" opacity="'+(sh.prime?0.95:0.55)+'"/>'+
+           '<text class="o-shelllbl'+(sh.prime?' prime':'')+'" x="'+lx+'" y="'+ly.toFixed(1)+'">'+
+             '<tspan class="km">'+fmt(sh.a)+' km</tspan>  ·  '+esc(sh.who)+'</text>';
+    });
+  });
+
+  /* ---- satellites riding the shells ---- */
+  REGIMES.forEach(function(rg){
+    rg.shells.forEach(function(sh){
+      (sh.sats||[]).forEach(function(s){ svg+=satNode(sh.a, sh.who, s); });
+    });
+  });
+
+  /* ---- Earth: fill, terminator gradient, night lights, graticule, atmosphere ---- */
+  svg+='<path d="'+earthFillPath()+'" fill="url(#earthGrad)"/>';
+  svg+='<g clip-path="url(#earthClip)">'+graticule()+cityLights()+'</g>';
+  /* atmosphere airglow band hugging the limb */
+  svg+='<path d="'+arc(RSURF+96,-9.0,9.0,26,false)+arc(RSURF,9.0,-9.0,26,true)+'Z" fill="url(#atmGrad)"/>';
+  /* crisp horizon limb */
+  svg+='<path class="horizon" d="'+arc(RSURF,-9.0,9.0,26,false)+'"/>';
+
+  /* ---- ground stations + SDA cones on the limb ---- */
+  svg+=groundStations();
+
+  /* ---- launch profile climbing the axis ---- */
+  svg+=launchProfile();
+
+  /* ---- logarithmic altitude axis (left rail) ---- */
+  svg+=altitudeAxis();
+
+  /* ---- regime band labels (right, with leaders) ---- */
+  svg+=bandLabels();
+
+  /* ---- segment sovereignty rail (engraved gauges, far right) ---- */
+  svg+='<rect class="gauge-plate" x="866" y="42" width="86" height="586" rx="7"/>'+
+       '<text class="gauge-rail-h" x="909" y="60" text-anchor="middle">SOVEREIGN 0–5</text>';
+  SEG_ORDER.forEach(function(sg){
+    svg+='<line class="o-lead" x1="866" y1="'+sg.y+'" x2="838" y2="'+sg.y+'"/>';
+    svg+=gauge(909, sg.y, m(sg.k), sg.k, sg.lbl, sg.sub);
+  });
+
+  svg+='</svg>';
+
+  /* ---- topbar + stage + HUD + legend ---- */
+  var html='<div class="orb" id="orbc">'+
+    '<span class="orb-corner tl"></span><span class="orb-corner tr"></span>'+
+    '<span class="orb-corner bl"></span><span class="orb-corner br"></span>'+
+    '<div class="orb-topbar">'+
+      '<span class="tt">ORBITAL DOMAIN — <b>'+esc(String(partner).toUpperCase())+'</b></span>'+
+      '<span class="td">GROUND → GEO ELEVATION · LOG ALTITUDE · vis-viva velocities</span>'+
+      '<span class="tflag">MOCK · ASSESSED</span>'+
+    '</div>'+
+    '<div class="orb-stage">'+svg+'</div>'+
+    hudDefault(arch, partner, nextL)+
+    '<div class="orb-legend">'+
+      '<span class="li"><svg width="30" height="10"><line x1="1" y1="5" x2="29" y2="5" stroke="#d9a755" stroke-width="1"/></svg>orbit shell (true altitude)</span>'+
+      '<span class="li"><svg width="14" height="10"><path d="M7,2 l2,3 l-2,3 l-2,-3 Z" fill="#d9a755"/></svg>orbital node</span>'+
+      '<span class="li"><svg width="16" height="12"><rect x="6" y="4" width="4" height="4" fill="#d9a755"/><line x1="1" y1="6" x2="15" y2="6" stroke="#6f89ad"/></svg>satellite (banks along track)</span>'+
+      '<span class="sep"></span>'+
+      '<span class="li"><svg width="16" height="12"><path d="M8,11 L3,3 L13,3 Z" fill="#7fb6e0" opacity="0.45"/></svg>SDA / station coverage</span>'+
+      '<span class="li"><svg width="20" height="12"><path d="M2,11 Q6,2 18,2" fill="none" stroke="#d9a755" stroke-width="1.6" stroke-dasharray="3 2.4"/></svg>launch ascent to LEO</span>'+
+      '<span class="li"><svg width="16" height="14"><circle cx="8" cy="7" r="6" fill="none" stroke="#0b1a2b" stroke-width="3"/><circle cx="8" cy="7" r="6" fill="none" stroke="#d9a755" stroke-width="2" stroke-dasharray="19 40" transform="rotate(-90 8 7)"/></svg>engraved sovereign gauge</span>'+
+      '<span class="sep"></span>'+
+      '<span class="li" style="color:#6f88ab">velocity varies with altitude · GEO held stationary</span>'+
+    '</div>'+
+    '<div class="hud-live" id="orb-live" role="status" aria-live="polite"></div>'+
+  '</div>';
+  return html;
+}
+
+/* ---------- Earth fill path (surface arc + base of frame) ---------- */
+function earthFillPath(){
+  var L=ptr(RSURF,-9.0), R=ptr(RSURF,9.0);
+  return 'M0,640 L'+L.x.toFixed(1)+','+L.y.toFixed(1)+' '+
+    arc(RSURF,-9.0,9.0,26,true)+' L960,640 Z';
+}
+/* graticule inside the limb: parallels (arcs) + meridians (radial) */
+function graticule(){
+  var s='';
+  for(var i=1;i<=4;i++){ var r=RSURF-i*22; s+='<path class="grat" d="'+arc(r,-8.6,8.6,24,false)+'"/>'; }
+  for(var d=-7;d<=7;d+=2){ var a=ptr(RSURF-95,d), b=ptr(RSURF,d);
+    s+='<line class="grat" x1="'+a.x.toFixed(1)+'" y1="'+a.y.toFixed(1)+'" x2="'+b.x.toFixed(1)+'" y2="'+b.y.toFixed(1)+'"/>'; }
+  return s;
+}
+/* faint night-side city lights (warm), only on the dark left limb */
+function cityLights(){
+  var pts=[[-7.6,26],[-6.9,54],[-6.1,20],[-5.4,40],[-4.7,64],[-4.1,30],[-3.4,50],
+           [-2.7,22],[-6.4,34],[-5.0,18],[-3.9,46],[-2.2,58],[-7.1,44]];
+  var s='';
+  pts.forEach(function(p,i){ var q=ptr(RSURF-p[1],p[0]);
+    s+='<circle class="citylt" cx="'+q.x.toFixed(1)+'" cy="'+q.y.toFixed(1)+'" r="'+(0.7+(i%3)*0.35).toFixed(2)+'" opacity="'+(0.35+(i%4)*0.12).toFixed(2)+'"/>'; });
+  return s;
+}
+/* starfield — a few twinkle (gated) */
+function starfield(){
+  var s='', seed=8123;
+  function rnd(){ seed=(seed*1103515245+12345)&0x7fffffff; return seed/0x7fffffff; }
+  for(var i=0;i<74;i++){
+    var x=(rnd()*950+5).toFixed(1), y=(rnd()*430+6).toFixed(1), r=(rnd()*0.9+0.3).toFixed(2);
+    var tw=rnd()<0.34;
+    s+='<circle class="star'+(tw?' twk':'')+'" cx="'+x+'" cy="'+y+'" r="'+r+'" opacity="'+(0.25+rnd()*0.55).toFixed(2)+'"'+
+       (tw?' style="animation:orb-twk '+(3+rnd()*4).toFixed(1)+'s ease-in-out infinite;animation-delay:-'+(rnd()*5).toFixed(1)+'s"':'')+'/>';
+  }
+  return s;
+}
+/* ---------- ground stations + SDA coverage cones ---------- */
+var GS=[
+  {deg:-5.4,name:'AWARUA',k:'ground',cone:false},
+  {deg:-1.4,name:'WARKWORTH',k:'ground',cone:true},
+  {deg:2.4, name:'TAI TAPU',k:'sda',cone:true},
+  {deg:0.4, name:'AKL TERM',k:'user',cone:false}
+];
+function groundStations(){
+  var s='';
+  GS.forEach(function(g){
+    var base=ptr(RSURF,g.deg), up=ptr(RSURF+150,g.deg);
+    var nx=(up.x-base.x)/150, ny=(up.y-base.y)/150; /* local up unit */
+    var px=-ny, py=nx;                              /* local right unit */
+    /* coverage cone / SDA fan */
+    if(g.cone){
+      var apexTop=ptr(RSURF+ (g.k==='sda'?ralt(35786)-RSURF-60 : 470), g.deg);
+      var halfw=(g.k==='sda')?70:120;
+      var lft={x:apexTop.x+px*-halfw, y:apexTop.y+py*-halfw};
+      var rgt={x:apexTop.x+px*halfw, y:apexTop.y+py*halfw};
+      s+='<path class="cone orbnode" tabindex="0" role="button" data-k="'+g.k+'" '+
+          'data-name="'+esc(g.name+(g.k==='sda'?' · SDA sensor':' · teleport'))+'" '+
+          'aria-label="'+esc(g.name)+' '+(g.k==='sda'?'space surveillance':'communications')+' coverage" '+
+          'd="M'+base.x.toFixed(1)+','+base.y.toFixed(1)+' L'+lft.x.toFixed(1)+','+lft.y.toFixed(1)+
+          ' L'+rgt.x.toFixed(1)+','+rgt.y.toFixed(1)+' Z"/>';
+    }
+    /* mast + dish glyph, oriented to local zenith */
+    var m2=ptr(RSURF+11,g.deg), dish=ptr(RSURF+13,g.deg);
+    s+='<g class="orbnode" tabindex="0" role="button" data-k="'+g.k+'" '+
+        'data-name="'+esc(g.name+(g.k==='sda'?' · SDA sensor':(g.k==='user'?' · user terminal':' · teleport')))+'" '+
+        'aria-label="'+esc(g.name)+' ground station">'+
+      '<circle class="foc" cx="'+base.x.toFixed(1)+'" cy="'+base.y.toFixed(1)+'" r="7" fill="none" stroke="#ecc27a" stroke-width="1" opacity="1" stroke-dasharray="2 2"/>'+
+      '<line class="gs-mast" x1="'+base.x.toFixed(1)+'" y1="'+base.y.toFixed(1)+'" x2="'+m2.x.toFixed(1)+'" y2="'+m2.y.toFixed(1)+'"/>'+
+      '<circle class="gs-dish" cx="'+dish.x.toFixed(1)+'" cy="'+dish.y.toFixed(1)+'" r="2.6"/>'+
+      '<text class="gs-lbl" x="'+(base.x+px*8).toFixed(1)+'" y="'+(base.y+py*8+2).toFixed(1)+'" text-anchor="middle">'+esc(g.name)+'</text>'+
+    '</g>';
+  });
+  return s;
+}
+/* ---------- launch profile: gravity-turn ascent from pad to LEO ---------- */
+function launchProfile(){
+  var pad=ptr(RSURF,1.4);                               /* Mahia LC-1 on the limb */
+  var leop=ptA(550,4.4);                                /* LEO insertion on the 550 km shell */
+  var c1=ptr(RSURF+82,1.45), c2=ptA(320,3.5);           /* vertical rise, then gravity turn */
+  function cub(t){ var u=1-t;
+    return { x:u*u*u*pad.x+3*u*u*t*c1.x+3*u*t*t*c2.x+t*t*t*leop.x,
+             y:u*u*u*pad.y+3*u*u*t*c1.y+3*u*t*t*c2.y+t*t*t*leop.y }; }
+  var d='M'+pad.x.toFixed(1)+','+pad.y.toFixed(1)+
+        ' C'+c1.x.toFixed(1)+','+c1.y.toFixed(1)+' '+c2.x.toFixed(1)+','+c2.y.toFixed(1)+' '+leop.x.toFixed(1)+','+leop.y.toFixed(1);
+  var s='<g class="orbnode" tabindex="0" role="button" data-k="launch" '+
+      'data-name="Electron ascent — Mahia LC-1" data-a="550" data-v="'+n1(orbV(550))+'" data-t="'+esc(perStr(550))+'" '+
+      'aria-label="Launch ascent trajectory from Mahia to low Earth orbit, target 550 kilometres">'+
+    '<path class="foc" d="'+d+'" stroke="#ecc27a" stroke-width="4" fill="none" opacity="0.3"/>'+
+    '<path class="launch-path" d="'+d+'"/>';
+  /* pad marker + site name on the limb */
+  var padt=ptr(RSURF+7,1.4);
+  s+='<path class="launch-node" d="M'+pad.x.toFixed(1)+','+(pad.y-6).toFixed(1)+' l2.4,4.6 h-4.8 Z"/>'+
+     '<text class="gs-lbl" x="'+(pad.x).toFixed(1)+'" y="'+(pad.y+12).toFixed(1)+'" text-anchor="middle">MAHIA LC-1</text>';
+  /* stage callouts placed on the ascent curve, labelled to the left */
+  var maxq=cub(0.34), meco=cub(0.63);
+  s+='<circle class="launch-node" cx="'+maxq.x.toFixed(1)+'" cy="'+maxq.y.toFixed(1)+'" r="1.7"/>'+
+     '<text class="launch-cap" x="'+(maxq.x-6).toFixed(1)+'" y="'+(maxq.y+2.4).toFixed(1)+'" text-anchor="end">Max-Q</text>'+
+     '<circle class="launch-node" cx="'+meco.x.toFixed(1)+'" cy="'+meco.y.toFixed(1)+'" r="1.7"/>'+
+     '<text class="launch-cap" x="'+(meco.x-6).toFixed(1)+'" y="'+(meco.y+2.4).toFixed(1)+'" text-anchor="end">MECO · stage sep</text>'+
+     '<circle class="launch-node" cx="'+leop.x.toFixed(1)+'" cy="'+leop.y.toFixed(1)+'" r="2.2"/>'+
+     '<text class="launch-cap" x="'+(leop.x+6).toFixed(1)+'" y="'+(leop.y-3).toFixed(1)+'">LEO insertion · 7.6 km/s</text>';
+  /* climbing rocket marker (motion-gated) */
+  s+='<g class="rocket" style="offset-path:path(\''+d+'\')">'+
+       '<path d="M0,-4 L1.7,2 L0,0.8 L-1.7,2 Z" fill="#f0d49a" stroke="#9a6b2f" stroke-width="0.4"/>'+
+     '</g>';
+  s+='</g>';
+  return s;
+}
+/* ---------- logarithmic altitude axis ---------- */
+function altitudeAxis(){
+  var xA=30;
+  var top=yA(35786)-8, bot=yA(100);
+  var s='<line class="o-axline" x1="'+xA+'" y1="'+top.toFixed(1)+'" x2="'+xA+'" y2="'+bot.toFixed(1)+'"/>';
+  var ticks=[[200,0],[400,1],[600,0],[1000,1],[2000,1],[4000,0],[8000,1],[20000,1],[35786,1]];
+  ticks.forEach(function(t){
+    var y=yA(t[0]), lab=t[1];
+    s+='<line class="o-axtick'+(lab?'':' min')+'" x1="'+(xA-(lab?4.5:2.5))+'" y1="'+y.toFixed(1)+'" x2="'+xA+'" y2="'+y.toFixed(1)+'"/>';
+    if(lab) s+='<text class="o-axlbl" x="'+(xA-6.5)+'" y="'+(y+2.6).toFixed(1)+'" text-anchor="end">'+
+      (t[0]===35786?'35,786':fmt(t[0]))+'</text>';
+  });
+  /* rotated axis title */
+  var midY=(top+bot)/2;
+  s+='<text class="o-axtitle" transform="translate(11,'+midY.toFixed(1)+') rotate(-90)" text-anchor="middle">ALTITUDE — km (log)</text>';
+  return s;
+}
+/* ---------- regime band labels (right-aligned column, clear of the gauge rail) ---------- */
+function bandLabels(){
+  var s='', xR=850;
+  REGIMES.forEach(function(rg){
+    var midA=(rg.k==='geo')?35786:Math.sqrt(rg.lo*rg.hi);
+    var y=yA(midA);
+    /* faint leader from a visible point on the shell to the label block */
+    var anchor=ptr(ralt(midA), 3.6);
+    s+='<path class="o-lead" d="M'+anchor.x.toFixed(1)+','+anchor.y.toFixed(1)+' L'+(xR-118)+','+y.toFixed(1)+'"/>';
+    s+='<text class="o-bandlbl" x="'+xR+'" y="'+(y-6).toFixed(1)+'" text-anchor="end">'+esc(rg.name)+'</text>';
+    var kmr=(rg.k==='geo')?'35,786 km · geostationary belt':(fmt(rg.lo)+'–'+fmt(rg.hi)+' km');
+    s+='<text class="o-bandkm" x="'+xR+'" y="'+(y+5).toFixed(1)+'" text-anchor="end">'+kmr+'</text>';
+    s+='<text class="o-bandcon" x="'+xR+'" y="'+(y+15).toFixed(1)+'" text-anchor="end">'+esc(rg.con)+'</text>';
+  });
+  return s;
+}
+
+/* ================= HUD ================= */
+var SEGMETA={
+  satellite:{name:'SPACE SEGMENT — SATELLITES',
+    note:'No sovereign-operated spacecraft on orbit; capacity rides commercial LEO (Rocket Lab Photon bus, foreign EO tasking). Payload IP maturing.'},
+  launch:{name:'LAUNCH — ORBITAL ACCESS',
+    note:'Sovereign orbital launch from Mahia (Rocket Lab Electron; Neutron in development) — among the few states with independent access to space.'},
+  ground:{name:'GROUND SEGMENT — TELEPORTS',
+    note:'Awarua & Warkworth teleports; KSAT / ESA-hosted apertures. Sovereign siting, mixed foreign operation.'},
+  sda:{name:'SDA — SPACE SURVEILLANCE',
+    note:'Optical & radar SDA nascent; participation in allied catalogues rather than sovereign sensors and custody.'},
+  user:{name:'USER TERMINALS',
+    note:'Defence & civil terminals broadly fielded; SATCOM largely leased on foreign GEO / LEO capacity.'}
+};
+function pips(m){ var s='<div class="hud-pips" aria-hidden="true">';
+  for(var i=0;i<5;i++) s+='<span class="hud-pip'+(i<m?' on':'')+'"></span>'; return s+'</div>'; }
+function hudDefault(arch,partner,nextL){
+  var strong=Object.keys(SEGMETA).reduce(function(a,k){ return (arch[k]||0)>(arch[a]||0)?k:a; },'satellite');
+  return '<div class="orb-hud" id="orb-hud" data-mode="default">'+
+    '<div class="hud-l" id="hud-l">'+
+      '<div class="hud-ey">Orbital domain · readout</div>'+
+      '<div class="hud-name">'+esc(partner)+' — ground to GEO</div>'+
+      '<div class="hud-tag">3 regimes · 8 shells · '+ (nextL?('next launch '+esc(nextL.net)):'sovereign launch capable') +'</div>'+
+      '<div class="hud-params">'+
+        '<div class="p"><div class="k">LEO</div><div class="v">7.6 <small>km/s</small></div></div>'+
+        '<div class="p"><div class="k">MEO · GPS</div><div class="v">3.9 <small>km/s</small></div></div>'+
+        '<div class="p"><div class="k">GEO</div><div class="v">3.1 <small>km/s</small></div></div>'+
+      '</div>'+
+      '<div class="hud-note">Hover, tap or Tab any shell, satellite, station, gauge or the ascent corridor for its orbital parameters and '+esc(partner)+'’s sovereign score for that segment.</div>'+
+    '</div>'+
+    '<div class="hud-r" id="hud-r">'+
+      '<div class="hud-seg-h"><span class="hud-seg-name">STRONGEST SEGMENT · '+esc(SEGMETA[strong].name.split(' — ')[0])+'</span>'+
+        '<span class="hud-seg-score">'+(arch[strong]||0)+'<small>/5</small></span></div>'+
+      pips(arch[strong]||0)+
+      '<div class="hud-seg-note">'+esc(SEGMETA[strong].note)+'</div>'+
+    '</div>'+
+  '</div>';
+}
+
+/* ================= wireOrbital — optional interaction ================= */
+function wireOrbital(root, ctx){
+  ctx=ctx||{};
+  var arch=(ctx.arch)||{};
+  var hud=root.querySelector('#orb-hud'), live=root.querySelector('#orb-live');
+  var L=root.querySelector('#hud-l'), R=root.querySelector('#hud-r');
+  var defaultL=L.innerHTML, defaultR=R.innerHTML;
+
+  function paint(nd){
+    var k=nd.getAttribute('data-k'); if(!k) return;
+    var meta=SEGMETA[k]||{name:k.toUpperCase(),note:''};
+    var m=arch[k]||0;
+    var name=nd.getAttribute('data-name')||meta.name;
+    var a=nd.getAttribute('data-a'), v=nd.getAttribute('data-v'), t=nd.getAttribute('data-t');
+    var params='';
+    if(a){
+      params='<div class="hud-params">'+
+        '<div class="p"><div class="k">Altitude</div><div class="v">'+fmt(a)+' <small>km</small></div></div>'+
+        (v?'<div class="p"><div class="k">Velocity</div><div class="v">'+v+' <small>km/s</small></div></div>':'')+
+        (t?'<div class="p"><div class="k">Period</div><div class="v">'+t+'</div></div>':'')+
+      '</div>';
+    }
+    L.innerHTML='<div class="hud-ey">Selected object</div>'+
+      '<div class="hud-name">'+esc(name)+'</div>'+
+      '<div class="hud-tag">'+esc(meta.name)+'</div>'+params+
+      (a?'':'<div class="hud-note">Ground-segment element on the Earth limb — links to the space segment above.</div>');
+    R.innerHTML='<div class="hud-seg-h"><span class="hud-seg-name">SOVEREIGN · '+esc(meta.name.split(' — ')[0])+'</span>'+
+      '<span class="hud-seg-score">'+m+'<small>/5</small></span></div>'+pips(m)+
+      '<div class="hud-seg-note">'+esc(meta.note)+'</div>';
+    if(live) live.textContent=name+', sovereign maturity '+m+' of 5'+(a?', altitude '+a+' kilometres, velocity '+v+' km/s':'');
+  }
+  function reset(){ L.innerHTML=defaultL; R.innerHTML=defaultR; }
+
+  root.querySelectorAll('.orbnode').forEach(function(nd){
+    nd.addEventListener('mouseenter',function(){ nd.classList.add('active'); paint(nd); });
+    nd.addEventListener('mouseleave',function(){ nd.classList.remove('active'); reset(); });
+    nd.addEventListener('focus',function(){ nd.classList.add('active'); paint(nd); });
+    nd.addEventListener('blur',function(){ nd.classList.remove('active'); reset(); });
+  });
+  root.addEventListener('keydown',function(e){ if(e.key==='Escape'){ reset();
+    if(document.activeElement && document.activeElement.blur) document.activeElement.blur(); } });
+}
+
+
+window.orbitalDomain=orbitalDomain; window.wireOrbital=wireOrbital;
+})();
+
 function miniRing(x,y,m){
   var r=8,C=2*Math.PI*r,f=Math.max(0,Math.min(5,m))/5;
   return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="var(--hair)" stroke-width="2.5"/>'+
@@ -2292,6 +2889,11 @@ function archGauge(x,y,m,label,key){
    in the house bronze; glyphs in thin line-art. Hover contract unchanged:
    .archnode + data-k/data-m feed the existing detail panel. */
 /* build the layer-explorer ctx from this partner's register slice */
+function cbOrbCtx(p){ return {
+  partnerName:(FLAGDEF[CURKEY]&&FLAGDEF[CURKEY].name)||(p&&p.name)||"",
+  sites:(p&&p.sites)||[],
+  launchesNear:window.__launchNear||[]
+}; }
 function cbArchCtx(p){
   return { partnerName:(FLAGDEF[CURKEY]&&FLAGDEF[CURKEY].name)||(p&&p.name)||"",
            instruments:partnerVehicles(CURKEY),
@@ -2672,6 +3274,7 @@ function wireSites(p){
   if(sites.length && els("lmap")) initSiteMap(p, sites);
   wireModels(p);
   try{ wireArch(els("panels")||document, cbArchCtx(p)); }catch(e){}
+  try{ var _op=(els("panels")||document).querySelector(".orb"); if(_op) wireOrbital(_op,{arch:p.arch,ctx:cbOrbCtx(p)}); }catch(e){}
   /* architecture hover */
   document.querySelectorAll(".archnode").forEach(function(nd){
     function show(){
