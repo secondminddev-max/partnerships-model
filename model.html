@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <title>Defence Space Partnership Opportunity &amp; Pathway Model v5</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230e1826%27/%3E%3Ctext x=%2716%27 y=%2721%27 font-family=%27Georgia%27 font-size=%2713%27 font-weight=%27600%27 fill=%27%23c89b5a%27 text-anchor=%27middle%27%3EDS%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Defence Space Partnership Model — UNOFFICIAL open-source analytical product. Country-first command briefs, load-path analysis, placemats, minutes and in-briefs.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -507,6 +509,10 @@ body:not(.gated) > #gate{display:none}
 .lp-mark.s-none{background:none;box-shadow:inset 0 0 0 1px var(--hair)}
 i.lp-mark{vertical-align:-2px;margin-right:6px}
 
+.lp-mini{display:flex;gap:3px;margin:2px 0 4px}
+.lp-mini .lp-mark{width:10px;height:10px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
 .lp-legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;padding-top:12px;border-top:1px solid var(--hair);
   font-size:11.5px;color:var(--muted)}
 .lp-legend span{display:inline-flex;align-items:center}
@@ -806,6 +812,7 @@ a.pfolio-it:hover{border-color:var(--accent);text-decoration:none;background:var
   <div class="hdr-row">
     <h1><span class="kicker">Australia · Defence Space</span>Partnership Opportunity &amp; Pathway Model <span class="conf" title="Model version 5 — country-first navigation, full vehicle register and evidence register embedded (Jul 2026)">v5</span></h1>
     <div class="hdr-meta">
+      <a class="hdr-home" href="index.html" target="_top">Cover</a>
       <a class="hdr-home" href="command-brief.html" target="_top">&#8962; Command Brief</a>
       <span id="hdr-gen"></span>
       <button id="theme-btn" type="button" aria-label="Cycle colour theme">Theme: Auto</button>
@@ -3185,6 +3192,7 @@ function renderHome() {
         <div class="top"><span class="cbadge acc">${esc(groupFlag[c.key])}</span><span class="nm">${esc(groupName[c.key])}</span></div>
         <div class="reg">${esc(c.region || "")}</div>
         <div class="one">${esc(c.one || "")}</div>
+        <div class="lp-mini" aria-label="Load path summary">${LP_LAYERS.map(L => { const s = lpGrid(c.key)[L.id].s; return `<span class="lp-mark s-${s}" title="${esc(L.name)}: ${esc(LP_STATE_LABEL[s])}"></span>`; }).join("")}</div>
         <div class="ft"><span class="mat">Maturity ${esc(c.mat)}</span><span>${c.nVeh} artefacts</span>${c.nOpt ? `<span>${c.nOpt} scored options</span>` : ""}</div>
       </a>`).join("")}
     </div>
