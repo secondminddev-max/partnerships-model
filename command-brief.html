@@ -174,7 +174,7 @@ button{font-family:inherit;cursor:pointer;color:inherit}
 /* fast facts */
 .ff{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:10px;overflow:hidden}
 @media(max-width:700px){.ff{grid-template-columns:1fr}}
-.ff .cell{background:var(--surface);padding:13px 16px}
+.ff .cell{background:var(--surface);padding:13px 16px}.ff .cell:last-child:nth-child(odd){grid-column:1/-1}
 .ff .k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:4px}
 .ff .v{font-size:13px;color:var(--ink);line-height:1.5}
 
@@ -388,7 +388,7 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
 :root{
   /* dark viewport — fixed like a photograph, independent of theme */
   --vp-bg1:#12233d; --vp-bg2:#0a1322;
-  --vp-ink:#cfe0f4; --vp-ink2:#9fb1c9; --vp-mut:#5d708a;
+  --vp-ink:#cfe0f4; --vp-ink2:#9fb1c9; --vp-mut:#7488a3;
   --vp-hair:rgba(207,224,244,.14); --vp-hair2:rgba(207,224,244,.07);
   --bronze:#d9a755; --bronze-hi:#ecc27a; --bronze-lo:#c08c3e;
   --bronze-soft:rgba(217,167,85,.1);
@@ -432,7 +432,7 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
 .ax-band:first-of-type{border-top:none}
 .ax-band:nth-of-type(even) {background:rgba(207,224,244,.025)}
 /* gutter — the load-path spine */
-.ax-gutter{grid-row:1/3;grid-column:1;position:relative}
+.ax-gutter{grid-row:1;grid-column:1;position:relative}
 .lp-line{position:absolute;left:12px;width:2px;background:var(--bronze);opacity:0;border-radius:1px}
 .lp-line.up{top:0;height:19px}
 .lp-line.down{top:33px;bottom:0}
@@ -618,7 +618,7 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
 .ddtable .dd-n{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--navy);color:#fff;font-size:9.5px;font-weight:700;margin-right:7px;vertical-align:middle}
 .ddtable td:first-child{width:34%}
 .assur-directive{margin-top:14px;display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:8px;border:1px solid color-mix(in oklab,var(--navy) 30%,transparent);background:color-mix(in oklab,var(--navy) 6%,transparent)}
-.assur-directive .ad-tag{flex:none;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--navy);padding:3px 8px;border-radius:4px;margin-top:1px}
+.assur-directive .ad-tag{flex:none;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:#1f3a5f;padding:3px 8px;border-radius:4px;margin-top:1px}
 .assur-directive p{margin:0;font-size:12.5px;color:var(--ink);line-height:1.55}
 /* burden-sharing ledger */
 .bs-lede{font-size:12px;color:var(--ink2);line-height:1.55;margin:0 0 12px}
@@ -698,7 +698,7 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
 .cal-when{font-size:12px;color:var(--ink2);font-weight:600}
 .cal-when .win{display:block;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-top:3px}
 .win.past{color:var(--muted)} .win.next6{color:var(--accent)} .win.next24{color:var(--navy2)}
-.cal-body .t{font-size:13.5px;font-weight:600}
+.cal-body .t{font-size:13.5px;font-weight:600}.cal-body .t a{color:var(--navy2);text-decoration:none}.cal-body .t a:hover{text-decoration:underline}
 .cal-body .n{font-size:12px;color:var(--ink2);margin-top:2px}
 .cal-body .lv{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
 
@@ -1022,7 +1022,7 @@ function pips(score,of){var h="";for(var i=0;i<of;i++)h+='<div class="pip'+(i<sc
   els("gate-go").addEventListener("click",tryPw);
   els("gate-pw").addEventListener("keydown",function(e){ if(e.key==="Enter") tryPw(); });
   els("gate-pw").addEventListener("input",function(){ els("gate-err").textContent=""; });
-  try{ if(sessionStorage.getItem("cb_ok")==="1") unlock(); }catch(e){}
+  try{ if(sessionStorage.getItem("cb_ok")==="1") setTimeout(unlock,0); }catch(e){}
 })();
 
 /* ================= CAROUSEL (rotating 3D ring) ================= */
@@ -1341,7 +1341,7 @@ function renderKeyLeaders(p){
   top.forEach(function(x){
     var pend=String(x.label).indexOf("TO_VERIFY")>=0;
     var flag = x.side===own ? esc(ownName) : (x.side==="AU"?"Australia":esc(x.side));
-    var ac=(x.side==="AU"?FLAGACCENT.domestic:(FLAGACCENT[({NZ:"nz",US:"us",UK:"uk",JP:"japan",CA:"canada",ID:"indonesia"})[x.side]]||"var(--navy2)"));
+    var ac=(x.side==="AU"?FLAGACCENT.domestic:(FLAGACCENT[({NZ:"nz",US:"us",UK:"uk",JP:"japan",CA:"canada",ID:"indonesia",FR:"france",DE:"germany",IN:"india",IT:"italy",NO:"norway",KR:"rok",AE:"uae",SG:"singapore"})[x.side]]||"var(--navy2)"));
     h+='<div class="kl'+(x.audience?" aud":"")+'">'+klAvatar(x,ac,pend)+
        '<div class="kl-side">'+flag+(x.audience?' · Audience':'')+'</div>'+
        '<div class="kl-name'+(pend?' pending':'')+'">'+esc(x.name)+'</div>'+
@@ -1449,7 +1449,7 @@ function renderAlignment(p){
 /* ---------- LEADERSHIP & CALENDAR ---------- */
 var PARTNER_SIDE={nz:"NZ",us:"US",uk:"UK",japan:"JP",canada:"CA",indonesia:"ID",domestic:"AU",
   france:"FR",germany:"DE",india:"IN",italy:"IT",norway:"NO",rok:"KR",singapore:"SG",uae:"AE",pacific:"PI"};
-var RANKWORDS={GEN:1,LTGEN:1,MAJGEN:1,BGEN:1,BRIG:1,AIRMSHL:1,AVM:1,ACDRE:1,AIRCDRE:1,GPCAPT:1,WGCDR:1,SQNLDR:1,MAJ:1,COL:1,LTCOL:1,ADM:1,VADM:1,RADM:1,CMDR:1,CAPT:1,BGen:1,MajGen:1,Gen:1,Hon:1,Minister:1,Official:1,Mr:1,Ms:1,Dr:1,Sir:1,KC:1,AM:1,CSC:1,DSM:1,DSC:1,OAM:1,MNZM:1,RAN:1};
+var RANKWORDS={GEN:1,LTGEN:1,MAJGEN:1,BGEN:1,BRIG:1,AIRMSHL:1,AVM:1,ACDRE:1,AIRCDRE:1,GPCAPT:1,WGCDR:1,SQNLDR:1,MAJ:1,COL:1,LTCOL:1,ADM:1,VADM:1,RADM:1,CMDR:1,CAPT:1,BGen:1,MajGen:1,Gen:1,Hon:1,Minister:1,Official:1,Mr:1,Ms:1,Dr:1,Sir:1,KC:1,AM:1,CSC:1,DSM:1,DSC:1,OAM:1,MNZM:1,RAN:1,GENERAL:1,GENERALMAJOR:1,LIEUTENANT:1,LT:1,AIR:1,VICE:1,MARSHAL:1,ADMIRAL:1,BRIGADIER:1,COLONEL:1,MAJOR:1,CAPTAIN:1,COMMANDER:1,STAFF:1,ENGINEER:1};
 /* ---------- calendar windows, derived ----------
    `window` was a hand-set label, so it rotted: by late July 2026 the IAC
    (October) and the Neutron first flight (Q4) were still filed as "next 24"
@@ -1484,7 +1484,7 @@ function calWindow(when, stored){
 }
 function evWindow(e){ return calWindow(e.when, e.window); }
 function initials(name){
-  var parts=String(name||"").replace(/[,()]/g,' ').split(/\s+/).filter(function(w){
+  var parts=String(name||"").replace(/[.,()]/g,' ').split(/\s+/).filter(function(w){
     return w && !RANKWORDS[w] && !RANKWORDS[w.toUpperCase()] && !/^[A-Z]{2,}$/.test(w) && !(w.length<=1);
   });
   if(!parts.length){ var f=String(name||"?").replace(/[^A-Za-z]/g,''); return (f[0]||"?").toUpperCase(); }
@@ -1512,7 +1512,7 @@ function klFallback(img,ini,ac){
 }
 function personCard(x){
   var pend=String(x.label).indexOf("TO_VERIFY")>=0;
-  var ac=(x.side==="AU"?FLAGACCENT.domestic:(FLAGACCENT[({NZ:"nz",US:"us",UK:"uk",JP:"japan",CA:"canada",ID:"indonesia"})[x.side]]||"var(--navy2)"));
+  var ac=(x.side==="AU"?FLAGACCENT.domestic:(FLAGACCENT[({NZ:"nz",US:"us",UK:"uk",JP:"japan",CA:"canada",ID:"indonesia",FR:"france",DE:"germany",IN:"india",IT:"italy",NO:"norway",KR:"rok",AE:"uae",SG:"singapore"})[x.side]]||"var(--navy2)"));
   return '<div class="person'+(x.audience?" aud":"")+'"><div class="person-hd">'+avatar(x.name,ac,pend,x.photo,x.photo_credit)+
     '<div class="person-id">'+(x.audience?'<span class="side" style="border-color:var(--accent);color:var(--accent)">Briefing audience</span>':'')+
     '<div class="appt">'+esc(x.appointment)+'</div>'+
@@ -1560,7 +1560,7 @@ function renderLeadership(p){
     evs.forEach(function(e){
       var pend=String(e.label).indexOf("TO_VERIFY")>=0;
       h+='<div class="cal-item"><div class="cal-when">'+esc(e.when)+'<span class="win '+esc(evWindow(e))+'">'+(evWindow(e)==="next6"?"NEXT 6 MO":evWindow(e)==="next24"?"NEXT 24 MO":"PAST 12 MO")+'</span></div>'+
-        '<div class="cal-body"><div class="t">'+esc(e.title)+(pend?' <span class="lab TO_VERIFY">TO_VERIFY</span>':' <span class="lab '+cls(e.label)+'">'+esc(e.label)+'</span>')+'</div>'+
+        '<div class="cal-body"><div class="t">'+(e.url?'<a href="'+esc(e.url)+'" target="_blank" rel="noopener">'+esc(e.title)+' &#8599;</a>':esc(e.title))+(pend?' <span class="lab TO_VERIFY">TO_VERIFY</span>':' <span class="lab '+cls(e.label)+'">'+esc(e.label)+'</span>')+'</div>'+
         '<div class="lv">'+esc(e.level)+'</div><div class="n">'+esc(e.note)+'</div></div></div>';
     });
     h+='</div></div>';
@@ -2224,6 +2224,7 @@ function slotFor(kind,name){
 function renderExploded(parts,kind){
   if(!parts||!parts.length) return '<div class="stub">Component detail pending.</div>';
   var SL=kind==="sat"?SAT_SLOTS:GND_SLOTS, H=kind==="sat"?320:320;
+  parts=parts.slice().sort(function(a,b){var ka=slotFor(kind,a.part),kb=slotFor(kind,b.part);return ((ka&&SL[ka])?SL[ka].y:999)-((kb&&SL[kb])?SL[kb].y:999);});
   var s='<div class="exploded"><svg viewBox="0 0 400 '+H+'" role="img" aria-label="'+(kind==="sat"?"Satellite":"Ground station")+' component schematic" style="width:100%;max-width:560px;overflow:visible">';
   /* separation axis */
   s+='<line x1="'+(kind==="sat"?120:96)+'" y1="14" x2="'+(kind==="sat"?120:96)+'" y2="'+(H-10)+'" stroke="var(--hair)" stroke-width="1" stroke-dasharray="2 6"/>';
