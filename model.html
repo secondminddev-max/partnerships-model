@@ -509,6 +509,8 @@ body:not(.gated) > #gate{display:none}
 .lp-mark.s-none{background:none;box-shadow:inset 0 0 0 1px var(--hair)}
 i.lp-mark{vertical-align:-2px;margin-right:6px}
 
+.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:#fff;padding:8px 14px;z-index:100000;border-radius:0 0 8px 0}
+.skip:focus{left:0}
 .lp-mini{display:flex;gap:3px;margin:2px 0 4px}
 .lp-mini .lp-mark{width:10px;height:10px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
@@ -780,6 +782,7 @@ a.pfolio-it:hover{border-color:var(--accent);text-decoration:none;background:var
 </style>
 </head>
 <body class="gated">
+<a class="skip" href="#main">Skip to content</a>
 
 <!-- soft preview gate; shares the sessionStorage key with the command brief so
      unlocking one unlocks the other for the session -->
@@ -3507,6 +3510,11 @@ function partnerNotesHTML(key) {
   </div>`;
 }
 
+const CB_KEYS=["nz","us","uk","japan","canada","indonesia","india","germany","uae","pacific","france","italy","norway","rok","singapore","domestic"];
+function cbLink(key){
+  return CB_KEYS.indexOf(key)>=0
+    ? `<a class="pick-btn" style="margin-left:auto" href="command-brief.html?p=${esc(key)}" target="_top">Open command brief →</a>` : "";
+}
 function renderPartnerView(key, tab) {
   const root = el("view-partner");
   const c = groupCard(key);
@@ -3519,10 +3527,11 @@ function renderPartnerView(key, tab) {
     <div class="partner-hd">
       <p class="crumbline"><a href="#/">All partners</a> / ${esc(groupName[key])}</p>
       <h2><span class="cbadge acc" style="font-size:12px;padding:3px 9px">${esc(groupFlag[key])}</span>${esc(groupName[key])}</h2>
-      <div class="meta">
+      <div class="meta" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         ${c.region ? `<span class="conf">${esc(c.region)}</span>` : ""}
         <span class="conf">Maturity ${esc(c.mat)}</span>
         ${pids.length > 1 ? pids.map(pid => `<span class="conf">${esc((partnersById[pid] || {}).name || pid)}</span>`).join("") : ""}
+        ${cbLink(key)}
       </div>
       ${c.one ? `<p class="one">${esc(c.one)}</p>` : ""}
     </div>

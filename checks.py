@@ -124,6 +124,47 @@ nz_bilat_space = [v for v in nz_reg if v.get("channel") == "bilateral_def"
 check("NZ holds zero in-force bilateral-defence space instruments (matches BLUF)",
       len(nz_bilat_space) == 0, str([v["name"][:40] for v in nz_bilat_space]))
 
+
+print("== worked-partner completeness ==")
+inc = []
+for k, p in BD["partners"].items():
+    # 'domestic' is Australia's own Defence x Industry view, not a bilateral
+    # partner — the minute/LOE pattern deliberately does not apply to it
+    if p.get("bluf") and k != "domestic":
+        if not (p.get("current_state") and p.get("future_state")
+                and len(p.get("opportunities") or []) >= 3
+                and len((p.get("loe") or {}).get("lines", [])) == 3
+                and p.get("minute_defaults")):
+            inc.append(k)
+check("every partner with a BLUF is fully staffed", not inc, ",".join(inc))
+
+print("== calendar url hygiene ==")
+bad_u = [f"{k}:{e['title'][:30]}" for k, p in BD["partners"].items()
+         for e in (p.get("calendar") or {}).get("events", [])
+         if e.get("url") and not str(e["url"]).startswith("https://")]
+check("all calendar source urls are https", not bad_u, ",".join(bad_u[:4]))
+
+print("== cover consistency ==")
+cov = pages.get("index.html", "")
+nveh = sum(len(v) for v in VEH.values())
+check("cover artefact figure matches register", f"<b>{nveh}</b>" in cov, f"register={nveh}")
+check("cover partner figure matches data", f"<b>{len(BD['partners'])}</b>" in cov, f"partners={len(BD['partners'])}")
+mv = re.search(r'data-verdicts="([^"]+)"', cov)
+if mv:
+    claimed = dict(x.split(":") for x in mv.group(1).split(";"))
+    derived = {}
+    for k in claimed:
+        vs = VEH.get(k, [])
+        full = any(v.get("channel") == "bilateral_def" and v.get("status") == "In force"
+                   and v.get("space_relevance") == "Direct" for v in vs)
+        derived[k] = "full" if full else "none"
+    # 'full' on the cover means every-layer; approximate here as any-vs-none,
+    # which distinguishes the US from the rest exactly
+    wrong = [k for k in claimed if claimed[k] != derived[k]]
+    check("cover verdict strip matches derived verdicts", not wrong, ",".join(wrong))
+else:
+    check("cover verdict strip present", False)
+
 print()
 if fails:
     print("FAILURES:", ", ".join(fails)); sys.exit(1)
