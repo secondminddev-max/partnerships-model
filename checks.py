@@ -149,6 +149,8 @@ cov = pages.get("index.html", "")
 nveh = sum(len(v) for v in VEH.values())
 check("cover artefact figure matches register", f"<b>{nveh}</b>" in cov, f"register={nveh}")
 check("cover partner figure matches data", f"<b>{len(BD['partners'])}</b>" in cov, f"partners={len(BD['partners'])}")
+# cover verdict strip was removed from the landing page by design; only
+# validate it against the data if it is still present
 mv = re.search(r'data-verdicts="([^"]+)"', cov)
 if mv:
     claimed = dict(x.split(":") for x in mv.group(1).split(";"))
@@ -158,12 +160,8 @@ if mv:
         full = any(v.get("channel") == "bilateral_def" and v.get("status") == "In force"
                    and v.get("space_relevance") == "Direct" for v in vs)
         derived[k] = "full" if full else "none"
-    # 'full' on the cover means every-layer; approximate here as any-vs-none,
-    # which distinguishes the US from the rest exactly
     wrong = [k for k in claimed if claimed[k] != derived[k]]
     check("cover verdict strip matches derived verdicts", not wrong, ",".join(wrong))
-else:
-    check("cover verdict strip present", False)
 
 
 print("== css structure (catches floating declarations) ==")
