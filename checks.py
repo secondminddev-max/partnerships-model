@@ -100,6 +100,7 @@ harness = (
     + 'function scrubEv(s){return String(s==null?"":s);}function cls(l){return String(l||"");}'
     + 'function selectedOpps(){const p=BD.partners[CURKEY];return (p.opportunities||[]).map(o=>({id:o.id,title:o.title}));}'
     + js[js.index("var CB_LAYERS"):js.index("function cbMarks")]
+    + fn("nzFern")
     + fn("buildPlacemat") + fn("buildMinute") + fn("buildBrief")
     + '''
 let bad=0;
