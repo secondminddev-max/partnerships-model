@@ -561,6 +561,44 @@ i.cb-alt.static{position:static;display:inline-block;margin-right:5px;vertical-a
 .scstack-legend span{display:inline-flex;align-items:center;gap:5px}
 .scstack-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
 .scstack-legend .mut{color:var(--muted);flex:1;min-width:220px}
+/* LENS: subsystem-level sovereignty panel */
+.sct-subs{margin:2px 0 9px;border-top:1px dashed var(--hair)}
+.sct-subs>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:7px 0 6px}
+.sct-subs>summary::-webkit-details-marker{display:none}
+.sct-subs-lab{font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.tss-pips{display:flex;flex-wrap:wrap;gap:5px}
+.tss-pip{font-size:10px;color:var(--ink2);border:1px solid var(--hair);border-left:3px solid var(--pc);border-radius:5px;padding:1px 7px;background:var(--surface);display:inline-flex;gap:5px;align-items:center}
+.tss-pip b{color:var(--pc);font-size:11px;font-variant-numeric:tabular-nums}
+.sct-subs-x{margin-left:auto;font-size:13px;font-weight:700;color:var(--muted);line-height:1}
+.sct-subs[open] .sct-subs-x::after{content:"\2212"}
+.sct-subs:not([open]) .sct-subs-x::after{content:"+"}
+.sub-list{display:flex;flex-direction:column;gap:3px;padding:3px 0 7px}
+.subrow{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"cap name tag" "cap who who";gap:1px 9px;align-items:center;padding:5px 9px;background:var(--surface);border:1px solid var(--hair2);border-radius:6px}
+.sub-cap{grid-area:cap;width:20px;height:20px;border-radius:5px;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;align-self:center}
+.sub-name{grid-area:name;font-size:11.5px;font-weight:600;color:var(--ink);min-width:0}
+.sub-tag{grid-area:tag;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tc);white-space:nowrap}
+.sub-who{grid-area:who;font-size:10.5px;color:var(--muted)}
+/* Industry & Supply Chain tab — hero + headline metrics */
+.ind-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;border-radius:14px;padding:22px 24px 6px;margin:4px 0 20px;box-shadow:0 8px 30px rgba(10,20,40,.14)}
+.ind-hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.66)}
+.ind-hero-title{font-size:26px;font-weight:800;letter-spacing:-.01em;margin:5px 0 8px;color:#fff}
+.ind-hero-lede{font-size:13px;line-height:1.55;color:rgba(255,255,255,.9);max-width:70ch;margin:0}
+.ind-metrics{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0;padding:16px 0 18px;border-top:1px solid rgba(255,255,255,.14)}
+.ind-metric{flex:1 1 120px;min-width:110px}
+.im-v{font-size:24px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:#fff}
+.im-v small{font-size:13px;font-weight:600;color:rgba(255,255,255,.6)}
+.im-sep{color:rgba(255,255,255,.4);margin:0 3px;font-weight:600}
+.im-l{font-size:10.5px;color:rgba(255,255,255,.7);margin-top:5px;line-height:1.3}
+/* factsheet → industry jump callout */
+.ind-jump{display:flex;align-items:center;gap:14px;width:100%;text-align:left;cursor:pointer;margin:6px 0 18px;padding:15px 18px;border:1px solid var(--hair);border-left:4px solid var(--accent);border-radius:11px;background:var(--surface);transition:box-shadow .15s,transform .05s,border-color .15s}
+.ind-jump:hover{box-shadow:0 6px 20px rgba(10,20,40,.1);border-left-color:var(--navy);transform:translateY(-1px)}
+.ind-jump:active{transform:translateY(0)}
+.ind-jump-ic{font-size:24px;color:var(--accent);line-height:1;flex:none}
+.ind-jump-tx{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.ind-jump-tx b{font-size:14px;color:var(--ink)}
+.ind-jump-sub{font-size:11.5px;color:var(--muted);line-height:1.4}
+.ind-jump-go{font-size:11.5px;font-weight:700;color:var(--accent);white-space:nowrap;flex:none}
+@media(max-width:640px){.ind-jump{flex-wrap:wrap}.ind-jump-go{width:100%}}
 /* supply-chain table ordered bar */
 .scbar{display:block;width:74px;height:5px;border-radius:3px;background:var(--hair);overflow:hidden;margin-top:5px}
 .scbar i{display:block;height:100%;border-radius:3px}
@@ -1288,7 +1326,9 @@ function openPartner(key){
     var bs=[].slice.call(tb.children), i=bs.indexOf(document.activeElement); if(i<0) return;
     e.preventDefault(); bs[(i+(e.key==="ArrowRight"?1:bs.length-1))%bs.length].focus();
   }); }
-  TABS.forEach(function(t){
+  var tabList=TABS.slice();
+  if(p.factsheet&&p.factsheet.supply_chain&&p.factsheet.supply_chain.length) tabList.splice(1,0,["industry","Industry & Supply Chain"]);
+  tabList.forEach(function(t){
     var b=document.createElement("button"); b.className="tab"+(t[0]===CURTAB?" active":"");
     b.textContent=t[1]; b.addEventListener("click",function(){
       if(t[0]==="analysis"){ openAnalyticsAt(MODEL_KEYS.indexOf(CURKEY)>=0?("#/partner/"+CURKEY):"", CURKEY); return; }
@@ -1299,11 +1339,13 @@ function openPartner(key){
     b.setAttribute("data-tab",t[0]); b.setAttribute("role","tab"); b.setAttribute("aria-selected",t[0]===CURTAB?"true":"false"); tb.appendChild(b);
   });
   els("pv-foot").innerHTML='UNOFFICIAL · open-source only · as at '+esc(BD.meta.as_at)+'. Records labelled <span class="pill">FACT</span> <span class="pill">ASSESSMENT</span> <span class="pill">TO_VERIFY</span>. Personnel, dates and budget figures held at TO_VERIFY render as pending confirmation and must not be asserted in a minute or brief until sourced.';
-  CURTAB = TABS.some(function(t){return t[0]===wantTab && t[0]!=="analysis";}) ? wantTab : "factsheet";
+  CURTAB = tabList.some(function(t){return t[0]===wantTab && t[0]!=="analysis";}) ? wantTab : "factsheet";
   try{ history.replaceState(null,"", "?p="+key+"#"+CURTAB); }catch(e){}
   renderTabs();
   window.scrollTo(0,0);
 }
+function openTab(t){ CURTAB=t; try{ history.replaceState(null,"","?p="+CURKEY+"#"+CURTAB); }catch(e){} renderTabs(); window.scrollTo(0,0); }
+window.openTab=openTab;
 function goHome(){ els("view").style.display="none"; els("analytics").style.display="none"; els("hero").style.display="flex"; CURKEY=null; window.scrollTo(0,0); buildCarousel(); }
 els("pv-back").addEventListener("click",goHome);
 els("pv-home").addEventListener("click",goHome);
@@ -1333,6 +1375,7 @@ function renderTabs(){
   var p=BD.partners[CURKEY];
   var html="";
   if(CURTAB==="factsheet") html=renderFactsheet(p);
+  else if(CURTAB==="industry") html=renderIndustryTab(p);
   else if(CURTAB==="leadership") html=renderLeadership(p);
   else if(CURTAB==="loe") html=renderLOE(p);
   else if(CURTAB==="opps") html=renderOpps(p);
@@ -1343,6 +1386,7 @@ function renderTabs(){
   else if(CURTAB==="generate") html=renderGenerate(p);
   els("panels").innerHTML='<div class="panel active" role="tabpanel">'+html+'</div>';
   if(CURTAB==="artefacts" && els("lib-q")) wireLibrary();
+  if(CURTAB==="industry") wireIndustry(p);
   if(CURTAB==="sites") wireSites(p);
   if(CURTAB==="newsroom") wireNewsroom(p);
   if(CURTAB==="generate") wireGenerate();
@@ -1478,8 +1522,14 @@ function renderFactsheet(p){
     h+='</tbody></table></div>';
   }
 
-  /* industry deep block (Defence x Industry — domestic) */
-  if(f.supply_chain&&f.supply_chain.length){ h+=renderIndustry(f); }
+  /* industry deep block now lives in its own tab; leave a signposted jump so it is never missed */
+  if(f.supply_chain&&f.supply_chain.length){
+    var scN=f.supply_chain.length, firmN=(f.firms||[]).length, compN=((p.components||{}).satellite||[]).length+((p.components||{}).ground||[]).length;
+    h+='<button class="ind-jump" onclick="openTab(\'industry\')"><span class="ind-jump-ic">▚</span>'+
+       '<span class="ind-jump-tx"><b>Full Defence &times; Industry supply-chain model</b>'+
+       '<span class="ind-jump-sub">Orbital-domain plate &middot; 3D component models — '+compN+' subsystems scored for sovereignty &middot; five-tier pad-to-terminal stack across '+scN+' supply-chain layers &middot; '+firmN+' firms &middot; foreign-ownership screen &middot; burden-sharing ledger</span></span>'+
+       '<span class="ind-jump-go">Open the Industry &amp; Supply Chain tab &nbsp;&rarr;</span></button>';
+  }
 
   /* cooperation, pacific, multilateral */
   var trip="";
@@ -1521,8 +1571,39 @@ function renderKeyLeaders(p){
 }
 function cls(l){return String(l||"").replace(/[^A-Za-z]/g,"").toUpperCase().indexOf("TOVERIFY")===0?"TO_VERIFY":(String(l).indexOf("/")>=0?"mix":String(l).toUpperCase());}
 function mchip(m){var v=scMat(m);var c=v>=3.8?"strong":(v>=2?"partial":"dependent");return '<span class="mchip '+c+'">'+esc(m)+'</span>';}
-function renderIndustry(f){
-  var h=renderScStack(f);
+/* Industry & Supply Chain — the promoted, first-class destination for the domestic Defence x Industry model */
+function renderIndustryTab(p){
+  var f=p.factsheet||{}, comp=p.components||{};
+  var sc=f.supply_chain||[];
+  var mats=sc.map(function(x){return scMat(x.maturity);});
+  var mean=mats.length?(mats.reduce(function(a,b){return a+b;},0)/mats.length):0;
+  var sov=mats.filter(function(v){return scClass(v)==="sov";}).length;
+  var par=mats.filter(function(v){return scClass(v)==="par";}).length;
+  var dep=mats.filter(function(v){return scClass(v)==="dep";}).length;
+  var subs=(comp.satellite||[]).concat(comp.ground||[]);
+  var firmN=(f.firms||[]).length;
+  function metric(v,l,cls){ return '<div class="ind-metric'+(cls?" "+cls:"")+'"><div class="im-v">'+v+'</div><div class="im-l">'+esc(l)+'</div></div>'; }
+  var h='<div class="ind-hero">'+
+    '<div class="ind-hero-eyebrow">Australia &middot; Defence &times; Industry &middot; UNOFFICIAL &middot; as at '+esc(BD.meta.as_at)+'</div>'+
+    '<h2 class="ind-hero-title">The sovereign space supply chain</h2>'+
+    '<p class="ind-hero-lede">'+esc(f.strategic_overview||"Pad to user terminal in five layers — where Australia holds sovereign control, where it is import-dependent, which firms hold each layer, and the path to closing the gaps.")+'</p>'+
+    '<div class="ind-metrics">'+
+      metric(mean.toFixed(1)+'<small>/5</small>','mean sovereign maturity')+
+      metric(String(sc.length),'supply-chain layers')+
+      metric(String(subs.length),'subsystems scored')+
+      metric(String(firmN),'firms in the base')+
+      metric('<span style="color:var(--fact)">'+sov+'</span><span class="im-sep">/</span><span style="color:var(--assess)">'+par+'</span><span class="im-sep">/</span><span style="color:#b4432f">'+dep+'</span>','sovereign / partial / dependent layers')+
+    '</div></div>';
+  /* the centrepiece: the orbital domain plate and the component-capability models,
+     then the full-stack supply-chain instrument and the research base beneath it */
+  h+=renderOrbitalSection(p);
+  h+=renderComponentSection(p);
+  h+=renderIndustry(f,comp);
+  h+=renderResearch(p);
+  return h;
+}
+function renderIndustry(f,comp){
+  var h=renderScStack(f,comp);
   h+='<div class="sec-label" style="margin-top:22px">Defence &times; Industry — sovereign industrial assessment</div>'+
     '<div class="card" style="margin:8px 0 16px"><div class="sec-label">Supply-chain maturity by layer <span class="lab ASSESSMENT">ASSESSMENT</span></div>'+
     '<table class="sc-table"><thead><tr><th>Layer</th><th>Sovereign maturity <span style="font-weight:400;color:var(--muted)">0–5</span></th><th>Evidence</th></tr></thead><tbody>';
@@ -2076,26 +2157,34 @@ function renderSites(p){
   }
   /* ARCHITECTURE — layer overview (3D schematic) */
   if(arch){
-    h+='<div class="sec-label" style="margin-top:26px">Orbital domain — the segments at true altitude <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
-    h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">A ground-to-GEO elevation on a logarithmic altitude axis: each regime at true relative altitude with its real constellations, sovereign maturity engraved per segment. Hover, tap or Tab any element for its orbital parameters and score.</p>';
-    h+=orbitalDomain(arch, cbOrbCtx(p));
+    h+=renderOrbitalSection(p);
     h+='<div class="sec-label" style="margin-top:26px">Space architecture — sovereign control by layer <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
     h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">Hover or tap a node to see '+esc(p.name)+'\'s sovereign maturity over that part of the architecture (0 none – 5 full). Ground sites sit on the Earth limb; the readouts at right carry the score for each layer.</p>';
     h+=renderArchSvg(arch, cbArchCtx(p));
     h+='<div class="arch-detail" id="arch-detail" role="status">'+esc(arch.note||"")+'</div>';
   }
-  /* COMPONENT CAPABILITY — exploded satellite & ground station */
-  var comp=p.components||null;
-  if(comp){
-    h+='<div class="sec-label" style="margin-top:26px">Component capability — '+esc(p.name)+' sovereign build/control by subsystem <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
-    h+='<p style="font-size:12px;color:var(--muted);margin-bottom:12px">Satellite and ground station decomposed to subsystem level; each subsystem scored 0–5 for sovereign industrial capability (ring colour tracks the score), joined to its parent supply-chain layer and national maturity, and cross-referenced to the research base below. Hover a subsystem for the full assessment.</p>';
-    h+='<div class="two">';
-    h+='<div class="card"><div class="sec-label">Space segment — satellite subsystems</div>'+render3D("sat",comp.satellite)+renderExploded(comp.satellite,"sat")+'</div>';
-    h+='<div class="card"><div class="sec-label">Ground segment — station subsystems</div>'+render3D("gnd",comp.ground)+renderExploded(comp.ground,"gnd")+'</div>';
-    h+='</div>';
-    h+='<div class="arch-detail" id="comp-detail" role="status">Select a subsystem (hover, tap or Tab) for its capability assessment and responsible industry field.</div>';
-  }
+  h+=renderComponentSection(p);
   h+=renderResearch(p);
+  return h;
+}
+/* Orbital domain + component capability — shared by Sites & Architecture and the
+   Industry & Supply Chain tab (where, for the domestic view, they are the centrepiece) */
+function renderOrbitalSection(p){
+  var arch=p.arch; if(!arch) return "";
+  var h='<div class="sec-label" style="margin-top:26px">Orbital domain — the segments at true altitude <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
+  h+='<p style="font-size:12px;color:var(--muted);margin-bottom:10px">A ground-to-GEO elevation on a logarithmic altitude axis: each regime at true relative altitude with its real constellations, sovereign maturity engraved per segment. Hover, tap or Tab any element for its orbital parameters and score.</p>';
+  h+=orbitalDomain(arch, cbOrbCtx(p));
+  return h;
+}
+function renderComponentSection(p){
+  var comp=p.components||null; if(!comp) return "";
+  var h='<div class="sec-label" style="margin-top:26px">Component capability — '+esc(p.name)+' sovereign build/control by subsystem <span class="lab ASSESSMENT">ASSESSMENT</span></div>';
+  h+='<p style="font-size:12px;color:var(--muted);margin-bottom:12px">Satellite and ground station decomposed to subsystem level; each subsystem scored 0–5 for sovereign industrial capability (ring colour tracks the score), joined to its parent supply-chain layer and national maturity, and cross-referenced to the research base below. Hover a subsystem for the full assessment.</p>';
+  h+='<div class="two">';
+  h+='<div class="card"><div class="sec-label">Space segment — satellite subsystems</div>'+render3D("sat",comp.satellite)+renderExploded(comp.satellite,"sat")+'</div>';
+  h+='<div class="card"><div class="sec-label">Ground segment — station subsystems</div>'+render3D("gnd",comp.ground)+renderExploded(comp.ground,"gnd")+'</div>';
+  h+='</div>';
+  h+='<div class="arch-detail" id="comp-detail" role="status">Select a subsystem (hover, tap or Tab) for its capability assessment and responsible industry field.</div>';
   return h;
 }
 function capChip(c){ var col=sovCol(c); return '<span class="capnum" style="background:'+col+'">'+c+'</span>'; }
@@ -2218,7 +2307,7 @@ function barrierMeta(b){var s=String(b),t=s.toLowerCase(),ci=s.indexOf(":"),cat=
   if(/jp9102|satcom/.test(t))k="ground";
   else if(/subsystem|component|oxidiser|industrial/.test(t))k="satellite";
   return {cat:cat,layer:k};}
-function renderScStack(f){
+function renderScStack(f,comp){
   var sc=f.supply_chain||[],firms=f.firms||[],barr=f.barriers||[];
   var byName={};sc.forEach(function(x){byName[x.layer]=x;});
   var fByName={};firms.forEach(function(x){fByName[x.name]=x;});
@@ -2243,7 +2332,7 @@ function renderScStack(f){
     if(chips)h+='<div class="sct-firms">'+chips+'</div>';
     var bs=barr.filter(function(b){return barrierMeta(b).layer===T.k;});
     if(bs.length)h+='<div class="sct-barr">'+bs.map(function(b){return '<span class="barchip" title="'+esc(b)+'">&#9888; '+esc(barrierMeta(b).cat)+'</span>';}).join("")+'</div>';
-    h+='<div class="sct-path"><span class="sct-path-lab">Path</span> '+T.path+'</div>';
+    h+=renderTierSubs(T.k,comp);h+='<div class="sct-path"><span class="sct-path-lab">Path</span> '+T.path+'</div>';
     h+='</div></div>';
   });
   h+='</div>';
@@ -2813,6 +2902,26 @@ function wireOrbital(root, ctx){
 window.orbitalDomain=orbitalDomain; window.wireOrbital=wireOrbital;
 })();
 
+/* ===== LENS: subsystem-level sovereignty — cross-link each supply-chain tier to its constituent subsystems ===== */
+function subTierKey(part){var lyr=subLayer(part);if(!lyr)return null;for(var i=0;i<SC_TIERS.length;i++){if(SC_TIERS[i].sc.indexOf(lyr)>=0)return SC_TIERS[i].k;}return null;}
+function tierSubs(k,comp){if(!comp)return [];var all=(comp.satellite||[]).concat(comp.ground||[]);return all.filter(function(pt){return subTierKey(pt.part)===k;});}
+function subTag(pt){var t=((pt.who||"")+" "+(pt.note||"")).toLowerCase();if(/import/.test(t))return "import";if(/gap/.test(t)||pt.cap<=1)return "gap";if(pt.cap>=4)return "sovereign";return "partial";}
+function subTagLabel(g){return g==="import"?"import-dependent":(g==="gap"?"gap":(g==="sovereign"?"sovereign":"partial"));}
+function renderTierSubs(k,comp){
+  var subs=tierSubs(k,comp);if(!subs.length)return "";
+  var b={sovereign:0,partial:0,import:0,gap:0};subs.forEach(function(pt){b[subTag(pt)]++;});
+  var order=[["sovereign","var(--fact)"],["partial","var(--assess)"],["import","#b4432f"],["gap","#b4432f"]];
+  var pips=order.map(function(g){return b[g[0]]?'<span class="tss-pip" style="--pc:'+g[1]+'"><b>'+b[g[0]]+'</b>'+subTagLabel(g[0])+'</span>':'';}).filter(Boolean).join("");
+  var rows=subs.slice().sort(function(a,c){return a.cap-c.cap;}).map(function(pt){
+    var g=subTag(pt),col=sovCol(pt.cap);
+    var whoTxt=(pt.who&&pt.who.replace(/[^A-Za-z0-9]/g,"").length)?pt.who:"no sovereign source";
+    return '<div class="subrow" data-g="'+g+'"><span class="sub-cap" style="background:'+col+'">'+pt.cap+'</span>'+
+      '<span class="sub-name">'+esc(pt.part)+'</span>'+
+      '<span class="sub-tag" style="--tc:'+col+'">'+subTagLabel(g)+'</span>'+
+      '<span class="sub-who">'+esc(whoTxt)+'</span></div>';
+  }).join("");
+  return '<details class="sct-subs"><summary><span class="sct-subs-lab">Subsystem sovereignty</span><span class="tss-pips">'+pips+'</span><span class="sct-subs-x" aria-hidden="true"></span></summary><div class="sub-list">'+rows+'</div></details>';
+}
 function miniRing(x,y,m){
   var r=8,C=2*Math.PI*r,f=Math.max(0,Math.min(5,m))/5;
   return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="var(--hair)" stroke-width="2.5"/>'+
@@ -3303,11 +3412,20 @@ function wireSites(p){
     var show2=function(){ show(); lit(); };
     nd.addEventListener("mouseenter",show2); nd.addEventListener("click",show2); nd.addEventListener("focus",show2);
   });
-  /* component hover */
+  wireCompHover(p);
+}
+/* component hover — shared by Sites & Architecture and Industry & Supply Chain */
+function wireCompHover(p){
   document.querySelectorAll(".ex-part").forEach(function(pt){
     function show(){ var d=els("comp-detail"); if(!d) return; var _pn=pt.getAttribute("data-part"), _scl=subLayer(_pn), _scr=scFind((p.factsheet||{}).supply_chain,_scl); d.innerHTML='<b>'+esc(_pn)+' — capability '+esc(pt.getAttribute("data-cap"))+'/5.</b> '+esc(pt.getAttribute("data-note"))+(_scr?'<div style="margin-top:5px;font-size:11.5px;color:var(--muted)">Feeds supply-chain layer <b style="color:var(--ink2)">'+esc(_scr.layer)+'</b> &middot; national maturity <b>'+esc(_scr.maturity)+'</b></div>':''); }
     pt.addEventListener("mouseenter",show); pt.addEventListener("click",show); pt.addEventListener("focus",show);
   });
+}
+/* Industry & Supply Chain tab wiring — the 3D models, the orbital plate, subsystem hover */
+function wireIndustry(p){
+  wireModels(p);
+  try{ var _op=(els("panels")||document).querySelector(".orb"); if(_op) wireOrbital(_op,{arch:p.arch,ctx:cbOrbCtx(p)}); }catch(e){}
+  wireCompHover(p);
 }
 
 /* ---------- GENERATE (minute + in-brief) ---------- */

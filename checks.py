@@ -198,6 +198,60 @@ for pk, vs in VEH.items():
                 malformed.append(v.get("vehicle_id", "?"))
 check("all register source urls are well-formed", not malformed, ",".join(malformed[:5]))
 
+print("== industry & supply-chain render (the promoted domestic tab) ==")
+# The supply-chain model is the domestic partner's headline. Render it in full
+# through a permissive fake-DOM so the whole script bootstraps, then assert every
+# supply-chain partner produces balanced, complete output — this is the render the
+# hand-picked placemat/minute/brief harness above does NOT exercise.
+_blocks = {m.group(1): m.group(2) for m in
+           re.finditer(r'<script[^>]*application/json[^>]*id="([^"]+)">(.*?)</script>', cb, re.S)}
+_stub = ('var JB=' + json.dumps(_blocks) + ';'
+    'function mk(id){return new Proxy(function(){},{get:(t,k)=>{'
+    'if(k==="textContent"||k==="innerHTML")return (id&&JB[id])||"";'
+    'if(k==="classList")return {add(){},remove(){},toggle(){},contains(){return false;}};'
+    'if(k==="style")return new Proxy({},{get:()=>"",set:()=>true});'
+    'if(k==="getContext")return ()=>mk();if(k==="dataset")return {};'
+    'if(k==="children"||k==="childNodes")return [];if(k==="getAttribute")return ()=>null;'
+    'return (typeof k==="symbol")?undefined:mk();},apply:()=>mk(),set:()=>true});}'
+    'globalThis.document=new Proxy({},{get:(t,k)=>{'
+    'if(k==="getElementById")return (id)=>mk(id);'
+    'if(k==="querySelector")return (s)=>{var m=/#([\\w-]+)/.exec(s||"");return mk(m&&m[1]);};'
+    'if(k==="createElement"||k==="createElementNS")return ()=>mk();'
+    'if(k==="querySelectorAll"||k==="getElementsByClassName")return ()=>[];'
+    'if(k==="addEventListener"||k==="removeEventListener")return ()=>{};return mk();}});'
+    'var W={};'   # real store: the page exposes IIFE functions via window.x= — keep and re-expose them
+    'globalThis.window=new Proxy(W,{set:(t,k,v)=>{t[k]=v;return true;},get:(t,k)=>{'
+    'if(k in t)return t[k];'
+    'if(k==="matchMedia")return ()=>({matches:false,addEventListener(){},removeEventListener(){}});'
+    'if(k==="addEventListener"||k==="removeEventListener"||k==="requestAnimationFrame")return ()=>{};'
+    'if(k==="location")return {hash:"",search:"",href:""};'
+    'return undefined;}});'   # browser semantics: unset window props are undefined, never fake elements
+    'globalThis.location={hash:"",search:"",href:""};globalThis.navigator={userAgent:"node"};'
+    'globalThis.L=undefined;globalThis.requestAnimationFrame=()=>{};globalThis.setTimeout=()=>{};'
+    'globalThis.getComputedStyle=()=>({getPropertyValue:()=>""});')
+_render = ('\nObject.keys(W).forEach(function(k){ if(!(k in globalThis)) globalThis[k]=W[k]; });'
+    'var BD2=' + _blocks["briefing-data"] + ';var bad=0;'
+    'Object.keys(BD2.partners).forEach(function(k){var p=BD2.partners[k];'
+    'var f=p.factsheet||{};if(!(f.supply_chain&&f.supply_chain.length))return;'
+    'try{var o=renderIndustryTab(p);'
+    'var a=(o.match(/<div/g)||[]).length,b=(o.match(/<\\/div>/g)||[]).length;'
+    'if(a!==b){bad++;console.error("DIVS "+k+" "+a+"/"+b);}'
+    'if(/undefined/.test(o)){bad++;console.error("UNDEF "+k);}'
+    'if(!/ind-hero-title/.test(o)){bad++;console.error("NOHERO "+k);}'
+    'var comp=(p.components||{});var n=(comp.satellite||[]).length+(comp.ground||[]).length;'
+    'if(n&&(o.match(/class="subrow"/g)||[]).length!==n){bad++;console.error("SUBS "+k);}'
+    'if(p.arch&&!/ORBITAL DOMAIN/.test(o)){bad++;console.error("NOORB "+k);}'
+    'if(n&&!/Component capability/.test(o)){bad++;console.error("NOCOMP "+k);}'
+    'if(n&&!/class="ex-part"/.test(o)){bad++;console.error("NOPARTS "+k);}'
+    'var fs=renderFactsheet(p);if(!/openTab\\(.industry.\\)/.test(fs)){bad++;console.error("NOJUMP "+k);}'
+    '}catch(e){bad++;console.error("THREW "+k+" "+e.message);}});'
+    'console.log("IBAD="+bad);')
+with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False) as f:
+    f.write(_stub + js_blocks(cb)[0] + _render); ip = f.name
+ir = subprocess.run(["node", ip], capture_output=True, text=True); os.unlink(ip)
+check("industry & supply-chain tab renders complete for every supply-chain partner",
+      "IBAD=0" in ir.stdout, (ir.stdout + ir.stderr).strip()[:200])
+
 print()
 if fails:
     print("FAILURES:", ", ".join(fails)); sys.exit(1)
