@@ -1,10 +1,299 @@
 <!doctype html>
-<html lang="en-AU"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
-<meta http-equiv="refresh" content="0; url=command-brief.html">
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Partner placemats, minutes and visit in-briefs — one print-ready set per partner. UNOFFICIAL, open-source only.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%230e1826%27/%3E%3Ctext x=%2716%27 y=%2721%27 font-family=%27Georgia%27 font-size=%2713%27 font-weight=%27600%27 fill=%27%23c89b5a%27 text-anchor=%27middle%27%3EDS%3C/text%3E%3C/svg%3E">
-<title>Placemats — see the Command Brief</title>
-<style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#0e1826;color:#e8ecf3;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}a{color:#c89b5a}</style>
-</head><body><div>
-<p>Partner placemats are now generated live inside the Command Brief, current with the register.</p>
-<p><a href="command-brief.html">Open the Command Brief &rarr;</a> — pick a partner, then the <b>Placemat</b> tab.</p>
-</div></body></html>
+<title>Partner placemats, minutes &amp; in-briefs — UNOFFICIAL</title>
+<style>
+:root{
+  --bg:#0e1826; --panel:#152336; --hair:rgba(214,222,235,.14);
+  --ink:#e8ecf3; --ink2:#aab6c6; --muted:#768699;
+  --accent:#c89b5a; --accent-ink:#e6c896;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:rgba(200,155,90,.3);color:var(--ink)}
+html{color-scheme:dark}
+body{font-family:var(--sans);background:radial-gradient(1100px 500px at 50% -10%, #16283f 0%, transparent 60%),var(--bg);
+  color:var(--ink);line-height:1.55;min-height:100vh;display:flex;flex-direction:column}
+.banner{background:#fff;color:#000;text-align:center;font-size:11px;font-weight:700;
+  letter-spacing:.16em;padding:6px 10px;text-transform:uppercase;border-bottom:2px solid #000}
+main{width:100%;max-width:1120px;margin:0 auto;padding:clamp(36px,6vh,64px) 28px 56px;flex:1}
+.back{display:inline-block;font-size:12px;color:var(--muted);text-decoration:none;margin-bottom:20px}
+.back:hover{color:var(--ink2)}
+.kicker{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4.4vw,40px);line-height:1.1}
+.stand{max-width:72ch;margin:14px 0 0;color:var(--ink2);font-size:14.5px;line-height:1.65}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin:26px 0 0;
+  padding:16px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.legend div{font-size:12.5px;color:var(--ink2)}
+.legend b{display:block;font-family:var(--serif);font-size:15px;color:var(--accent-ink);font-weight:600;margin-bottom:3px}
+h2.grp{font-family:var(--serif);font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.07em;
+  text-transform:uppercase;margin:36px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--hair)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;align-items:stretch}
+.card{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,#182a41,var(--panel));
+  border:1px solid var(--hair);border-radius:10px;padding:16px 16px 13px;overflow:hidden;transition:border-color .18s}
+.card:hover{border-color:rgba(200,155,90,.5)}
+.flag{position:absolute;inset:0 0 auto 0;height:3px;opacity:.85}
+.ch{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.nm{font-family:var(--serif);font-size:17.5px;font-weight:600;color:var(--ink);line-height:1.25}
+.depth{font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);white-space:nowrap;
+  border:1px solid var(--hair);border-radius:99px;padding:2px 7px}
+.reg{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.one{font-size:12.5px;color:var(--ink2);margin:9px 0 14px;line-height:1.5}
+.docs{display:flex;gap:7px;flex-wrap:wrap;margin-top:auto}
+.docs a{flex:1;min-width:86px;text-align:center;text-decoration:none;font-size:12px;color:var(--ink2);
+  border:1px solid var(--hair);border-radius:7px;padding:7px 8px;transition:border-color .15s,color .15s,background .15s}
+.docs a:hover{border-color:var(--accent);color:var(--ink);background:rgba(200,155,90,.09)}
+.docs a:focus-visible,.back:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{border-top:1px solid var(--hair);padding:18px 28px 26px;text-align:center;
+  font-size:11.5px;color:var(--muted);max-width:1120px;margin:0 auto;width:100%}
+footer .lock{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;margin-top:6px;color:#5d6b80}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="banner">Unofficial — open-source evidence only — draft, pending custodian validation</div>
+<main>
+  <a class="back" href="index.html">&#8592; Partnership model</a>
+  <div class="kicker">Print · carry-in documents</div>
+  <h1>Partner placemats, minutes &amp; in-briefs</h1>
+  <p class="stand">Three print-ready documents are generated live for each of the 19 partners, current with the register as at 27 July 2026.
+  Open one and use <b>Print / PDF</b> on the page — the placemat is a single large-format carry-in sheet; the minute and in-brief follow the
+  ADF Writing Manual (Ch&nbsp;10 Minutes, Ch&nbsp;12 Briefs). The Command Brief asks for its access code once per session.</p>
+  <div class="legend">
+    <div><b>Placemat</b>One-page decision sheet: key messages, capability radar, leadership, agreements, engagements and priority opportunities.</div>
+    <div><b>Minute</b>ADF-format minute drafted from that partner’s confirmed content and any opportunities ticked on the Opportunities tab.</div>
+    <div><b>In-brief</b>Visit in-brief for an engagement with that partner, under the same sourcing discipline.</div>
+  </div>
+<h2 class="grp">Nations</h2>
+<div class="grid">
+  <div class="card">
+    <span class="flag" style="background:radial-gradient(circle at 68% 38%, #2b2b2b 0%, #141414 55%, #060606 100%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">New Zealand</span></div>
+    <div class="reg">Oceania — trans-Tasman</div>
+    <p class="one">Australia&#x27;s closest defence partner and treaty ally, with a major launch site on its soil; bilateral space cooperation…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=nz&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=nz&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=nz&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:repeating-linear-gradient(180deg,#b22234 0,#b22234 14%,#ffffff 14%,#ffffff 28%),linear-gradient(#3c3b6e,#3c3b6e)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">United States</span></div>
+    <div class="reg">North America — principal ally</div>
+    <p class="one">Australia&#x27;s principal space ally; provides core SATCOM and SDA architecture and has opened its Force Design process to…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=us&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=us&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=us&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(45deg,#012169 40%,#c8102e 40%,#c8102e 60%,#012169 60%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">United Kingdom</span></div>
+    <div class="reg">Europe — AUKUS</div>
+    <p class="one">DARC trilateral partner and AUKUS licence-free trade counterpart with an updated Space Bridge arrangement.</p>
+    <div class="docs">
+      <a href="command-brief.html?p=uk&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=uk&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=uk&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:radial-gradient(circle at 50% 50%,#bc002d 0,#bc002d 30%,#f2f2f2 30%,#f2f2f2 100%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">Japan</span></div>
+    <div class="reg">North-east Asia</div>
+    <p class="one">Closest Indo-Pacific partner with operational civil space interdependence and a maturing military space organisation.</p>
+    <div class="docs">
+      <a href="command-brief.html?p=japan&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=japan&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=japan&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(180deg,#ff9933 33%,#ffffff 33%,#ffffff 66%,#138808 66%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">India</span></div>
+    <div class="reg">South Asia — Quad</div>
+    <p class="one">Rapidly deepening strategic partner whose Gaganyaan support already monetises Australian Indian Ocean geography.</p>
+    <div class="docs">
+      <a href="command-brief.html?p=india&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=india&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=india&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(180deg,#000000 33%,#dd0000 33%,#dd0000 66%,#ffce00 66%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">Germany</span></div>
+    <div class="reg">Europe</div>
+    <p class="one">Capable European space actor that names Australia an attractive partner but engages mainly through CSpO and commercial…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=germany&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=germany&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=germany&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(90deg,#ff0000 22%,#00732f 22%,#00732f 100%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">United Arab Emirates</span></div>
+    <div class="reg">Middle East</div>
+    <p class="one">Well-funded, mission-driven space actor newly bound tighter into the US technology-security perimeter (EAR Country Group…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=uae&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=uae&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=uae&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(90deg,#d80621 22%,#ffffff 22%,#ffffff 78%,#d80621 78%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">Canada</span></div>
+    <div class="reg">North America — Five Eyes</div>
+    <p class="one">Canada is Australia&#x27;s structural twin in allied defence space — same US-SSN sensor role, same WGS programme, same CSpO…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=canada&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=canada&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=canada&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(90deg,#0055a4 33%,#ffffff 33%,#ffffff 66%,#ef4135 66%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">France</span></div>
+    <div class="reg">Europe</div>
+    <p class="one">France pairs Europe&#x27;s most complete military-space capability and Pacific residency with a young, post-AUKUS-repair…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=france&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=france&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=france&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(90deg,#008c45 33%,#ffffff 33%,#ffffff 66%,#cd212a 66%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">Italy</span></div>
+    <div class="reg">Europe</div>
+    <p class="one">Italy is the inverse New Zealand: a full-stack military space power (sovereign SAR, milsatcom, optical ISR, a 2020 space…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=italy&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=italy&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=italy&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(90deg,#ba0c2f 36%,#ffffff 36%,#ffffff 44%,#00205b 44%,#00205b 56%,#ffffff 56%,#ffffff 64%,#ba0c2f 64%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">Norway</span></div>
+    <div class="reg">Europe — polar</div>
+    <p class="one">Capable niche space nation and Australia&#x27;s fastest-growing missile-industrial partner — with a completely empty…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=norway&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=norway&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=norway&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:radial-gradient(circle at 50% 50%,#cd2e3a 0,#cd2e3a 16%,#0047a0 16%,#0047a0 30%,#ffffff 30%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">Republic of Korea</span></div>
+    <div class="reg">North-east Asia</div>
+    <p class="one">The inverse of the New Zealand finding: a partner with real bilateral space instruments (2021 Space MoU, annual Space…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=rok&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=rok&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=rok&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(180deg,#ef3340 50%,#ffffff 50%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">Singapore</span></div>
+    <div class="reg">South-East Asia</div>
+    <p class="one">Australia&#x27;s deepest Southeast Asian defence partnership - treaty-level training presence, biennial 3+3, A$2.25bn of…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=singapore&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=singapore&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=singapore&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(180deg,#ce1126 50%,#ffffff 50%)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">Indonesia</span></div>
+    <div class="reg">South-East Asia</div>
+    <p class="one">Strategically pivotal archipelagic neighbour; civil space via BRIN (absorbed LAPAN 2021), equatorial launch ambitions at…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=indonesia&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=indonesia&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=indonesia&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+</div>
+<h2 class="grp">Australia’s own base</h2>
+<div class="grid">
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(120deg,#00843d,#012169)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">Australia — Defence × Industry</span><span class="depth" title="Carried at analysis depth — not yet staffed to full briefing depth">analysis depth</span></div>
+    <div class="reg">Sovereign supply-side</div>
+    <p class="one">Australia&#x27;s sovereign space industrial base and research sector - genuine niches (ground/SDA hosting, small-sat…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=domestic&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=domestic&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=domestic&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+</div>
+<h2 class="grp">Multilateral groupings</h2>
+<div class="grid">
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(120deg,#c89b5a,#8d6a35 55%,#2b3d57)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">Pacific / PIF</span><span class="depth" title="Carried at analysis depth — not yet staffed to full briefing depth">analysis depth</span></div>
+    <div class="reg">Pacific</div>
+    <p class="one">Regional body whose endorsed security and connectivity frameworks give Australia a Pacific-defined pathway for…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=pacific&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=pacific&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=pacific&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(120deg,#c89b5a,#8d6a35 55%,#2b3d57)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">Quad</span><span class="depth" title="Carried at analysis depth — not yet staffed to full briefing depth">analysis depth</span></div>
+    <div class="reg">Indo-Pacific</div>
+    <p class="one">Civil-domain space cooperation vehicle (EO data gateway, civil SSA expertise sharing, Indo-Pacific capacity building).</p>
+    <div class="docs">
+      <a href="command-brief.html?p=quad&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=quad&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=quad&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(120deg,#c89b5a,#8d6a35 55%,#2b3d57)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">AUKUS</span><span class="depth" title="Carried at analysis depth — not yet staffed to full briefing depth">analysis depth</span></div>
+    <div class="reg">Trilateral</div>
+    <p class="one">Delivery and export-control framework: DARC under a trilateral MoU plus the ITAR/EAR/DTC licence-free environment.</p>
+    <div class="docs">
+      <a href="command-brief.html?p=aukus&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=aukus&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=aukus&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+  <div class="card">
+    <span class="flag" style="background:linear-gradient(120deg,#c89b5a,#8d6a35 55%,#2b3d57)" aria-hidden="true"></span>
+    <div class="ch"><span class="nm">CSpO</span><span class="depth" title="Carried at analysis depth — not yet staffed to full briefing depth">analysis depth</span></div>
+    <div class="reg">Ten-nation (AU, CA, FR, DE, IT, JP, NZ, NO, UK, US)</div>
+    <p class="one">The principal multilateral military space forum linking Australia to nine partners, now prioritising Operation Olympic…</p>
+    <div class="docs">
+      <a href="command-brief.html?p=cspo&amp;doc=placemat#placemat">Placemat</a>
+      <a href="command-brief.html?p=cspo&amp;doc=minute#generate">Minute</a>
+      <a href="command-brief.html?p=cspo&amp;doc=brief#generate">In-brief</a>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+  Prepared from publicly available sources only. Contains no classified, caveated or partner-controlled information.
+  Items held at TO_VERIFY render as pending confirmation and must not be asserted until sourced.
+  <div class="lock">UNOFFICIAL · OPEN SOURCE · DRAFT · AS AT 27 JULY 2026</div>
+</footer>
+</body>
+</html>
