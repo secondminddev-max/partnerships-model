@@ -1368,7 +1368,9 @@ function renderPlacemat(p){
   h+='<div class="pm-col"><div class="pm-sec">Key messages</div><ul class="pm-list">'+((f.key_messages||[]).slice(0,3).map(function(k){return '<li>'+esc(k.text)+'</li>';}).join(""))+'</ul>';
   h+='<div class="pm-sec">Capability</div>'+renderRadar(p)+'</div>';
   /* col 2: leaders + agreements */
-  h+='<div class="pm-col"><div class="pm-sec">Key leaders</div><ul class="pm-list tight">'+pf.slice(0,5).map(function(x){return '<li><b>'+esc(x.name)+'</b> — '+esc(x.appointment)+'</li>';}).join("")+'</ul>';
+  var pmOwn=PARTNER_SIDE[CURKEY]||"\u0000";
+  var pmLead=pf.filter(function(x){return x.side===pmOwn;}).concat(pf.filter(function(x){return x.side!==pmOwn;})).slice(0,5);
+  h+='<div class="pm-col"><div class="pm-sec">'+esc((FLAGDEF[CURKEY]&&FLAGDEF[CURKEY].name)||p.name)+' space &amp; defence leadership</div><ul class="pm-list tight">'+pmLead.map(function(x){return '<li><b>'+esc(x.name)+'</b> — '+esc(x.appointment)+'</li>';}).join("")+'</ul>';
   h+='<div class="pm-sec">Key agreements</div><ul class="pm-list tight">'+((f.key_agreements||[]).slice(0,5).map(function(a){return '<li><b>'+esc(a.name)+'</b> ('+esc(a.date)+')</li>';}).join(""))+'</ul></div>';
   /* col 3: engagements + opportunities */
   h+='<div class="pm-col"><div class="pm-sec">Recent engagements</div><ul class="pm-list tight">'+(recent.length?recent.map(function(e){return '<li>'+esc(e.when)+' — '+esc(e.title)+'</li>';}).join(""):'<li class="pending">none recorded</li>')+'</ul>';
